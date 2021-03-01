@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+        <activity android:name=".Splash_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity_Add_Client" />
+        <activity android:name=".Activity_show_allinfo_client" />
+        <activity android:name=".Activity_edit_apartment">
+            <intent-filter>
+                <action android:name="apartment_edit1" />
+                <action android:name="apartment_edit2" />
+                <action android:name="apartment_edit3" />
+                <action android:name="apartment_edit4" />
+                <action android:name="apartment_edit5" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity_FindClient">
+            <intent-filter>
+                <action android:name="find_client1" />
+                <action android:name="find_client2" />
+                <action android:name="find_client3" />
+                <action android:name="find_client4" />
+                <action android:name="find_client5" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity_NewClient">
+            <intent-filter>
+                <action android:name="new_client1" />
+                <action android:name="new_client2" />
+                <action android:name="new_client3" />
+                <action android:name="new_client4" />
+                <action android:name="new_client5" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity_all_clients">
+            <intent-filter>
+                <action android:name="allclient" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity_new_apartment">
+            <intent-filter>
+                <action android:name="new_home1" />
+                <action android:name="new_home2" />
+                <action android:name="new_home3" />
+                <action android:name="new_home4" />
+                <action android:name="new_home5" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity_add_new_apartment">
+            <intent-filter>
+                <action android:name="1" />
+                <action android:name="2" />
+                <action android:name="3" />
+                <action android:name="4" />
+                <action android:name="5" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
+    </application>
+
+</manifest>
