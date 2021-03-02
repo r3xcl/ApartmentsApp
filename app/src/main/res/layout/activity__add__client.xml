@@ -2,8 +2,168 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Add_Client">
+    android:background="#FBD6D6"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="434dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/addclient" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="335dp"
+        android:layout_height="475dp"
+        android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.355"
+        app:srcCompat="@drawable/ic_group3" />
+
+    <EditText
+        android:id="@+id/add_name"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Ім'я"
+        android:inputType="textPersonName"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.284" />
+
+    <EditText
+        android:id="@+id/add_surname"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Прізвище"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.214" />
+
+    <EditText
+        android:id="@+id/add_patronymic"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="По батькові"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.364" />
+
+    <EditText
+        android:id="@+id/add_number"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Номер телефона"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.443" />
+
+    <EditText
+        android:id="@+id/add_datestart"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Початок оренди"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.522" />
+
+    <EditText
+        android:id="@+id/add_dateend"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Кінець оренди"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.596" />
+
+    <EditText
+        android:id="@+id/client_info"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Додаткова інформація"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.742" />
+
+    <EditText
+        android:id="@+id/add_pay"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Місячна оплата"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.669" />
+
+    <Button
+        android:id="@+id/add_client"
+        android:layout_width="140dp"
+        android:layout_height="37dp"
+        android:background="@drawable/button"
+        android:onClick="onClick"
+        android:text="Додати"
+        app:backgroundTint="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:layout_constraintVertical_bias="0.23" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

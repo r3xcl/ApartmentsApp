@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -40,13 +41,7 @@ import db.Client_adapter;
 
 public class Activity_all_clients extends AppCompatActivity {
 
-    /*private ListView listView;
-    private ArrayAdapter<String> adapter;
-    private List<String> listData;
-    private DatabaseReference myDataBase ;
-    private String New_Client = "New_Client";
 
-    private List<ClientClass> listTemp;*/
 
     RecyclerView recView;
     Client_adapter adapter;
@@ -59,6 +54,7 @@ public class Activity_all_clients extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.GRAY));
+
 
         setContentView(R.layout.activity_all_clients);
         setTitle("Пошук");
@@ -75,24 +71,23 @@ public class Activity_all_clients extends AppCompatActivity {
 
      fb = (FloatingActionButton)findViewById(R.id.fadd);
      fb.setOnClickListener(v -> {
-       startActivity(new Intent(getApplicationContext(),Activity_Add_Client.class));
+         Intent intent = new Intent("add_client");
+       startActivityForResult(intent,1);
      });
 
-        /*listView = findViewById(R.id.listView);
-        listData = new ArrayList<>();
-        listTemp = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, R.layout.design_list,listData);
 
-        listView.setAdapter(adapter);
-
-        myDataBase = FirebaseDatabase.getInstance().getReference(New_Client);
-
-        getDataFromDB();
-
-        setOnClickItem();*/
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode == 0) {
+            if(resultCode == RESULT_OK){
+                Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+    }
 
 
 @Override
@@ -107,59 +102,7 @@ public class Activity_all_clients extends AppCompatActivity {
         adapter.stopListening();
     }
 
-    /*private void getDataFromDB(){
 
-        ValueEventListener vListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                 if(listData.size() > 0 )listData.clear();
-                 if(listTemp.size() > 0 )listTemp.clear();
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
-
-                    ClientClass clientClass = ds.getValue(ClientClass.class);
-                    assert clientClass != null;
-                    listData.add(clientClass.surname +" "+ clientClass.name +" "+ clientClass.patronymic);
-                    listTemp.add(clientClass);
-
-
-                }
-              adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-
-        myDataBase.addValueEventListener(vListener);
-    }
-
-    private void setOnClickItem(){
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-             ClientClass clientClass = listTemp.get(position);
-                Intent i = new Intent(Activity_all_clients.this, Activity_show_allinfo_client.class);
-                i.putExtra("surname",clientClass.surname);
-                i.putExtra("name",clientClass.name);
-                i.putExtra("patronymic",clientClass.patronymic);
-                i.putExtra("number",clientClass.number);
-                i.putExtra("datestart",clientClass.datestart);
-                i.putExtra("dateend",clientClass.dateend);
-                i.putExtra("sumpay",clientClass.pay);
-                startActivity(i);
-            }
-        });
-
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                return false;
-            }
-        });
-    }*/
 
     public boolean onCreateOptionsMenu(Menu menu) {
 

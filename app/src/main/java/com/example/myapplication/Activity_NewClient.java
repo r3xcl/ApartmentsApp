@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -60,15 +61,16 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
 
         if (action.equals("new_client1")) {
 
-
-            intent.putExtra("client_name1", client_name.getText().toString());
-            intent.putExtra("client_surname1", client_surname.getText().toString());
-            intent.putExtra("client_patronymic1", client_patronymic.getText().toString());
-            intent.putExtra("client_number1", client_number.getText().toString());
-            intent.putExtra("client_datestart1", client_datestart.getText().toString());
-            intent.putExtra("client_dateend1", client_dateend.getText().toString());
-            intent.putExtra("client_info1", client_info.getText().toString());
-            intent.putExtra("client_pay1", client_pay.getText().toString());
+            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
+            && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0) {
+                intent.putExtra("client_name1", client_name.getText().toString());
+                intent.putExtra("client_surname1", client_surname.getText().toString());
+                intent.putExtra("client_patronymic1", client_patronymic.getText().toString());
+                intent.putExtra("client_number1", client_number.getText().toString());
+                intent.putExtra("client_datestart1", client_datestart.getText().toString());
+                intent.putExtra("client_dateend1", client_dateend.getText().toString());
+                intent.putExtra("client_info1", client_info.getText().toString());
+                intent.putExtra("client_pay1", client_pay.getText().toString());
 
 
             String id = myDataBase.getKey();
@@ -90,11 +92,16 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
 
             finish();
 
+            }else {
+                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона та дати!",Toast.LENGTH_LONG).show();
+            }
+
         }
 
         if (action.equals("new_client2")) {
 
-
+            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
+                    && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0) {
             intent.putExtra("client_name2", client_name.getText().toString());
             intent.putExtra("client_surname2", client_surname.getText().toString());
             intent.putExtra("client_patronymic2", client_patronymic.getText().toString());
@@ -103,6 +110,8 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             intent.putExtra("client_dateend2", client_dateend.getText().toString());
             intent.putExtra("client_info2", client_info.getText().toString());
             intent.putExtra("client_pay2", client_pay.getText().toString());
+
+
 
             String id = myDataBase.getKey();
             String surname = client_surname.getText().toString();
@@ -123,11 +132,16 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
 
             finish();
 
+            }else {
+                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона та дати!",Toast.LENGTH_LONG).show();
+            }
+
         }
 
         if (action.equals("new_client3")) {
 
-
+            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
+                    && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0) {
             intent.putExtra("client_name3", client_name.getText().toString());
             intent.putExtra("client_surname3", client_surname.getText().toString());
             intent.putExtra("client_patronymic3", client_patronymic.getText().toString());
@@ -155,12 +169,18 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
 
 
             finish();
+            }else {
+                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона та дати!",Toast.LENGTH_LONG).show();
+            }
+
+
 
         }
 
         if (action.equals("new_client4")) {
 
-
+            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
+                    && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0) {
             intent.putExtra("client_name4", client_name.getText().toString());
             intent.putExtra("client_surname4", client_surname.getText().toString());
             intent.putExtra("client_patronymic4", client_patronymic.getText().toString());
@@ -189,11 +209,17 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
 
             finish();
 
+            }else {
+                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона та дати!",Toast.LENGTH_LONG).show();
+            }
+
+
         }
 
         if (action.equals("new_client5")) {
 
-
+            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
+                    && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0) {
             intent.putExtra("client_name5", client_name.getText().toString());
             intent.putExtra("client_surname5", client_surname.getText().toString());
             intent.putExtra("client_patronymic5", client_patronymic.getText().toString());
@@ -221,6 +247,11 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
 
 
             finish();
+
+            }else {
+                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона та дати!",Toast.LENGTH_LONG).show();
+            }
+
 
         }
     }

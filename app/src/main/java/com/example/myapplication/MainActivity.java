@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             private void createOneDialog(String title) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(title);
-                builder.setCancelable(false);
+
 
 
                 builder.setPositiveButton("Видалити",
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             private void createOneDialog(String title) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(title);
-                builder.setCancelable(false);
+
 
 
                 builder.setPositiveButton("Видалити",
@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             private void createOneDialog(String title) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(title);
-                builder.setCancelable(false);
+
 
 
                 builder.setPositiveButton("Видалити",
@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             private void createOneDialog(String title) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(title);
-                builder.setCancelable(false);
+
 
 
                 builder.setPositiveButton("Видалити",
@@ -408,7 +408,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             private void createOneDialog(String title) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(title);
-                builder.setCancelable(false);
+
 
 
                 builder.setPositiveButton("Видалити",

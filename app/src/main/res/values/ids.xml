@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="add5" type="id" />
+    <item name="new_home2" type="id" />
+    <item name="new_home" type="id" />
+    <item name="add1" type="id" />
+    <item name="new_home3" type="id" />
+    <item name="new_home4" type="id" />
+    <item name="new_home5" type="id" />
+    <item name="add2" type="id" />
+    <item name="imageView3" type="id" />
+    <item name="add3" type="id" />
+    <item name="add4" type="id" />
+    <item name="add1_text" type="id" />
+    <item name="add3_text" type="id" />
+    <item name="add5_text" type="id" />
+    <item name="add2_text" type="id" />
+    <item name="add4_text" type="id" />
+    <item name="allclient" type="id" />
+    <item name="rooms1" type="id" />
+    <item name="floor1" type="id" />
+    <item name="dateown1" type="id" />
+    <item name="rooms2" type="id" />
+    <item name="floor2" type="id" />
+    <item name="dateown2" type="id" />
+    <item name="rooms3" type="id" />
+    <item name="floor3" type="id" />
+    <item name="dateown3" type="id" />
+    <item name="rooms4" type="id" />
+    <item name="floor4" type="id" />
+    <item name="dateown4" type="id" />
+    <item name="rooms5" type="id" />
+    <item name="floor5" type="id" />
+    <item name="dateown5" type="id" />
+    <item name="textView17" type="id" />
+</resources>

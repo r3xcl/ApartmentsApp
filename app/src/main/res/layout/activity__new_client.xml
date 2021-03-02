@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="434dp"
-        android:layout_height="54dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_width="365dp"
-        android:layout_height="520dp"
+        android:layout_width="335dp"
+        android:layout_height="475dp"
         android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
 
     <EditText
         android:id="@+id/client_name"
-        android:layout_width="335dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Ім'я"
@@ -49,7 +49,7 @@
 
     <EditText
         android:id="@+id/client_surname"
-        android:layout_width="335dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Прізвище"
@@ -64,7 +64,7 @@
 
     <EditText
         android:id="@+id/client_patronymic"
-        android:layout_width="335dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:ems="10"
         android:hint="По батькові"
@@ -79,7 +79,7 @@
 
     <EditText
         android:id="@+id/client_number"
-        android:layout_width="335dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Номер телефона"
@@ -94,7 +94,7 @@
 
     <EditText
         android:id="@+id/client_datestart"
-        android:layout_width="335dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Початок оренди"
@@ -109,7 +109,7 @@
 
     <EditText
         android:id="@+id/client_dateend"
-        android:layout_width="335dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Кінець оренди"
@@ -124,7 +124,7 @@
 
     <EditText
         android:id="@+id/client_info"
-        android:layout_width="335dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Додаткова інформація"
@@ -139,10 +139,10 @@
 
     <EditText
         android:id="@+id/client_pay"
-        android:layout_width="335dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:ems="10"
-        android:hint="Сума оплати"
+        android:hint="Місячна оплата"
         android:inputType="textPersonName"
         android:paddingLeft="15dp"
         android:textSize="14sp"
@@ -154,8 +154,8 @@
 
     <Button
         android:id="@+id/add_new_client"
-        android:layout_width="149dp"
-        android:layout_height="42dp"
+        android:layout_width="140dp"
+        android:layout_height="37dp"
         android:background="@drawable/button"
         android:onClick="onClick"
         android:text="Додати"
