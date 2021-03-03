@@ -220,6 +220,7 @@ public class Auth_Activity extends AppCompatActivity implements View.OnClickList
         if (v.getId() == R.id.button_vhod && user_pass.getText().toString().length()!=0
                 && user_email.getText().toString().length()!=0 ){
             signin(user_email.getText().toString(), user_pass.getText().toString());
+
         }
 
         if(v.getId()==R.id.Registr){

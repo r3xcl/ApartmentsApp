@@ -1,33 +1,31 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
     ImageButton add1,add2,add3,add4,add5,
-            new_home,new_home2,new_home3,new_home4,new_home5,
-            allclient;
+            new_home,new_home2,new_home3,new_home4,
+            allclient,bloknot;
 
-    TextView add1_text,add2_text,add3_text,add4_text,add5_text,
+    TextView add1_text,add2_text,add3_text,add4_text,
             rooms1,floor1,dateown1,
             rooms2,floor2,dateown2,
             rooms3,floor3,dateown3,
-            rooms4,floor4,dateown4,
-            rooms5,floor5,dateown5;
+            rooms4,floor4,dateown4;
 
-     Vibrator vibr;
+
+    Vibrator vibr;
 
     private AlphaAnimation buttonClick = new AlphaAnimation(2F, 0.3F);
 
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         add2_text = (TextView) findViewById(R.id.add2_text);
         add3_text = (TextView) findViewById(R.id.add3_text);
         add4_text = findViewById(R.id.add4_text);
-        add5_text = (TextView) findViewById(R.id.add5_text);
+
 
         rooms1 = (TextView) findViewById(R.id.rooms1);
         floor1 = (TextView) findViewById(R.id.floor1);
@@ -62,9 +60,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         floor4 = (TextView) findViewById(R.id.floor4);
         dateown4 = (TextView) findViewById(R.id.dateown4);
 
-        rooms5 = (TextView) findViewById(R.id.rooms5);
-        floor5 = (TextView) findViewById(R.id.floor5);
-        dateown5 = (TextView) findViewById(R.id.dateown5);
+
 
 
         add1 = (ImageButton) findViewById(R.id.add1);
@@ -79,8 +75,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         add4 = (ImageButton) findViewById(R.id.add4);
         add4.setOnClickListener(this);
 
-        add5 = (ImageButton) findViewById(R.id.add5);
-        add5.setOnClickListener(this);
+
 
         new_home = (ImageButton) findViewById(R.id.new_home);
         new_home.setOnClickListener(this);
@@ -94,24 +89,27 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         new_home4 = (ImageButton) findViewById(R.id.new_home4);
         new_home4.setOnClickListener(this);
 
-        new_home5 = (ImageButton) findViewById(R.id.new_home5);
-        new_home5.setOnClickListener(this);
+
+        bloknot = (ImageButton) findViewById(R.id.bloknot);
+        bloknot.setOnClickListener(this);
+
+
 
         allclient = (ImageButton) findViewById(R.id.allclient);
         allclient.setOnClickListener(this);
 
 
-       vibr = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        vibr = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
-     add1.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             vibr.vibrate(70);
-             Intent intent = new Intent("1");
-             startActivityForResult(intent,1);
+        add1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vibr.vibrate(70);
+                Intent intent = new Intent("1");
+                startActivityForResult(intent,1);
 
-         }
-     });
+            }
+        });
 
 
 
@@ -145,15 +143,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             }
         });
 
-        add5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vibr.vibrate(70);
-                Intent intent = new Intent("5");
-                startActivityForResult(intent,5);
 
-            }
-        });
 
         new_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,13 +180,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                            add1.setVisibility(View.VISIBLE);
-                            add1_text.setText("");
-                            
-                            rooms1.setText("");
-                            floor1.setText("");
-                            dateown1.setText("");
-                            
+                                add1.setVisibility(View.VISIBLE);
+                                add1_text.setText("");
+
+                                rooms1.setText("");
+                                floor1.setText("");
+                                dateown1.setText("");
+
                             }
                         });
                 builder.setNeutralButton("Назад",
@@ -206,7 +196,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                             }
                         });
-                   
+
                 builder.show();
             }
         });
@@ -379,62 +369,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             }
         });
 
-        new_home5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vibr.vibrate(70);
-                Intent intent = new Intent("new_home5");
 
-                intent.putExtra("address_5",add5_text.getText());
-                intent.putExtra("rooms5",rooms5.getText());
-                intent.putExtra("floor5",floor5.getText());
-                intent.putExtra("dateown5",dateown5.getText());
-
-                startActivity(intent);
-
-            }
-        });
-
-        new_home5.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                vibr.vibrate(70);
-                v.startAnimation(buttonClick);
-
-                createOneDialog("Оберіть дію");
-                return false;
-            }
-
-            private void createOneDialog(String title) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle(title);
-
-
-
-                builder.setPositiveButton("Видалити",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                add5.setVisibility(View.VISIBLE);
-                                add5_text.setText("");
-
-                                rooms5.setText("");
-                                floor5.setText("");
-                                dateown5.setText("");
-
-                            }
-                        });
-                builder.setNeutralButton("Назад",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-
-                builder.show();
-            }
-        });
 
         allclient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -442,6 +377,16 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("allclient");
                 startActivityForResult(intent,66);
+
+            }
+        });
+
+        bloknot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vibr.vibrate(70);
+                Intent intent = new Intent("bloknot");
+                startActivityForResult(intent,77);
 
             }
         });
@@ -473,25 +418,25 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
                 toast.show();}
-            }else if (requestCode == 2){
-               if (resultCode==RESULT_OK){
+        }else if (requestCode == 2){
+            if (resultCode==RESULT_OK){
 
-                   String address = data.getStringExtra("address2");
-                   add2_text.setText(address);
+                String address = data.getStringExtra("address2");
+                add2_text.setText(address);
 
-                   String rooms = data.getStringExtra("rooms2");
-                   rooms2.setText(rooms);
+                String rooms = data.getStringExtra("rooms2");
+                rooms2.setText(rooms);
 
-                   String floor = data.getStringExtra("floor2");
-                   floor2.setText(floor);
+                String floor = data.getStringExtra("floor2");
+                floor2.setText(floor);
 
-                   String dateown = data.getStringExtra("dateown2");
-                   dateown2.setText(dateown);
+                String dateown = data.getStringExtra("dateown2");
+                dateown2.setText(dateown);
 
-            add2.setVisibility(View.GONE);
+                add2.setVisibility(View.GONE);
 
-            Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
-            toast.show();}
+                Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
+                toast.show();}
         }else if (requestCode == 3){
             if (resultCode==RESULT_OK){
 
@@ -507,10 +452,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 String dateown = data.getStringExtra("dateown3");
                 dateown3.setText(dateown);
 
-            add3.setVisibility(View.GONE);
+                add3.setVisibility(View.GONE);
 
-            Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
-            toast.show();}
+                Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
+                toast.show();}
         }else if (requestCode == 4){
             if (resultCode==RESULT_OK){
 
@@ -527,57 +472,39 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 dateown4.setText(dateown);
 
 
-            add4.setVisibility(View.GONE);
+                add4.setVisibility(View.GONE);
 
-            Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
-            toast.show();}
-        }else if (requestCode == 5){
-            if (resultCode==RESULT_OK){
+                Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
+                toast.show();}
 
-                String address = data.getStringExtra("address5");
-                add5_text.setText(address);
-
-                String rooms = data.getStringExtra("rooms5");
-                rooms5.setText(rooms);
-
-                String floor = data.getStringExtra("floor5");
-                floor5.setText(floor);
-
-                String dateown = data.getStringExtra("dateown5");
-                dateown5.setText(dateown);
-
-            add5.setVisibility(View.GONE);
-
-            Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
-            toast.show();}
         }
 
 
-      }
+    }
 
 
 
 
 
 
-        @Override
-        public void onClick(View v){
+    @Override
+    public void onClick(View v){
         Intent intent;
 
 
 
 
 
-        }
+    }
 
-        public void onClickRead(View v){
+    public void onClickRead(View v){
 
-         Intent i = new Intent(MainActivity.this, Activity_all_clients.class);
-         startActivity(i);
-
-
+        Intent i = new Intent(MainActivity.this, Activity_all_clients.class);
+        startActivity(i);
 
 
-      }
+
+
+    }
 
 }

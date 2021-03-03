@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -13,6 +10,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -73,6 +73,7 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
                 intent.putExtra("client_pay1", client_pay.getText().toString());
 
 
+
             String id = myDataBase.getKey();
             String surname = client_surname.getText().toString();
             String name = client_name.getText().toString();
@@ -81,6 +82,7 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             String datestart = client_datestart.getText().toString();
             String dateend = client_dateend.getText().toString();
             String pay = client_pay.getText().toString();
+            String zastava = client_info.getText().toString();
 
             ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay);
             myDataBase.push().setValue(newClient);
@@ -187,8 +189,8 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             intent.putExtra("client_number4", client_number.getText().toString());
             intent.putExtra("client_datestart4", client_datestart.getText().toString());
             intent.putExtra("client_dateend4", client_dateend.getText().toString());
-            intent.putExtra("client_info4", client_info.getText().toString());
             intent.putExtra("client_pay4", client_pay.getText().toString());
+            intent.putExtra("client_info4", client_info.getText().toString());
 
             String id = myDataBase.getKey();
             String surname = client_surname.getText().toString();
@@ -216,44 +218,10 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
 
         }
 
-        if (action.equals("new_client5")) {
-
-            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
-                    && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0) {
-            intent.putExtra("client_name5", client_name.getText().toString());
-            intent.putExtra("client_surname5", client_surname.getText().toString());
-            intent.putExtra("client_patronymic5", client_patronymic.getText().toString());
-            intent.putExtra("client_number5", client_number.getText().toString());
-            intent.putExtra("client_datestart5", client_datestart.getText().toString());
-            intent.putExtra("client_dateend5", client_dateend.getText().toString());
-            intent.putExtra("client_info5", client_info.getText().toString());
-            intent.putExtra("client_pay5", client_pay.getText().toString());
-
-            String id = myDataBase.getKey();
-            String surname = client_surname.getText().toString();
-            String name = client_name.getText().toString();
-            String patronymic = client_patronymic.getText().toString();
-            String number = client_number.getText().toString();
-            String datestart = client_datestart.getText().toString();
-            String dateend = client_dateend.getText().toString();
-            String pay = client_pay.getText().toString();
-
-            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay);
-            myDataBase.push().setValue(newClient);
-
-            intent.putExtra("55", 55);
-            setResult(RESULT_OK, intent);
 
 
 
-            finish();
 
-            }else {
-                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона та дати!",Toast.LENGTH_LONG).show();
-            }
-
-
-        }
     }
 
     //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->

@@ -127,7 +127,7 @@
         android:layout_width="320dp"
         android:layout_height="35dp"
         android:ems="10"
-        android:hint="Додаткова інформація"
+        android:hint="Застава"
         android:inputType="textPersonName"
         android:paddingLeft="15dp"
         android:textSize="14sp"

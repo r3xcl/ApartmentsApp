@@ -1,13 +1,13 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -16,7 +16,7 @@ import db.ClientClass;
 
 public class Activity_Add_Client extends AppCompatActivity implements View.OnClickListener {
 
-    TextView add_name, add_surname, add_patronymic, add_number, add_datestart, add_dateend, add_pay;
+    TextView add_name, add_surname, add_patronymic, add_number, add_datestart, add_dateend, add_pay,client_info;
 
     Button add_client;
 
@@ -37,6 +37,7 @@ public class Activity_Add_Client extends AppCompatActivity implements View.OnCli
         add_number = (TextView) findViewById(R.id.add_number);
         add_datestart = (TextView) findViewById(R.id.add_datestart);
         add_dateend = (TextView) findViewById(R.id.add_dateend);
+        client_info = (TextView) findViewById(R.id.client_info);
 
         add_pay = (TextView) findViewById(R.id.add_pay);
 

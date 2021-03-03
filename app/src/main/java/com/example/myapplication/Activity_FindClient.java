@@ -1,9 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -14,6 +10,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -192,28 +192,7 @@ public class Activity_FindClient extends AppCompatActivity implements View.OnCli
             });
         }
 
-        if (action.equals("find_client5")) {
 
-            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ClientClass clientClass = listTemp1.get(position);
-
-                    intent.putExtra("surname5", clientClass.getSurname());
-                    intent.putExtra("name5", clientClass.getName());
-                    intent.putExtra("patronymic5", clientClass.getPatronymic());
-                    intent.putExtra("number5", clientClass.getNumber());
-                    intent.putExtra("datestart5", clientClass.getDatestart());
-                    intent.putExtra("dateend5",clientClass.getDateend());
-                    intent.putExtra("sumpay5",clientClass.getPay());
-
-                    intent.putExtra("555", 555);
-                    setResult(RESULT_OK, intent);
-
-                    finish();
-                }
-            });
-        }
     }
 
     //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->

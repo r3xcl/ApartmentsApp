@@ -74,7 +74,7 @@
         app:srcCompat="@drawable/ic_house_real_estate_home_house_icon_150392" />
 
     <ImageButton
-        android:id="@+id/new_home5"
+        android:id="@+id/bloknot"
         android:layout_width="160dp"
         android:layout_height="159dp"
         android:background="@drawable/button"
@@ -84,20 +84,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.867"
-        app:srcCompat="@drawable/ic_house_real_estate_home_house_icon_150392" />
-
-    <ImageButton
-        android:id="@+id/add5"
-        android:layout_width="160dp"
-        android:layout_height="159dp"
-        android:background="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867"
-        app:srcCompat="@drawable/ic_frame1" />
+        app:srcCompat="@drawable/ic_bloknot" />
 
     <ImageButton
         android:id="@+id/add2"
@@ -171,18 +158,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/new_home3"
         app:layout_constraintVertical_bias="0.325" />
-
-    <TextView
-        android:id="@+id/add5_text"
-        android:layout_width="140dp"
-        android:layout_height="19dp"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/new_home5"
-        app:layout_constraintVertical_bias="0.642" />
 
     <TextView
         android:id="@+id/add2_text"

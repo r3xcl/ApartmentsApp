@@ -9,5 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="fon">#A09D9D</color>
     <color name="fon1">#DC143C</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
 
 </resources>

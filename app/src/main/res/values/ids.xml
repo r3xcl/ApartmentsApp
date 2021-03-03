@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="add5" type="id" />
+    <item name="notatki" type="id" />
     <item name="new_home2" type="id" />
     <item name="new_home" type="id" />
     <item name="add1" type="id" />
     <item name="new_home3" type="id" />
     <item name="new_home4" type="id" />
-    <item name="new_home5" type="id" />
+    <item name="bloknot" type="id" />
     <item name="add2" type="id" />
     <item name="imageView3" type="id" />
     <item name="add3" type="id" />
