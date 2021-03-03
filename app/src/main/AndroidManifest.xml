@@ -13,7 +13,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".Activity_Repairs"></activity>
+
+        <activity android:name=".Activity_Pay">
+            <intent-filter>
+            <action android:name="pay1" />
+            <action android:name="pay2" />
+            <action android:name="pay3" />
+            <action android:name="pay4" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+        </activity>
+
+        <activity android:name=".Activity_Repairs" >
+
+            <intent-filter>
+                <action android:name="remont" />
+
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
         <activity android:name=".NoteEditorActivity" />
         <activity android:name=".Activity_Note">
             <intent-filter>

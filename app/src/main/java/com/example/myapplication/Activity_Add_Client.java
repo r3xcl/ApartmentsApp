@@ -64,8 +64,9 @@ public class Activity_Add_Client extends AppCompatActivity implements View.OnCli
                 String datestart = add_datestart.getText().toString();
                 String dateend = add_dateend.getText().toString();
                 String pay = add_pay.getText().toString();
+                String zastava = client_info.getText().toString();
 
-                ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay);
+                ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
                 myDataBase.push().setValue(newClient);
 
                 intent.putExtra("1", 1);

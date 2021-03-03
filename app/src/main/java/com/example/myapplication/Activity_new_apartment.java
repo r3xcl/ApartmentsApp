@@ -22,7 +22,7 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
 
     Button add_client,delete_client,find_client;
 
-    ImageButton apartment_edit,call,money,addphoto;
+    ImageButton apartment_edit,call,money,addphoto,remont;
 
     TextView info_address,info_patronymic,info_name,info_surname,info_number,
             info_date_start,info_rooms,info_floor,info_dateown,info_date_end,info_pay,textView9,textView11,textView13
@@ -69,6 +69,9 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
         call = (ImageButton)findViewById(R.id.call);
         call.setOnClickListener(this);
 
+        remont = (ImageButton)findViewById(R.id.remont);
+        remont.setOnClickListener(this);
+
         addphoto = (ImageButton)findViewById(R.id.addphoto);
         addphoto.setOnClickListener(this);
 
@@ -94,9 +97,18 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
             }
             else {
-                Toast.makeText(Activity_new_apartment.this," Номер телефона не найден!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_new_apartment.this," Номера телефона не знайдено!",Toast.LENGTH_SHORT).show();
             }
 
+        });
+
+        remont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent("remont");
+                startActivity(intent);
+            }
         });
 
 
@@ -116,6 +128,12 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
             add_client.setOnClickListener(v -> {
                 Intent intent1 = new Intent("new_client1");
                 startActivityForResult(intent1,11);
+
+            });
+
+            money.setOnClickListener(v -> {
+                Intent intent1 = new Intent("pay1");
+                startActivityForResult(intent1,11111);
 
             });
 
@@ -206,6 +224,12 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
 
             });
 
+            money.setOnClickListener(v -> {
+                Intent intent1 = new Intent("pay2");
+                startActivityForResult(intent1,22222);
+
+            });
+
             find_client.setOnClickListener(v -> {
                 Intent intent2 = new Intent("find_client2");
                 startActivityForResult(intent2,222);
@@ -276,6 +300,12 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
             add_client.setOnClickListener(v -> {
                 Intent intent1 = new Intent("new_client3");
                 startActivityForResult(intent1,33);
+            });
+
+            money.setOnClickListener(v -> {
+                Intent intent1 = new Intent("pay3");
+                startActivityForResult(intent1,33333);
+
             });
 
             apartment_edit.setOnClickListener(v -> {
@@ -354,6 +384,12 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
             add_client.setOnClickListener(v -> {
                 Intent intent1 = new Intent("new_client4");
                 startActivityForResult(intent1,44);
+            });
+
+            money.setOnClickListener(v -> {
+                Intent intent1 = new Intent("pay4");
+                startActivityForResult(intent1,44444);
+
             });
 
             apartment_edit.setOnClickListener(v -> {

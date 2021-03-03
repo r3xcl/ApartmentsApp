@@ -74,6 +74,7 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
 
 
 
+
             String id = myDataBase.getKey();
             String surname = client_surname.getText().toString();
             String name = client_name.getText().toString();
@@ -84,7 +85,7 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             String pay = client_pay.getText().toString();
             String zastava = client_info.getText().toString();
 
-            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay);
+            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
             myDataBase.push().setValue(newClient);
 
             intent.putExtra("11", 11);
@@ -123,8 +124,9 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             String datestart = client_datestart.getText().toString();
             String dateend = client_dateend.getText().toString();
             String pay = client_pay.getText().toString();
+                String zastava = client_info.getText().toString();
 
-            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay);
+            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
             myDataBase.push().setValue(newClient);
 
             intent.putExtra("22", 22);
@@ -161,8 +163,9 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             String datestart = client_datestart.getText().toString();
             String dateend = client_dateend.getText().toString();
             String pay = client_pay.getText().toString();
+                String zastava = client_info.getText().toString();
 
-            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay);
+            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
             myDataBase.push().setValue(newClient);
 
             intent.putExtra("33", 33);
@@ -200,8 +203,9 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             String datestart = client_datestart.getText().toString();
             String dateend = client_dateend.getText().toString();
             String pay = client_pay.getText().toString();
+                String zastava = client_info.getText().toString();
 
-            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay);
+            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
             myDataBase.push().setValue(newClient);
 
             intent.putExtra("44", 44);

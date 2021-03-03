@@ -114,6 +114,7 @@ public class Activity_FindClient extends AppCompatActivity implements View.OnCli
                     intent.putExtra("datestart1", clientClass.getDatestart());
                     intent.putExtra("dateend1",clientClass.getDateend());
                     intent.putExtra("sumpay1",clientClass.getPay());
+                    intent.putExtra("zastava1",clientClass.getZastava());
 
                     intent.putExtra("111", 111);
                     setResult(RESULT_OK, intent);
@@ -137,6 +138,7 @@ public class Activity_FindClient extends AppCompatActivity implements View.OnCli
                     intent.putExtra("datestart2", clientClass.getDatestart());
                     intent.putExtra("dateend2",clientClass.getDateend());
                     intent.putExtra("sumpay2",clientClass.getPay());
+                    intent.putExtra("zastava2",clientClass.getZastava());
 
                     intent.putExtra("222", 222);
                     setResult(RESULT_OK, intent);
@@ -160,6 +162,7 @@ public class Activity_FindClient extends AppCompatActivity implements View.OnCli
                     intent.putExtra("datestart3", clientClass.getDatestart());
                     intent.putExtra("dateend3",clientClass.getDateend());
                     intent.putExtra("sumpay3",clientClass.getPay());
+                    intent.putExtra("zastava3",clientClass.getZastava());
 
                     intent.putExtra("333", 333);
                     setResult(RESULT_OK, intent);
@@ -183,6 +186,7 @@ public class Activity_FindClient extends AppCompatActivity implements View.OnCli
                     intent.putExtra("datestart4", clientClass.getDatestart());
                     intent.putExtra("dateend4",clientClass.getDateend());
                     intent.putExtra("sumpay4",clientClass.getPay());
+                    intent.putExtra("zastava4",clientClass.getZastava());
 
                     intent.putExtra("444", 444);
                     setResult(RESULT_OK, intent);
