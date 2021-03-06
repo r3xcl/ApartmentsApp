@@ -12,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import db.ClientClass;
 
 public class Activity_Add_Client extends AppCompatActivity implements View.OnClickListener {
@@ -52,31 +58,37 @@ public class Activity_Add_Client extends AppCompatActivity implements View.OnCli
         Intent intent = getIntent();
         String action = intent.getAction();
 
+
+
         if (action.equals("add_client")) {
-            if(add_name.getText().toString().length()!=0 && add_number.getText().toString().length()!=0
-                    && add_datestart.getText().toString().length()!=0 && add_dateend.getText().toString().length()!=0) {
 
-                String id = myDataBase.getKey();
-                String surname = add_surname.getText().toString();
-                String name = add_name.getText().toString();
-                String patronymic = add_patronymic.getText().toString();
-                String number = add_number.getText().toString();
-                String datestart = add_datestart.getText().toString();
-                String dateend = add_dateend.getText().toString();
-                String pay = add_pay.getText().toString();
-                String zastava = client_info.getText().toString();
+                    if (add_name.getText().toString().length() != 0 && add_number.getText().toString().length() != 0
+                            && add_datestart.getText().toString().length() != 0 && add_dateend.getText().toString().length() != 0
+                            && client_info.getText().toString().length() != 0 ) {
 
-                ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
-                myDataBase.push().setValue(newClient);
+                        String id = myDataBase.getKey();
+                        String surname = add_surname.getText().toString();
+                        String name = add_name.getText().toString();
+                        String patronymic = add_patronymic.getText().toString();
+                        String number = add_number.getText().toString();
+                        String datestart = add_datestart.getText().toString();
+                        String dateend = add_dateend.getText().toString();
+                        String pay = add_pay.getText().toString();
+                        String zastava = client_info.getText().toString();
 
-                intent.putExtra("1", 1);
-                setResult(RESULT_OK, intent);
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
+                        myDataBase.push().setValue(newClient);
 
-                finish();
+                        intent.putExtra("1", 1);
+                        setResult(RESULT_OK, intent);
 
-            }else {
-                Toast.makeText(Activity_Add_Client.this,"Введіть ім'я,номер телефона та дати!",Toast.LENGTH_LONG).show();
-            }
+                        finish();
+
+                    } else {
+                        Toast.makeText(Activity_Add_Client.this, "Невірні дати! Ведіть ім'я,номер телефона,суму застави та дати!", Toast.LENGTH_LONG).show();
+                    }
+
+
         }
     }
 }

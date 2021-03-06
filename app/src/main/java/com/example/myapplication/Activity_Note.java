@@ -1,120 +1,122 @@
 package com.example.myapplication;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+
+import com.example.myapplication.note.Note;
+import com.example.myapplication.note.NotesAdapter;
+import com.example.myapplication.note.NotesDatabase;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
 
 public class Activity_Note extends AppCompatActivity {
 
-    static ArrayList<String> notes = new ArrayList<>();
-    static  ArrayAdapter arrayAdapter;
+    public static final int REQUEST_CODE_ADD_NOTE = 1 ;
 
+    private RecyclerView noteRecyclerView;
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.add_note_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        super.onOptionsItemSelected(item);
-
-        if(item.getItemId()==R.id.add_note)
-        {
-
-            Intent intent = new Intent(getApplicationContext(),NoteEditorActivity.class);
-            startActivity(intent);
-            return  true;
-        }
-        return false;
-
-
-    }
+    private List<Note>noteList;
+    private NotesAdapter notesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__note);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.GRAY));
-        setTitle("Нотатки");
+        getSupportActionBar().hide();//УБИРАЕМ ВЕРХНЮЮ ШАПКУ
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.myapplication", Context.MODE_PRIVATE);
-        HashSet<String> set = (HashSet<String>)sharedPreferences.getStringSet("notes",null);
-
-
-
-        if(set==null) {
-
-            notes.add("Пример");
-        }
-        else{
-            notes = new ArrayList<>(set);
-        }
-
-        ListView listView = (ListView)findViewById(R.id.listView);
-
-
-          arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,notes);
-
-        listView.setAdapter(arrayAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ImageView imageAddNoteMain = findViewById(R.id.imageAddNoteMain);
+        imageAddNoteMain.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                Intent intent = new Intent(getApplicationContext(),NoteEditorActivity.class);
-                intent.putExtra("noteId",i);
-                startActivity(intent);
+            public void onClick(View v) {
+                startActivityForResult(new Intent(getApplicationContext(),CreateNoteActivity.class),REQUEST_CODE_ADD_NOTE);
             }
         });
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        noteRecyclerView = findViewById(R.id.notesRecyclerView);
+        noteRecyclerView.setLayoutManager(
+                new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+        );
 
-                final int itemToDelete = position;
-                new AlertDialog.Builder(Activity_Note.this).setTitle("Видалити?").
-                        setPositiveButton("Так", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                notes.remove(position);
-                                arrayAdapter.notifyDataSetChanged();
+        noteList = new ArrayList<>();
+        notesAdapter = new NotesAdapter(noteList);
+        noteRecyclerView.setAdapter(notesAdapter);
 
-                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.myapplication", Context.MODE_PRIVATE);
-                                HashSet<String> set = new HashSet<>(Activity_Note.notes);
-
-                                sharedPreferences.edit().putStringSet("notes",set).apply();
-                            }
-                        }).setNegativeButton("Ні",null)
-                        .show();
-
-
-                return true ;
-            }
-        });
+        getNotes();
     }
+
+    private void getNotes () {
+
+        class GetNotesTask extends AsyncTask<Void,Void, List<Note>>{
+
+            @Override
+            protected  List<Note> doInBackground(Void... voids){
+                return NotesDatabase
+                        .getDataBase(getApplicationContext())
+                        .noteDao().getAllNotes();
+            }
+
+            @Override
+            protected void onPostExecute(List<Note> notes){
+
+                super.onPostExecute(notes);
+                if(noteList.size()==0){
+
+                    noteList.addAll(notes);
+                    notesAdapter.notifyDataSetChanged();
+
+                }else{
+                    noteList.add(0,notes.get(0));
+                    notesAdapter.notifyItemInserted(0);
+                }
+                noteRecyclerView.smoothScrollToPosition(0);
+            }
+
+        }
+        new GetNotesTask().execute();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_CODE_ADD_NOTE&&resultCode == RESULT_OK){
+
+            getNotes();
+        }
+    }
+
+    //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN)
+            hideKeyboard();
+        return super.dispatchTouchEvent(ev);
+    }
+
+    // <---
 }

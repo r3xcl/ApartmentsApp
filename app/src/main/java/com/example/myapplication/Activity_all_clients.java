@@ -48,6 +48,7 @@ public class Activity_all_clients extends AppCompatActivity {
     FloatingActionButton fb;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

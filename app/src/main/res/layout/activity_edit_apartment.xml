@@ -5,36 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity_edit_apartment"
-    android:background="#FBD6D6"><![CDATA[
-    >
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ]]>
+    android:background="#FBD6D6"><![CDATA[>]]>
 
     <ImageView
         android:id="@+id/imageView13"
@@ -69,7 +40,7 @@
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Поверх:"
-        android:inputType="textPersonName"
+        android:inputType="numberSigned"
         android:paddingLeft="15dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,7 +72,7 @@
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Кількість кімнат:"
-        android:inputType="textPersonName"
+        android:inputType="numberSigned"
         android:paddingLeft="15dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,14 +81,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView13"
         app:layout_constraintVertical_bias="0.35" />
-
+`
     <EditText
         android:id="@+id/apartment_purchase_date"
         android:layout_width="285dp"
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Дата купівлі:"
-        android:inputType="textPersonName"
+        android:inputType="date"
         android:paddingLeft="15dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

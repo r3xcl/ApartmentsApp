@@ -9,6 +9,8 @@
     android:onClick="onClick"
     tools:context=".MainActivity">
 
+
+
     <ImageButton
         android:id="@+id/new_home2"
         android:layout_width="160dp"
@@ -78,6 +80,7 @@
         android:layout_width="160dp"
         android:layout_height="159dp"
         android:background="@drawable/button"
+        android:onClick="onClickBloknot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
@@ -209,6 +212,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.892" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="58dp"
+        android:layout_height="22dp"
+        android:text="Нотатки"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.891" />
 
     <TextView
         android:id="@+id/rooms1"

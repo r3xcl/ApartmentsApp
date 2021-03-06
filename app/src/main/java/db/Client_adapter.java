@@ -1,11 +1,7 @@
 package db;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,46 +9,37 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.myapplication.Activity_all_clients;
-import com.example.myapplication.Auth_Activity;
 import com.example.myapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.DialogPlusBuilder;
 import com.orhanobut.dialogplus.ViewHolder;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Handler;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_adapter.viewHolder> {
 
-   public Client_adapter(@NonNull FirebaseRecyclerOptions<ClientClass>options){super(options);}
+
+   public Client_adapter(@NonNull FirebaseRecyclerOptions<ClientClass>options){super(options);
+   }
+
 
     protected void onBindViewHolder(@NonNull final viewHolder holder, final int position, @NonNull final ClientClass clientClass)
     {
      holder.surname_text.setText(clientClass.getSurname());
      holder.name_text.setText(clientClass.getName());
      holder.number_text.setText(clientClass.getNumber());
+
+
 
 
         holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -87,12 +74,13 @@ public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_a
             public void onClick(View view) {
                 final DialogPlus dialogPlus=DialogPlus.newDialog(holder.itemView.getContext())
                         .setContentHolder(new ViewHolder(R.layout.dialog_edit))
-                        .setExpanded(true,1935)
+                        .setExpanded(true,2050)
                         .create();
 
 
 
                 View myview=dialogPlus.getHolderView();
+
 
 
 
@@ -104,6 +92,7 @@ public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_a
                 final EditText datestart=myview.findViewById(R.id.datestart_edit);
                 final EditText dateend=myview.findViewById(R.id.dateend_edit);
                 final EditText pay=myview.findViewById(R.id.pay_edit);
+                final EditText zastava=myview.findViewById(R.id.zastava_client);
 
                 Button update_edit=myview.findViewById(R.id.update_edit);
 
@@ -115,6 +104,7 @@ public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_a
                 datestart.setText(clientClass.getDatestart());
                 dateend.setText(clientClass.getDateend());
                 pay.setText(clientClass.getPay());
+                zastava.setText(clientClass.getZastava());
 
 
 
@@ -136,6 +126,7 @@ public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_a
                         map.put("datestart",datestart.getText().toString());
                         map.put("dateend",dateend.getText().toString());
                         map.put("pay",pay.getText().toString());
+                        map.put("zastava",zastava.getText().toString());
 
 
                             FirebaseDatabase.getInstance().getReference().child("New_Client")

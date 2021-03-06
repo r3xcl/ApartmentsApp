@@ -47,7 +47,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.bumptech.glide:glide:3.8.0'
 
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
@@ -55,6 +55,15 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     implementation 'com.orhanobut:dialogplus:1.11@aar'
+
+    implementation "com.intuit.sdp:sdp-android:1.0.6"
+    implementation "com.intuit.ssp:ssp-android:1.0.6"
+
+    implementation "com.makeramen:roundedimageview:2.3.0"
+
+    dependencies {
+        implementation 'com.github.mohammadatif:Animatoo:master'
+    }
 
     def room_version = "2.2.1"
     implementation "androidx.room:room-runtime:$room_version"
@@ -64,6 +73,8 @@ dependencies {
     def lifecycle_version = "2.1.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+
 
 
 }

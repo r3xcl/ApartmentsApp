@@ -5,7 +5,7 @@
     android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="1dp"
     android:elevation="5dp"
     app:cardBackgroundColor="#FDEEEE"
     app:cardCornerRadius="5dp"
@@ -13,28 +13,28 @@
 
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="108dp"
         android:orientation="vertical"
         android:padding="15dp">
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="319dp"
+            android:layout_height="79dp"
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img1"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:src="@mipmap/ic_launcher"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="111dp"
+                android:layout_width="211dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
@@ -44,7 +44,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="Фамилия"
                     android:textColor="#000"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -54,7 +54,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="Имя"
                     android:textColor="#000"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
 
                 <TextView
@@ -64,32 +64,29 @@
                     android:layout_marginLeft="10dp"
                     android:text="Номер телефона"
                     android:textColor="#000"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="35dp"
                 android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/delete"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/delete" />
 
                 <ImageButton
                     android:id="@+id/edit"
-                    android:layout_width="35dp"
-                    android:layout_height="37dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
                     android:background="#FDEEEE"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic___icon_icons_com_73779" />
-
-                <ImageView
-                    android:id="@+id/delete"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    app:layout_constraintBottom_toTopOf="@+id/edit"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/delete" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

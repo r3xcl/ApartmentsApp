@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
     ImageButton add1,add2,add3,add4,add5,
             new_home,new_home2,new_home3,new_home4,
@@ -107,6 +109,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("1");
                 startActivityForResult(intent,1);
+                Animatoo.animateSlideRight(MainActivity.this);
+
 
             }
         });
@@ -119,6 +123,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("2");
                 startActivityForResult(intent,2);
+                Animatoo.animateSlideLeft(MainActivity.this);
 
             }
         });
@@ -129,6 +134,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("3");
                 startActivityForResult(intent,3);
+                Animatoo.animateSlideRight(MainActivity.this);
 
             }
         });
@@ -139,6 +145,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("4");
                 startActivityForResult(intent,4);
+                Animatoo.animateSlideLeft(MainActivity.this);
 
             }
         });
@@ -157,6 +164,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 intent.putExtra("dateown1",dateown1.getText());
 
                 startActivity(intent);
+                Animatoo.animateSlideRight(MainActivity.this);
 
             }
         });
@@ -213,6 +221,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 intent.putExtra("dateown2",dateown2.getText());
 
                 startActivity(intent);
+                Animatoo.animateSlideLeft(MainActivity.this);
 
             }
         });
@@ -224,6 +233,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 v.startAnimation(buttonClick);
                 createOneDialog("Оберіть дію");
                 return false;
+
             }
 
             private void createOneDialog(String title) {
@@ -269,6 +279,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 intent.putExtra("dateown3",dateown3.getText());
 
                 startActivity(intent);
+                Animatoo.animateSlideRight(MainActivity.this);
 
             }
         });
@@ -325,6 +336,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 intent.putExtra("dateown4",dateown4.getText());
 
                 startActivity(intent);
+                Animatoo.animateSlideLeft(MainActivity.this);
 
             }
         });
@@ -377,6 +389,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("allclient");
                 startActivityForResult(intent,66);
+                Animatoo.animateSlideLeft(MainActivity.this);
 
             }
         });
@@ -387,6 +400,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("bloknot");
                 startActivityForResult(intent,77);
+                Animatoo.animateSlideRight(MainActivity.this);
 
             }
         });
@@ -507,4 +521,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     }
 
+    public void onClickBloknot(View v){
+
+        Intent i = new Intent(MainActivity.this, Activity_Note.class);
+        startActivity(i);
+
+
+
+
+    }
 }

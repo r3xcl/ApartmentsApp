@@ -7,6 +7,7 @@
     tools:context=".Activity_new_apartment"
     android:background="#FBD6D6">
 
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="202dp"

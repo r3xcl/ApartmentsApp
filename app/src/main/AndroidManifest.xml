@@ -13,40 +13,36 @@
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
-        <activity android:name=".Activity_Pay">
-            <intent-filter>
-            <action android:name="pay1" />
-            <action android:name="pay2" />
-            <action android:name="pay3" />
-            <action android:name="pay4" />
-
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-        </activity>
-
-        <activity android:name=".Activity_Repairs" >
-
-            <intent-filter>
-                <action android:name="remont" />
-
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-        </activity>
-
-        <activity android:name=".NoteEditorActivity" />
-        <activity android:name=".Activity_Note">
+        <activity android:name=".Activity_Note"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="bloknot" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".CreateNoteActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".Activity_Pay">
+            <intent-filter>
+                <action android:name="pay1" />
+                <action android:name="pay2" />
+                <action android:name="pay3" />
+                <action android:name="pay4" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity_Repairs">
+            <intent-filter>
+                <action android:name="remont" />
 
-
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NoteEditorActivity" />
         <activity android:name=".Splash_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +50,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Activity_Add_Client">
             <intent-filter>
                 <action android:name="add_client" />

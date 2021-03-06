@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
+
 import db.ApartmentsClass;
 
 public class Activity_add_new_apartment extends AppCompatActivity implements View.OnClickListener {
@@ -87,6 +89,8 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                 ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown);
 
                 myDataBase.push().setValue(newApartment);
+
+
 
                 if(edit_address.getText().toString().length()!=0) {
                     intent.putExtra("address1", edit_address.getText().toString());

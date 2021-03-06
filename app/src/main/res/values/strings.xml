@@ -18,4 +18,9 @@
     <string name="save">Сохранить</string>
     <string name="completed">Выполнение</string>
     <string name="title_activity__notatki">Activity_Notatki</string>
+    <string name="my_notes">Нотатки</string>
+    <string name="search_notes">Пошук</string>
+    <string name="note_title">Заголовок</string>
+    <string name="note_subtitle">Підзаголовок</string>
+    <string name="type_note_here">Введіть текст тут</string>
 </resources>
