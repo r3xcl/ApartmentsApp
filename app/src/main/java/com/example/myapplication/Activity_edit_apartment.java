@@ -67,7 +67,7 @@ public class Activity_edit_apartment extends AppCompatActivity implements View.O
 
             finish();
 
-            finish();
+
 
         }
 

@@ -46,11 +46,11 @@ public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_a
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder=new AlertDialog.Builder(holder.itemView.getContext());
-                builder.setTitle("Видалити?");
+                builder.setTitle("Оберіть дію");
 
 
 
-                builder.setPositiveButton("Так", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FirebaseDatabase.getInstance().getReference().child("New_Client")
@@ -58,7 +58,7 @@ public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_a
                     }
                 });
 
-                builder.setNegativeButton("Ні", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton("Назад", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -175,9 +175,9 @@ public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_a
        public viewHolder(@NonNull View itemView) {
            super(itemView);
 
-           surname_text=(TextView)itemView.findViewById(R.id.surname_text);
-           name_text=(TextView)itemView.findViewById(R.id.name_text);
-           number_text=(TextView)itemView.findViewById(R.id.number_text);
+           surname_text=(TextView)itemView.findViewById(R.id.repair_name);
+           name_text=(TextView)itemView.findViewById(R.id.money_money);
+           number_text=(TextView)itemView.findViewById(R.id.money_date);
 
            edit=(ImageButton)itemView.findViewById(R.id.edit);
            delete=(ImageView) itemView.findViewById(R.id.delete);

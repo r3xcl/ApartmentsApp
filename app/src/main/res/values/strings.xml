@@ -23,4 +23,6 @@
     <string name="note_title">Заголовок</string>
     <string name="note_subtitle">Підзаголовок</string>
     <string name="type_note_here">Введіть текст тут</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

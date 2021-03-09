@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBD6D6"
-    tools:context=".MainActivity">
+    tools:context=".Activity_Pay">
 
     <EditText
         android:id="@+id/sum"
@@ -15,7 +15,7 @@
         android:background="@drawable/button"
         android:ems="10"
         android:hint="Сума"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:paddingLeft="16dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
         android:background="@drawable/button"
         android:ems="10"
         android:hint="Дата"
-        android:inputType="textPersonName"
+        android:inputType="date"
         android:paddingLeft="15dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

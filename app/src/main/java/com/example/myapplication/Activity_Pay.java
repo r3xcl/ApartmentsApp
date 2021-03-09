@@ -45,12 +45,12 @@ public class Activity_Pay extends AppCompatActivity implements View.OnClickListe
         if (action.equals("pay1")) {
             if(sum.getText().toString().length()!=0 && date_pay.getText().toString().length()!=0) {
 
-
+                String id = "apartment1";
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
 
 
-                PayClass newPay = new PayClass(pay,summ);
+                PayClass newPay = new PayClass(id,summ,pay);
                 myDataBase.push().setValue(newPay);
 
                 intent.putExtra("11111", 11111);
@@ -68,10 +68,11 @@ public class Activity_Pay extends AppCompatActivity implements View.OnClickListe
 
 
                 String pay = date_pay.getText().toString();
+                String id = "apartment2";
                 String summ = sum.getText().toString();
 
 
-                PayClass newPay = new PayClass(pay,summ);
+                PayClass newPay = new PayClass(id,summ,pay);
                 myDataBase.push().setValue(newPay);
 
                 intent.putExtra("22222", 22222);
@@ -90,9 +91,10 @@ public class Activity_Pay extends AppCompatActivity implements View.OnClickListe
 
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
+                String id = "apartment3";
 
 
-                PayClass newPay = new PayClass(pay,summ);
+                PayClass newPay = new PayClass(id,summ,pay);
                 myDataBase.push().setValue(newPay);
 
                 intent.putExtra("33333", 33333);
@@ -111,9 +113,10 @@ public class Activity_Pay extends AppCompatActivity implements View.OnClickListe
 
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
+                String id = "apartment4";
 
 
-                PayClass newPay = new PayClass(pay,summ);
+                PayClass newPay = new PayClass(id,summ,pay);
                 myDataBase.push().setValue(newPay);
 
                 intent.putExtra("44444", 44444);

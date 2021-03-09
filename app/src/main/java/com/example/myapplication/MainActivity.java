@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
@@ -11,9 +13,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
     ImageButton add1,add2,add3,add4,add5,
@@ -26,8 +38,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             rooms3,floor3,dateown3,
             rooms4,floor4,dateown4;
 
-
+    private FusedLocationProviderClient fusedLocationProviderClient;
     Vibrator vibr;
+
+    private DatabaseReference myDataBase;
+
+    private String New_Apartment = "New_Apartment";
+
 
     private AlphaAnimation buttonClick = new AlphaAnimation(2F, 0.3F);
 
@@ -36,7 +53,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        myDataBase = FirebaseDatabase.getInstance().getReference(New_Apartment);
 
         getSupportActionBar().hide();//УБИРАЕМ ВЕРХНЮЮ ШАПКУ
 
@@ -61,6 +78,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         rooms4 = (TextView) findViewById(R.id.rooms4);
         floor4 = (TextView) findViewById(R.id.floor4);
         dateown4 = (TextView) findViewById(R.id.dateown4);
+
 
 
 
@@ -158,11 +176,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("new_home1");
 
-                intent.putExtra("address_1",add1_text.getText());
-                intent.putExtra("rooms1",rooms1.getText());
-                intent.putExtra("floor1",floor1.getText());
-                intent.putExtra("dateown1",dateown1.getText());
-
                 startActivity(intent);
                 Animatoo.animateSlideRight(MainActivity.this);
 
@@ -191,9 +204,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                                 add1.setVisibility(View.VISIBLE);
                                 add1_text.setText("");
 
-                                rooms1.setText("");
-                                floor1.setText("");
-                                dateown1.setText("");
+
 
                             }
                         });
@@ -215,10 +226,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("new_home2");
 
-                intent.putExtra("address_2",add2_text.getText());
-                intent.putExtra("rooms2",rooms2.getText());
-                intent.putExtra("floor2",floor2.getText());
-                intent.putExtra("dateown2",dateown2.getText());
 
                 startActivity(intent);
                 Animatoo.animateSlideLeft(MainActivity.this);
@@ -249,9 +256,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                                 add2.setVisibility(View.VISIBLE);
                                 add2_text.setText("");
 
-                                rooms2.setText("");
-                                floor2.setText("");
-                                dateown2.setText("");
 
                             }
                         });
@@ -273,10 +277,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("new_home3");
 
-                intent.putExtra("address_3",add3_text.getText());
-                intent.putExtra("rooms3",rooms3.getText());
-                intent.putExtra("floor3",floor3.getText());
-                intent.putExtra("dateown3",dateown3.getText());
 
                 startActivity(intent);
                 Animatoo.animateSlideRight(MainActivity.this);
@@ -306,9 +306,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                                 add3.setVisibility(View.VISIBLE);
                                 add3_text.setText("");
 
-                                rooms3.setText("");
-                                floor3.setText("");
-                                dateown3.setText("");
+
 
                             }
                         });
@@ -330,10 +328,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 vibr.vibrate(70);
                 Intent intent = new Intent("new_home4");
 
-                intent.putExtra("address_4",add4_text.getText());
-                intent.putExtra("rooms4",rooms4.getText());
-                intent.putExtra("floor4",floor4.getText());
-                intent.putExtra("dateown4",dateown4.getText());
 
                 startActivity(intent);
                 Animatoo.animateSlideLeft(MainActivity.this);
@@ -363,9 +357,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                                 add4.setVisibility(View.VISIBLE);
                                 add4_text.setText("");
 
-                                rooms4.setText("");
-                                floor4.setText("");
-                                dateown4.setText("");
+
 
                             }
                         });
@@ -413,17 +405,32 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         if (requestCode == 1){
             if(resultCode==RESULT_OK){
 
-                String rooms = data.getStringExtra("rooms1");
-                rooms1.setText(rooms);
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment1");
 
-                String floor = data.getStringExtra("floor1");
-                floor1.setText(floor);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String dateown = data.getStringExtra("dateown1");
-                dateown1.setText(dateown);
+                        for(DataSnapshot data : snapshot.getChildren()){
 
-                String address = data.getStringExtra("address1");
-                add1_text.setText(address);
+                            String address = data.child("address").getValue().toString();
+                            String dateown = data.child("dateown").getValue().toString();
+                            String floor = data.child("floor").getValue().toString();
+                            String rooms = data.child("rooms").getValue().toString();
+
+                            add1_text.setText(address);
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
 
 
@@ -435,17 +442,32 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         }else if (requestCode == 2){
             if (resultCode==RESULT_OK){
 
-                String address = data.getStringExtra("address2");
-                add2_text.setText(address);
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment2");
 
-                String rooms = data.getStringExtra("rooms2");
-                rooms2.setText(rooms);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String floor = data.getStringExtra("floor2");
-                floor2.setText(floor);
+                        for(DataSnapshot data : snapshot.getChildren()){
 
-                String dateown = data.getStringExtra("dateown2");
-                dateown2.setText(dateown);
+                            String address = data.child("address").getValue().toString();
+                            String dateown = data.child("dateown").getValue().toString();
+                            String floor = data.child("floor").getValue().toString();
+                            String rooms = data.child("rooms").getValue().toString();
+
+                            add2_text.setText(address);
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
                 add2.setVisibility(View.GONE);
 
@@ -454,17 +476,32 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         }else if (requestCode == 3){
             if (resultCode==RESULT_OK){
 
-                String address = data.getStringExtra("address3");
-                add3_text.setText(address);
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment3");
 
-                String rooms = data.getStringExtra("rooms3");
-                rooms3.setText(rooms);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String floor = data.getStringExtra("floor3");
-                floor3.setText(floor);
+                        for(DataSnapshot data : snapshot.getChildren()){
 
-                String dateown = data.getStringExtra("dateown3");
-                dateown3.setText(dateown);
+                            String address = data.child("address").getValue().toString();
+                            String dateown = data.child("dateown").getValue().toString();
+                            String floor = data.child("floor").getValue().toString();
+                            String rooms = data.child("rooms").getValue().toString();
+
+                            add3_text.setText(address);
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
                 add3.setVisibility(View.GONE);
 
@@ -473,17 +510,32 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         }else if (requestCode == 4){
             if (resultCode==RESULT_OK){
 
-                String address = data.getStringExtra("address4");
-                add4_text.setText(address);
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment4");
 
-                String rooms = data.getStringExtra("rooms4");
-                rooms4.setText(rooms);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String floor = data.getStringExtra("floor4");
-                floor4.setText(floor);
+                        for(DataSnapshot data : snapshot.getChildren()){
 
-                String dateown = data.getStringExtra("dateown4");
-                dateown4.setText(dateown);
+                            String address = data.child("address").getValue().toString();
+                            String dateown = data.child("dateown").getValue().toString();
+                            String floor = data.child("floor").getValue().toString();
+                            String rooms = data.child("rooms").getValue().toString();
+
+                            add4_text.setText(address);
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
 
                 add4.setVisibility(View.GONE);

@@ -2,8 +2,84 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FBD6D6"
     tools:context=".Activity_Repairs">
+
+    <EditText
+        android:id="@+id/sum_repair"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:hint="Сума"
+        android:inputType="number"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
+
+    <EditText
+        android:id="@+id/name_repair"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:hint="Назва"
+        android:inputType="textPersonName"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305" />
+
+    <Button
+        android:id="@+id/add_repair"
+        android:layout_width="140dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="320dp"
+        android:background="@drawable/button"
+        android:onClick="onClick"
+        android:text="Додати"
+        app:backgroundTint="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_pay" />
+
+    <ImageView
+        android:id="@+id/imageView150"
+        android:layout_width="434dp"
+        android:layout_height="54dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_repair" />
+
+    <EditText
+        android:id="@+id/date_repair"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:hint="Дата"
+        android:inputType="date"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.455" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

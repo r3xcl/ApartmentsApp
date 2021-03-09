@@ -78,7 +78,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
 
 
 
-                String id = myDataBase.getKey();
+                String id = "newApartment1";
                 String address = edit_address.getText().toString();
                 String rooms = edit_rooms.getText().toString();
                 String floor = edit_floor.getText().toString();
@@ -93,7 +93,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
 
 
                 if(edit_address.getText().toString().length()!=0) {
-                    intent.putExtra("address1", edit_address.getText().toString());
+
                     intent.putExtra("rooms1", edit_rooms.getText().toString());
                     intent.putExtra("floor1", edit_floor.getText().toString());
                     intent.putExtra("dateown1", edit_dateown.getText().toString());
@@ -111,7 +111,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
 
         else if (action.equals("2")) {
 
-                String id = myDataBase.getKey();
+                String id = "newApartment2";
                 String address = edit_address.getText().toString();
                 String rooms = edit_rooms.getText().toString();
                 String floor = edit_floor.getText().toString();
@@ -123,7 +123,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                 myDataBase.push().setValue(newApartment);
 
                 if(edit_address.getText().toString().length()!=0) {
-                    intent.putExtra("address2", edit_address.getText().toString());
+
                     intent.putExtra("rooms2", edit_rooms.getText().toString());
                     intent.putExtra("floor2", edit_floor.getText().toString());
                     intent.putExtra("dateown2", edit_dateown.getText().toString());
@@ -140,7 +140,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
 
          else if (action.equals("3")) {
 
-                String id = myDataBase.getKey();
+                String id = "newApartment3";
                 String address = edit_address.getText().toString();
                 String rooms = edit_rooms.getText().toString();
                 String floor = edit_floor.getText().toString();
@@ -153,7 +153,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
 
 
                 if(edit_address.getText().toString().length()!=0) {
-                    intent.putExtra("address3", edit_address.getText().toString());
+
                     intent.putExtra("rooms3", edit_rooms.getText().toString());
                     intent.putExtra("floor3", edit_floor.getText().toString());
                     intent.putExtra("dateown3", edit_dateown.getText().toString());
@@ -169,7 +169,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
 
          else if (action.equals("4")) {
 
-                String id = myDataBase.getKey();
+                String id = "newApartment4";
                 String address = edit_address.getText().toString();
                 String rooms = edit_rooms.getText().toString();
                 String floor = edit_floor.getText().toString();
@@ -182,7 +182,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
 
 
                 if(edit_address.getText().toString().length()!=0) {
-                    intent.putExtra("address4", edit_address.getText().toString());
+
                     intent.putExtra("rooms4", edit_rooms.getText().toString());
                     intent.putExtra("floor4", edit_floor.getText().toString());
                     intent.putExtra("dateown4", edit_dateown.getText().toString());

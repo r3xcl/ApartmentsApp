@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,18 +15,32 @@
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".Activity_Note"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait">
+        <activity android:name=".Activity_Archive">
+
+            <intent-filter>
+                <action android:name="archive1" />
+                <action android:name="archive2" />
+                <action android:name="archive3" />
+                <action android:name="archive4" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".Activity_Note"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="bloknot" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateNoteActivity"
+        <activity
+            android:name=".CreateNoteActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Activity_Pay">
             <intent-filter>
                 <action android:name="pay1" />
@@ -37,12 +53,14 @@
         </activity>
         <activity android:name=".Activity_Repairs">
             <intent-filter>
-                <action android:name="remont" />
+                <action android:name="remont1" />
+                <action android:name="remont2" />
+                <action android:name="remont3" />
+                <action android:name="remont4" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".NoteEditorActivity" />
         <activity android:name=".Splash_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

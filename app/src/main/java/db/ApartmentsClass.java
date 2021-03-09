@@ -14,4 +14,47 @@ public class ApartmentsClass {
         this.floor = floor;
         this.dateown = dateown;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(String rooms) {
+        this.rooms = rooms;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public String getDateown() {
+        return dateown;
+    }
+
+    public void setDateown(String dateown) {
+        this.dateown = dateown;
+    }
+
+
+
 }

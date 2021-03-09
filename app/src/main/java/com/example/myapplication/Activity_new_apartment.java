@@ -1,37 +1,76 @@
 package com.example.myapplication;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import db.ApartmentsClass;
 
 public class Activity_new_apartment extends AppCompatActivity implements View.OnClickListener {
 
-    Button add_client,delete_client,find_client;
+    Button add_client, delete_client, find_client;
 
-    ImageButton apartment_edit,call,money,addphoto,remont;
+    ImageButton apartment_edit, call, money, addphoto, remont, map,archive;
 
-    TextView info_address,info_patronymic,info_name,info_surname,info_number,
-            info_date_start,info_rooms,info_floor,info_dateown,info_date_end,info_pay,textView9,textView11,textView13
-            ,textView14,textView15,textView16,info_zastava,textView20;
+    TextView info_address, info_patronymic, info_name, info_surname, info_number,
+            info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
+            , textView9, textView11, textView13, textView14, textView15, textView16, info_zastava
+            , textView20, textView23,address_edit,rooms_edit,floor_edit,dateown_edit;
 
-    ImageView imageView4,image_client;
-
-
-
+    ImageView imageView4, image_client;
+    private FusedLocationProviderClient fusedLocationProviderClient;
 
 
     @Override
@@ -50,6 +89,7 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
         info_pay = (TextView) findViewById(R.id.info_pay);
         info_zastava = (TextView) findViewById(R.id.info_zastava);
 
+        textView23 = (TextView) findViewById(R.id.textView23);
         textView9 = (TextView) findViewById(R.id.textView9);
         textView11 = (TextView) findViewById(R.id.textView11);
         textView13 = (TextView) findViewById(R.id.textView13);
@@ -66,16 +106,24 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
         info_dateown = (TextView) findViewById(R.id.info_dateown);
 
 
-        call = (ImageButton)findViewById(R.id.call);
+
+
+        call = (ImageButton) findViewById(R.id.call);
         call.setOnClickListener(this);
 
-        remont = (ImageButton)findViewById(R.id.remont);
+        archive = (ImageButton) findViewById(R.id.archive);
+        archive.setOnClickListener(this);
+
+        remont = (ImageButton) findViewById(R.id.remont);
         remont.setOnClickListener(this);
 
-        addphoto = (ImageButton)findViewById(R.id.addphoto);
+        map = (ImageButton) findViewById(R.id.map);
+        map.setOnClickListener(this);
+
+        addphoto = (ImageButton) findViewById(R.id.addphoto);
         addphoto.setOnClickListener(this);
 
-        money = (ImageButton)findViewById(R.id.money);
+        money = (ImageButton) findViewById(R.id.money);
         money.setOnClickListener(this);
 
         add_client = (Button) findViewById(R.id.add_client);
@@ -87,48 +135,96 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
         delete_client = (Button) findViewById(R.id.delete_client);
         delete_client.setOnClickListener(this);
 
-        apartment_edit= (ImageButton) findViewById(R.id.apartment_edit);
+        apartment_edit = (ImageButton) findViewById(R.id.apartment_edit);
         apartment_edit.setOnClickListener(this);
+
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(Activity_new_apartment.this);
+
+        if(ActivityCompat.checkSelfPermission (Activity_new_apartment.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(Activity_new_apartment.this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION)==
+                        PackageManager.PERMISSION_GRANTED )
+        {
+
+            getCurrentLocation();}
+
+
+
+
 
         call.setOnClickListener(v -> {
             String number = info_number.getText().toString();
-            if (!TextUtils.isEmpty(number)){
-                String dial = "tel: "+number;
+            if (!TextUtils.isEmpty(number)) {
+                String dial = "tel: " + number;
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
-            }
-            else {
-                Toast.makeText(Activity_new_apartment.this," Номера телефона не знайдено!",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(Activity_new_apartment.this, " Номера телефона не знайдено!", Toast.LENGTH_SHORT).show();
             }
 
         });
 
-        remont.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent("remont");
-                startActivity(intent);
-            }
-        });
 
 
         Intent intent = getIntent();
         String action = intent.getAction();
 
 
+
+
+
+
         if (action.equals("new_home1")) {
 
-            info_address.setText(getIntent().getStringExtra("address_1"));
 
-            info_rooms.setText(getIntent().getStringExtra("rooms1"));
-            info_floor.setText(getIntent().getStringExtra("floor1"));
-            info_dateown.setText(getIntent().getStringExtra("dateown1"));
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment1");
+
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    for(DataSnapshot data : snapshot.getChildren()){
+
+                        String address = data.child("address").getValue().toString();
+                        String dateown = data.child("dateown").getValue().toString();
+                        String floor = data.child("floor").getValue().toString();
+                        String rooms = data.child("rooms").getValue().toString();
+
+                        info_address.setText(address);
+                        info_dateown.setText(dateown);
+                        info_floor.setText(floor);
+                        info_rooms.setText(rooms);
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
 
 
             add_client.setOnClickListener(v -> {
                 Intent intent1 = new Intent("new_client1");
                 startActivityForResult(intent1,11);
 
+            });
+
+            archive.setOnClickListener(v -> {
+                Intent intent5 = new Intent("archive1");
+                startActivityForResult(intent5,991);
+
+            });
+
+            remont.setOnClickListener(v -> {
+
+                Intent intent4 = new Intent("remont1");
+                startActivityForResult(intent4,101);
             });
 
             money.setOnClickListener(v -> {
@@ -143,9 +239,43 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
 
             });
 
+
             find_client.setOnClickListener(v -> {
                 Intent intent2 = new Intent("find_client1");
                 startActivityForResult(intent2,111);
+
+            });
+
+            map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(ActivityCompat.checkSelfPermission (Activity_new_apartment.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(Activity_new_apartment.this,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION)==
+                                    PackageManager.PERMISSION_GRANTED )
+                    {
+
+                        getCurrentLocation();
+
+                        String sSource = info_address.getText().toString().trim();
+                        String sDestination = textView23.getText().toString().trim();
+
+                        DisplayTrack (sDestination,sSource);
+
+
+                    }
+                    else {
+
+                        ActivityCompat.requestPermissions(Activity_new_apartment.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION
+                                ,Manifest.permission.ACCESS_COARSE_LOCATION},100);
+
+
+
+                    }
+
+                }
 
             });
 
@@ -208,14 +338,47 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
         if (action.equals("new_home2")) {
             info_address.setText(getIntent().getStringExtra("address_2"));
 
-            info_rooms.setText(getIntent().getStringExtra("rooms2"));
-            info_floor.setText(getIntent().getStringExtra("floor2"));
-            info_dateown.setText(getIntent().getStringExtra("dateown2"));
+
+
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment2");
+
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    for(DataSnapshot data : snapshot.getChildren()){
+
+                        String address = data.child("address").getValue().toString();
+                        String dateown = data.child("dateown").getValue().toString();
+                        String floor = data.child("floor").getValue().toString();
+                        String rooms = data.child("rooms").getValue().toString();
+
+                        info_address.setText(address);
+                        info_dateown.setText(dateown);
+                        info_floor.setText(floor);
+                        info_rooms.setText(rooms);
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
 
             add_client.setOnClickListener(v -> {
                 Intent intent1 = new Intent("new_client2");
                 startActivityForResult(intent1,22);
+            });
+
+            remont.setOnClickListener(v -> {
+
+                Intent intent4 = new Intent("remont2");
+                startActivityForResult(intent4,202);
             });
 
             apartment_edit.setOnClickListener(v -> {
@@ -224,9 +387,48 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
 
             });
 
+            archive.setOnClickListener(v -> {
+                Intent intent5 = new Intent("archive2");
+                startActivityForResult(intent5,992);
+
+            });
+
             money.setOnClickListener(v -> {
                 Intent intent1 = new Intent("pay2");
                 startActivityForResult(intent1,22222);
+
+            });
+
+            map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(ActivityCompat.checkSelfPermission (Activity_new_apartment.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(Activity_new_apartment.this,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION)==
+                                    PackageManager.PERMISSION_GRANTED )
+                    {
+
+                        getCurrentLocation();
+
+                        String sSource = info_address.getText().toString().trim();
+                        String sDestination = textView23.getText().toString().trim();
+
+                        DisplayTrack (sDestination,sSource);
+
+
+                    }
+                    else {
+
+                        ActivityCompat.requestPermissions(Activity_new_apartment.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION
+                                ,Manifest.permission.ACCESS_COARSE_LOCATION},100);
+
+
+
+                    }
+
+                }
 
             });
 
@@ -291,9 +493,34 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
         if (action.equals("new_home3")) {
             info_address.setText(getIntent().getStringExtra("address_3"));
 
-            info_rooms.setText(getIntent().getStringExtra("rooms3"));
-            info_floor.setText(getIntent().getStringExtra("floor3"));
-            info_dateown.setText(getIntent().getStringExtra("dateown3"));
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment3");
+
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    for(DataSnapshot data : snapshot.getChildren()){
+
+                        String address = data.child("address").getValue().toString();
+                        String dateown = data.child("dateown").getValue().toString();
+                        String floor = data.child("floor").getValue().toString();
+                        String rooms = data.child("rooms").getValue().toString();
+
+                        info_address.setText(address);
+                        info_dateown.setText(dateown);
+                        info_floor.setText(floor);
+                        info_rooms.setText(rooms);
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
 
 
@@ -302,11 +529,25 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
                 startActivityForResult(intent1,33);
             });
 
+            archive.setOnClickListener(v -> {
+                Intent intent5 = new Intent("archive3");
+                startActivityForResult(intent5,993);
+
+            });
+
+            remont.setOnClickListener(v -> {
+
+                Intent intent4 = new Intent("remont3");
+                startActivityForResult(intent4,303);
+            });
+
             money.setOnClickListener(v -> {
                 Intent intent1 = new Intent("pay3");
                 startActivityForResult(intent1,33333);
 
             });
+
+
 
             apartment_edit.setOnClickListener(v -> {
                 Intent intent3 = new Intent("apartment_edit3");
@@ -375,9 +616,34 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
         if (action.equals("new_home4")) {
             info_address.setText(getIntent().getStringExtra("address_4"));
 
-            info_rooms.setText(getIntent().getStringExtra("rooms4"));
-            info_floor.setText(getIntent().getStringExtra("floor4"));
-            info_dateown.setText(getIntent().getStringExtra("dateown4"));
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment4");
+
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    for(DataSnapshot data : snapshot.getChildren()){
+
+                        String address = data.child("address").getValue().toString();
+                        String dateown = data.child("dateown").getValue().toString();
+                        String floor = data.child("floor").getValue().toString();
+                        String rooms = data.child("rooms").getValue().toString();
+
+                        info_address.setText(address);
+                        info_dateown.setText(dateown);
+                        info_floor.setText(floor);
+                        info_rooms.setText(rooms);
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
 
 
@@ -386,9 +652,21 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
                 startActivityForResult(intent1,44);
             });
 
+            remont.setOnClickListener(v -> {
+
+                Intent intent4 = new Intent("remont4");
+                startActivityForResult(intent4,404);
+            });
+
             money.setOnClickListener(v -> {
                 Intent intent1 = new Intent("pay4");
                 startActivityForResult(intent1,44444);
+
+            });
+
+            archive.setOnClickListener(v -> {
+                Intent intent5 = new Intent("archive4");
+                startActivityForResult(intent5,994);
 
             });
 
@@ -460,10 +738,95 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
 
     }
 
+    private void DisplayTrack(String sSource, String sDestination) {
+
+        try{
+
+            Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+sSource + "/"+ sDestination);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+
+            intent.setPackage("com.google.android.apps.maps");
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+
+        }catch (ActivityNotFoundException e ){
+
+            Uri uri = Uri.parse("http://play.google.com/store/apps/details?id=com.google.android.apps.maps");
+
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 100 && grantResults.length>0 && (grantResults[0]+grantResults[1]==PackageManager.PERMISSION_GRANTED)){
+
+            getCurrentLocation();
+
+        }else{
+
+            Toast.makeText(getApplicationContext(),"Дайте дозвіл на GPS!",Toast.LENGTH_SHORT);
+
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private void getCurrentLocation() {
+
+        LocationManager locationManager = (LocationManager)getSystemService(
+                Context.LOCATION_SERVICE
+        );
+
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+
+            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+
+                    Location location = task.getResult();
+
+                    if(location!=null){
+                        textView23.setText(String.valueOf(location.getLatitude() + " , " +location.getLongitude()));
+                    }else {
+
+                        LocationRequest locationRequest = new LocationRequest().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                                .setInterval(10000)
+                                .setFastestInterval(1000)
+                                .setNumUpdates(1);
+
+                        LocationCallback locationCallback = new LocationCallback(){
+
+                            @Override
+                            public void onLocationResult(LocationResult locationResult) {
+                                Location location1 = locationResult.getLastLocation();
+
+                                textView23.setText(String.valueOf(location.getLatitude() + " , " +location.getLongitude()));
+                            }
+                        };
+
+                             fusedLocationProviderClient.requestLocationUpdates(locationRequest,locationCallback, Looper.myLooper());
+
+                    }
+                }
+
+            });
+
+        }else {
+
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
 
-
-
+        }
+    }
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1072,6 +1435,8 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
+
+
 
     }
 

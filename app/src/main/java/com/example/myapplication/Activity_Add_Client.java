@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -75,6 +76,8 @@ public class Activity_Add_Client extends AppCompatActivity implements View.OnCli
                         String dateend = add_dateend.getText().toString();
                         String pay = add_pay.getText().toString();
                         String zastava = client_info.getText().toString();
+
+
 
                         ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
                         myDataBase.push().setValue(newClient);

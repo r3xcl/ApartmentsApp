@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,6 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import db.ClientClass;
 
@@ -59,11 +66,13 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
         Intent intent = getIntent();
         String action = intent.getAction();
 
+
+
         if (action.equals("new_client1")) {
 
             if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
             && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0
-                    &&client_info.getText().toString().length()!=0) {
+                    &&client_info.getText().toString().length()!=0 ) {
 
                 intent.putExtra("client_name1", client_name.getText().toString());
                 intent.putExtra("client_surname1", client_surname.getText().toString());
@@ -87,7 +96,8 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             String pay = client_pay.getText().toString();
             String zastava = client_info.getText().toString();
 
-            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
+
+                ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
             myDataBase.push().setValue(newClient);
 
             intent.putExtra("11", 11);
