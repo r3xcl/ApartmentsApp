@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.fragments1.Fragment_Pay1">
+    tools:context=".fragments.fragments2.Fragment_Remont2">
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recview_pay"
+        android:id="@+id/recview_remont2"
         android:layout_width="363dp"
         android:layout_height="665dp"
 
@@ -18,6 +18,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

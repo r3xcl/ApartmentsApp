@@ -7,7 +7,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginTop="1dp"
     android:elevation="5dp"
-    app:cardBackgroundColor="#FF0000"
+    app:cardBackgroundColor="#DC143C"
     app:cardCornerRadius="5dp"
     app:cardUseCompatPadding="true">
 
@@ -25,7 +25,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="88dp"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/textView24"
@@ -68,7 +68,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="147dp"
                 android:layout_height="match_parent"
@@ -81,8 +80,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="Назва"
                     android:textColor="#000"
-                    android:textSize="20sp"
-                    />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/repair_money"
@@ -92,8 +90,6 @@
                     android:text="Сума"
                     android:textColor="#000"
                     android:textSize="20sp" />
-
-
 
 
                 <TextView

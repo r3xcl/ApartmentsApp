@@ -37,6 +37,7 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
     {
         holder.money_date.setText(payClass.getDate());
         holder.money_money.setText(payClass.getPay());
+        holder.money_name.setText(payClass.getName());
 
 
     }
@@ -53,7 +54,7 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
 
     class viewHolder extends RecyclerView.ViewHolder{
 
-        TextView money_money,money_date;
+        TextView money_money,money_date,money_name;
 
 
         public viewHolder(@NonNull View itemView) {
@@ -61,6 +62,7 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
 
             money_money=(TextView)itemView.findViewById(R.id.money_money);
             money_date=(TextView)itemView.findViewById(R.id.money_date);
+            money_name=(TextView)itemView.findViewById(R.id.money_name);
 
 
         }

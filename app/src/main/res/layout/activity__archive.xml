@@ -23,8 +23,8 @@
     <ImageButton
         android:id="@+id/fragment2"
         android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="#FBD6D6"
+        android:layout_height="54dp"
+        android:background="#A09D9D"
         android:onClick="onClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +37,8 @@
     <ImageButton
         android:id="@+id/fragment1"
         android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="#FBD6D6"
+        android:layout_height="54dp"
+        android:background="#A09D9D"
         android:onClick="onClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

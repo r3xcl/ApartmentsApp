@@ -2,12 +2,13 @@ package db;
 
 public class PayClass {
 
-    String pay,date,id;
+    String pay,date,id,name;
 
-    public PayClass(String id,String pay, String date) {
+    public PayClass(String id,String pay, String date,String name) {
         this.id = id;
         this.pay = pay;
         this.date = date;
+        this.name = name;
     }
 
     public PayClass(){
@@ -38,6 +39,14 @@ public class PayClass {
         this.date = date;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 
 

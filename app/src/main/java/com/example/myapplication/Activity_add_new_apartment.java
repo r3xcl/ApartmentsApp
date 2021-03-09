@@ -24,7 +24,7 @@ import db.ApartmentsClass;
 public class Activity_add_new_apartment extends AppCompatActivity implements View.OnClickListener {
 
     Button but_home;
-    public EditText edit_address, edit_info,edit_rooms,edit_floor,edit_dateown;
+    public EditText edit_address, edit_info,edit_rooms,edit_floor,edit_dateown,edit_name;
 
 
    private DatabaseReference myDataBase ;
@@ -55,6 +55,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
         edit_floor = (EditText) findViewById(R.id.edit_floor);
 
         edit_dateown = (EditText) findViewById(R.id.edit_dateown);
+        edit_name = (EditText) findViewById(R.id.edit_name);
 
 
 
@@ -83,10 +84,11 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                 String rooms = edit_rooms.getText().toString();
                 String floor = edit_floor.getText().toString();
                 String dateown = edit_dateown.getText().toString();
+                String name = edit_name.getText().toString();
 
 
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown);
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
 
                 myDataBase.push().setValue(newApartment);
 
@@ -97,6 +99,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                     intent.putExtra("rooms1", edit_rooms.getText().toString());
                     intent.putExtra("floor1", edit_floor.getText().toString());
                     intent.putExtra("dateown1", edit_dateown.getText().toString());
+                    intent.putExtra("name1", edit_name.getText().toString());
 
                     intent.putExtra("1", 1);
                     setResult(RESULT_OK, intent);
@@ -116,9 +119,10 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                 String rooms = edit_rooms.getText().toString();
                 String floor = edit_floor.getText().toString();
                 String dateown = edit_dateown.getText().toString();
+                String name = edit_name.getText().toString();
 
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown);
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
 
                 myDataBase.push().setValue(newApartment);
 
@@ -127,6 +131,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                     intent.putExtra("rooms2", edit_rooms.getText().toString());
                     intent.putExtra("floor2", edit_floor.getText().toString());
                     intent.putExtra("dateown2", edit_dateown.getText().toString());
+                    intent.putExtra("name2", edit_name.getText().toString());
 
                     intent.putExtra("2", 2);
                     setResult(RESULT_OK, intent);
@@ -145,9 +150,10 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                 String rooms = edit_rooms.getText().toString();
                 String floor = edit_floor.getText().toString();
                 String dateown = edit_dateown.getText().toString();
+                String name = edit_name.getText().toString();
 
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown);
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
 
                 myDataBase.push().setValue(newApartment);
 
@@ -157,6 +163,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                     intent.putExtra("rooms3", edit_rooms.getText().toString());
                     intent.putExtra("floor3", edit_floor.getText().toString());
                     intent.putExtra("dateown3", edit_dateown.getText().toString());
+                    intent.putExtra("name3", edit_name.getText().toString());
 
                     intent.putExtra("3", 3);
                     setResult(RESULT_OK, intent);
@@ -174,9 +181,10 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                 String rooms = edit_rooms.getText().toString();
                 String floor = edit_floor.getText().toString();
                 String dateown = edit_dateown.getText().toString();
+                String name = edit_name.getText().toString();
 
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown);
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
 
                 myDataBase.push().setValue(newApartment);
 
@@ -186,6 +194,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                     intent.putExtra("rooms4", edit_rooms.getText().toString());
                     intent.putExtra("floor4", edit_floor.getText().toString());
                     intent.putExtra("dateown4", edit_dateown.getText().toString());
+                    intent.putExtra("name4", edit_name.getText().toString());
 
                     intent.putExtra("4", 4);
                     setResult(RESULT_OK, intent);
@@ -197,33 +206,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
 
 
 
-         else if (action.equals("5")) {
 
-                String id = myDataBase.getKey();
-                String address = edit_address.getText().toString();
-                String rooms = edit_rooms.getText().toString();
-                String floor = edit_floor.getText().toString();
-                String dateown = edit_dateown.getText().toString();
-
-
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown);
-
-                myDataBase.push().setValue(newApartment);
-
-
-                if(edit_address.getText().toString().length()!=0) {
-                    intent.putExtra("address5", edit_address.getText().toString());
-                    intent.putExtra("rooms5", edit_rooms.getText().toString());
-                    intent.putExtra("floor5", edit_floor.getText().toString());
-                    intent.putExtra("dateown5", edit_dateown.getText().toString());
-
-                    intent.putExtra("5", 5);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }else {
-                    Toast.makeText(Activity_add_new_apartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
-                }
-                    }
 
 
 

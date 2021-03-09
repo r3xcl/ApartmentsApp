@@ -8,23 +8,19 @@
     tools:context=".Activity_add_new_apartment">
 
 
-    <EditText
-        android:id="@+id/edit_address"
-        android:layout_width="350dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="5sp"
-        android:layout_marginRight="5sp"
-        android:background="@drawable/style_activity2_add"
-        android:ems="10"
-        android:hint="Адреса"
-        android:inputType="textPersonName"
-        android:paddingLeft="15dp"
+    <Button
+        android:id="@+id/but_home"
+        android:layout_width="102dp"
+        android:layout_height="41dp"
+        android:background="@drawable/button"
+        android:onClick="onClickSave"
+        android:text="Додати"
+        app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.705" />
 
     <EditText
         android:id="@+id/edit_dateown"
@@ -40,29 +36,10 @@
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.399" />
-
-    <EditText
-        android:id="@+id/edit_info"
-        android:layout_width="350dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="5sp"
-        android:layout_marginRight="5sp"
-        android:background="@drawable/style_activity2_add"
-        android:ems="10"
-        android:hint="Додаткова інформація"
-        android:inputType="textPersonName"
-        android:paddingLeft="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.496" />
+        app:layout_constraintVertical_bias="0.498" />
 
     <EditText
         android:id="@+id/edit_rooms"
@@ -78,10 +55,66 @@
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.209" />
+        app:layout_constraintVertical_bias="0.309" />
+
+    <EditText
+        android:id="@+id/edit_address"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="5sp"
+        android:background="@drawable/style_activity2_add"
+        android:ems="10"
+        android:hint="Адреса"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.21" />
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="5sp"
+        android:background="@drawable/style_activity2_add"
+        android:ems="10"
+        android:hint="Назва"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.116" />
+
+    <EditText
+        android:id="@+id/edit_info"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="5sp"
+        android:background="@drawable/style_activity2_add"
+        android:ems="10"
+        android:hint="Додаткова інформація"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.595" />
 
     <EditText
         android:id="@+id/edit_floor"
@@ -97,25 +130,10 @@
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.303" />
-
-    <Button
-        android:id="@+id/but_home"
-        android:layout_width="102dp"
-        android:layout_height="41dp"
-        android:background="@drawable/button"
-        android:onClick="onClickSave"
-        android:text="Додати"
-        app:backgroundTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.608" />
+        app:layout_constraintVertical_bias="0.402" />
 
     <ImageView
         android:id="@+id/imageView"

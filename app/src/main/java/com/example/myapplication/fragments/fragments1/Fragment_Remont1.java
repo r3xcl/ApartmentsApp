@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.fragments.fragments1;
 
 import android.os.Bundle;
 
@@ -10,15 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
-import db.PayAdapter;
-import db.PayClass;
 import db.RemontAdapter;
 import db.RemontClass;
 
-public class Fragment_Remont extends Fragment {
+public class Fragment_Remont1 extends Fragment {
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -30,14 +29,14 @@ public class Fragment_Remont extends Fragment {
     RecyclerView recyclerView;
     RemontAdapter remontAdapter;
 
-    public Fragment_Remont() {
+    public Fragment_Remont1() {
 
     }
 
 
 
-    public static Fragment_Remont newInstance(String param1, String param2) {
-        Fragment_Remont fragment = new Fragment_Remont();
+    public static Fragment_Remont1 newInstance(String param1, String param2) {
+        Fragment_Remont1 fragment = new Fragment_Remont1();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

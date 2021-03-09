@@ -16,7 +16,7 @@ import db.PayClass;
 
 public class Activity_Pay extends AppCompatActivity implements View.OnClickListener{
 
-    TextView sum,date_pay;
+    TextView sum,date_pay,name;
 
     Button add_oplaty;
 
@@ -31,6 +31,7 @@ public class Activity_Pay extends AppCompatActivity implements View.OnClickListe
 
         sum = (TextView) findViewById(R.id.sum);
         date_pay = (TextView) findViewById(R.id.date_pay);
+        name = (TextView) findViewById(R.id.namee);
 
         add_oplaty = (Button) findViewById(R.id.add_oplaty);
         add_oplaty.setOnClickListener(this);
@@ -48,9 +49,10 @@ public class Activity_Pay extends AppCompatActivity implements View.OnClickListe
                 String id = "apartment1";
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
+                String namee = name.getText().toString();
 
 
-                PayClass newPay = new PayClass(id,summ,pay);
+                PayClass newPay = new PayClass(id,summ,pay,namee);
                 myDataBase.push().setValue(newPay);
 
                 intent.putExtra("11111", 11111);
@@ -70,9 +72,10 @@ public class Activity_Pay extends AppCompatActivity implements View.OnClickListe
                 String pay = date_pay.getText().toString();
                 String id = "apartment2";
                 String summ = sum.getText().toString();
+                String namee = name.getText().toString();
 
 
-                PayClass newPay = new PayClass(id,summ,pay);
+                PayClass newPay = new PayClass(id,summ,pay,namee);
                 myDataBase.push().setValue(newPay);
 
                 intent.putExtra("22222", 22222);
@@ -91,10 +94,12 @@ public class Activity_Pay extends AppCompatActivity implements View.OnClickListe
 
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
+                String namee = name.getText().toString();
                 String id = "apartment3";
 
 
-                PayClass newPay = new PayClass(id,summ,pay);
+
+                PayClass newPay = new PayClass(id,summ,pay,namee);
                 myDataBase.push().setValue(newPay);
 
                 intent.putExtra("33333", 33333);
@@ -113,10 +118,11 @@ public class Activity_Pay extends AppCompatActivity implements View.OnClickListe
 
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
+                String namee = name.getText().toString();
                 String id = "apartment4";
 
 
-                PayClass newPay = new PayClass(id,summ,pay);
+                PayClass newPay = new PayClass(id,summ,pay,namee);
                 myDataBase.push().setValue(newPay);
 
                 intent.putExtra("44444", 44444);

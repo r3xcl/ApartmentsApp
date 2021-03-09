@@ -63,21 +63,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         add4_text = findViewById(R.id.add4_text);
 
 
-        rooms1 = (TextView) findViewById(R.id.rooms1);
-        floor1 = (TextView) findViewById(R.id.floor1);
-        dateown1 = (TextView) findViewById(R.id.dateown1);
 
-        rooms2 = (TextView) findViewById(R.id.rooms2);
-        floor2 = (TextView) findViewById(R.id.floor2);
-        dateown2 = (TextView) findViewById(R.id.dateown2);
-
-        rooms3 = (TextView) findViewById(R.id.rooms3);
-        floor3 = (TextView) findViewById(R.id.floor3);
-        dateown3 = (TextView) findViewById(R.id.dateown3);
-
-        rooms4 = (TextView) findViewById(R.id.rooms4);
-        floor4 = (TextView) findViewById(R.id.floor4);
-        dateown4 = (TextView) findViewById(R.id.dateown4);
 
 
 
@@ -419,6 +405,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             String floor = data.child("floor").getValue().toString();
                             String rooms = data.child("rooms").getValue().toString();
 
+
                             add1_text.setText(address);
 
                         }
@@ -456,6 +443,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             String floor = data.child("floor").getValue().toString();
                             String rooms = data.child("rooms").getValue().toString();
 
+
                             add2_text.setText(address);
 
                         }
@@ -490,6 +478,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             String floor = data.child("floor").getValue().toString();
                             String rooms = data.child("rooms").getValue().toString();
 
+
                             add3_text.setText(address);
 
                         }
@@ -523,6 +512,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             String dateown = data.child("dateown").getValue().toString();
                             String floor = data.child("floor").getValue().toString();
                             String rooms = data.child("rooms").getValue().toString();
+
 
                             add4_text.setText(address);
 

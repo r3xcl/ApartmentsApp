@@ -2,17 +2,18 @@ package db;
 
 public class ApartmentsClass {
 
-    public String id,address,rooms,floor,dateown;
+    public String id,address,rooms,floor,dateown,name;
 
     public ApartmentsClass() {
     }
 
-    public ApartmentsClass(String id,String address, String rooms, String floor, String dateown) {
+    public ApartmentsClass(String id,String address, String rooms, String floor, String dateown,String name) {
         this.id = id;
         this.address = address;
         this.rooms = rooms;
         this.floor = floor;
         this.dateown = dateown;
+        this.name = name;
     }
 
     public String getId() {
@@ -53,6 +54,14 @@ public class ApartmentsClass {
 
     public void setDateown(String dateown) {
         this.dateown = dateown;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 

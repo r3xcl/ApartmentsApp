@@ -67,7 +67,7 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
     TextView info_address, info_patronymic, info_name, info_surname, info_number,
             info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
             , textView9, textView11, textView13, textView14, textView15, textView16, info_zastava
-            , textView20, textView23,address_edit,rooms_edit,floor_edit,dateown_edit;
+            , textView20, textView23;
 
     ImageView imageView4, image_client;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -88,6 +88,7 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
         info_date_end = (TextView) findViewById(R.id.info_date_end);
         info_pay = (TextView) findViewById(R.id.info_pay);
         info_zastava = (TextView) findViewById(R.id.info_zastava);
+
 
         textView23 = (TextView) findViewById(R.id.textView23);
         textView9 = (TextView) findViewById(R.id.textView9);
@@ -192,10 +193,14 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
 
+
+
                         info_address.setText(address);
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+
+
 
                     }
 
@@ -354,10 +359,12 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
 
+
                         info_address.setText(address);
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+
 
                     }
 
@@ -507,10 +514,12 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
 
+
                         info_address.setText(address);
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+
 
                     }
 
@@ -630,10 +639,12 @@ public class Activity_new_apartment extends AppCompatActivity implements View.On
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
 
+
                         info_address.setText(address);
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+
 
                     }
 
