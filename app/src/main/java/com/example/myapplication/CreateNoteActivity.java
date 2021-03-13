@@ -31,6 +31,8 @@ public class CreateNoteActivity extends AppCompatActivity {
     private EditText inputNoteTitle,inputNoteSubtitle,inputNoteText;
     private TextView textDataTime;
 
+    private Note alreadyAvailableNote;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,29 @@ public class CreateNoteActivity extends AppCompatActivity {
                 saveNote();
             }
         });
+
+        if(getIntent().getBooleanExtra("update",false)){
+
+            alreadyAvailableNote = (Note) getIntent().getSerializableExtra("note");
+            setViewUpdateNote();
+
+            inputNoteTitle.setText(alreadyAvailableNote.getTitle());
+            inputNoteText.setText(alreadyAvailableNote.getNoteText());
+            inputNoteSubtitle.setText(alreadyAvailableNote.getSubtitle());
+            textDataTime.setText(alreadyAvailableNote.getDateTime());
+
+        }
+
     }
+
+
+    private void setViewUpdateNote(){
+
+
+
+
+    }
+
 
     private  void saveNote(){
 

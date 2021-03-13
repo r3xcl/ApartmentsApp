@@ -37,8 +37,35 @@ public class RemontAdapter extends FirebaseRecyclerAdapter<RemontClass,RemontAda
     {
         holder.repair_date.setText(remontClass.getDate());
         holder.repair_name.setText(remontClass.getName());
-        holder.repair_money.setText(remontClass.getSum());
+        holder.repair_money.setText(remontClass.getSum()+" Грн.");
 
+
+        holder.delete_repair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(holder.itemView.getContext());
+                builder.setTitle("Оберіть дію");
+
+
+
+                builder.setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseDatabase.getInstance().getReference().child("Repairs_History")
+                                .child(getRef(position).getKey()).removeValue();
+                    }
+                });
+
+                builder.setNeutralButton("Назад", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                builder.show();
+            }
+        });
 
     }
 
@@ -55,7 +82,7 @@ public class RemontAdapter extends FirebaseRecyclerAdapter<RemontClass,RemontAda
     class viewHolder extends RecyclerView.ViewHolder{
 
         TextView repair_date,repair_name,repair_money;
-
+        ImageView edit_repair,delete_repair;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +90,9 @@ public class RemontAdapter extends FirebaseRecyclerAdapter<RemontClass,RemontAda
             repair_date=(TextView)itemView.findViewById(R.id.repair_date);
             repair_name=(TextView)itemView.findViewById(R.id.repair_name);
             repair_money=(TextView)itemView.findViewById(R.id.repair_money);
+
+            edit_repair=(ImageButton)itemView.findViewById(R.id.edit_repair);
+            delete_repair=(ImageView) itemView.findViewById(R.id.delete_repair);
 
 
         }

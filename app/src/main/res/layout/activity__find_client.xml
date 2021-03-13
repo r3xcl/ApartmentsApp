@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBD6D6"
-    tools:context=".Activity_FindClient">
+    tools:context=".ActivityFindClient">
 
     <ImageView
         android:id="@+id/imageView6"

@@ -39,7 +39,7 @@ import java.util.List;
 import db.ClientClass;
 import db.Client_adapter;
 
-public class Activity_all_clients extends AppCompatActivity {
+public class ActivityAllClients extends AppCompatActivity {
 
 
 

@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,15 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import db.ClientClass;
 
-public class Activity_Add_Client extends AppCompatActivity implements View.OnClickListener {
+public class ActivityAddClient extends AppCompatActivity implements View.OnClickListener {
 
     TextView add_name, add_surname, add_patronymic, add_number, add_datestart, add_dateend, add_pay,client_info;
 
@@ -88,7 +81,7 @@ public class Activity_Add_Client extends AppCompatActivity implements View.OnCli
                         finish();
 
                     } else {
-                        Toast.makeText(Activity_Add_Client.this, "Невірні дати! Ведіть ім'я,номер телефона,суму застави та дати!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActivityAddClient.this, "Невірні дати! Ведіть ім'я,номер телефона,суму застави та дати!", Toast.LENGTH_LONG).show();
                     }
 
 

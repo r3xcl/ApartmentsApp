@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import db.PayClass;
 
-public class Activity_Pay extends AppCompatActivity implements View.OnClickListener{
+public class ActivityPay extends AppCompatActivity implements View.OnClickListener{
 
     TextView sum,date_pay,name;
 

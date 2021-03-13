@@ -26,7 +26,7 @@ import java.util.List;
 
 import db.ClientClass;
 
-public class Activity_FindClient extends AppCompatActivity implements View.OnClickListener{
+public class ActivityFindClient extends AppCompatActivity implements View.OnClickListener{
 
     private ListView listView1;
     private ArrayAdapter<String> adapter1;

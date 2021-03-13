@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class Activity_show_allinfo_client extends AppCompatActivity {
+public class ActivityShowAllinfoClient extends AppCompatActivity {
 
     private TextView surname,name,patronymic,number,datestart,dateend,sumpay;
 

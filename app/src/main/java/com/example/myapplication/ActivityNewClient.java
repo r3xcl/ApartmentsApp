@@ -1,11 +1,9 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -19,14 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import db.ClientClass;
 
-public class Activity_NewClient extends AppCompatActivity implements View.OnClickListener{
+public class ActivityNewClient extends AppCompatActivity implements View.OnClickListener{
 
     TextView client_name,client_surname,client_patronymic,client_number,client_datestart,client_dateend,client_info,client_pay;
 
@@ -108,7 +101,7 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             finish();
 
             }else {
-                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
+                Toast.makeText(ActivityNewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
             }
 
         }
@@ -150,7 +143,7 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             finish();
 
             }else {
-                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
+                Toast.makeText(ActivityNewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
             }
 
         }
@@ -189,7 +182,7 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
 
             finish();
             }else {
-                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
+                Toast.makeText(ActivityNewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
             }
 
 
@@ -231,7 +224,7 @@ public class Activity_NewClient extends AppCompatActivity implements View.OnClic
             finish();
 
             }else {
-                Toast.makeText(Activity_NewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
+                Toast.makeText(ActivityNewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
             }
 
 

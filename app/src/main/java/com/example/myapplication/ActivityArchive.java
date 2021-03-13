@@ -17,7 +17,7 @@ import com.example.myapplication.fragments.fragments3.Fragment_Remont3;
 import com.example.myapplication.fragments.fragments4.Fragment_Pay4;
 import com.example.myapplication.fragments.fragments4.Fragment_Remont4;
 
-public class Activity_Archive extends AppCompatActivity implements View.OnClickListener{
+public class ActivityArchive extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton fragment2,fragment1;
     Fragment fragment = null;
@@ -38,6 +38,8 @@ public class Activity_Archive extends AppCompatActivity implements View.OnClickL
         Intent intent = getIntent();
         String action = intent.getAction();
 
+        fragment1.setVisibility(View.INVISIBLE);
+
 
         if (action.equals("archive1")) {
 
@@ -47,6 +49,9 @@ public class Activity_Archive extends AppCompatActivity implements View.OnClickL
                   @Override
                   public void onClick(View v) {
                       getSupportFragmentManager().beginTransaction().replace(R.id.archive,new Fragment_Remont1()).commit();
+
+                      fragment2.setVisibility(View.INVISIBLE);
+                      fragment1.setVisibility(View.VISIBLE);
                   }
               });
 
@@ -54,6 +59,8 @@ public class Activity_Archive extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void onClick(View v) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.archive,new Fragment_Pay1()).commit();
+                    fragment1.setVisibility(View.INVISIBLE);
+                    fragment2.setVisibility(View.VISIBLE);
                 }
             });
         }

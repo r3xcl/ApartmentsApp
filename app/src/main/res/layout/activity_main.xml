@@ -190,7 +190,7 @@
         android:id="@+id/allclient"
         android:layout_width="160dp"
         android:layout_height="159dp"
-        android:background="@drawable/button_white"
+        android:background="@drawable/button"
         android:onClick="onClickRead"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

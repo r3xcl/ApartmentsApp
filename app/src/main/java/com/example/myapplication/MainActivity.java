@@ -1,10 +1,8 @@
 package com.example.myapplication;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
@@ -15,11 +13,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -555,7 +551,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     public void onClickRead(View v){
 
-        Intent i = new Intent(MainActivity.this, Activity_all_clients.class);
+        Intent i = new Intent(MainActivity.this, ActivityAllClients.class);
         startActivity(i);
 
 
@@ -565,7 +561,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     public void onClickBloknot(View v){
 
-        Intent i = new Intent(MainActivity.this, Activity_Note.class);
+        Intent i = new Intent(MainActivity.this, ActivityNote.class);
         startActivity(i);
 
 

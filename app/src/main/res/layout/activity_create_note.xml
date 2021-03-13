@@ -8,16 +8,17 @@
     tools:context=".CreateNoteActivity">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/_40sdp"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/_10sdp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            >
+            android:animateLayoutChanges="true">
 
             <ImageView
                 android:id="@+id/imageBack"
@@ -31,20 +32,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="#7B7B7B" />
-
-            <ImageView
-                android:id="@+id/imageSave"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:background="@drawable/background_done_button"
-                android:contentDescription="@string/app_name"
-                android:padding="@dimen/_4sdp"
-                android:src="@drawable/ic_done"
-                app:tint="#7B7B7B"
-                app:layout_constraintBottom_toBottomOf="@id/imageBack"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/imageBack"/>
 
             <EditText
                 android:id="@+id/inputNoteTitle"
@@ -63,8 +50,8 @@
                 android:textColor="#7B7B7B"
                 android:textColorHint="#7B7B7B"
                 android:textSize="@dimen/_16ssp"
-                app:layout_constraintTop_toBottomOf="@id/imageBack"/>
-            
+                app:layout_constraintTop_toBottomOf="@id/imageBack" />
+
             <TextView
                 android:id="@+id/textDateTime"
                 android:layout_width="0dp"
@@ -78,29 +65,28 @@
 
                 />
 
-               <EditText
-                   android:id="@+id/inputNoteSubtitle"
-                  android:layout_width="0dp"
-                  android:layout_height="wrap_content"
-                   android:layout_marginStart="@dimen/_12sdp"
-                   android:layout_marginTop="@dimen/_15sdp"
-                   android:layout_marginEnd="@dimen/_12sdp"
-                   android:background="@null"
-                   android:fontFamily="@font/ubuntu_medium"
-                   android:hint="@string/note_subtitle"
-                   android:importantForAutofill="no"
-                   android:includeFontPadding="false"
-                   android:inputType="textMultiLine"
-                   android:paddingTop="@dimen/_8sdp"
-                   android:paddingBottom="@dimen/_8sdp"
-                   android:textColor="#7B7B7B"
-                   android:textColorHint="#7B7B7B"
-                   android:textSize="@dimen/_13ssp"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toEndOf="@id/viewSubtitleIndicator"
-                   app:layout_constraintTop_toBottomOf="@id/textDateTime"
-                   />
-            
+            <EditText
+                android:id="@+id/inputNoteSubtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@null"
+                android:fontFamily="@font/ubuntu_medium"
+                android:hint="@string/note_subtitle"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="textMultiLine"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:textColor="#7B7B7B"
+                android:textColorHint="#7B7B7B"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/viewSubtitleIndicator"
+                app:layout_constraintTop_toBottomOf="@id/textDateTime" />
+
             <View
                 android:id="@+id/viewSubtitleIndicator"
                 android:layout_width="@dimen/_5sdp"
@@ -133,13 +119,38 @@
                 android:textColorHint="#7B7B7B"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle"/>
+                app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle" />
 
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.961"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.074"
+                app:srcCompat="@drawable/ic_trash_can_115312" />
 
+            <ImageView
+                android:id="@+id/imageSave"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginEnd="56dp"
+                android:background="@drawable/background_done_button"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/ic_done"
+                app:layout_constraintBottom_toBottomOf="@id/imageBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imageBack"
+                app:layout_constraintVertical_bias="0.0"
+                app:tint="#7B7B7B" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </ScrollView>
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

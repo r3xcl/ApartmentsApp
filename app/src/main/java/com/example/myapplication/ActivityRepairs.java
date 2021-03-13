@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import db.PayClass;
 import db.RemontClass;
 
-public class Activity_Repairs extends AppCompatActivity implements View.OnClickListener {
+public class ActivityRepairs extends AppCompatActivity implements View.OnClickListener {
 
     TextView sum_repair,date_repair,name_repair;
 

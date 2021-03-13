@@ -17,11 +17,9 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Date;
-
 import db.ApartmentsClass;
 
-public class Activity_add_new_apartment extends AppCompatActivity implements View.OnClickListener {
+public class ActivityAddNewApartment extends AppCompatActivity implements View.OnClickListener {
 
     Button but_home;
     public EditText edit_address, edit_info,edit_rooms,edit_floor,edit_dateown,edit_name;
@@ -105,7 +103,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                     setResult(RESULT_OK, intent);
                     finish();
                 }else {
-                    Toast.makeText(Activity_add_new_apartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityAddNewApartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
                 }
 
 
@@ -137,7 +135,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                     setResult(RESULT_OK, intent);
                     finish();
                 }else {
-                    Toast.makeText(Activity_add_new_apartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityAddNewApartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
                 }
 
            }
@@ -169,7 +167,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                     setResult(RESULT_OK, intent);
                     finish();
                 }else {
-                    Toast.makeText(Activity_add_new_apartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityAddNewApartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
                 }
 
                 }
@@ -200,7 +198,7 @@ public class Activity_add_new_apartment extends AppCompatActivity implements Vie
                     setResult(RESULT_OK, intent);
                     finish();
                 }else {
-                    Toast.makeText(Activity_add_new_apartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityAddNewApartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
                 }
                     }
 

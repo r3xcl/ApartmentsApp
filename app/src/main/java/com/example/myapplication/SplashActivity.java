@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Splash_Activity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     ImageView iv_house,iv_beat;
     TextView splash_text;
@@ -53,7 +53,7 @@ public class Splash_Activity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(Splash_Activity.this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(SplashActivity.this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 finish();
 
             }

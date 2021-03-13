@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBD6D6"
-    tools:context=".Activity_Repairs">
+    tools:context=".ActivityRepairs">
 
     <EditText
         android:id="@+id/sum_repair"

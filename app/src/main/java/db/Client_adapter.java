@@ -179,8 +179,8 @@ public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_a
            name_text=(TextView)itemView.findViewById(R.id.money_money);
            number_text=(TextView)itemView.findViewById(R.id.money_date);
 
-           edit=(ImageButton)itemView.findViewById(R.id.edit);
-           delete=(ImageView) itemView.findViewById(R.id.delete);
+           edit=(ImageButton)itemView.findViewById(R.id.edit_clients);
+           delete=(ImageView) itemView.findViewById(R.id.delete_clients);
 
 
 

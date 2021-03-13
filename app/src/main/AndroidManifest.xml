@@ -15,8 +15,8 @@
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".Activity_Archive">
-
+        <activity android:name=".WhatsApp"></activity>
+        <activity android:name=".ActivityArchive">
             <intent-filter>
                 <action android:name="archive1" />
                 <action android:name="archive2" />
@@ -25,10 +25,9 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name=".Activity_Note"
+            android:name=".ActivityNote"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
@@ -41,7 +40,7 @@
             android:name=".CreateNoteActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Activity_Pay">
+        <activity android:name=".ActivityPay">
             <intent-filter>
                 <action android:name="pay1" />
                 <action android:name="pay2" />
@@ -51,7 +50,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Repairs">
+        <activity android:name=".ActivityRepairs">
             <intent-filter>
                 <action android:name="remont1" />
                 <action android:name="remont2" />
@@ -61,22 +60,22 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Splash_Activity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Add_Client">
+        <activity android:name=".ActivityAddClient">
             <intent-filter>
                 <action android:name="add_client" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_show_allinfo_client" />
-        <activity android:name=".Activity_edit_apartment">
+        <activity android:name=".ActivityShowAllinfoClient" />
+        <activity android:name=".ActivityEditApartment">
             <intent-filter>
                 <action android:name="apartment_edit1" />
                 <action android:name="apartment_edit2" />
@@ -86,7 +85,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_FindClient">
+        <activity android:name=".ActivityFindClient">
             <intent-filter>
                 <action android:name="find_client1" />
                 <action android:name="find_client2" />
@@ -96,7 +95,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_NewClient">
+        <activity android:name=".ActivityNewClient">
             <intent-filter>
                 <action android:name="new_client1" />
                 <action android:name="new_client2" />
@@ -107,7 +106,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity_all_clients"
+            android:name=".ActivityAllClients"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="allclient" />
@@ -115,7 +114,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_new_apartment">
+        <activity android:name=".ActivityNewApartment">
             <intent-filter>
                 <action android:name="new_home1" />
                 <action android:name="new_home2" />
@@ -125,7 +124,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_add_new_apartment">
+        <activity android:name=".ActivityAddNewApartment">
             <intent-filter>
                 <action android:name="1" />
                 <action android:name="2" />

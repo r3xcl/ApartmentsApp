@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
-public class Activity_edit_apartment extends AppCompatActivity implements View.OnClickListener{
+public class ActivityEditApartment extends AppCompatActivity implements View.OnClickListener{
 
     TextView apartment_room,apartment_floor,apartment_purchase_date,apartment_address,apartment_pay;
 
