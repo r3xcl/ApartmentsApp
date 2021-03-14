@@ -103,7 +103,8 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                     setResult(RESULT_OK, intent);
                     finish();
                 }else {
-                    Toast.makeText(ActivityAddNewApartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
+                    edit_address.setError("Введіть дані!");
+                    edit_address.requestFocus();
                 }
 
 
@@ -135,7 +136,8 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                     setResult(RESULT_OK, intent);
                     finish();
                 }else {
-                    Toast.makeText(ActivityAddNewApartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
+                    edit_address.setError("Введіть дані!");
+                    edit_address.requestFocus();
                 }
 
            }
@@ -167,7 +169,8 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                     setResult(RESULT_OK, intent);
                     finish();
                 }else {
-                    Toast.makeText(ActivityAddNewApartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
+                    edit_address.setError("Введіть дані!");
+                    edit_address.requestFocus();
                 }
 
                 }
@@ -198,7 +201,8 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                     setResult(RESULT_OK, intent);
                     finish();
                 }else {
-                    Toast.makeText(ActivityAddNewApartment.this,"Введіть адресу!",Toast.LENGTH_LONG).show();
+                    edit_address.setError("Введіть дані!");
+                    edit_address.requestFocus();
                 }
                     }
 

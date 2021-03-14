@@ -17,7 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import db.ClientClass;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import db.Client.ClientClass;
 
 public class ActivityNewClient extends AppCompatActivity implements View.OnClickListener{
 
@@ -60,171 +64,330 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
         String action = intent.getAction();
 
 
+        if(client_name.getText().toString().length()==0
+                || client_datestart.getText().toString().length()==0 || client_dateend.getText().toString().length()==0
+                ||client_info.getText().toString().length()==0) {
+
+            client_name.setError("Введіть дані!");
+            client_name.requestFocus();
+
+            client_dateend.setError("Введіть дані!");
+            client_dateend.requestFocus();
+
+            client_datestart.setError("Введіть дані!");
+            client_datestart.requestFocus();
+
+            client_info.setError("Введіть дані!");
+            client_info.requestFocus();
+
+        }
 
         if (action.equals("new_client1")) {
 
-            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
-            && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0
-                    &&client_info.getText().toString().length()!=0 ) {
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
-                intent.putExtra("client_name1", client_name.getText().toString());
-                intent.putExtra("client_surname1", client_surname.getText().toString());
-                intent.putExtra("client_patronymic1", client_patronymic.getText().toString());
-                intent.putExtra("client_number1", client_number.getText().toString());
-                intent.putExtra("client_datestart1", client_datestart.getText().toString());
-                intent.putExtra("client_dateend1", client_dateend.getText().toString());
-                intent.putExtra("client_info1", client_info.getText().toString());
-                intent.putExtra("client_pay1", client_pay.getText().toString());
+                String datestart1 = client_datestart.getText().toString();
+                Date dateS = format.parse(datestart1);
+
+                String dateend1 = client_dateend.getText().toString();
+                Date dateE = format.parse(dateend1);
 
 
 
+                if(dateE.compareTo(dateS)<0) {
 
-            String id = myDataBase.getKey();
-            String surname = client_surname.getText().toString();
-            String name = client_name.getText().toString();
-            String patronymic = client_patronymic.getText().toString();
-            String number = client_number.getText().toString();
-            String datestart = client_datestart.getText().toString();
-            String dateend = client_dateend.getText().toString();
-            String pay = client_pay.getText().toString();
-            String zastava = client_info.getText().toString();
+                    Toast.makeText(ActivityNewClient.this, "Дата початку оренди більша!", Toast.LENGTH_LONG).show();
+                }
+                else {
+
+                    if (client_name.getText().toString().length() != 0
+                            && client_datestart.getText().toString().length() != 0 && client_dateend.getText().toString().length() != 0
+                            && client_info.getText().toString().length() != 0) {
+
+                        intent.putExtra("client_name1", client_name.getText().toString());
+                        intent.putExtra("client_surname1", client_surname.getText().toString());
+                        intent.putExtra("client_patronymic1", client_patronymic.getText().toString());
+                        intent.putExtra("client_number1", client_number.getText().toString());
+                        intent.putExtra("client_datestart1", client_datestart.getText().toString());
+                        intent.putExtra("client_dateend1", client_dateend.getText().toString());
+                        intent.putExtra("client_info1", client_info.getText().toString());
+                        intent.putExtra("client_pay1", client_pay.getText().toString());
 
 
-                ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
-            myDataBase.push().setValue(newClient);
+                        String id = myDataBase.getKey();
+                        String surname = client_surname.getText().toString();
+                        String name = client_name.getText().toString();
+                        String patronymic = client_patronymic.getText().toString();
+                        String number = client_number.getText().toString();
+                        String datestart = client_datestart.getText().toString();
+                        String dateend = client_dateend.getText().toString();
+                        String pay = client_pay.getText().toString();
+                        String zastava = client_info.getText().toString();
 
-            intent.putExtra("11", 11);
-            setResult(RESULT_OK, intent);
+
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
+                        myDataBase.push().setValue(newClient);
+
+                        intent.putExtra("11", 11);
+                        setResult(RESULT_OK, intent);
 
 
+                        finish();
 
-            finish();
+                        Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
 
-            }else {
-                Toast.makeText(ActivityNewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
+                    } else {
+                        client_name.setError("Введіть дані!");
+                        client_name.requestFocus();
+
+                        client_dateend.setError("Введіть дані!");
+                        client_dateend.requestFocus();
+
+                        client_datestart.setError("Введіть дані!");
+                        client_datestart.requestFocus();
+
+                        client_info.setError("Введіть дані!");
+                        client_info.requestFocus();
+                    }
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
+
 
         }
 
         if (action.equals("new_client2")) {
 
-            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
-                    && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0
-                    &&client_info.getText().toString().length()!=0) {
-            intent.putExtra("client_name2", client_name.getText().toString());
-            intent.putExtra("client_surname2", client_surname.getText().toString());
-            intent.putExtra("client_patronymic2", client_patronymic.getText().toString());
-            intent.putExtra("client_number2", client_number.getText().toString());
-            intent.putExtra("client_datestart2", client_datestart.getText().toString());
-            intent.putExtra("client_dateend2", client_dateend.getText().toString());
-            intent.putExtra("client_info2", client_info.getText().toString());
-            intent.putExtra("client_pay2", client_pay.getText().toString());
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
+                String datestart1 = client_datestart.getText().toString();
+                Date dateS = format.parse(datestart1);
+
+                String dateend1 = client_dateend.getText().toString();
+                Date dateE = format.parse(dateend1);
 
 
 
-            String id = myDataBase.getKey();
-            String surname = client_surname.getText().toString();
-            String name = client_name.getText().toString();
-            String patronymic = client_patronymic.getText().toString();
-            String number = client_number.getText().toString();
-            String datestart = client_datestart.getText().toString();
-            String dateend = client_dateend.getText().toString();
-            String pay = client_pay.getText().toString();
-                String zastava = client_info.getText().toString();
+                if(dateE.compareTo(dateS)<0) {
 
-            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
-            myDataBase.push().setValue(newClient);
+                    Toast.makeText(ActivityNewClient.this, "Дата початку оренди більша!", Toast.LENGTH_LONG).show();
+                }
+                else {
 
-            intent.putExtra("22", 22);
-            setResult(RESULT_OK, intent);
+                    if (client_name.getText().toString().length() != 0 && client_number.getText().toString().length() != 0
+                            && client_datestart.getText().toString().length() != 0 && client_dateend.getText().toString().length() != 0
+                            && client_info.getText().toString().length() != 0) {
+                        
 
 
 
-            finish();
+                        intent.putExtra("client_name2", client_name.getText().toString());
+                        intent.putExtra("client_surname2", client_surname.getText().toString());
+                        intent.putExtra("client_patronymic2", client_patronymic.getText().toString());
+                        intent.putExtra("client_number2", client_number.getText().toString());
+                        intent.putExtra("client_datestart2", client_datestart.getText().toString());
+                        intent.putExtra("client_dateend2", client_dateend.getText().toString());
+                        intent.putExtra("client_info2", client_info.getText().toString());
+                        intent.putExtra("client_pay2", client_pay.getText().toString());
 
-            }else {
-                Toast.makeText(ActivityNewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
+
+                        String id = myDataBase.getKey();
+                        String surname = client_surname.getText().toString();
+                        String name = client_name.getText().toString();
+                        String patronymic = client_patronymic.getText().toString();
+                        String number = client_number.getText().toString();
+                        String datestart = client_datestart.getText().toString();
+                        String dateend = client_dateend.getText().toString();
+                        String pay = client_pay.getText().toString();
+                        String zastava = client_info.getText().toString();
+
+
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
+                        myDataBase.push().setValue(newClient);
+
+                        intent.putExtra("22", 22);
+                        setResult(RESULT_OK, intent);
+
+
+                        finish();
+
+                        Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        client_name.setError("Введіть дані!");
+                        client_name.requestFocus();
+
+                        client_dateend.setError("Введіть дані!");
+                        client_dateend.requestFocus();
+
+                        client_datestart.setError("Введіть дані!");
+                        client_datestart.requestFocus();
+
+                        client_info.setError("Введіть дані!");
+                        client_info.requestFocus();
+                    }
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
+
 
         }
 
         if (action.equals("new_client3")) {
 
-            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
-                    && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0
-                    &&client_info.getText().toString().length()!=0) {
-            intent.putExtra("client_name3", client_name.getText().toString());
-            intent.putExtra("client_surname3", client_surname.getText().toString());
-            intent.putExtra("client_patronymic3", client_patronymic.getText().toString());
-            intent.putExtra("client_number3", client_number.getText().toString());
-            intent.putExtra("client_datestart3", client_datestart.getText().toString());
-            intent.putExtra("client_dateend3", client_dateend.getText().toString());
-            intent.putExtra("client_info3", client_info.getText().toString());
-            intent.putExtra("client_pay3", client_pay.getText().toString());
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
-            String id = myDataBase.getKey();
-            String surname = client_surname.getText().toString();
-            String name = client_name.getText().toString();
-            String patronymic = client_patronymic.getText().toString();
-            String number = client_number.getText().toString();
-            String datestart = client_datestart.getText().toString();
-            String dateend = client_dateend.getText().toString();
-            String pay = client_pay.getText().toString();
-                String zastava = client_info.getText().toString();
+                String datestart1 = client_datestart.getText().toString();
+                Date dateS = format.parse(datestart1);
 
-            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
-            myDataBase.push().setValue(newClient);
-
-            intent.putExtra("33", 33);
-            setResult(RESULT_OK, intent);
+                String dateend1 = client_dateend.getText().toString();
+                Date dateE = format.parse(dateend1);
 
 
 
-            finish();
-            }else {
-                Toast.makeText(ActivityNewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
+                if(dateE.compareTo(dateS)<0) {
+
+                    Toast.makeText(ActivityNewClient.this, "Дата початку оренди більша!", Toast.LENGTH_LONG).show();
+                }
+                else {
+
+                    if (client_name.getText().toString().length() != 0 && client_number.getText().toString().length() != 0
+                            && client_datestart.getText().toString().length() != 0 && client_dateend.getText().toString().length() != 0
+                            && client_info.getText().toString().length() != 0) {
+
+                        intent.putExtra("client_name3", client_name.getText().toString());
+                        intent.putExtra("client_surname3", client_surname.getText().toString());
+                        intent.putExtra("client_patronymic3", client_patronymic.getText().toString());
+                        intent.putExtra("client_number3", client_number.getText().toString());
+                        intent.putExtra("client_datestart3", client_datestart.getText().toString());
+                        intent.putExtra("client_dateend3", client_dateend.getText().toString());
+                        intent.putExtra("client_info3", client_info.getText().toString());
+                        intent.putExtra("client_pay3", client_pay.getText().toString());
+
+
+                        String id = myDataBase.getKey();
+                        String surname = client_surname.getText().toString();
+                        String name = client_name.getText().toString();
+                        String patronymic = client_patronymic.getText().toString();
+                        String number = client_number.getText().toString();
+                        String datestart = client_datestart.getText().toString();
+                        String dateend = client_dateend.getText().toString();
+                        String pay = client_pay.getText().toString();
+                        String zastava = client_info.getText().toString();
+
+
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
+                        myDataBase.push().setValue(newClient);
+
+                        intent.putExtra("33", 33);
+                        setResult(RESULT_OK, intent);
+
+
+                        finish();
+
+                        Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        client_name.setError("Введіть дані!");
+                        client_name.requestFocus();
+
+                        client_dateend.setError("Введіть дані!");
+                        client_dateend.requestFocus();
+
+                        client_datestart.setError("Введіть дані!");
+                        client_datestart.requestFocus();
+
+                        client_info.setError("Введіть дані!");
+                        client_info.requestFocus();
+                    }
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-
 
 
         }
 
         if (action.equals("new_client4")) {
 
-            if(client_name.getText().toString().length()!=0 && client_number.getText().toString().length()!=0
-                    && client_datestart.getText().toString().length()!=0 && client_dateend.getText().toString().length()!=0
-                    &&client_info.getText().toString().length()!=0) {
-            intent.putExtra("client_name4", client_name.getText().toString());
-            intent.putExtra("client_surname4", client_surname.getText().toString());
-            intent.putExtra("client_patronymic4", client_patronymic.getText().toString());
-            intent.putExtra("client_number4", client_number.getText().toString());
-            intent.putExtra("client_datestart4", client_datestart.getText().toString());
-            intent.putExtra("client_dateend4", client_dateend.getText().toString());
-            intent.putExtra("client_pay4", client_pay.getText().toString());
-            intent.putExtra("client_info4", client_info.getText().toString());
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
-            String id = myDataBase.getKey();
-            String surname = client_surname.getText().toString();
-            String name = client_name.getText().toString();
-            String patronymic = client_patronymic.getText().toString();
-            String number = client_number.getText().toString();
-            String datestart = client_datestart.getText().toString();
-            String dateend = client_dateend.getText().toString();
-            String pay = client_pay.getText().toString();
-                String zastava = client_info.getText().toString();
+                String datestart1 = client_datestart.getText().toString();
+                Date dateS = format.parse(datestart1);
 
-            ClientClass newClient = new ClientClass(id,surname,name,patronymic,number,datestart,dateend,pay,zastava);
-            myDataBase.push().setValue(newClient);
-
-            intent.putExtra("44", 44);
-            setResult(RESULT_OK, intent);
+                String dateend1 = client_dateend.getText().toString();
+                Date dateE = format.parse(dateend1);
 
 
 
-            finish();
+                if(dateE.compareTo(dateS)<0) {
 
-            }else {
-                Toast.makeText(ActivityNewClient.this,"Введіть ім'я,номер телефона,суму застави та дати!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityNewClient.this, "Дата початку оренди більша!", Toast.LENGTH_LONG).show();
+                }
+                else {
+
+                    if (client_name.getText().toString().length() != 0 && client_number.getText().toString().length() != 0
+                            && client_datestart.getText().toString().length() != 0 && client_dateend.getText().toString().length() != 0
+                            && client_info.getText().toString().length() != 0) {
+
+                        intent.putExtra("client_name4", client_name.getText().toString());
+                        intent.putExtra("client_surname4", client_surname.getText().toString());
+                        intent.putExtra("client_patronymic4", client_patronymic.getText().toString());
+                        intent.putExtra("client_number4", client_number.getText().toString());
+                        intent.putExtra("client_datestart4", client_datestart.getText().toString());
+                        intent.putExtra("client_dateend4", client_dateend.getText().toString());
+                        intent.putExtra("client_info4", client_info.getText().toString());
+                        intent.putExtra("client_pay4", client_pay.getText().toString());
+
+
+                        String id = myDataBase.getKey();
+                        String surname = client_surname.getText().toString();
+                        String name = client_name.getText().toString();
+                        String patronymic = client_patronymic.getText().toString();
+                        String number = client_number.getText().toString();
+                        String datestart = client_datestart.getText().toString();
+                        String dateend = client_dateend.getText().toString();
+                        String pay = client_pay.getText().toString();
+                        String zastava = client_info.getText().toString();
+
+
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
+                        myDataBase.push().setValue(newClient);
+
+                        intent.putExtra("44", 44);
+                        setResult(RESULT_OK, intent);
+
+
+                        finish();
+
+                        Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        client_name.setError("Введіть дані!");
+                        client_name.requestFocus();
+
+                        client_dateend.setError("Введіть дані!");
+                        client_dateend.requestFocus();
+
+                        client_datestart.setError("Введіть дані!");
+                        client_datestart.requestFocus();
+
+                        client_info.setError("Введіть дані!");
+                        client_info.requestFocus();
+                    }
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
 
 

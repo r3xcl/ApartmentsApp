@@ -4,6 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WhatsApp">
+    tools:context=".WhatsApp"
+    android:background="#FBD6D6">
 
+    <EditText
+        android:id="@+id/whatsapp_text"
+        android:layout_width="350dp"
+        android:layout_height="170dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/ubuntu_regular"
+        android:gravity="top"
+        android:hint="@string/type_note_here"
+        android:importantForAutofill="no"
+        android:includeFontPadding="false"
+        android:inputType="textMultiLine"
+        android:minHeight="@dimen/_100sdp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:textColor="#7B7B7B"
+        android:textColorHint="#7B7B7B"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/send_whatsapp"
+        android:layout_width="137dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="220dp"
+        android:background="@drawable/button"
+        android:text="Відправити"
+        app:backgroundTint="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/client_name"
+        app:layout_constraintVertical_bias="0.38" />
+
+    <TextView
+        android:id="@+id/num_whatsapp"
+        android:layout_width="207dp"
+        android:layout_height="35dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/whatsapp_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package db;
+package db.Pay;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -68,12 +68,12 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
             }
         });
 
-        /*holder.edit_pay.setOnClickListener(new View.OnClickListener() {
+        holder.edit_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final DialogPlus dialogPlus=DialogPlus.newDialog(holder.itemView.getContext())
-                        .setContentHolder(new ViewHolder(R.layout.dialog_edit))
-                        .setExpanded(true,2050)
+                final DialogPlus dialogPlus= DialogPlus.newDialog(holder.itemView.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.dialog_edit_pay))
+                        .setExpanded(true,700)
                         .create();
 
 
@@ -84,51 +84,36 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
 
 
 
-                final EditText surname=myview.findViewById(R.id.surname_edit);
-                final EditText name=myview.findViewById(R.id.name_edit);
-                final EditText number=myview.findViewById(R.id.number_edit);
-                final EditText patronymic=myview.findViewById(R.id.patronymic_edit);
-                final EditText datestart=myview.findViewById(R.id.datestart_edit);
-                final EditText dateend=myview.findViewById(R.id.dateend_edit);
-                final EditText pay=myview.findViewById(R.id.pay_edit);
-                final EditText zastava=myview.findViewById(R.id.zastava_client);
-
-                Button update_edit=myview.findViewById(R.id.update_edit);
+                final EditText name=myview.findViewById(R.id.name_edit_pay);
+                final EditText date=myview.findViewById(R.id.date_edit_pay);
+                final EditText pay=myview.findViewById(R.id.sum_edit_pay);
 
 
-                name.setText(clientClass.getName());
-                surname.setText(clientClass.getSurname());
-                patronymic.setText(clientClass.getPatronymic());
-                number.setText(clientClass.getNumber());
-                datestart.setText(clientClass.getDatestart());
-                dateend.setText(clientClass.getDateend());
-                pay.setText(clientClass.getPay());
-                zastava.setText(clientClass.getZastava());
+                Button update_pay=myview.findViewById(R.id.update_pay);
 
 
+                name.setText(payClass.getName());
+                pay.setText(payClass.getPay());
+                date.setText(payClass.getDate());
 
 
 
                 dialogPlus.show();
 
-                update_edit.setOnClickListener(new View.OnClickListener() {
+                update_pay.setOnClickListener(new View.OnClickListener() {
 
 
                     @Override
                     public void onClick(View view) {
                         Map<String,Object> map=new HashMap<>();
 
-                        map.put("surname",surname.getText().toString());
                         map.put("name",name.getText().toString());
-                        map.put("patronymic",patronymic.getText().toString());
-                        map.put("number",number.getText().toString());
-                        map.put("datestart",datestart.getText().toString());
-                        map.put("dateend",dateend.getText().toString());
                         map.put("pay",pay.getText().toString());
-                        map.put("zastava",zastava.getText().toString());
+                        map.put("date",date.getText().toString());
 
 
-                        FirebaseDatabase.getInstance().getReference().child("New_Client")
+
+                        FirebaseDatabase.getInstance().getReference().child("Pay_History")
                                 .child(getRef(position).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -153,7 +138,7 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
 
 
             }
-        });*/
+        });
 
 
 

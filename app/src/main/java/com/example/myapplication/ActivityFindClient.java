@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import db.ClientClass;
+import db.Client.ClientClass;
 
 public class ActivityFindClient extends AppCompatActivity implements View.OnClickListener{
 

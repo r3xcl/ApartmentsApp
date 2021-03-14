@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +7,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import db.PayClass;
-import db.RemontClass;
+import db.Repair.RepairClass;
 
 public class ActivityRepairs extends AppCompatActivity implements View.OnClickListener {
 
@@ -56,8 +55,8 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
                 String name = name_repair.getText().toString();
 
 
-                RemontClass remontClass = new RemontClass(id,sum,date,name);
-                myDataBase.push().setValue(remontClass);
+                db.Repair.RepairClass repairClass = new RepairClass(id,sum,date,name);
+                myDataBase.push().setValue(repairClass);
 
                 intent.putExtra("111111", 101);
                 setResult(RESULT_OK, intent);
@@ -80,8 +79,8 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
                 String name = name_repair.getText().toString();
 
 
-                RemontClass remontClass = new RemontClass(id,summ,pay,name);
-                myDataBase.push().setValue(remontClass);
+                db.Repair.RepairClass repairClass = new RepairClass(id,summ,pay,name);
+                myDataBase.push().setValue(repairClass);
 
                 intent.putExtra("222222", 202);
                 setResult(RESULT_OK, intent);
@@ -104,8 +103,8 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
                 String name = name_repair.getText().toString();
 
 
-                RemontClass remontClass = new RemontClass(id,summ,pay,name);
-                myDataBase.push().setValue(remontClass);
+                db.Repair.RepairClass repairClass = new RepairClass(id,summ,pay,name);
+                myDataBase.push().setValue(repairClass);
 
 
 
@@ -131,8 +130,8 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
                 String name = name_repair.getText().toString();
 
 
-                RemontClass remontClass = new RemontClass(id,summ,pay,name);
-                myDataBase.push().setValue(remontClass);
+                db.Repair.RepairClass repairClass = new RepairClass(id,summ,pay,name);
+                myDataBase.push().setValue(repairClass);
 
 
                 intent.putExtra("444444", 404);

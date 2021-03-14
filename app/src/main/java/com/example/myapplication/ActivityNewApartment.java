@@ -47,14 +47,14 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
     Button add_client, delete_client, find_client;
 
-    ImageButton apartment_edit, call, money, addphoto, remont, map,archive;
+    ImageButton apartment_edit, call, money, addphoto, remont, map, archive, whatsapp ;
 
     TextView info_address, info_patronymic, info_name, info_surname, info_number,
             info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
             , textView9, textView11, textView13, textView14, textView15, textView16, info_zastava
             , textView20, textView23;
 
-    ImageView imageView4, image_client;
+    ImageView imageView4, image_client , delphoto_client;
     private FusedLocationProviderClient fusedLocationProviderClient;
 
 
@@ -97,6 +97,12 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
         call = (ImageButton) findViewById(R.id.call);
         call.setOnClickListener(this);
 
+        delphoto_client = (ImageView) findViewById(R.id.delphoto_client);
+        delphoto_client.setOnClickListener(this);
+
+        whatsapp = (ImageButton) findViewById(R.id.whatsapp);
+        whatsapp.setOnClickListener(this);
+
         archive = (ImageButton) findViewById(R.id.archive);
         archive.setOnClickListener(this);
 
@@ -137,7 +143,14 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
             getCurrentLocation();}
 
 
-
+        delphoto_client.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delphoto_client.setVisibility(View.INVISIBLE);
+                image_client.setVisibility(View.INVISIBLE);
+                addphoto.setVisibility(View.VISIBLE);
+            }
+        });
 
 
         call.setOnClickListener(v -> {
@@ -146,18 +159,25 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 String dial = "tel: " + number;
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
             } else {
-                Toast.makeText(ActivityNewApartment.this, " Номера телефона не знайдено!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityNewApartment.this, " Номера телефону не знайдено!", Toast.LENGTH_SHORT).show();
             }
 
         });
-
 
 
         Intent intent = getIntent();
         String action = intent.getAction();
 
 
+        whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(ActivityNewApartment.this,WhatsApp.class);
+                intent.putExtra("number",info_number.getText().toString());
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -285,6 +305,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.INVISIBLE);
                 money.setVisibility(View.INVISIBLE);
                 addphoto.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
 
                 delete_client.setVisibility(View.INVISIBLE);
                 find_client.setVisibility(View.VISIBLE);
@@ -448,6 +469,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.INVISIBLE);
                 money.setVisibility(View.INVISIBLE);
                 addphoto.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
 
                 imageView4.setVisibility(View.INVISIBLE);
 
@@ -575,6 +597,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.INVISIBLE);
                 money.setVisibility(View.INVISIBLE);
                 addphoto.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
 
                 imageView4.setVisibility(View.INVISIBLE);
 
@@ -693,6 +716,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.INVISIBLE);
                 money.setVisibility(View.INVISIBLE);
                 addphoto.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
 
                 delete_client.setVisibility(View.INVISIBLE);
                 find_client.setVisibility(View.VISIBLE);
@@ -846,6 +870,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
                 addphoto.setVisibility(View.INVISIBLE);
                 image_client.setVisibility(View.VISIBLE);
+                delphoto_client.setVisibility(View.VISIBLE);
             }
         }
 
@@ -886,6 +911,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.VISIBLE);
                 money.setVisibility(View.VISIBLE);
                 addphoto.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
 
 
                 imageView4.setVisibility(View.VISIBLE);
@@ -946,6 +972,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.VISIBLE);
                 money.setVisibility(View.VISIBLE);
                 addphoto.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
 
                 textView9.setVisibility(View.VISIBLE);
                 textView11.setVisibility(View.VISIBLE);
@@ -1000,6 +1027,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.VISIBLE);
                 money.setVisibility(View.VISIBLE);
                 addphoto.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
 
                 imageView4.setVisibility(View.VISIBLE);
 
@@ -1056,6 +1084,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.VISIBLE);
                 money.setVisibility(View.VISIBLE);
                 addphoto.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
 
                 imageView4.setVisibility(View.VISIBLE);
 
@@ -1221,6 +1250,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.VISIBLE);
                 money.setVisibility(View.VISIBLE);
                 addphoto.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
 
                 textView9.setVisibility(View.VISIBLE);
                 textView11.setVisibility(View.VISIBLE);
@@ -1280,6 +1310,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.VISIBLE);
                 money.setVisibility(View.VISIBLE);
                 addphoto.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
 
                 imageView4.setVisibility(View.VISIBLE);
 
@@ -1342,6 +1373,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.VISIBLE);
                 money.setVisibility(View.VISIBLE);
                 addphoto.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
 
                 textView9.setVisibility(View.VISIBLE);
                 textView11.setVisibility(View.VISIBLE);
@@ -1401,6 +1433,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 call.setVisibility(View.VISIBLE);
                 money.setVisibility(View.VISIBLE);
                 addphoto.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
 
                 textView9.setVisibility(View.VISIBLE);
                 textView11.setVisibility(View.VISIBLE);

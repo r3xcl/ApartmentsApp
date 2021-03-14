@@ -14,8 +14,8 @@ import com.example.myapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
-import db.PayAdapter;
-import db.PayClass;
+import db.Pay.PayAdapter;
+import db.Pay.PayClass;
 
 
 public class Fragment_Pay1 extends Fragment {

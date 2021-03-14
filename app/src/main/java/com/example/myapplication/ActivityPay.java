@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import db.PayClass;
+import db.Pay.PayClass;
 
 public class ActivityPay extends AppCompatActivity implements View.OnClickListener{
 

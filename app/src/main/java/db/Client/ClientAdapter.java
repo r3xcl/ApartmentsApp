@@ -1,4 +1,4 @@
-package db;
+package db.Client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,10 +26,10 @@ import com.orhanobut.dialogplus.ViewHolder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Client_adapter extends FirebaseRecyclerAdapter<ClientClass,Client_adapter.viewHolder> {
+public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAdapter.viewHolder> {
 
 
-   public Client_adapter(@NonNull FirebaseRecyclerOptions<ClientClass>options){super(options);
+   public ClientAdapter(@NonNull FirebaseRecyclerOptions<ClientClass>options){super(options);
    }
 
 

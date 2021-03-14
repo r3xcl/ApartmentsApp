@@ -1,17 +1,17 @@
-package db;
+package db.Repair;
 
-public class PayClass {
+public class RepairClass {
 
-    String pay,date,id,name;
+    String date,sum,id,name;
 
-    public PayClass(String id,String pay, String date,String name) {
+    public RepairClass(String id, String sum, String date, String name) {
         this.id = id;
-        this.pay = pay;
+        this.sum = sum;
         this.date = date;
         this.name = name;
     }
 
-    public PayClass(){
+    public RepairClass(){
 
     }
 
@@ -23,12 +23,12 @@ public class PayClass {
         this.id = id;
     }
 
-    public String getPay() {
-        return pay;
+    public String getSum() {
+        return sum;
     }
 
-    public void setPay(String pay) {
-        this.pay = pay;
+    public void setSum(String sum) {
+        this.sum = sum;
     }
 
     public String getDate() {
@@ -39,7 +39,6 @@ public class PayClass {
         this.date = date;
     }
 
-
     public String getName() {
         return name;
     }
@@ -47,6 +46,7 @@ public class PayClass {
     public void setName(String name) {
         this.name = name;
     }
+
 
 
 

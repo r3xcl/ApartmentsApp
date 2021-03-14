@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import db.ClientClass;
+import db.Client.ClientClass;
 
 public class ActivityAddClient extends AppCompatActivity implements View.OnClickListener {
 
@@ -56,7 +56,7 @@ public class ActivityAddClient extends AppCompatActivity implements View.OnClick
 
         if (action.equals("add_client")) {
 
-                    if (add_name.getText().toString().length() != 0 && add_number.getText().toString().length() != 0
+                    if (add_name.getText().toString().length() != 0
                             && add_datestart.getText().toString().length() != 0 && add_dateend.getText().toString().length() != 0
                             && client_info.getText().toString().length() != 0 ) {
 
@@ -81,7 +81,17 @@ public class ActivityAddClient extends AppCompatActivity implements View.OnClick
                         finish();
 
                     } else {
-                        Toast.makeText(ActivityAddClient.this, "Невірні дати! Ведіть ім'я,номер телефона,суму застави та дати!", Toast.LENGTH_LONG).show();
+                        add_name.setError("Введіть дані!");
+                        add_name.requestFocus();
+
+                        add_datestart.setError("Введіть дані!");
+                        add_datestart.requestFocus();
+
+                        add_dateend.setError("Введіть дані!");
+                        add_dateend.requestFocus();
+
+                        client_info.setError("Введіть дані!");
+                        client_info.requestFocus();
                     }
 
 

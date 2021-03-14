@@ -1,12 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,35 +9,29 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import db.ClientClass;
-import db.Client_adapter;
+import db.Client.ClientClass;
+import db.Client.ClientAdapter;
 
 public class ActivityAllClients extends AppCompatActivity {
 
 
 
     RecyclerView recView;
-    Client_adapter adapter;
+    ClientAdapter adapter;
     FloatingActionButton fb;
 
 
@@ -67,7 +54,7 @@ public class ActivityAllClients extends AppCompatActivity {
          new FirebaseRecyclerOptions.Builder<ClientClass>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child("New_Client"),ClientClass.class).build();
 
-        adapter = new Client_adapter(options);
+        adapter = new ClientAdapter(options);
         recView.setAdapter(adapter);
 
      fb = (FloatingActionButton)findViewById(R.id.fadd);
@@ -141,7 +128,7 @@ public class ActivityAllClients extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("New_Client").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), ClientClass.class)
                         .build();
 
-        adapter=new Client_adapter(options);
+        adapter=new ClientAdapter(options);
         adapter.startListening();
         recView.setAdapter(adapter);
 

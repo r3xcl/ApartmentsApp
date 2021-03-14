@@ -1,4 +1,4 @@
-package com.example.myapplication.fragments.fragments4;
+package com.example.myapplication.fragments.fragments3;
 
 import android.os.Bundle;
 
@@ -14,10 +14,10 @@ import com.example.myapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
-import db.RemontAdapter;
-import db.RemontClass;
+import db.Repair.RepairAdapter;
+import db.Repair.RepairClass;
 
-public class Fragment_Remont4 extends Fragment {
+public class Fragment_Repair3 extends Fragment {
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -27,16 +27,16 @@ public class Fragment_Remont4 extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recyclerView;
-    RemontAdapter remontAdapter;
+    RepairAdapter repairAdapter;
 
-    public Fragment_Remont4() {
+    public Fragment_Repair3() {
 
     }
 
 
 
-    public static Fragment_Remont4 newInstance(String param1, String param2) {
-        Fragment_Remont4 fragment = new Fragment_Remont4();
+    public static Fragment_Repair3 newInstance(String param1, String param2) {
+        Fragment_Repair3 fragment = new Fragment_Repair3();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,17 +57,17 @@ public class Fragment_Remont4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment__remont4, container, false);
+        View view = inflater.inflate(R.layout.fragment__remont3, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recview_remont4);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recview_remont3);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        FirebaseRecyclerOptions<RemontClass> options1 =
-                new FirebaseRecyclerOptions.Builder<RemontClass>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Repairs_History").orderByChild("id").equalTo("apartment4"),RemontClass.class).build();
+        FirebaseRecyclerOptions<RepairClass> options1 =
+                new FirebaseRecyclerOptions.Builder<RepairClass>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Repairs_History").orderByChild("id").equalTo("apartment3"), RepairClass.class).build();
 
-        remontAdapter = new RemontAdapter(options1);
-        recyclerView.setAdapter(remontAdapter);
+        repairAdapter = new RepairAdapter(options1);
+        recyclerView.setAdapter(repairAdapter);
 
         return view;
     }
@@ -75,12 +75,12 @@ public class Fragment_Remont4 extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        remontAdapter.startListening();
+        repairAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        remontAdapter.stopListening();
+        repairAdapter.stopListening();
     }
 }
