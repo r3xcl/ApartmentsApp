@@ -57,7 +57,7 @@ public class Fragment_Repair1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment__remont, container, false);
+        View view = inflater.inflate(R.layout.fragment__repair1, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recview_remont);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

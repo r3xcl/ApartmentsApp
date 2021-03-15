@@ -15,7 +15,37 @@
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".WhatsApp"></activity>
+
+        <activity android:name=".files.FilesView">
+
+        </activity>
+
+        <activity android:name=".files.FilesUpload" >
+
+            <intent-filter>
+                <action android:name="filesUP1" />
+                <action android:name="filesUP2" />
+                <action android:name="filesUP3" />
+                <action android:name="filesUP4" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+
+        <activity android:name=".files.Files" >
+            <intent-filter>
+                <action android:name="files1" />
+                <action android:name="files2" />
+                <action android:name="files3" />
+                <action android:name="files4" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".WhatsApp" />
         <activity android:name=".ActivityArchive">
             <intent-filter>
                 <action android:name="archive1" />

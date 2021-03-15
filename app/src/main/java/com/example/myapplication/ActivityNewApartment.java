@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.myapplication.files.Files;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -47,7 +48,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
     Button add_client, delete_client, find_client;
 
-    ImageButton apartment_edit, call, money, addphoto, remont, map, archive, whatsapp ;
+    ImageButton apartment_edit, call, money, addphoto, remont, map, archive, whatsapp ,files;
 
     TextView info_address, info_patronymic, info_name, info_surname, info_number,
             info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
@@ -96,6 +97,9 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
         call = (ImageButton) findViewById(R.id.call);
         call.setOnClickListener(this);
+
+        files = (ImageButton) findViewById(R.id.files);
+        files.setOnClickListener(this);
 
         delphoto_client = (ImageView) findViewById(R.id.delphoto_client);
         delphoto_client.setOnClickListener(this);
@@ -169,6 +173,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
         String action = intent.getAction();
 
 
+
         whatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,6 +234,11 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 Intent intent5 = new Intent("archive1");
                 startActivityForResult(intent5,991);
 
+            });
+
+            files.setOnClickListener(v -> {
+                Intent intent12 = new Intent("files1");
+                startActivityForResult(intent12, 200);
             });
 
             remont.setOnClickListener(v -> {
@@ -406,6 +416,11 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
             });
 
+            files.setOnClickListener(v -> {
+                Intent intent12 = new Intent("files2");
+                startActivityForResult(intent12, 201);
+            });
+
             money.setOnClickListener(v -> {
                 Intent intent1 = new Intent("pay2");
                 startActivityForResult(intent1,22222);
@@ -551,6 +566,11 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
             });
 
+            files.setOnClickListener(v -> {
+                Intent intent12 = new Intent("files3");
+                startActivityForResult(intent12, 202);
+            });
+
             remont.setOnClickListener(v -> {
 
                 Intent intent4 = new Intent("remont3");
@@ -675,6 +695,11 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
                 Intent intent4 = new Intent("remont4");
                 startActivityForResult(intent4,404);
+            });
+
+            files.setOnClickListener(v -> {
+                Intent intent12 = new Intent("files4");
+                startActivityForResult(intent12, 203);
             });
 
             money.setOnClickListener(v -> {

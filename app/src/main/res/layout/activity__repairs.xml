@@ -53,7 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_pay" />
+        app:layout_constraintTop_toBottomOf="@+id/date_repair" />
 
     <ImageView
         android:id="@+id/imageView150"

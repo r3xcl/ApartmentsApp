@@ -17,7 +17,7 @@
         android:hint="@string/type_note_here"
         android:importantForAutofill="no"
         android:includeFontPadding="false"
-        android:inputType="textMultiLine"
+        android:inputType="textCapSentences"
         android:minHeight="@dimen/_100sdp"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/client_name"
+        app:layout_constraintTop_toBottomOf="@+id/whatsapp_text"
         app:layout_constraintVertical_bias="0.38" />
 
     <TextView

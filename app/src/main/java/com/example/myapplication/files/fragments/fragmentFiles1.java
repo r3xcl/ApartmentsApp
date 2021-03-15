@@ -1,4 +1,4 @@
-package com.example.myapplication.fragments.fragments1;
+package com.example.myapplication.files.fragments;
 
 import android.os.Bundle;
 
@@ -11,14 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myapplication.R;
+import com.example.myapplication.files.FileInfoModel;
+import com.example.myapplication.files.Files;
+import com.example.myapplication.files.FilesAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
 import db.Pay.PayAdapter;
 import db.Pay.PayClass;
 
+public class fragmentFiles1 extends Fragment {
 
-public class Fragment_Pay1 extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -26,15 +29,16 @@ public class Fragment_Pay1 extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    RecyclerView recyclerView;
-    PayAdapter payAdapter;
 
-    public Fragment_Pay1() {
+    RecyclerView recview1;
+    FilesAdapter filesAdapter;
+
+    public fragmentFiles1() {
 
     }
 
-    public static Fragment_Pay1 newInstance(String param1, String param2) {
-        Fragment_Pay1 fragment = new Fragment_Pay1();
+    public static fragmentFiles1 newInstance(String param1, String param2) {
+        fragmentFiles1 fragment = new fragmentFiles1();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -54,18 +58,18 @@ public class Fragment_Pay1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment__pay1, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recview_pay);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+       View view =  inflater.inflate(R.layout.fragment_files1, container, false);
 
-        FirebaseRecyclerOptions<PayClass> options =
-                new FirebaseRecyclerOptions.Builder<PayClass>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Pay_History").orderByChild("id").equalTo("apartment1"),PayClass.class).build();
+        recview1 = (RecyclerView) view.findViewById(R.id.recview_file1);
+        recview1.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        payAdapter = new PayAdapter(options);
-        recyclerView.setAdapter(payAdapter);
+        FirebaseRecyclerOptions<FileInfoModel> options =
+                new FirebaseRecyclerOptions.Builder<FileInfoModel>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("My_Documents").orderByChild("id").equalTo("apartment1"), FileInfoModel.class).build();
+
+        filesAdapter = new FilesAdapter(options);
+        recview1.setAdapter(filesAdapter);
 
         return view;
     }
@@ -73,12 +77,12 @@ public class Fragment_Pay1 extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        payAdapter.startListening();
+        filesAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        payAdapter.stopListening();
+        filesAdapter.stopListening();
     }
 }
