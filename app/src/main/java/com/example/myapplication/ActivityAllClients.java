@@ -59,7 +59,7 @@ public class ActivityAllClients extends AppCompatActivity {
 
      fb = (FloatingActionButton)findViewById(R.id.fadd);
      fb.setOnClickListener(v -> {
-         Intent intent = new Intent("add_client");
+         Intent intent = new Intent("new_client1");
        startActivityForResult(intent,1);
      });
 

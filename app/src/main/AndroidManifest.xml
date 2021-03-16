@@ -97,13 +97,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityAddClient">
-            <intent-filter>
-                <action android:name="add_client" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".ActivityShowAllinfoClient" />
         <activity android:name=".ActivityEditApartment">
             <intent-filter>
