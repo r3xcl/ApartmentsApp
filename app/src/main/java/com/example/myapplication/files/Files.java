@@ -49,27 +49,6 @@ public class Files extends AppCompatActivity implements View.OnClickListener{
         getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
 
 
-       /* fb=(FloatingActionButton)findViewById(R.id.floatingActionButton);
-        fb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),FilesUpload.class));
-            }
-        });
-
-        recview = (RecyclerView) findViewById(R.id.recview);
-        recview.setLayoutManager(new LinearLayoutManager(this));
-
-        FirebaseRecyclerOptions<FileInfoModel> options =
-                new FirebaseRecyclerOptions.Builder<FileInfoModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("My_Documents"), FileInfoModel.class)
-                        .build();
-
-        adapter=new FilesAdapter(options);
-        recview.setAdapter(adapter);
-
-        */
-
 
         if (action.equals("files1")) {
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Apartments</string>
+    <string name="app_name">Мої квартири</string>
     <string name="title_activity__find_client">Activity_FindClient</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

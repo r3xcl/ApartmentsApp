@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,13 +55,19 @@ public class ActivityFindClient extends AppCompatActivity implements View.OnClic
             listTemp1 = new ArrayList<>();
             adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData1);
 
+            TextView empty = (TextView) findViewById(R.id.text_noclients);
+
+            listView1.setEmptyView(empty); // ЕСЛИ НЕТ СОЗДАННЫХ ОРЕНДАТОРОВ
             listView1.setAdapter(adapter1);
+
 
             myDataBase = FirebaseDatabase.getInstance().getReference(New_Client);
 
             getDataFromDB();
 
             setOnClickItem();
+
+
 
 
     }

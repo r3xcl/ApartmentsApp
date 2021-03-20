@@ -137,7 +137,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityNewApartment">
+        <activity android:name=".ActivityApartmentManager">
             <intent-filter>
                 <action android:name="new_home1" />
                 <action android:name="new_home2" />

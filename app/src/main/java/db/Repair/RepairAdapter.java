@@ -72,7 +72,6 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
             public void onClick(View view) {
                 final DialogPlus dialogPlus= DialogPlus.newDialog(holder.itemView.getContext())
                         .setContentHolder(new ViewHolder(R.layout.dialog_edit_repair))
-                        .setExpanded(true,700)
                         .create();
 
 

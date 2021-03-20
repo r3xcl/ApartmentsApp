@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 import db.ApartmentsClass;
 
 public class ActivityAddNewApartment extends AppCompatActivity implements View.OnClickListener {
@@ -26,7 +31,9 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
 
    private DatabaseReference myDataBase ;
+   private FirebaseDatabase rootNode;
    private String New_Apartment = "New_Apartment";
+   ApartmentsClass apartmentsClass;
 
 
 
@@ -53,6 +60,73 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
         edit_floor = (EditText) findViewById(R.id.edit_floor);
 
         edit_dateown = (EditText) findViewById(R.id.edit_dateown);
+        edit_dateown.addTextChangedListener(new TextWatcher() {
+
+            private String current = "";
+            private String ddmmyyyy = "DDMMYYYY";
+            private Calendar cal = Calendar.getInstance();
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().equals(current)) {
+
+                    String clean = s.toString().replaceAll("[^\\d.]", "");
+                    String cleanC = current.replaceAll("[^\\d.]", "");
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+
+                    if (clean.equals(cleanC)) sel--;
+
+                    if (clean.length() < 8){
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    }else{
+
+                        int day  = Integer.parseInt(clean.substring(0,2));
+                        int mon  = Integer.parseInt(clean.substring(2,4));
+                        int year = Integer.parseInt(clean.substring(4,8));
+
+                        if(mon > 12) mon = 12;
+                        cal.set(Calendar.MONTH, mon-1);
+
+                        year = (year<1900)?1900:(year>2100)?2100:year;
+                        cal.set(Calendar.YEAR, year);
+
+
+                        day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                        clean = String.format("%02d%02d%02d",day, mon, year);
+                    }
+
+                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                            clean.substring(2, 4),
+                            clean.substring(4, 8));
+
+                    sel = sel < 0 ? 0 : sel;
+                    current = clean;
+                    edit_dateown.setText(current);
+                    edit_dateown.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
         edit_name = (EditText) findViewById(R.id.edit_name);
 
 
@@ -73,6 +147,9 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
             Intent intent = getIntent();
             String action = intent.getAction();
 
+            rootNode = FirebaseDatabase.getInstance();
+            myDataBase = rootNode.getReference("New_Apartment");
+
             if (action.equals("1")) {
 
 
@@ -88,7 +165,8 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
                 ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
 
-                myDataBase.push().setValue(newApartment);
+
+                myDataBase.child(id).setValue(newApartment);
 
 
 
@@ -123,7 +201,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
                 ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
 
-                myDataBase.push().setValue(newApartment);
+                myDataBase.child(id).setValue(newApartment);
 
                 if(edit_address.getText().toString().length()!=0) {
 
@@ -155,7 +233,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
                 ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
 
-                myDataBase.push().setValue(newApartment);
+                myDataBase.child(id).setValue(newApartment);
 
 
                 if(edit_address.getText().toString().length()!=0) {
@@ -187,7 +265,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
                 ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
 
-                myDataBase.push().setValue(newApartment);
+                myDataBase.child(id).setValue(newApartment);
 
 
                 if(edit_address.getText().toString().length()!=0) {

@@ -14,9 +14,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,13 +29,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.myapplication.files.Files;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,11 +44,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
-public class ActivityNewApartment extends AppCompatActivity implements View.OnClickListener {
+public class ActivityApartmentManager extends AppCompatActivity implements View.OnClickListener {
 
     Button add_client, delete_client, find_client;
 
@@ -55,14 +64,17 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
             , textView9, textView11, textView13, textView14, textView15, textView16, info_zastava
             , textView20, textView23;
 
+
+
     ImageView imageView4, image_client , delphoto_client;
     private FusedLocationProviderClient fusedLocationProviderClient;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_apartment);
+        setContentView(R.layout.activity_apartment_manager);
         getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
 
         info_address = (TextView) findViewById(R.id.info_address);
@@ -135,11 +147,11 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
         apartment_edit.setOnClickListener(this);
 
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(ActivityNewApartment.this);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(ActivityApartmentManager.this);
 
-        if(ActivityCompat.checkSelfPermission (ActivityNewApartment.this,
+        if(ActivityCompat.checkSelfPermission (ActivityApartmentManager.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(ActivityNewApartment.this,
+                ActivityCompat.checkSelfPermission(ActivityApartmentManager.this,
                         Manifest.permission.ACCESS_COARSE_LOCATION)==
                         PackageManager.PERMISSION_GRANTED )
         {
@@ -163,7 +175,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 String dial = "tel: " + number;
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
             } else {
-                Toast.makeText(ActivityNewApartment.this, " Номера телефону не знайдено!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityApartmentManager.this, " Номер телефону не знайдено!", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -178,7 +190,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(ActivityNewApartment.this,WhatsApp.class);
+                Intent intent = new Intent(ActivityApartmentManager.this,WhatsApp.class);
                 intent.putExtra("number",info_number.getText().toString());
                 startActivity(intent);
             }
@@ -254,8 +266,121 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
             });
 
             apartment_edit.setOnClickListener(v -> {
-                Intent intent3 = new Intent("apartment_edit1");
-                startActivityForResult(intent3,1111);
+
+                DialogPlus dialogPlus = DialogPlus.newDialog(this)
+                        .setContentHolder(new ViewHolder(R.layout.dialog_edit_apartment))
+                        .create();
+
+                View myview=dialogPlus.getHolderView();
+
+                Button update_edit_ap=myview.findViewById(R.id.update_edit_ap);
+
+                  final EditText address = myview.findViewById(R.id.address_edit);
+                  final EditText rooms = myview.findViewById(R.id.rooms_edit);
+                  final EditText floor = myview.findViewById(R.id.floor_edit);
+                  final EditText dateown = myview.findViewById(R.id.dateown_edit);
+
+
+                dateown.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            dateown.setText(current);
+                            dateown.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                address.setText(info_address.getText().toString());
+                rooms.setText(info_rooms.getText().toString());
+                floor.setText(info_floor.getText().toString());
+                dateown.setText(info_dateown.getText().toString());
+
+                  dialogPlus.show();
+
+
+                update_edit_ap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Map<String,Object> map = new HashMap<>();
+
+                        map.put("address",address.getText().toString());
+                        map.put("rooms",rooms.getText().toString());
+                        map.put("floor",floor.getText().toString());
+                        map.put("dateown",dateown.getText().toString());
+
+                       FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment1").updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialogPlus.dismiss();
+                            }
+                        });
+
+                    }
+                });
 
             });
 
@@ -270,9 +395,9 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 @Override
                 public void onClick(View v) {
 
-                    if(ActivityCompat.checkSelfPermission (ActivityNewApartment.this,
+                    if(ActivityCompat.checkSelfPermission (ActivityApartmentManager.this,
                             Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED &&
-                            ActivityCompat.checkSelfPermission(ActivityNewApartment.this,
+                            ActivityCompat.checkSelfPermission(ActivityApartmentManager.this,
                                     Manifest.permission.ACCESS_COARSE_LOCATION)==
                                     PackageManager.PERMISSION_GRANTED )
                     {
@@ -288,7 +413,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                     }
                     else {
 
-                        ActivityCompat.requestPermissions(ActivityNewApartment.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION
+                        ActivityCompat.requestPermissions(ActivityApartmentManager.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION
                                 ,Manifest.permission.ACCESS_COARSE_LOCATION},100);
 
 
@@ -405,8 +530,122 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
             });
 
             apartment_edit.setOnClickListener(v -> {
-                Intent intent3 = new Intent("apartment_edit2");
-                startActivityForResult(intent3,2222);
+
+                DialogPlus dialogPlus = DialogPlus.newDialog(this)
+                        .setContentHolder(new ViewHolder(R.layout.dialog_edit_apartment))
+                        .create();
+
+                View myview=dialogPlus.getHolderView();
+
+                Button update_edit_ap=myview.findViewById(R.id.update_edit_ap);
+
+                final EditText address = myview.findViewById(R.id.address_edit);
+                final EditText rooms = myview.findViewById(R.id.rooms_edit);
+                final EditText floor = myview.findViewById(R.id.floor_edit);
+                final EditText dateown = myview.findViewById(R.id.dateown_edit);
+
+
+                dateown.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            dateown.setText(current);
+                            dateown.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+                address.setText(info_address.getText().toString());
+                rooms.setText(info_rooms.getText().toString());
+                floor.setText(info_floor.getText().toString());
+                dateown.setText(info_dateown.getText().toString());
+
+                dialogPlus.show();
+
+
+                update_edit_ap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Map<String,Object> map = new HashMap<>();
+
+                        map.put("address",address.getText().toString());
+                        map.put("rooms",rooms.getText().toString());
+                        map.put("floor",floor.getText().toString());
+                        map.put("dateown",dateown.getText().toString());
+
+                        FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment2").updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialogPlus.dismiss();
+                            }
+                        });
+
+                    }
+                });
 
             });
 
@@ -431,9 +670,9 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                 @Override
                 public void onClick(View v) {
 
-                    if(ActivityCompat.checkSelfPermission (ActivityNewApartment.this,
+                    if(ActivityCompat.checkSelfPermission (ActivityApartmentManager.this,
                             Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED &&
-                            ActivityCompat.checkSelfPermission(ActivityNewApartment.this,
+                            ActivityCompat.checkSelfPermission(ActivityApartmentManager.this,
                                     Manifest.permission.ACCESS_COARSE_LOCATION)==
                                     PackageManager.PERMISSION_GRANTED )
                     {
@@ -449,7 +688,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
                     }
                     else {
 
-                        ActivityCompat.requestPermissions(ActivityNewApartment.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION
+                        ActivityCompat.requestPermissions(ActivityApartmentManager.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION
                                 ,Manifest.permission.ACCESS_COARSE_LOCATION},100);
 
 
@@ -586,8 +825,121 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
 
             apartment_edit.setOnClickListener(v -> {
-                Intent intent3 = new Intent("apartment_edit3");
-                startActivityForResult(intent3,3333);
+
+                DialogPlus dialogPlus = DialogPlus.newDialog(this)
+                        .setContentHolder(new ViewHolder(R.layout.dialog_edit_apartment))
+                        .create();
+
+                View myview=dialogPlus.getHolderView();
+
+                Button update_edit_ap=myview.findViewById(R.id.update_edit_ap);
+
+                final EditText address = myview.findViewById(R.id.address_edit);
+                final EditText rooms = myview.findViewById(R.id.rooms_edit);
+                final EditText floor = myview.findViewById(R.id.floor_edit);
+                final EditText dateown = myview.findViewById(R.id.dateown_edit);
+
+                address.setText(info_address.getText().toString());
+                rooms.setText(info_rooms.getText().toString());
+                floor.setText(info_floor.getText().toString());
+                dateown.setText(info_dateown.getText().toString());
+
+                dateown.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            dateown.setText(current);
+                            dateown.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+                dialogPlus.show();
+
+
+                update_edit_ap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Map<String,Object> map = new HashMap<>();
+
+                        map.put("address",address.getText().toString());
+                        map.put("rooms",rooms.getText().toString());
+                        map.put("floor",floor.getText().toString());
+                        map.put("dateown",dateown.getText().toString());
+
+                        FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment3").updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialogPlus.dismiss();
+                            }
+                        });
+
+                    }
+                });
 
             });
 
@@ -715,8 +1067,122 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
             });
 
             apartment_edit.setOnClickListener(v -> {
-                Intent intent3 = new Intent("apartment_edit4");
-                startActivityForResult(intent3,4444);
+
+                DialogPlus dialogPlus = DialogPlus.newDialog(this)
+                        .setContentHolder(new ViewHolder(R.layout.dialog_edit_apartment))
+                        .create();
+
+                View myview=dialogPlus.getHolderView();
+
+                Button update_edit_ap=myview.findViewById(R.id.update_edit_ap);
+
+                final EditText address = myview.findViewById(R.id.address_edit);
+                final EditText rooms = myview.findViewById(R.id.rooms_edit);
+                final EditText floor = myview.findViewById(R.id.floor_edit);
+                final EditText dateown = myview.findViewById(R.id.dateown_edit);
+
+
+                dateown.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            dateown.setText(current);
+                            dateown.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+                address.setText(info_address.getText().toString());
+                rooms.setText(info_rooms.getText().toString());
+                floor.setText(info_floor.getText().toString());
+                dateown.setText(info_dateown.getText().toString());
+
+                dialogPlus.show();
+
+
+                update_edit_ap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Map<String,Object> map = new HashMap<>();
+
+                        map.put("address",address.getText().toString());
+                        map.put("rooms",rooms.getText().toString());
+                        map.put("floor",floor.getText().toString());
+                        map.put("dateown",dateown.getText().toString());
+
+                        FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment4").updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialogPlus.dismiss();
+                            }
+                        });
+
+                    }
+                });
 
             });
 
@@ -852,7 +1318,7 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
                             @Override
                             public void onLocationResult(LocationResult locationResult) {
-                                Location location1 = locationResult.getLastLocation();
+
 
                                 textView23.setText(String.valueOf(location.getLatitude() + " , " +location.getLongitude()));
                             }
@@ -1493,6 +1959,8 @@ public class ActivityNewApartment extends AppCompatActivity implements View.OnCl
 
 
     }
+
+
 
     @Override
     protected void onResume() {

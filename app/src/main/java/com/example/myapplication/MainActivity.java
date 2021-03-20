@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
@@ -15,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,17 +24,15 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
-    ImageButton add1,add2,add3,add4,add5,
+
+    SharedPreferences sharedPreferences;
+
+    ImageButton add1,add2,add3,add4,
             new_home,new_home2,new_home3,new_home4,
             allclient,bloknot;
 
-    TextView add1_text,add2_text,add3_text,add4_text,
-            rooms1,floor1,dateown1,
-            rooms2,floor2,dateown2,
-            rooms3,floor3,dateown3,
-            rooms4,floor4,dateown4;
+    TextView add1_text,add2_text,add3_text,add4_text;
 
-    private FusedLocationProviderClient fusedLocationProviderClient;
     Vibrator vibr;
 
     private DatabaseReference myDataBase;
@@ -56,26 +54,65 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         add1_text = (TextView) findViewById(R.id.add1_text);
         add2_text = (TextView) findViewById(R.id.add2_text);
         add3_text = (TextView) findViewById(R.id.add3_text);
-        add4_text = findViewById(R.id.add4_text);
+        add4_text = (TextView) findViewById(R.id.add4_text);
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
+        String address1 = sharedPreferences.getString("address1","");
+        add1_text.setText(address1);
 
+        String address2 = sharedPreferences.getString("address2","");
+        add2_text.setText(address2);
 
+        String address3 = sharedPreferences.getString("address3","");
+        add3_text.setText(address3);
 
-
-
+        String address4 = sharedPreferences.getString("address4","");
+        add4_text.setText(address4);
 
         add1 = (ImageButton) findViewById(R.id.add1);
         add1.setOnClickListener(this);
 
+        if(add1_text.length()>0){
+
+            add1.setVisibility(View.INVISIBLE);
+
+        }else {
+            add1.setVisibility(View.VISIBLE);
+        }
+
         add2 = (ImageButton) findViewById(R.id.add2);
         add2.setOnClickListener(this);
+
+        if(add2_text.length()>0){
+
+            add2.setVisibility(View.INVISIBLE);
+
+        }else {
+            add2.setVisibility(View.VISIBLE);
+        }
 
         add3 = (ImageButton) findViewById(R.id.add3);
         add3.setOnClickListener(this);
 
+        if(add3_text.length()>0){
+
+            add3.setVisibility(View.INVISIBLE);
+
+        }else {
+            add3.setVisibility(View.VISIBLE);
+        }
+
         add4 = (ImageButton) findViewById(R.id.add4);
         add4.setOnClickListener(this);
+
+        if(add4_text.length()>0){
+
+            add4.setVisibility(View.INVISIBLE);
+
+        }else {
+            add4.setVisibility(View.VISIBLE);
+        }
 
 
 
@@ -186,7 +223,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                                 add1.setVisibility(View.VISIBLE);
                                 add1_text.setText("");
 
+                                String address1 = add1_text.getText().toString();
 
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("address1",address1);
+                                editor.apply();
+
+                                add1_text.setText(address1);
 
                             }
                         });
@@ -238,6 +281,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                                 add2.setVisibility(View.VISIBLE);
                                 add2_text.setText("");
 
+                                String address2 = add2_text.getText().toString();
+
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("address2",address2);
+                                editor.apply();
 
                             }
                         });
@@ -288,7 +336,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                                 add3.setVisibility(View.VISIBLE);
                                 add3_text.setText("");
 
+                                String address3 = add3_text.getText().toString();
 
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("address3",address3);
+                                editor.apply();
 
                             }
                         });
@@ -339,7 +391,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                                 add4.setVisibility(View.VISIBLE);
                                 add4_text.setText("");
 
+                                String address4 = add4_text.getText().toString();
 
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("address4",address4);
+                                editor.apply();
 
                             }
                         });
@@ -402,6 +458,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             String rooms = data.child("rooms").getValue().toString();
 
 
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("address1",address);
+                            editor.apply();
+
                             add1_text.setText(address);
 
                         }
@@ -439,6 +499,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             String floor = data.child("floor").getValue().toString();
                             String rooms = data.child("rooms").getValue().toString();
 
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("address2",address);
+                            editor.apply();
+
 
                             add2_text.setText(address);
 
@@ -474,6 +538,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             String floor = data.child("floor").getValue().toString();
                             String rooms = data.child("rooms").getValue().toString();
 
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("address3",address);
+                            editor.apply();
+
 
                             add3_text.setText(address);
 
@@ -508,6 +576,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             String dateown = data.child("dateown").getValue().toString();
                             String floor = data.child("floor").getValue().toString();
                             String rooms = data.child("rooms").getValue().toString();
+
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("address4",address);
+                            editor.apply();
 
 
                             add4_text.setText(address);

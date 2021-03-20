@@ -74,7 +74,6 @@ public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAd
             public void onClick(View view) {
                 final DialogPlus dialogPlus=DialogPlus.newDialog(holder.itemView.getContext())
                         .setContentHolder(new ViewHolder(R.layout.dialog_edit))
-                        .setExpanded(true,2050)
                         .create();
 
 

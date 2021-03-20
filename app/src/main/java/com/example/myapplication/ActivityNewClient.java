@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,13 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import db.Client.ClientClass;
 
 public class ActivityNewClient extends AppCompatActivity implements View.OnClickListener{
 
-    TextView client_name,client_surname,client_patronymic,client_number,client_datestart,client_dateend,client_info,client_pay;
+    EditText client_name,client_surname,client_patronymic,client_number,client_datestart,client_dateend,client_info,client_pay;
 
     Button add_new_client;
 
@@ -40,18 +44,149 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
 
 
-        client_name = (TextView) findViewById(R.id.client_name);
-        client_surname = (TextView) findViewById(R.id.client_surname);
-        client_patronymic = (TextView) findViewById(R.id.client_patronymic);
-        client_number = (TextView) findViewById(R.id.client_number);
-        client_datestart = (TextView) findViewById(R.id.client_datestart);
-        client_dateend = (TextView) findViewById(R.id.client_dateend);
-        client_info = (TextView) findViewById(R.id.client_info);
-        client_pay = (TextView) findViewById(R.id.client_pay);
+        client_name = (EditText) findViewById(R.id.client_name);
+        client_surname = (EditText) findViewById(R.id.client_surname);
+        client_patronymic = (EditText) findViewById(R.id.client_patronymic);
+        client_number = (EditText) findViewById(R.id.client_number);
+        client_datestart = (EditText) findViewById(R.id.client_datestart);
+        client_dateend = (EditText) findViewById(R.id.client_dateend);
+        client_info = (EditText) findViewById(R.id.client_info);
+        client_pay = (EditText) findViewById(R.id.client_pay);
 
         add_new_client = (Button) findViewById(R.id.add_new_client);
         add_new_client.setOnClickListener(this);
 
+             client_datestart.addTextChangedListener(new TextWatcher() {
+
+                 private String current = "";
+                 private String ddmmyyyy = "DDMMYYYY";
+                 private Calendar cal = Calendar.getInstance();
+
+                 @Override
+                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                 }
+
+                 @Override
+                 public void onTextChanged(CharSequence s, int start, int before, int count) {
+                     if (!s.toString().equals(current)) {
+
+                         String clean = s.toString().replaceAll("[^\\d.]", "");
+                         String cleanC = current.replaceAll("[^\\d.]", "");
+
+                         int cl = clean.length();
+                         int sel = cl;
+                         for (int i = 2; i <= cl && i < 6; i += 2) {
+                             sel++;
+                         }
+
+                         if (clean.equals(cleanC)) sel--;
+
+                         if (clean.length() < 8){
+                             clean = clean + ddmmyyyy.substring(clean.length());
+                         }else{
+
+                             int day  = Integer.parseInt(clean.substring(0,2));
+                             int mon  = Integer.parseInt(clean.substring(2,4));
+                             int year = Integer.parseInt(clean.substring(4,8));
+
+                             if(mon > 12) mon = 12;
+                             cal.set(Calendar.MONTH, mon-1);
+
+                             year = (year<1900)?1900:(year>2100)?2100:year;
+                             cal.set(Calendar.YEAR, year);
+
+
+                             day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                             clean = String.format("%02d%02d%02d",day, mon, year);
+                         }
+
+                         clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                 clean.substring(2, 4),
+                                 clean.substring(4, 8));
+
+                         sel = sel < 0 ? 0 : sel;
+                         current = clean;
+                         client_datestart.setText(current);
+                         client_datestart.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                     }
+                 }
+
+                 @Override
+                 public void afterTextChanged(Editable s) {
+
+                 }
+             });
+
+             client_dateend.addTextChangedListener(new TextWatcher() {
+
+                 private String current = "";
+                 private String ddmmyyyy = "DDMMYYYY";
+                 private Calendar cal = Calendar.getInstance();
+
+                 @Override
+                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                 }
+
+                 @Override
+                 public void onTextChanged(CharSequence s, int start, int before, int count) {
+                     if (!s.toString().equals(current)) {
+
+                         String clean = s.toString().replaceAll("[^\\d.]", "");
+                         String cleanC = current.replaceAll("[^\\d.]", "");
+
+                         int cl = clean.length();
+                         int sel = cl;
+                         for (int i = 2; i <= cl && i < 6; i += 2) {
+                             sel++;
+                         }
+
+                         if (clean.equals(cleanC)) sel--;
+
+                         if (clean.length() < 8){
+                             clean = clean + ddmmyyyy.substring(clean.length());
+                         }else{
+
+                             int day  = Integer.parseInt(clean.substring(0,2));
+                             int mon  = Integer.parseInt(clean.substring(2,4));
+                             int year = Integer.parseInt(clean.substring(4,8));
+
+                             if(mon > 12) mon = 12;
+                             cal.set(Calendar.MONTH, mon-1);
+
+                             year = (year<1900)?1900:(year>2100)?2100:year;
+                             cal.set(Calendar.YEAR, year);
+
+
+                             day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                             clean = String.format("%02d%02d%02d",day, mon, year);
+                         }
+
+                         clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                 clean.substring(2, 4),
+                                 clean.substring(4, 8));
+
+                         sel = sel < 0 ? 0 : sel;
+                         current = clean;
+                         client_dateend.setText(current);
+                         client_dateend.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                     }
+
+
+                 }
+
+                 @Override
+                 public void afterTextChanged(Editable s) {
+
+                 }
+             });
 
         myDataBase = FirebaseDatabase.getInstance().getReference(New_Client);
 
@@ -64,28 +199,35 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
         String action = intent.getAction();
 
 
-        if(client_name.getText().toString().length()==0
-                || client_datestart.getText().toString().length()==0 || client_dateend.getText().toString().length()==0
-                ||client_info.getText().toString().length()==0) {
+        if(client_name.getText().toString().length()==0) {
 
             client_name.setError("Введіть дані!");
             client_name.requestFocus();
 
-            client_dateend.setError("Введіть дані!");
-            client_dateend.requestFocus();
+        }
 
-            client_datestart.setError("Введіть дані!");
-            client_datestart.requestFocus();
+        if(client_info.getText().toString().length()==0){
 
             client_info.setError("Введіть дані!");
             client_info.requestFocus();
+        }
+        
+        if(client_datestart.getText().toString().length()==0){
 
+
+            client_datestart.setError("Введіть дані!");
+            client_datestart.requestFocus();
+        }
+
+        if(client_dateend.getText().toString().length()==0){
+            client_dateend.setError("Введіть дані!");
+            client_dateend.requestFocus();
         }
 
         if (action.equals("new_client1")) {
 
             try {
-                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
                 String datestart1 = client_datestart.getText().toString();
                 Date dateS = format.parse(datestart1);
@@ -138,17 +280,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
 
                     } else {
-                        client_name.setError("Введіть дані!");
-                        client_name.requestFocus();
 
-                        client_dateend.setError("Введіть дані!");
-                        client_dateend.requestFocus();
-
-                        client_datestart.setError("Введіть дані!");
-                        client_datestart.requestFocus();
-
-                        client_info.setError("Введіть дані!");
-                        client_info.requestFocus();
                     }
                 }
 
@@ -162,7 +294,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
         if (action.equals("new_client2")) {
 
             try {
-                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
                 String datestart1 = client_datestart.getText().toString();
                 Date dateS = format.parse(datestart1);
@@ -218,17 +350,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
 
                     } else {
-                        client_name.setError("Введіть дані!");
-                        client_name.requestFocus();
 
-                        client_dateend.setError("Введіть дані!");
-                        client_dateend.requestFocus();
-
-                        client_datestart.setError("Введіть дані!");
-                        client_datestart.requestFocus();
-
-                        client_info.setError("Введіть дані!");
-                        client_info.requestFocus();
                     }
                 }
 
@@ -242,7 +364,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
         if (action.equals("new_client3")) {
 
             try {
-                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
                 String datestart1 = client_datestart.getText().toString();
                 Date dateS = format.parse(datestart1);
@@ -295,17 +417,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
 
                     } else {
-                        client_name.setError("Введіть дані!");
-                        client_name.requestFocus();
 
-                        client_dateend.setError("Введіть дані!");
-                        client_dateend.requestFocus();
-
-                        client_datestart.setError("Введіть дані!");
-                        client_datestart.requestFocus();
-
-                        client_info.setError("Введіть дані!");
-                        client_info.requestFocus();
                     }
                 }
 
@@ -319,7 +431,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
         if (action.equals("new_client4")) {
 
             try {
-                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
                 String datestart1 = client_datestart.getText().toString();
                 Date dateS = format.parse(datestart1);
@@ -372,17 +484,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
 
                     } else {
-                        client_name.setError("Введіть дані!");
-                        client_name.requestFocus();
 
-                        client_dateend.setError("Введіть дані!");
-                        client_dateend.requestFocus();
-
-                        client_datestart.setError("Введіть дані!");
-                        client_datestart.requestFocus();
-
-                        client_info.setError("Введіть дані!");
-                        client_info.requestFocus();
                     }
                 }
 

@@ -7,7 +7,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginTop="1dp"
     android:elevation="5dp"
-    app:cardBackgroundColor="#DC143C"
+    app:cardBackgroundColor="#FF7777"
     app:cardCornerRadius="5dp"
     app:cardUseCompatPadding="true">
 
@@ -119,7 +119,7 @@
                     android:id="@+id/edit_repair"
                     android:layout_width="33dp"
                     android:layout_height="33dp"
-                    android:background="#DC143C"
+                    android:background="#FF7777"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic___icon_icons_com_73779" />

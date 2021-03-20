@@ -2,8 +2,11 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,11 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 import db.Repair.RepairClass;
 
 public class ActivityRepairs extends AppCompatActivity implements View.OnClickListener {
 
-    TextView sum_repair,date_repair,name_repair;
+    EditText sum_repair,date_repair,name_repair;
 
     Button add_repair;
 
@@ -30,9 +35,74 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
 
         getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
 
-        sum_repair = (TextView) findViewById(R.id.sum_repair);
-        name_repair = (TextView) findViewById(R.id.name_repair);
-        date_repair = (TextView) findViewById(R.id.date_repair);
+        sum_repair = (EditText) findViewById(R.id.sum_repair);
+        name_repair = (EditText) findViewById(R.id.name_repair);
+        date_repair = (EditText) findViewById(R.id.date_repair);
+        date_repair.addTextChangedListener(new TextWatcher() {
+
+            private String current = "";
+            private String ddmmyyyy = "DDMMYYYY";
+            private Calendar cal = Calendar.getInstance();
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().equals(current)) {
+
+                    String clean = s.toString().replaceAll("[^\\d.]", "");
+                    String cleanC = current.replaceAll("[^\\d.]", "");
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+
+                    if (clean.equals(cleanC)) sel--;
+
+                    if (clean.length() < 8){
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    }else{
+
+                        int day  = Integer.parseInt(clean.substring(0,2));
+                        int mon  = Integer.parseInt(clean.substring(2,4));
+                        int year = Integer.parseInt(clean.substring(4,8));
+
+                        if(mon > 12) mon = 12;
+                        cal.set(Calendar.MONTH, mon-1);
+
+                        year = (year<1900)?1900:(year>2100)?2100:year;
+                        cal.set(Calendar.YEAR, year);
+
+
+                        day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                        clean = String.format("%02d%02d%02d",day, mon, year);
+                    }
+
+                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                            clean.substring(2, 4),
+                            clean.substring(4, 8));
+
+                    sel = sel < 0 ? 0 : sel;
+                    current = clean;
+                    date_repair.setText(current);
+                    date_repair.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         add_repair = (Button) findViewById(R.id.add_repair);
         add_repair.setOnClickListener(this);
@@ -53,6 +123,7 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
                 String date = date_repair.getText().toString();
                 String sum = sum_repair.getText().toString();
                 String name = name_repair.getText().toString();
+
 
 
                 db.Repair.RepairClass repairClass = new RepairClass(id,sum,date,name);

@@ -78,6 +78,8 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.archive,new Fragment_Repair2()).commit();
+                    fragment2.setVisibility(View.INVISIBLE);
+                    fragment1.setVisibility(View.VISIBLE);
                 }
             });
 
@@ -85,6 +87,8 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.archive,new Fragment_Pay2()).commit();
+                    fragment1.setVisibility(View.INVISIBLE);
+                    fragment2.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -97,6 +101,8 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.archive,new Fragment_Repair3()).commit();
+                    fragment2.setVisibility(View.INVISIBLE);
+                    fragment1.setVisibility(View.VISIBLE);
                 }
             });
 
@@ -104,6 +110,8 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.archive,new Fragment_Pay3()).commit();
+                    fragment1.setVisibility(View.INVISIBLE);
+                    fragment2.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -116,6 +124,8 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.archive,new Fragment_Repair4()).commit();
+                    fragment2.setVisibility(View.INVISIBLE);
+                    fragment1.setVisibility(View.VISIBLE);
                 }
             });
 
@@ -123,6 +133,8 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.archive,new Fragment_Pay4()).commit();
+                    fragment1.setVisibility(View.INVISIBLE);
+                    fragment2.setVisibility(View.VISIBLE);
                 }
             });
         }
