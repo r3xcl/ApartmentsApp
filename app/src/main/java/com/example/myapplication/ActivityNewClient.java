@@ -6,12 +6,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -29,7 +29,9 @@ import db.Client.ClientClass;
 
 public class ActivityNewClient extends AppCompatActivity implements View.OnClickListener{
 
-    EditText client_name,client_surname,client_patronymic,client_number,client_datestart,client_dateend,client_info,client_pay;
+
+
+    EditText client_name,client_surname,client_patronymic,client_number,client_datestart,client_dateend,client_info,client_pay,client_email;
 
     Button add_new_client;
 
@@ -52,6 +54,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
         client_dateend = (EditText) findViewById(R.id.client_dateend);
         client_info = (EditText) findViewById(R.id.client_info);
         client_pay = (EditText) findViewById(R.id.client_pay);
+        client_email = (EditText) findViewById(R.id.client_email);
 
         add_new_client = (Button) findViewById(R.id.add_new_client);
         add_new_client.setOnClickListener(this);
@@ -192,6 +195,8 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
     }
 
+
+
     @Override
     public void onClick(View v) {
 
@@ -255,6 +260,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         intent.putExtra("client_dateend1", client_dateend.getText().toString());
                         intent.putExtra("client_info1", client_info.getText().toString());
                         intent.putExtra("client_pay1", client_pay.getText().toString());
+                        intent.putExtra("client_email1", client_email.getText().toString());
 
 
                         String id = myDataBase.getKey();
@@ -266,9 +272,10 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         String dateend = client_dateend.getText().toString();
                         String pay = client_pay.getText().toString();
                         String zastava = client_info.getText().toString();
+                        String email = client_email.getText().toString();
 
 
-                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number,email, datestart, dateend, pay, zastava);
                         myDataBase.push().setValue(newClient);
 
                         intent.putExtra("11", 11);
@@ -325,6 +332,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         intent.putExtra("client_dateend2", client_dateend.getText().toString());
                         intent.putExtra("client_info2", client_info.getText().toString());
                         intent.putExtra("client_pay2", client_pay.getText().toString());
+                        intent.putExtra("client_email2", client_email.getText().toString());
 
 
                         String id = myDataBase.getKey();
@@ -336,9 +344,10 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         String dateend = client_dateend.getText().toString();
                         String pay = client_pay.getText().toString();
                         String zastava = client_info.getText().toString();
+                        String email = client_email.getText().toString();
 
 
-                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number,email, datestart, dateend, pay, zastava);
                         myDataBase.push().setValue(newClient);
 
                         intent.putExtra("22", 22);
@@ -392,6 +401,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         intent.putExtra("client_dateend3", client_dateend.getText().toString());
                         intent.putExtra("client_info3", client_info.getText().toString());
                         intent.putExtra("client_pay3", client_pay.getText().toString());
+                        intent.putExtra("client_email3", client_email.getText().toString());
 
 
                         String id = myDataBase.getKey();
@@ -403,9 +413,10 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         String dateend = client_dateend.getText().toString();
                         String pay = client_pay.getText().toString();
                         String zastava = client_info.getText().toString();
+                        String email = client_email.getText().toString();
 
 
-                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number,email, datestart, dateend, pay, zastava);
                         myDataBase.push().setValue(newClient);
 
                         intent.putExtra("33", 33);
@@ -459,6 +470,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         intent.putExtra("client_dateend4", client_dateend.getText().toString());
                         intent.putExtra("client_info4", client_info.getText().toString());
                         intent.putExtra("client_pay4", client_pay.getText().toString());
+                        intent.putExtra("client_email4", client_email.getText().toString());
 
 
                         String id = myDataBase.getKey();
@@ -470,9 +482,10 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         String dateend = client_dateend.getText().toString();
                         String pay = client_pay.getText().toString();
                         String zastava = client_info.getText().toString();
+                        String email = client_email.getText().toString();
 
 
-                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, datestart, dateend, pay, zastava);
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number,email, datestart, dateend, pay, zastava);
                         myDataBase.push().setValue(newClient);
 
                         intent.putExtra("44", 44);

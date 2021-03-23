@@ -2,6 +2,7 @@ package db.Pay;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.viewHolder> {
@@ -64,7 +68,14 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
                     }
                 });
 
-                builder.show();
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                Button color = alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+                color.setTextColor(Color.RED);
+
+                Button color1 = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                color1.setTextColor(Color.RED);
             }
         });
 
@@ -144,9 +155,13 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
 
     }
 
+
+
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.row_archive_money,parent,false);
         return new viewHolder(view);
 
@@ -162,6 +177,8 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
+
+
 
             money_money=(TextView)itemView.findViewById(R.id.money_money);
             money_date=(TextView)itemView.findViewById(R.id.money_date);

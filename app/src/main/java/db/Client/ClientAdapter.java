@@ -2,6 +2,7 @@ package db.Client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,14 @@ public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAd
                     }
                 });
 
-                builder.show();
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                Button color = alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+                color.setTextColor(Color.RED);
+
+                Button color1 = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                color1.setTextColor(Color.RED);
             }
         });
 
@@ -92,6 +100,7 @@ public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAd
                 final EditText dateend=myview.findViewById(R.id.dateend_edit);
                 final EditText pay=myview.findViewById(R.id.pay_edit);
                 final EditText zastava=myview.findViewById(R.id.zastava_client);
+                final EditText email=myview.findViewById(R.id.email_edit);
 
                 Button update_edit=myview.findViewById(R.id.update_edit);
 
@@ -104,6 +113,7 @@ public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAd
                 dateend.setText(clientClass.getDateend());
                 pay.setText(clientClass.getPay());
                 zastava.setText(clientClass.getZastava());
+                email.setText(clientClass.getEmail());
 
 
 
@@ -126,6 +136,7 @@ public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAd
                         map.put("dateend",dateend.getText().toString());
                         map.put("pay",pay.getText().toString());
                         map.put("zastava",zastava.getText().toString());
+                        map.put("email",email.getText().toString());
 
 
                             FirebaseDatabase.getInstance().getReference().child("New_Client")

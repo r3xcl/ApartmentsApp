@@ -217,21 +217,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.266" />
 
-    <TextView
-        android:id="@+id/info_pay"
-        android:layout_width="120dp"
-        android:layout_height="25dp"
-        android:background="@drawable/button"
-        android:paddingLeft="15dp"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.327" />
-
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="345dp"
@@ -253,10 +238,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
+        app:layout_constraintVertical_bias="0.61" />
 
     <ImageButton
         android:id="@+id/map"
@@ -332,13 +317,13 @@
         app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.628"
+        app:layout_constraintVertical_bias="0.625"
         app:srcCompat="@drawable/ic___icon_icons_com_73779" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="69dp"
+        android:layout_height="25dp"
         android:hint="Адреса:"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -437,33 +422,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.967" />
 
-    <ImageButton
-        android:id="@+id/call"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@drawable/button"
+    <ImageView
+        android:id="@+id/image_client"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37"
-        app:srcCompat="@drawable/ic_call" />
-
-    <ImageButton
-        android:id="@+id/whatsapp"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@drawable/button"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.180"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.370"
-        app:srcCompat="@drawable/ic_sms_116793" />
+        app:layout_constraintVertical_bias="0.177"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
         android:id="@+id/money"
@@ -476,8 +446,64 @@
         app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.370"
+        app:layout_constraintVertical_bias="0.381"
         app:srcCompat="@drawable/ic_money" />
+
+    <ImageButton
+        android:id="@+id/call"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/button"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.381"
+        app:srcCompat="@drawable/ic_call" />
+
+    <ImageView
+        android:id="@+id/delphoto_client"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.153"
+        app:srcCompat="@drawable/delete" />
+
+    <TextView
+        android:id="@+id/info_pay"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:background="@drawable/button"
+        android:paddingLeft="15dp"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337" />
+
+    <ImageButton
+        android:id="@+id/whatsapp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/button"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.381"
+        app:srcCompat="@drawable/ic_sms_116793" />
 
     <ImageButton
         android:id="@+id/addphoto"
@@ -490,21 +516,8 @@
         app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165"
+        app:layout_constraintVertical_bias="0.177"
         app:srcCompat="@drawable/ic_addphoto" />
-
-    <ImageView
-        android:id="@+id/image_client"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textView23"
@@ -530,19 +543,6 @@
         app:layout_constraintVertical_bias="0.084"
         app:srcCompat="@drawable/ic_archive_86332" />
 
-    <ImageView
-        android:id="@+id/delphoto_client"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.33"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.142"
-        app:srcCompat="@drawable/delete" />
-
     <ImageButton
         android:id="@+id/files"
         android:layout_width="40dp"
@@ -555,6 +555,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.084"
         app:srcCompat="@drawable/ic_files" />
+
+    <TextView
+        android:id="@+id/info_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="202dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

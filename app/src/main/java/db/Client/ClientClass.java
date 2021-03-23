@@ -4,14 +4,15 @@ package db.Client;
 
 public class ClientClass {
 
-    String id,surname,name,patronymic,number,datestart,dateend,pay,zastava;
+    String id,surname,name,patronymic,number,email,datestart,dateend,pay,zastava;
 
     public ClientClass() {
     }
 
-    public ClientClass(String id, String surname, String name, String patronymic, String number, String datestart, String dateend, String pay,String zastava) {
+    public ClientClass(String id, String surname, String name, String patronymic, String number,String email, String datestart, String dateend, String pay,String zastava) {
         this.id = id;
         this.surname = surname;
+        this.email = email;
         this.name = name;
         this.patronymic = patronymic;
         this.number = number;
@@ -23,6 +24,9 @@ public class ClientClass {
 
     public String getSurname(){return surname;}
     public void setSurname(String surname){this.surname = surname;}
+
+    public String getEmail(){return email;}
+    public void setEmail(String email){this.email = email;}
 
     public String getPatronymic(){return patronymic;}
     public void setPatronymic(String patronymic){this.patronymic = patronymic;}

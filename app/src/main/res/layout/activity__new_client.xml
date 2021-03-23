@@ -23,13 +23,14 @@
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="335dp"
-        android:layout_height="475dp"
+        android:layout_height="548dp"
         android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355"
+        app:layout_constraintVertical_bias="0.435"
         app:srcCompat="@drawable/ic_group3" />
 
     <EditText
@@ -61,6 +62,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView7"
         app:layout_constraintVertical_bias="0.214" />
+
+    <EditText
+        android:id="@+id/client_email"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Електронна пошта"
+        android:inputType="textCapSentences"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.518" />
 
     <EditText
         android:id="@+id/client_patronymic"
@@ -105,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintVertical_bias="0.596" />
 
     <EditText
         android:id="@+id/client_dateend"
@@ -120,22 +136,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.596" />
-
-    <EditText
-        android:id="@+id/client_info"
-        android:layout_width="320dp"
-        android:layout_height="35dp"
-        android:ems="10"
-        android:hint="Застава"
-        android:inputType="numberSigned"
-        android:paddingLeft="15dp"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintVertical_bias="0.67" />
 
     <EditText
         android:id="@+id/client_pay"
@@ -150,7 +151,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669" />
+        app:layout_constraintVertical_bias="0.743" />
+
+    <EditText
+        android:id="@+id/client_info"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Застава"
+        android:inputType="numberSigned"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.816" />
 
     <Button
         android:id="@+id/add_new_client"

@@ -2,6 +2,7 @@ package db.Repair;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,14 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
                     }
                 });
 
-                builder.show();
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                Button color = alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+                color.setTextColor(Color.RED);
+
+                Button color1 = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                color1.setTextColor(Color.RED);
             }
         });
 

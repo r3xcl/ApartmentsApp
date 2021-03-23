@@ -124,6 +124,7 @@ public class ActivityFindClient extends AppCompatActivity implements View.OnClic
                     intent.putExtra("dateend1",clientClass.getDateend());
                     intent.putExtra("sumpay1",clientClass.getPay());
                     intent.putExtra("zastava1",clientClass.getZastava());
+                    intent.putExtra("email1",clientClass.getEmail());
 
                     intent.putExtra("111", 111);
                     setResult(RESULT_OK, intent);
@@ -148,6 +149,7 @@ public class ActivityFindClient extends AppCompatActivity implements View.OnClic
                     intent.putExtra("dateend2",clientClass.getDateend());
                     intent.putExtra("sumpay2",clientClass.getPay());
                     intent.putExtra("zastava2",clientClass.getZastava());
+                    intent.putExtra("email2",clientClass.getEmail());
 
                     intent.putExtra("222", 222);
                     setResult(RESULT_OK, intent);
@@ -172,6 +174,7 @@ public class ActivityFindClient extends AppCompatActivity implements View.OnClic
                     intent.putExtra("dateend3",clientClass.getDateend());
                     intent.putExtra("sumpay3",clientClass.getPay());
                     intent.putExtra("zastava3",clientClass.getZastava());
+                    intent.putExtra("email3",clientClass.getEmail());
 
                     intent.putExtra("333", 333);
                     setResult(RESULT_OK, intent);
@@ -196,6 +199,7 @@ public class ActivityFindClient extends AppCompatActivity implements View.OnClic
                     intent.putExtra("dateend4",clientClass.getDateend());
                     intent.putExtra("sumpay4",clientClass.getPay());
                     intent.putExtra("zastava4",clientClass.getZastava());
+                    intent.putExtra("email4",clientClass.getEmail());
 
                     intent.putExtra("444", 444);
                     setResult(RESULT_OK, intent);

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -53,7 +54,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ActivityApartmentManager extends AppCompatActivity implements View.OnClickListener {
+public class  ActivityApartmentManager extends AppCompatActivity implements View.OnClickListener {
+
+    SharedPreferences sharedPreferences;
 
     Button add_client, delete_client, find_client;
 
@@ -62,7 +65,7 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
     TextView info_address, info_patronymic, info_name, info_surname, info_number,
             info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
             , textView9, textView11, textView13, textView14, textView15, textView16, info_zastava
-            , textView20, textView23;
+            , textView20, textView23,info_email;
 
 
 
@@ -86,6 +89,7 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
         info_date_end = (TextView) findViewById(R.id.info_date_end);
         info_pay = (TextView) findViewById(R.id.info_pay);
         info_zastava = (TextView) findViewById(R.id.info_zastava);
+        info_email = (TextView) findViewById(R.id.info_email);
 
 
         textView23 = (TextView) findViewById(R.id.textView23);
@@ -105,6 +109,7 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
         info_dateown = (TextView) findViewById(R.id.info_dateown);
 
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
 
         call = (ImageButton) findViewById(R.id.call);
@@ -192,6 +197,7 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
 
                 Intent intent = new Intent(ActivityApartmentManager.this,WhatsApp.class);
                 intent.putExtra("number",info_number.getText().toString());
+                intent.putExtra("email",info_email.getText().toString());
                 startActivity(intent);
             }
         });
@@ -234,6 +240,93 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 }
             });
 
+
+
+            String client_name1 = sharedPreferences.getString("client_name1","");
+            info_name.setText(client_name1);
+
+            String client_surname1 = sharedPreferences.getString("client_surname1","");
+            info_surname.setText(client_surname1);
+
+            String client_patronymic1 = sharedPreferences.getString("client_patronymic1","");
+            info_patronymic.setText(client_patronymic1);
+
+            String client_number1 = sharedPreferences.getString("client_number1","");
+            info_number.setText(client_number1);
+
+            String client_datestart1 = sharedPreferences.getString("client_datestart1","");
+            info_date_start.setText(client_datestart1);
+
+            String client_dateend1 = sharedPreferences.getString("client_dateend1","");
+            info_date_end.setText(client_dateend1);
+
+            String client_email1 = sharedPreferences.getString("client_email1","");
+            info_email.setText(client_email1);
+
+            String client_pay1 = sharedPreferences.getString("client_pay1","");
+            info_pay.setText(client_pay1 + " Грн.");
+
+            String client_zastava1 = sharedPreferences.getString("client_zastava1","");
+            info_zastava.setText(client_zastava1 + " Грн.");
+
+            if(info_name.length()>0){
+
+                addphoto.setVisibility(View.VISIBLE);
+                info_pay.setVisibility(View.VISIBLE);
+                call.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
+                money.setVisibility(View.VISIBLE);
+                imageView4.setVisibility(View.VISIBLE);
+                textView9.setVisibility(View.VISIBLE);
+                info_surname.setVisibility(View.VISIBLE);
+                textView11.setVisibility(View.VISIBLE);
+                info_name.setVisibility(View.VISIBLE);
+                textView13.setVisibility(View.VISIBLE);
+                info_patronymic.setVisibility(View.VISIBLE);
+                textView14.setVisibility(View.VISIBLE);
+                info_number.setVisibility(View.VISIBLE);
+                textView15.setVisibility(View.VISIBLE);
+                info_date_start.setVisibility(View.VISIBLE);
+                textView16.setVisibility(View.VISIBLE);
+                info_date_end.setVisibility(View.VISIBLE);
+                textView20.setVisibility(View.VISIBLE);
+                info_zastava.setVisibility(View.VISIBLE);
+
+                add_client.setVisibility(View.INVISIBLE);
+                find_client.setVisibility(View.INVISIBLE);
+
+                delete_client.setVisibility(View.VISIBLE);
+
+
+            }else {
+
+                addphoto.setVisibility(View.INVISIBLE);
+                info_pay.setVisibility(View.INVISIBLE);
+                call.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
+                money.setVisibility(View.INVISIBLE);
+                imageView4.setVisibility(View.INVISIBLE);
+                textView9.setVisibility(View.INVISIBLE);
+                info_surname.setVisibility(View.INVISIBLE);
+                textView11.setVisibility(View.INVISIBLE);
+                info_name.setVisibility(View.INVISIBLE);
+                textView13.setVisibility(View.INVISIBLE);
+                info_patronymic.setVisibility(View.INVISIBLE);
+                textView14.setVisibility(View.INVISIBLE);
+                info_number.setVisibility(View.INVISIBLE);
+                textView15.setVisibility(View.INVISIBLE);
+                info_date_start.setVisibility(View.INVISIBLE);
+                textView16.setVisibility(View.INVISIBLE);
+                info_date_end.setVisibility(View.INVISIBLE);
+                textView20.setVisibility(View.INVISIBLE);
+                info_zastava.setVisibility(View.INVISIBLE);
+
+                add_client.setVisibility(View.VISIBLE);
+                find_client.setVisibility(View.VISIBLE);
+
+                delete_client.setVisibility(View.INVISIBLE);
+
+            }
 
 
             add_client.setOnClickListener(v -> {
@@ -429,18 +522,47 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
             delete_client.setOnClickListener(v -> {
 
                 info_surname.setText("");
+                String client_surname = info_surname.getText().toString();
+
                 info_name.setText("");
+                String client_name = info_name.getText().toString();
+
                 info_patronymic.setText("");
+                String client_patronymic = info_patronymic.getText().toString();
+
                 info_number.setText("");
+                String client_number = info_number.getText().toString();
+
                 info_date_start.setText("");
+                String client_datestart = info_date_start.getText().toString();
+
                 info_date_end.setText("");
+                String client_dateend = info_date_end.getText().toString();
+
                 info_pay.setText("");
+                String client_pay = info_pay.getText().toString();
+
                 info_zastava.setText("");
+                String client_zastava = info_zastava.getText().toString();
+
                 textView20.setVisibility(View.INVISIBLE);
                 call.setVisibility(View.INVISIBLE);
                 money.setVisibility(View.INVISIBLE);
                 addphoto.setVisibility(View.INVISIBLE);
                 whatsapp.setVisibility(View.INVISIBLE);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name1",client_name);
+                editor.putString("client_surname1",client_surname);
+                editor.putString("client_patronymic1",client_patronymic);
+                editor.putString("client_number1",client_number);
+                editor.putString("client_datestart1",client_datestart);
+                editor.putString("client_dateend1",client_dateend);
+                editor.putString("client_pay1",client_pay);
+                editor.putString("client_zastava1",client_zastava);
+
+                editor.apply();
 
                 delete_client.setVisibility(View.INVISIBLE);
                 find_client.setVisibility(View.VISIBLE);
@@ -476,7 +598,7 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
 
                 Intent imagePick = new Intent(Intent.ACTION_PICK);
                 imagePick.setType("image/*");
-                startActivityForResult(imagePick,0);
+                startActivityForResult(imagePick, 01);
 
             });
         }
@@ -516,6 +638,92 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
 
                 }
             });
+
+            String client_name2 = sharedPreferences.getString("client_name2","");
+            info_name.setText(client_name2);
+
+            String client_surname2 = sharedPreferences.getString("client_surname2","");
+            info_surname.setText(client_surname2);
+
+            String client_patronymic2 = sharedPreferences.getString("client_patronymic2","");
+            info_patronymic.setText(client_patronymic2);
+
+            String client_number2 = sharedPreferences.getString("client_number2","");
+            info_number.setText(client_number2);
+
+            String client_datestart2 = sharedPreferences.getString("client_datestart2","");
+            info_date_start.setText(client_datestart2);
+
+            String client_dateend2 = sharedPreferences.getString("client_dateend2","");
+            info_date_end.setText(client_dateend2);
+
+            String client_email2 = sharedPreferences.getString("client_email2","");
+            info_email.setText(client_email2);
+
+            String client_pay2 = sharedPreferences.getString("client_pay2","");
+            info_pay.setText(client_pay2 + " Грн.");
+
+            String client_zastava2 = sharedPreferences.getString("client_zastava2","");
+            info_zastava.setText(client_zastava2 + " Грн.");
+
+            if(info_name.length()>0){
+
+                addphoto.setVisibility(View.VISIBLE);
+                info_pay.setVisibility(View.VISIBLE);
+                call.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
+                money.setVisibility(View.VISIBLE);
+                imageView4.setVisibility(View.VISIBLE);
+                textView9.setVisibility(View.VISIBLE);
+                info_surname.setVisibility(View.VISIBLE);
+                textView11.setVisibility(View.VISIBLE);
+                info_name.setVisibility(View.VISIBLE);
+                textView13.setVisibility(View.VISIBLE);
+                info_patronymic.setVisibility(View.VISIBLE);
+                textView14.setVisibility(View.VISIBLE);
+                info_number.setVisibility(View.VISIBLE);
+                textView15.setVisibility(View.VISIBLE);
+                info_date_start.setVisibility(View.VISIBLE);
+                textView16.setVisibility(View.VISIBLE);
+                info_date_end.setVisibility(View.VISIBLE);
+                textView20.setVisibility(View.VISIBLE);
+                info_zastava.setVisibility(View.VISIBLE);
+
+                add_client.setVisibility(View.INVISIBLE);
+                find_client.setVisibility(View.INVISIBLE);
+
+                delete_client.setVisibility(View.VISIBLE);
+
+
+            }else {
+
+                addphoto.setVisibility(View.INVISIBLE);
+                info_pay.setVisibility(View.INVISIBLE);
+                call.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
+                money.setVisibility(View.INVISIBLE);
+                imageView4.setVisibility(View.INVISIBLE);
+                textView9.setVisibility(View.INVISIBLE);
+                info_surname.setVisibility(View.INVISIBLE);
+                textView11.setVisibility(View.INVISIBLE);
+                info_name.setVisibility(View.INVISIBLE);
+                textView13.setVisibility(View.INVISIBLE);
+                info_patronymic.setVisibility(View.INVISIBLE);
+                textView14.setVisibility(View.INVISIBLE);
+                info_number.setVisibility(View.INVISIBLE);
+                textView15.setVisibility(View.INVISIBLE);
+                info_date_start.setVisibility(View.INVISIBLE);
+                textView16.setVisibility(View.INVISIBLE);
+                info_date_end.setVisibility(View.INVISIBLE);
+                textView20.setVisibility(View.INVISIBLE);
+                info_zastava.setVisibility(View.INVISIBLE);
+
+                add_client.setVisibility(View.VISIBLE);
+                find_client.setVisibility(View.VISIBLE);
+
+                delete_client.setVisibility(View.INVISIBLE);
+
+            }
 
 
             add_client.setOnClickListener(v -> {
@@ -708,27 +916,55 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
             delete_client.setOnClickListener(v -> {
 
                 info_surname.setText("");
+                String client_surname = info_surname.getText().toString();
+
                 info_name.setText("");
+                String client_name = info_name.getText().toString();
+
                 info_patronymic.setText("");
+                String client_patronymic = info_patronymic.getText().toString();
+
                 info_number.setText("");
+                String client_number = info_number.getText().toString();
+
                 info_date_start.setText("");
+                String client_datestart = info_date_start.getText().toString();
+
                 info_date_end.setText("");
+                String client_dateend = info_date_end.getText().toString();
+
                 info_pay.setText("");
+                String client_pay = info_pay.getText().toString();
+
+                info_zastava.setText("");
+                String client_zastava = info_zastava.getText().toString();
+
+                textView20.setVisibility(View.INVISIBLE);
+                call.setVisibility(View.INVISIBLE);
+                money.setVisibility(View.INVISIBLE);
+                addphoto.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name2",client_name);
+                editor.putString("client_surname2",client_surname);
+                editor.putString("client_patronymic2",client_patronymic);
+                editor.putString("client_number2",client_number);
+                editor.putString("client_datestart2",client_datestart);
+                editor.putString("client_dateend2",client_dateend);
+                editor.putString("client_pay2",client_pay);
+                editor.putString("client_zastava2",client_zastava);
+
+                editor.apply();
 
                 delete_client.setVisibility(View.INVISIBLE);
                 find_client.setVisibility(View.VISIBLE);
                 add_client.setVisibility(View.VISIBLE);
                 info_pay.setVisibility(View.INVISIBLE);
 
-                call.setVisibility(View.INVISIBLE);
-                money.setVisibility(View.INVISIBLE);
-                addphoto.setVisibility(View.INVISIBLE);
-                whatsapp.setVisibility(View.INVISIBLE);
-
                 imageView4.setVisibility(View.INVISIBLE);
 
-                info_zastava.setText("");
-                textView20.setVisibility(View.INVISIBLE);
                 textView9.setVisibility(View.INVISIBLE);
                 textView11.setVisibility(View.INVISIBLE);
                 textView13.setVisibility(View.INVISIBLE);
@@ -745,6 +981,9 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 info_date_end.setVisibility(View.INVISIBLE);
                 info_zastava.setVisibility(View.INVISIBLE);
 
+                image_client.setVisibility(View.INVISIBLE);
+
+
                 Toast toast = Toast.makeText(getApplicationContext(), "Орендаря видалено!", Toast.LENGTH_SHORT);
                 toast.show();
             });
@@ -753,7 +992,7 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
 
                 Intent imagePick = new Intent(Intent.ACTION_PICK);
                 imagePick.setType("image/*");
-                startActivityForResult(imagePick,0);
+                startActivityForResult(imagePick,02);
 
             });
         }
@@ -792,7 +1031,91 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 }
             });
 
+            String client_name3 = sharedPreferences.getString("client_name3","");
+            info_name.setText(client_name3);
 
+            String client_surname3 = sharedPreferences.getString("client_surname3","");
+            info_surname.setText(client_surname3);
+
+            String client_patronymic3 = sharedPreferences.getString("client_patronymic3","");
+            info_patronymic.setText(client_patronymic3);
+
+            String client_number3 = sharedPreferences.getString("client_number3","");
+            info_number.setText(client_number3);
+
+            String client_datestart3 = sharedPreferences.getString("client_datestart3","");
+            info_date_start.setText(client_datestart3);
+
+            String client_dateend3 = sharedPreferences.getString("client_dateend3","");
+            info_date_end.setText(client_dateend3);
+
+            String client_pay3 = sharedPreferences.getString("client_pay3","");
+            info_pay.setText(client_pay3 + " Грн.");
+
+            String client_email3 = sharedPreferences.getString("client_email3","");
+            info_email.setText(client_email3);
+
+            String client_zastava3 = sharedPreferences.getString("client_zastava3","");
+            info_zastava.setText(client_zastava3 + " Грн.");
+
+            if(info_name.length()>0){
+
+                addphoto.setVisibility(View.VISIBLE);
+                info_pay.setVisibility(View.VISIBLE);
+                call.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
+                money.setVisibility(View.VISIBLE);
+                imageView4.setVisibility(View.VISIBLE);
+                textView9.setVisibility(View.VISIBLE);
+                info_surname.setVisibility(View.VISIBLE);
+                textView11.setVisibility(View.VISIBLE);
+                info_name.setVisibility(View.VISIBLE);
+                textView13.setVisibility(View.VISIBLE);
+                info_patronymic.setVisibility(View.VISIBLE);
+                textView14.setVisibility(View.VISIBLE);
+                info_number.setVisibility(View.VISIBLE);
+                textView15.setVisibility(View.VISIBLE);
+                info_date_start.setVisibility(View.VISIBLE);
+                textView16.setVisibility(View.VISIBLE);
+                info_date_end.setVisibility(View.VISIBLE);
+                textView20.setVisibility(View.VISIBLE);
+                info_zastava.setVisibility(View.VISIBLE);
+
+                add_client.setVisibility(View.INVISIBLE);
+                find_client.setVisibility(View.INVISIBLE);
+
+                delete_client.setVisibility(View.VISIBLE);
+
+
+            }else {
+
+                addphoto.setVisibility(View.INVISIBLE);
+                info_pay.setVisibility(View.INVISIBLE);
+                call.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
+                money.setVisibility(View.INVISIBLE);
+                imageView4.setVisibility(View.INVISIBLE);
+                textView9.setVisibility(View.INVISIBLE);
+                info_surname.setVisibility(View.INVISIBLE);
+                textView11.setVisibility(View.INVISIBLE);
+                info_name.setVisibility(View.INVISIBLE);
+                textView13.setVisibility(View.INVISIBLE);
+                info_patronymic.setVisibility(View.INVISIBLE);
+                textView14.setVisibility(View.INVISIBLE);
+                info_number.setVisibility(View.INVISIBLE);
+                textView15.setVisibility(View.INVISIBLE);
+                info_date_start.setVisibility(View.INVISIBLE);
+                textView16.setVisibility(View.INVISIBLE);
+                info_date_end.setVisibility(View.INVISIBLE);
+                textView20.setVisibility(View.INVISIBLE);
+                info_zastava.setVisibility(View.INVISIBLE);
+
+                add_client.setVisibility(View.VISIBLE);
+                find_client.setVisibility(View.VISIBLE);
+
+                delete_client.setVisibility(View.INVISIBLE);
+
+            }
 
             add_client.setOnClickListener(v -> {
                 Intent intent1 = new Intent("new_client3");
@@ -952,24 +1275,52 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
             delete_client.setOnClickListener(v -> {
 
                 info_surname.setText("");
+                String client_surname = info_surname.getText().toString();
+
                 info_name.setText("");
+                String client_name = info_name.getText().toString();
+
                 info_patronymic.setText("");
+                String client_patronymic = info_patronymic.getText().toString();
+
                 info_number.setText("");
+                String client_number = info_number.getText().toString();
+
                 info_date_start.setText("");
+                String client_datestart = info_date_start.getText().toString();
+
                 info_date_end.setText("");
+                String client_dateend = info_date_end.getText().toString();
+
                 info_pay.setText("");
+                String client_pay = info_pay.getText().toString();
+
                 info_zastava.setText("");
+                String client_zastava = info_zastava.getText().toString();
+
                 textView20.setVisibility(View.INVISIBLE);
+                call.setVisibility(View.INVISIBLE);
+                money.setVisibility(View.INVISIBLE);
+                addphoto.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name3",client_name);
+                editor.putString("client_surname3",client_surname);
+                editor.putString("client_patronymic3",client_patronymic);
+                editor.putString("client_number3",client_number);
+                editor.putString("client_datestart3",client_datestart);
+                editor.putString("client_dateend3",client_dateend);
+                editor.putString("client_pay3",client_pay);
+                editor.putString("client_zastava3",client_zastava);
+
+                editor.apply();
 
                 delete_client.setVisibility(View.INVISIBLE);
                 find_client.setVisibility(View.VISIBLE);
                 add_client.setVisibility(View.VISIBLE);
                 info_pay.setVisibility(View.INVISIBLE);
-
-                call.setVisibility(View.INVISIBLE);
-                money.setVisibility(View.INVISIBLE);
-                addphoto.setVisibility(View.INVISIBLE);
-                whatsapp.setVisibility(View.INVISIBLE);
 
                 imageView4.setVisibility(View.INVISIBLE);
 
@@ -989,6 +1340,9 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 info_date_end.setVisibility(View.INVISIBLE);
                 info_zastava.setVisibility(View.INVISIBLE);
 
+                image_client.setVisibility(View.INVISIBLE);
+
+
                 Toast toast = Toast.makeText(getApplicationContext(), "Орендаря видалено!", Toast.LENGTH_SHORT);
                 toast.show();
             });
@@ -997,7 +1351,7 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
 
                 Intent imagePick = new Intent(Intent.ACTION_PICK);
                 imagePick.setType("image/*");
-                startActivityForResult(imagePick,0);
+                startActivityForResult(imagePick,03);
 
             });
         }
@@ -1036,7 +1390,91 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 }
             });
 
+            String client_name4 = sharedPreferences.getString("client_name4","");
+            info_name.setText(client_name4);
 
+            String client_surname4 = sharedPreferences.getString("client_surname4","");
+            info_surname.setText(client_surname4);
+
+            String client_patronymic4 = sharedPreferences.getString("client_patronymic4","");
+            info_patronymic.setText(client_patronymic4);
+
+            String client_number4 = sharedPreferences.getString("client_number4","");
+            info_number.setText(client_number4);
+
+            String client_datestart4 = sharedPreferences.getString("client_datestart4","");
+            info_date_start.setText(client_datestart4);
+
+            String client_dateend4 = sharedPreferences.getString("client_dateend4","");
+            info_date_end.setText(client_dateend4);
+
+            String client_email4 = sharedPreferences.getString("client_email4","");
+            info_email.setText(client_email4);
+
+            String client_pay4 = sharedPreferences.getString("client_pay4","");
+            info_pay.setText(client_pay4 + " Грн.");
+
+            String client_zastava4 = sharedPreferences.getString("client_zastava4","");
+            info_zastava.setText(client_zastava4 + " Грн.");
+
+            if(info_name.length()>0){
+
+                addphoto.setVisibility(View.VISIBLE);
+                info_pay.setVisibility(View.VISIBLE);
+                call.setVisibility(View.VISIBLE);
+                whatsapp.setVisibility(View.VISIBLE);
+                money.setVisibility(View.VISIBLE);
+                imageView4.setVisibility(View.VISIBLE);
+                textView9.setVisibility(View.VISIBLE);
+                info_surname.setVisibility(View.VISIBLE);
+                textView11.setVisibility(View.VISIBLE);
+                info_name.setVisibility(View.VISIBLE);
+                textView13.setVisibility(View.VISIBLE);
+                info_patronymic.setVisibility(View.VISIBLE);
+                textView14.setVisibility(View.VISIBLE);
+                info_number.setVisibility(View.VISIBLE);
+                textView15.setVisibility(View.VISIBLE);
+                info_date_start.setVisibility(View.VISIBLE);
+                textView16.setVisibility(View.VISIBLE);
+                info_date_end.setVisibility(View.VISIBLE);
+                textView20.setVisibility(View.VISIBLE);
+                info_zastava.setVisibility(View.VISIBLE);
+
+                add_client.setVisibility(View.INVISIBLE);
+                find_client.setVisibility(View.INVISIBLE);
+
+                delete_client.setVisibility(View.VISIBLE);
+
+
+            }else {
+
+                addphoto.setVisibility(View.INVISIBLE);
+                info_pay.setVisibility(View.INVISIBLE);
+                call.setVisibility(View.INVISIBLE);
+                whatsapp.setVisibility(View.INVISIBLE);
+                money.setVisibility(View.INVISIBLE);
+                imageView4.setVisibility(View.INVISIBLE);
+                textView9.setVisibility(View.INVISIBLE);
+                info_surname.setVisibility(View.INVISIBLE);
+                textView11.setVisibility(View.INVISIBLE);
+                info_name.setVisibility(View.INVISIBLE);
+                textView13.setVisibility(View.INVISIBLE);
+                info_patronymic.setVisibility(View.INVISIBLE);
+                textView14.setVisibility(View.INVISIBLE);
+                info_number.setVisibility(View.INVISIBLE);
+                textView15.setVisibility(View.INVISIBLE);
+                info_date_start.setVisibility(View.INVISIBLE);
+                textView16.setVisibility(View.INVISIBLE);
+                info_date_end.setVisibility(View.INVISIBLE);
+                textView20.setVisibility(View.INVISIBLE);
+                info_zastava.setVisibility(View.INVISIBLE);
+
+                add_client.setVisibility(View.VISIBLE);
+                find_client.setVisibility(View.VISIBLE);
+
+                delete_client.setVisibility(View.INVISIBLE);
+
+            }
 
             add_client.setOnClickListener(v -> {
                 Intent intent1 = new Intent("new_client4");
@@ -1195,19 +1633,47 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
             delete_client.setOnClickListener(v -> {
 
                 info_surname.setText("");
-                info_name.setText("");
-                info_patronymic.setText("");
-                info_number.setText("");
-                info_date_start.setText("");
-                info_date_end.setText("");
-                info_pay.setText("");
-                info_zastava.setText("");
-                textView20.setVisibility(View.INVISIBLE);
+                String client_surname = info_surname.getText().toString();
 
+                info_name.setText("");
+                String client_name = info_name.getText().toString();
+
+                info_patronymic.setText("");
+                String client_patronymic = info_patronymic.getText().toString();
+
+                info_number.setText("");
+                String client_number = info_number.getText().toString();
+
+                info_date_start.setText("");
+                String client_datestart = info_date_start.getText().toString();
+
+                info_date_end.setText("");
+                String client_dateend = info_date_end.getText().toString();
+
+                info_pay.setText("");
+                String client_pay = info_pay.getText().toString();
+
+                info_zastava.setText("");
+                String client_zastava = info_zastava.getText().toString();
+
+                textView20.setVisibility(View.INVISIBLE);
                 call.setVisibility(View.INVISIBLE);
                 money.setVisibility(View.INVISIBLE);
                 addphoto.setVisibility(View.INVISIBLE);
                 whatsapp.setVisibility(View.INVISIBLE);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name4",client_name);
+                editor.putString("client_surname4",client_surname);
+                editor.putString("client_patronymic4",client_patronymic);
+                editor.putString("client_number4",client_number);
+                editor.putString("client_datestart4",client_datestart);
+                editor.putString("client_dateend4",client_dateend);
+                editor.putString("client_pay4",client_pay);
+                editor.putString("client_zastava4",client_zastava);
+
+                editor.apply();
 
                 delete_client.setVisibility(View.INVISIBLE);
                 find_client.setVisibility(View.VISIBLE);
@@ -1232,6 +1698,9 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 info_date_end.setVisibility(View.INVISIBLE);
                 info_zastava.setVisibility(View.INVISIBLE);
 
+                image_client.setVisibility(View.INVISIBLE);
+
+
                 Toast toast = Toast.makeText(getApplicationContext(), "Орендаря видалено!", Toast.LENGTH_SHORT);
                 toast.show();
             });
@@ -1240,7 +1709,7 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
 
                 Intent imagePick = new Intent(Intent.ACTION_PICK);
                 imagePick.setType("image/*");
-                startActivityForResult(imagePick,0);
+                startActivityForResult(imagePick,04);
 
             });
         }
@@ -1343,7 +1812,7 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 0) {
+        if(requestCode == 01) {
 
             if(resultCode == RESULT_OK){
                 try {
@@ -1359,9 +1828,104 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                     e.printStackTrace();
                 }
 
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                String addorno = "1";
+                editor.putString("addorno1",addorno);
+
+                editor.apply();
+
                 addphoto.setVisibility(View.INVISIBLE);
                 image_client.setVisibility(View.VISIBLE);
                 delphoto_client.setVisibility(View.VISIBLE);
+            }
+        }
+
+        if(requestCode == 02) {
+
+            if(resultCode == RESULT_OK){
+                try {
+
+                    //Получаем URI изображения, преобразуем его в Bitmap
+                    //объект и отображаем в элементе ImageView нашего интерфейса:
+                    final Uri imageUri =  data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    image_client.setImageBitmap(selectedImage);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                String addorno = "1";
+                editor.putString("addorno2",addorno);
+
+                editor.apply();
+
+                addphoto.setVisibility(View.INVISIBLE);
+                image_client.setVisibility(View.VISIBLE);
+                delphoto_client.setVisibility(View.VISIBLE);
+            }
+        }
+
+        if(requestCode == 03) {
+
+            if(resultCode == RESULT_OK){
+                try {
+
+                    //Получаем URI изображения, преобразуем его в Bitmap
+                    //объект и отображаем в элементе ImageView нашего интерфейса:
+                    final Uri imageUri =  data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    image_client.setImageBitmap(selectedImage);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                String addorno = "1";
+                editor.putString("addorno3",addorno);
+
+                editor.apply();
+
+                addphoto.setVisibility(View.INVISIBLE);
+                image_client.setVisibility(View.VISIBLE);
+                delphoto_client.setVisibility(View.VISIBLE);
+            }
+        }
+
+        if(requestCode == 04) {
+
+            if(resultCode == RESULT_OK){
+                try {
+
+                    //Получаем URI изображения, преобразуем его в Bitmap
+                    //объект и отображаем в элементе ImageView нашего интерфейса:
+                    final Uri imageUri =  data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    image_client.setImageBitmap(selectedImage);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                String addorno = "1";
+                editor.putString("addorno4",addorno);
+
+                editor.apply();
+
+                addphoto.setVisibility(View.INVISIBLE);
+                image_client.setVisibility(View.VISIBLE);
+                delphoto_client.setVisibility(View.VISIBLE);
+
             }
         }
 
@@ -1729,6 +2293,23 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 String client_zastava = data.getStringExtra("zastava1");
                 info_zastava.setText(client_zastava + " Грн.");
 
+                String client_email = data.getStringExtra("email1");
+                info_email.setText(client_email);
+
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name1",client_name);
+                editor.putString("client_surname1",client_surname);
+                editor.putString("client_patronymic1",client_patronymic);
+                editor.putString("client_number1",client_number);
+                editor.putString("client_datestart1",client_datestart);
+                editor.putString("client_dateend1",client_dateend);
+                editor.putString("client_pay1",client_pay);
+                editor.putString("client_zastava1",client_zastava);
+                editor.putString("client_email1",client_email);
+
+                editor.apply();
 
 
                 delete_client.setVisibility(View.VISIBLE);
@@ -1792,6 +2373,24 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 String client_zastava = data.getStringExtra("zastava2");
                 info_zastava.setText(client_zastava + " Грн.");
 
+                String client_email = data.getStringExtra("email2");
+                info_email.setText(client_email);
+
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name2",client_name);
+                editor.putString("client_surname2",client_surname);
+                editor.putString("client_patronymic2",client_patronymic);
+                editor.putString("client_number2",client_number);
+                editor.putString("client_datestart2",client_datestart);
+                editor.putString("client_dateend2",client_dateend);
+                editor.putString("client_pay2",client_pay);
+                editor.putString("client_zastava2",client_zastava);
+                editor.putString("client_email2",client_email);
+
+                editor.apply();
+
 
                 delete_client.setVisibility(View.VISIBLE);
                 info_pay.setVisibility(View.VISIBLE);
@@ -1853,6 +2452,23 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 String client_zastava = data.getStringExtra("zastava3");
                 info_zastava.setText(client_zastava + " Грн.");
 
+                String client_email = data.getStringExtra("email3");
+                info_email.setText(client_email);
+
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name3",client_name);
+                editor.putString("client_surname3",client_surname);
+                editor.putString("client_patronymic3",client_patronymic);
+                editor.putString("client_number3",client_number);
+                editor.putString("client_datestart3",client_datestart);
+                editor.putString("client_dateend3",client_dateend);
+                editor.putString("client_pay3",client_pay);
+                editor.putString("client_zastava3",client_zastava);
+                editor.putString("client_email3",client_email);
+
+                editor.apply();
 
                 delete_client.setVisibility(View.VISIBLE);
                 info_pay.setVisibility(View.VISIBLE);
@@ -1913,6 +2529,23 @@ public class ActivityApartmentManager extends AppCompatActivity implements View.
                 String client_zastava = data.getStringExtra("zastava4");
                 info_zastava.setText(client_zastava + " Грн.");
 
+                String client_email = data.getStringExtra("email4");
+                info_email.setText(client_email);
+
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name4",client_name);
+                editor.putString("client_surname4",client_surname);
+                editor.putString("client_patronymic4",client_patronymic);
+                editor.putString("client_number4",client_number);
+                editor.putString("client_datestart4",client_datestart);
+                editor.putString("client_dateend4",client_dateend);
+                editor.putString("client_pay4",client_pay);
+                editor.putString("client_zastava4",client_zastava);
+                editor.putString("client_email4",client_email);
+
+                editor.apply();
 
                 delete_client.setVisibility(View.VISIBLE);
                 info_pay.setVisibility(View.VISIBLE);

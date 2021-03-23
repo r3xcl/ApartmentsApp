@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
@@ -23,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
+public class  MainActivity extends AppCompatActivity  implements View.OnClickListener{
 
     SharedPreferences sharedPreferences;
 
@@ -115,7 +116,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         }
 
 
-
         new_home = (ImageButton) findViewById(R.id.new_home);
         new_home.setOnClickListener(this);
 
@@ -131,7 +131,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         bloknot = (ImageButton) findViewById(R.id.bloknot);
         bloknot.setOnClickListener(this);
-
 
 
         allclient = (ImageButton) findViewById(R.id.allclient);
@@ -151,7 +150,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
             }
         });
-
 
 
         add2.setOnClickListener(new View.OnClickListener() {
@@ -187,8 +185,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             }
         });
 
-
-
         new_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,13 +207,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             }
 
             private void createOneDialog(String title) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle(title);
 
+                AlertDialog alertDialog;
 
-
-                builder.setPositiveButton("Видалити",
-                        new DialogInterface.OnClickListener() {
+                alertDialog = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(title)
+                        .setCancelable(true)
+                        .setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 add1.setVisibility(View.VISIBLE);
@@ -225,23 +221,45 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                                 String address1 = add1_text.getText().toString();
 
+                                String client_name = "";
+                                String client_surname = "";
+                                String client_patronymic = "";
+                                String client_number = "";
+                                String client_email = "";
+                                String client_datestart = "";
+                                String client_dateend = "";
+                                String client_pay = "";
+                                String client_zastava = "";
+
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString("client_name1",client_name);
+                                editor.putString("client_surname1",client_surname);
+                                editor.putString("client_patronymic1",client_patronymic);
+                                editor.putString("client_number1",client_number);
+                                editor.putString("client_datestart1",client_datestart);
+                                editor.putString("client_dateend1",client_dateend);
+                                editor.putString("client_pay1",client_pay);
+                                editor.putString("client_zastava1",client_zastava);
+                                editor.putString("client_email1",client_email);
                                 editor.putString("address1",address1);
+
                                 editor.apply();
 
                                 add1_text.setText(address1);
-
                             }
-                        });
-                builder.setNeutralButton("Назад",
-                        new DialogInterface.OnClickListener() {
+                        })
+                        .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                             }
-                        });
+                        }).show();
 
-                builder.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED);
+                alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.RED);
+
+
             }
         });
 
@@ -269,13 +287,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             }
 
             private void createOneDialog(String title) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle(title);
+                AlertDialog alertDialog;
 
-
-
-                builder.setPositiveButton("Видалити",
-                        new DialogInterface.OnClickListener() {
+                alertDialog = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(title)
+                        .setCancelable(true)
+                        .setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 add2.setVisibility(View.VISIBLE);
@@ -283,21 +300,42 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                                 String address2 = add2_text.getText().toString();
 
+                                String client_name = "";
+                                String client_surname = "";
+                                String client_patronymic = "";
+                                String client_number = "";
+                                String client_datestart = "";
+                                String client_dateend = "";
+                                String client_pay = "";
+                                String client_zastava = "";
+                                String client_email = "";
+
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString("client_name2",client_name);
+                                editor.putString("client_surname2",client_surname);
+                                editor.putString("client_patronymic2",client_patronymic);
+                                editor.putString("client_number2",client_number);
+                                editor.putString("client_datestart2",client_datestart);
+                                editor.putString("client_dateend2",client_dateend);
+                                editor.putString("client_pay2",client_pay);
+                                editor.putString("client_zastava2",client_zastava);
                                 editor.putString("address2",address2);
+                                editor.putString("client_email2",client_email);
                                 editor.apply();
 
+                                add2_text.setText(address2);
                             }
-                        });
-                builder.setNeutralButton("Назад",
-                        new DialogInterface.OnClickListener() {
+                        })
+                        .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                             }
-                        });
+                        }).show();
 
-                builder.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED);
+                alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.RED);
             }
         });
 
@@ -324,13 +362,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             }
 
             private void createOneDialog(String title) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle(title);
+                AlertDialog alertDialog;
 
-
-
-                builder.setPositiveButton("Видалити",
-                        new DialogInterface.OnClickListener() {
+                alertDialog = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(title)
+                        .setCancelable(true)
+                        .setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 add3.setVisibility(View.VISIBLE);
@@ -338,21 +375,42 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                                 String address3 = add3_text.getText().toString();
 
+                                String client_name = "";
+                                String client_surname = "";
+                                String client_patronymic = "";
+                                String client_number = "";
+                                String client_datestart = "";
+                                String client_dateend = "";
+                                String client_email = "";
+                                String client_pay = "";
+                                String client_zastava = "";
+
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString("client_name3",client_name);
+                                editor.putString("client_surname3",client_surname);
+                                editor.putString("client_patronymic3",client_patronymic);
+                                editor.putString("client_number3",client_number);
+                                editor.putString("client_datestart3",client_datestart);
+                                editor.putString("client_dateend3",client_dateend);
+                                editor.putString("client_pay3",client_pay);
+                                editor.putString("client_zastava3",client_zastava);
+                                editor.putString("client_email3",client_email);
                                 editor.putString("address3",address3);
                                 editor.apply();
 
+                                add3_text.setText(address3);
                             }
-                        });
-                builder.setNeutralButton("Назад",
-                        new DialogInterface.OnClickListener() {
+                        })
+                        .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                             }
-                        });
+                        }).show();
 
-                builder.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED);
+                alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.RED);
             }
         });
 
@@ -379,13 +437,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             }
 
             private void createOneDialog(String title) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle(title);
+                AlertDialog alertDialog;
 
-
-
-                builder.setPositiveButton("Видалити",
-                        new DialogInterface.OnClickListener() {
+                alertDialog = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(title)
+                        .setCancelable(true)
+                        .setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 add4.setVisibility(View.VISIBLE);
@@ -393,21 +450,42 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                                 String address4 = add4_text.getText().toString();
 
+                                String client_name = "";
+                                String client_surname = "";
+                                String client_patronymic = "";
+                                String client_number = "";
+                                String client_datestart = "";
+                                String client_dateend = "";
+                                String client_pay = "";
+                                String client_email = "";
+                                String client_zastava = "";
+
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString("client_name4",client_name);
+                                editor.putString("client_surname4",client_surname);
+                                editor.putString("client_patronymic4",client_patronymic);
+                                editor.putString("client_number4",client_number);
+                                editor.putString("client_datestart4",client_datestart);
+                                editor.putString("client_dateend4",client_dateend);
+                                editor.putString("client_pay4",client_pay);
+                                editor.putString("client_zastava4",client_zastava);
+                                editor.putString("client_email4",client_email);
                                 editor.putString("address4",address4);
                                 editor.apply();
 
+                                add4_text.setText(address4);
                             }
-                        });
-                builder.setNeutralButton("Назад",
-                        new DialogInterface.OnClickListener() {
+                        })
+                        .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                             }
-                        });
+                        }).show();
 
-                builder.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED);
+                alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.RED);
             }
         });
 
