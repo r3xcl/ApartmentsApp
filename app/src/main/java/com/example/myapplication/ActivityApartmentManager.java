@@ -50,13 +50,19 @@ import com.orhanobut.dialogplus.ViewHolder;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class  ActivityApartmentManager extends AppCompatActivity implements View.OnClickListener {
 
     SharedPreferences sharedPreferences;
+    DatabaseReference reference;
+
+    String _Name,_Surname;
 
     Button add_client, delete_client, find_client;
 
@@ -79,6 +85,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apartment_manager);
         getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+
+
 
         info_address = (TextView) findViewById(R.id.info_address);
         info_patronymic = (TextView) findViewById(R.id.info_patronymic);
@@ -521,6 +529,9 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             delete_client.setOnClickListener(v -> {
 
+
+                date();
+
                 info_surname.setText("");
                 String client_surname = info_surname.getText().toString();
 
@@ -915,6 +926,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             delete_client.setOnClickListener(v -> {
 
+                date();
+
                 info_surname.setText("");
                 String client_surname = info_surname.getText().toString();
 
@@ -1145,6 +1158,39 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             });
 
+            map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(ActivityCompat.checkSelfPermission (ActivityApartmentManager.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(ActivityApartmentManager.this,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION)==
+                                    PackageManager.PERMISSION_GRANTED )
+                    {
+
+                        getCurrentLocation();
+
+                        String sSource = info_address.getText().toString().trim();
+                        String sDestination = textView23.getText().toString().trim();
+
+                        DisplayTrack (sDestination,sSource);
+
+
+                    }
+                    else {
+
+                        ActivityCompat.requestPermissions(ActivityApartmentManager.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION
+                                ,Manifest.permission.ACCESS_COARSE_LOCATION},100);
+
+
+
+                    }
+
+                }
+
+            });
+
 
 
             apartment_edit.setOnClickListener(v -> {
@@ -1273,6 +1319,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             });
 
             delete_client.setOnClickListener(v -> {
+
+                date();
 
                 info_surname.setText("");
                 String client_surname = info_surname.getText().toString();
@@ -1504,6 +1552,39 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             });
 
+            map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(ActivityCompat.checkSelfPermission (ActivityApartmentManager.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(ActivityApartmentManager.this,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION)==
+                                    PackageManager.PERMISSION_GRANTED )
+                    {
+
+                        getCurrentLocation();
+
+                        String sSource = info_address.getText().toString().trim();
+                        String sDestination = textView23.getText().toString().trim();
+
+                        DisplayTrack (sDestination,sSource);
+
+
+                    }
+                    else {
+
+                        ActivityCompat.requestPermissions(ActivityApartmentManager.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION
+                                ,Manifest.permission.ACCESS_COARSE_LOCATION},100);
+
+
+
+                    }
+
+                }
+
+            });
+
             apartment_edit.setOnClickListener(v -> {
 
                 DialogPlus dialogPlus = DialogPlus.newDialog(this)
@@ -1631,6 +1712,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             });
 
             delete_client.setOnClickListener(v -> {
+
+                date();
 
                 info_surname.setText("");
                 String client_surname = info_surname.getText().toString();
@@ -1948,6 +2031,9 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 String client_date_start = data.getStringExtra("client_datestart1");
                 info_date_start.setText(client_date_start);
 
+                String client_email = data.getStringExtra("client_email1");
+                info_email.setText(client_email);
+
                 String client_date_end = data.getStringExtra("client_dateend1");
                 info_date_end.setText(client_date_end);
 
@@ -1956,6 +2042,21 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                 String client_zastava = data.getStringExtra("client_info1");
                 info_zastava.setText(client_zastava + " Грн.");
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name1",client_name);
+                editor.putString("client_surname1",client_surname);
+                editor.putString("client_patronymic1",client_patronymic);
+                editor.putString("client_number1",client_number);
+                editor.putString("client_datestart1",client_date_start);
+                editor.putString("client_dateend1",client_date_end);
+                editor.putString("client_pay1",client_pay);
+                editor.putString("client_zastava1",client_zastava);
+                editor.putString("client_email1",client_email);
+
+
+                editor.apply();
 
 
                 delete_client.setVisibility(View.VISIBLE);
@@ -2010,11 +2111,32 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 String client_date_start = data.getStringExtra("client_datestart2");
                 info_date_start.setText(client_date_start);
 
+                String client_date_end = data.getStringExtra("client_dateend2");
+                info_date_end.setText(client_date_end);
+
+                String client_email = data.getStringExtra("client_email2");
+                info_email.setText(client_email);
+
                 String client_pay = data.getStringExtra("client_pay2");
                 info_pay.setText(client_pay + " Грн.");
 
                 String client_zastava = data.getStringExtra("client_info2");
                 info_zastava.setText(client_zastava + " Грн.");
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name2",client_name);
+                editor.putString("client_surname2",client_surname);
+                editor.putString("client_patronymic2",client_patronymic);
+                editor.putString("client_number2",client_number);
+                editor.putString("client_datestart2",client_date_start);
+                editor.putString("client_dateend2",client_date_end);
+                editor.putString("client_pay2",client_pay);
+                editor.putString("client_zastava2",client_zastava);
+                editor.putString("client_email2",client_email);
+
+
+                editor.apply();
 
 
                 delete_client.setVisibility(View.VISIBLE);
@@ -2068,11 +2190,32 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 String client_date_start = data.getStringExtra("client_datestart3");
                 info_date_start.setText(client_date_start);
 
+                String client_date_end = data.getStringExtra("client_dateend3");
+                info_date_end.setText(client_date_end);
+
+                String client_email = data.getStringExtra("client_email3");
+                info_email.setText(client_email);
+
                 String client_pay = data.getStringExtra("client_pay3");
                 info_pay.setText(client_pay + " Грн.");
 
                 String client_zastava = data.getStringExtra("client_info3");
                 info_zastava.setText(client_zastava + " Грн.");
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name3",client_name);
+                editor.putString("client_surname3",client_surname);
+                editor.putString("client_patronymic3",client_patronymic);
+                editor.putString("client_number3",client_number);
+                editor.putString("client_datestart3",client_date_start);
+                editor.putString("client_dateend3",client_date_end);
+                editor.putString("client_pay3",client_pay);
+                editor.putString("client_zastava3",client_zastava);
+                editor.putString("client_email3",client_email);
+
+
+                editor.apply();
 
                 delete_client.setVisibility(View.VISIBLE);
                 find_client.setVisibility(View.INVISIBLE);
@@ -2125,11 +2268,33 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 String client_date_start = data.getStringExtra("client_datestart4");
                 info_date_start.setText(client_date_start);
 
+                String client_date_end = data.getStringExtra("client_dateend4");
+                info_date_end.setText(client_date_end);
+
+                String client_email = data.getStringExtra("client_email4");
+                info_email.setText(client_email);
+
                 String client_pay = data.getStringExtra("client_pay4");
                 info_pay.setText(client_pay + " Грн.");
 
                 String client_zastava = data.getStringExtra("client_info4");
                 info_zastava.setText(client_zastava + " Грн.");
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("client_name4",client_name);
+                editor.putString("client_surname4",client_surname);
+                editor.putString("client_patronymic4",client_patronymic);
+                editor.putString("client_number4",client_number);
+                editor.putString("client_datestart4",client_date_start);
+                editor.putString("client_dateend4",client_date_end);
+                editor.putString("client_pay4",client_pay);
+                editor.putString("client_zastava4",client_zastava);
+                editor.putString("client_email4",client_email);
+
+
+                editor.apply();
+
 
                 delete_client.setVisibility(View.VISIBLE);
                 find_client.setVisibility(View.INVISIBLE);
@@ -2614,5 +2779,28 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
     }
 
 
+    private  boolean date(){
+
+
+        _Name = info_name.getText().toString();
+        _Surname = info_surname.getText().toString();
+
+        String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+        if(_Name.equals(info_name.getText().toString())){
+
+            reference.child(_Name + _Surname).child("dateend").setValue(date);
+
+            return true;
+
+        }else {
+
+            return  false;
+
+        }
+
+    }
 
 }

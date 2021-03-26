@@ -80,6 +80,10 @@ public class Fragment_Repair3 extends Fragment {
         amount_repair = (TextView) view.findViewById(R.id.amount_repair);
         amountall = (TextView) view.findViewById(R.id.amount);
 
+        amount_repair.setText(""+0);
+        amount_pay.setText(""+0);
+        amountall.setText(""+0+" Грн.");
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
         Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment3");
@@ -94,6 +98,16 @@ public class Fragment_Repair3 extends Fragment {
                         sum = sum + amount;
 
                         amount_pay.setText(""+sum);
+
+                        if(amount_pay.getText().toString()==""){
+
+                            amount_pay.setText(""+0);
+
+                        }
+
+
+                        int p = Integer.parseInt(amount_pay.getText().toString());
+                        amountall.setText(""+(p) + " Грн.");
                     }
 
                 }
@@ -117,6 +131,18 @@ public class Fragment_Repair3 extends Fragment {
                         sum = sum + amount;
 
                         amount_repair.setText(""+sum);
+
+                        if(amount_pay.getText().toString()==""){
+
+                            amount_pay.setText(""+0);
+
+                        }
+
+                        if (amount_repair.getText().toString()==""){
+
+                            amount_repair.setText(""+0);
+
+                        }
 
                         int p = Integer.parseInt(amount_pay.getText().toString());
                         int r = Integer.parseInt(amount_repair.getText().toString());

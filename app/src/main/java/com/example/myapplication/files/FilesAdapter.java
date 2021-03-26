@@ -1,12 +1,17 @@
 package com.example.myapplication.files;
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +22,10 @@ import com.example.myapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
 public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAdapter.myviewholder> {
 
@@ -29,6 +38,8 @@ public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAda
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull FileInfoModel model) {
 
         holder.header.setText(model.getFileName());
+        holder.link.setText(model.getFileUrl());
+
 
 
         holder.img1.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +52,15 @@ public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAda
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.img1.getContext().startActivity(intent);
+            }
+        });
+
+        holder.down_files.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                downloadFile(holder.header.getContext(),model.getFileName(),".pdf",DIRECTORY_DOWNLOADS,model.getFileUrl());
+
             }
         });
 
@@ -67,10 +87,31 @@ public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAda
                     }
                 });
 
-                builder.show();
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                Button color = alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+                color.setTextColor(Color.RED);
+
+                Button color1 = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                color1.setTextColor(Color.RED);
             }
         });
     }
+
+    public void downloadFile(Context context, String fileName, String fileExtension, String destinationDirectory, String url) {
+
+        DownloadManager downloadmanager = (DownloadManager) context.
+                getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(url);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, fileName + fileExtension);
+
+        downloadmanager.enqueue(request);
+    }
+
 
     @NonNull
     @Override
@@ -83,8 +124,9 @@ public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAda
       class myviewholder extends RecyclerView.ViewHolder {
 
         ImageView img1;
-        TextView header;
+        TextView header,link;
         ImageView del;
+        ImageButton down_files;
 
         public myviewholder(@NonNull View itemView)
         {
@@ -92,6 +134,9 @@ public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAda
 
             img1=itemView.findViewById(R.id.img1);
             header=itemView.findViewById(R.id.header);
+            link=itemView.findViewById(R.id.link);
+
+            down_files = itemView.findViewById(R.id.download_files);
 
             del = itemView.findViewById(R.id.delete_file);
 

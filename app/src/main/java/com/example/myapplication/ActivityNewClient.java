@@ -96,7 +96,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                              if(mon > 12) mon = 12;
                              cal.set(Calendar.MONTH, mon-1);
 
-                             year = (year<1900)?1900:(year>2100)?2100:year;
+                             year = (year<1900)?1900:(year>9999)?9999:year;
                              cal.set(Calendar.YEAR, year);
 
 
@@ -161,7 +161,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                              if(mon > 12) mon = 12;
                              cal.set(Calendar.MONTH, mon-1);
 
-                             year = (year<1900)?1900:(year>2100)?2100:year;
+                             year = (year<1900)?1900:(year>9999)?9999:year;
                              cal.set(Calendar.YEAR, year);
 
 
@@ -244,7 +244,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
                 if(dateE.compareTo(dateS)<0) {
 
-                    Toast.makeText(ActivityNewClient.this, "Дата початку оренди більша!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityNewClient.this, "Початок оренди не може бути раніше завершення!", Toast.LENGTH_LONG).show();
                 }
                 else {
 
@@ -263,7 +263,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         intent.putExtra("client_email1", client_email.getText().toString());
 
 
-                        String id = myDataBase.getKey();
+                        String id = client_name.getText().toString() + client_surname.getText().toString();
                         String surname = client_surname.getText().toString();
                         String name = client_name.getText().toString();
                         String patronymic = client_patronymic.getText().toString();
@@ -276,7 +276,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
 
                         ClientClass newClient = new ClientClass(id, surname, name, patronymic, number,email, datestart, dateend, pay, zastava);
-                        myDataBase.push().setValue(newClient);
+                        myDataBase.child(id).setValue(newClient);
 
                         intent.putExtra("11", 11);
                         setResult(RESULT_OK, intent);
@@ -313,7 +313,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
                 if(dateE.compareTo(dateS)<0) {
 
-                    Toast.makeText(ActivityNewClient.this, "Дата початку оренди більша!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityNewClient.this, "Початок оренди не може бути раніше завершення!", Toast.LENGTH_LONG).show();
                 }
                 else {
 
@@ -335,7 +335,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         intent.putExtra("client_email2", client_email.getText().toString());
 
 
-                        String id = myDataBase.getKey();
+                        String id = client_name.getText().toString() + client_surname.getText().toString();
                         String surname = client_surname.getText().toString();
                         String name = client_name.getText().toString();
                         String patronymic = client_patronymic.getText().toString();
@@ -348,7 +348,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
 
                         ClientClass newClient = new ClientClass(id, surname, name, patronymic, number,email, datestart, dateend, pay, zastava);
-                        myDataBase.push().setValue(newClient);
+                        myDataBase.child(id).setValue(newClient);
 
                         intent.putExtra("22", 22);
                         setResult(RESULT_OK, intent);
@@ -385,7 +385,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
                 if(dateE.compareTo(dateS)<0) {
 
-                    Toast.makeText(ActivityNewClient.this, "Дата початку оренди більша!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityNewClient.this, "Початок оренди не може бути раніше завершення!", Toast.LENGTH_LONG).show();
                 }
                 else {
 
@@ -404,7 +404,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         intent.putExtra("client_email3", client_email.getText().toString());
 
 
-                        String id = myDataBase.getKey();
+                        String id = client_name.getText().toString() + client_surname.getText().toString();
                         String surname = client_surname.getText().toString();
                         String name = client_name.getText().toString();
                         String patronymic = client_patronymic.getText().toString();
@@ -417,7 +417,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
 
                         ClientClass newClient = new ClientClass(id, surname, name, patronymic, number,email, datestart, dateend, pay, zastava);
-                        myDataBase.push().setValue(newClient);
+                        myDataBase.child(id).setValue(newClient);
 
                         intent.putExtra("33", 33);
                         setResult(RESULT_OK, intent);
@@ -454,7 +454,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
                 if(dateE.compareTo(dateS)<0) {
 
-                    Toast.makeText(ActivityNewClient.this, "Дата початку оренди більша!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityNewClient.this, "Початок оренди не може бути раніше завершення!", Toast.LENGTH_LONG).show();
                 }
                 else {
 
@@ -473,7 +473,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         intent.putExtra("client_email4", client_email.getText().toString());
 
 
-                        String id = myDataBase.getKey();
+                        String id = client_name.getText().toString() + client_surname.getText().toString();
                         String surname = client_surname.getText().toString();
                         String name = client_name.getText().toString();
                         String patronymic = client_patronymic.getText().toString();
@@ -486,7 +486,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
 
                         ClientClass newClient = new ClientClass(id, surname, name, patronymic, number,email, datestart, dateend, pay, zastava);
-                        myDataBase.push().setValue(newClient);
+                        myDataBase.child(id).setValue(newClient);
 
                         intent.putExtra("44", 44);
                         setResult(RESULT_OK, intent);

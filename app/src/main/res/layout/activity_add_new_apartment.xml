@@ -52,14 +52,14 @@
         android:background="@drawable/style_activity2_add"
         android:ems="10"
         android:hint="Кількість кімнат"
-        android:inputType="numberSigned"
+        android:inputType="number"
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.309" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <EditText
         android:id="@+id/edit_address"
@@ -127,7 +127,7 @@
         android:background="@drawable/style_activity2_add"
         android:ems="10"
         android:hint="Поверх"
-        android:inputType="numberSigned"
+        android:inputType="number"
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
+                android:layout_marginStart="8dp"
                 android:text=" Назва"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/surname_edit"
@@ -37,9 +38,11 @@
             <EditText
                 android:id="@+id/name_edit_pay"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button"
                 android:hint="Назва"
@@ -58,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
+                android:layout_marginStart="8dp"
                 android:text=" Сума"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -70,8 +74,9 @@
             <EditText
                 android:id="@+id/sum_edit_pay"
                 android:layout_width="match_parent"
-
-                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_height="45dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5sp"
                 android:layout_marginRight="5dp"
@@ -93,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
                 android:text=" Дата"
+                android:layout_marginStart="8dp"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +110,9 @@
             <EditText
                 android:id="@+id/date_edit_pay"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5sp"
                 android:layout_marginRight="5dp"
@@ -120,6 +128,11 @@
                 app:layout_constraintTop_toTopOf="@+id/textView12"
                 app:layout_constraintVertical_bias="0.229" />
 
+
+            <TextView
+                android:id="@+id/textView40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/update_pay"
@@ -138,6 +151,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView12"
                 app:layout_constraintVertical_bias="0.434" />
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>

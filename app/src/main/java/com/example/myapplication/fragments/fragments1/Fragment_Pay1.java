@@ -93,6 +93,10 @@ public class Fragment_Pay1 extends Fragment implements View.OnClickListener{
         amount_repair = (TextView) view.findViewById(R.id.amount_repair);
         amountall = (TextView) view.findViewById(R.id.amount);
 
+        amount_repair.setText(""+0);
+        amount_pay.setText(""+0);
+        amountall.setText(""+0+" Грн.");
+
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -109,6 +113,16 @@ public class Fragment_Pay1 extends Fragment implements View.OnClickListener{
                         sum = sum + amount;
 
                         amount_pay.setText(""+sum);
+
+                        if(amount_pay.getText().toString()==""){
+
+                            amount_pay.setText(""+0+" Грн.");
+
+                        }
+
+
+                        int p = Integer.parseInt(amount_pay.getText().toString());
+                        amountall.setText(""+(p) + " Грн.");
                     }
 
                 }
@@ -132,6 +146,18 @@ public class Fragment_Pay1 extends Fragment implements View.OnClickListener{
                         sum = sum + amount;
 
                         amount_repair.setText(""+sum);
+
+                        if(amount_pay.getText().toString()==""){
+
+                            amount_pay.setText(""+0);
+
+                        }
+
+                        if (amount_repair.getText().toString()==""){
+
+                            amount_repair.setText(""+0);
+
+                        }
 
                         int p = Integer.parseInt(amount_pay.getText().toString());
                         int r = Integer.parseInt(amount_repair.getText().toString());
