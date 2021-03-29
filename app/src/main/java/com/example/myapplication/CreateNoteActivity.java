@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.content.AsyncQueryHandler;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.content.AsyncTaskLoader;
 
 import com.example.myapplication.note.Note;
 import com.example.myapplication.note.NotesDatabase;
@@ -28,6 +30,7 @@ public class CreateNoteActivity extends AppCompatActivity {
 
     private EditText inputNoteTitle,inputNoteSubtitle,inputNoteText;
     private TextView textDataTime;
+    private ImageView delNote;
 
     private Note alreadyAvailableNote;
 
@@ -49,6 +52,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         inputNoteSubtitle = findViewById(R.id.inputNoteSubtitle);
         inputNoteTitle = findViewById(R.id.inputNoteTitle);
         inputNoteText = findViewById(R.id.inputNoteText);
+        delNote = findViewById(R.id.imageView14);
 
         textDataTime = findViewById(R.id.textDateTime);
 
@@ -77,12 +81,47 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         }
 
+        if(alreadyAvailableNote!= null){
+
+            delNote.setVisibility(View.VISIBLE);
+            delNote.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    class DeleteNote extends AsyncTask<Void,Void,Void>{
+
+
+                        @Override
+                        protected Void doInBackground(Void... voids) {
+                            NotesDatabase.getDataBase(getApplicationContext()).noteDao().deleteNote(alreadyAvailableNote);
+                            return null;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Void aVoid){
+
+                            super.onPostExecute(aVoid);
+                            Intent intent = new Intent();
+                            intent.putExtra("isNoteDel",true);
+                            setResult(RESULT_OK,intent);
+                            finish();
+
+                        }
+                    }
+                    new DeleteNote().execute();
+                }
+            });
+
+        }
+
     }
 
 
     private void setViewUpdateNote(){
 
 
+        inputNoteSubtitle.setText(alreadyAvailableNote.getSubtitle());
+        inputNoteText.setText(alreadyAvailableNote.getNoteText());
+        inputNoteTitle.setText(alreadyAvailableNote.getTitle());
 
 
     }
@@ -103,11 +142,19 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         }
 
+
+
         final Note note = new Note();
         note.setTitle(inputNoteTitle.getText().toString());
         note.setSubtitle(inputNoteSubtitle.getText().toString());
         note.setNoteText(inputNoteText.getText().toString());
         note.setDateTime(textDataTime.getText().toString());
+
+        if(alreadyAvailableNote!=null){
+
+            note.setId(alreadyAvailableNote.getId());
+
+        }
 
         @SuppressLint("StaticFieldLeak")
         class  SaveNoteTask extends AsyncTask<Void,Void,Void>{

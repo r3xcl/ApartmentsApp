@@ -13,6 +13,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,6 +44,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-storage:19.2.1'
 
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
     compile 'com.github.jintin:MixAdapter:1.1'
 
     implementation 'com.google.firebase:firebase-database:19.6.0'
@@ -69,6 +72,11 @@ dependencies {
     implementation "com.makeramen:roundedimageview:2.3.0"
 
     implementation 'com.karumi:dexter:6.2.1'
+
+    implementation 'com.android.support:multidex:1.0.3'
+
+    def lottieVersion = "3.6.1"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 
     dependencies {
         implementation 'com.github.mohammadatif:Animatoo:master'

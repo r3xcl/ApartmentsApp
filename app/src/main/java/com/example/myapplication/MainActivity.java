@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
@@ -244,6 +245,11 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 editor.putString("client_email1",client_email);
                                 editor.putString("address1",address1);
 
+                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                                SharedPreferences.Editor editor1 = preferences.edit();
+                                editor1.putString("image1",null);
+                                editor1.commit();
+
                                 editor.apply();
 
                                 add1_text.setText(address1);
@@ -322,6 +328,12 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 editor.putString("client_zastava2",client_zastava);
                                 editor.putString("address2",address2);
                                 editor.putString("client_email2",client_email);
+
+                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                                SharedPreferences.Editor editor1 = preferences.edit();
+                                editor1.putString("image2",null);
+                                editor1.commit();
+
                                 editor.apply();
 
                                 add2_text.setText(address2);
@@ -397,6 +409,12 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 editor.putString("client_zastava3",client_zastava);
                                 editor.putString("client_email3",client_email);
                                 editor.putString("address3",address3);
+
+                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                                SharedPreferences.Editor editor1 = preferences.edit();
+                                editor1.putString("image3",null);
+                                editor1.commit();
+
                                 editor.apply();
 
                                 add3_text.setText(address3);
@@ -472,6 +490,12 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 editor.putString("client_zastava4",client_zastava);
                                 editor.putString("client_email4",client_email);
                                 editor.putString("address4",address4);
+
+                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                                SharedPreferences.Editor editor1 = preferences.edit();
+                                editor1.putString("image4",null);
+                                editor1.commit();
+
                                 editor.apply();
 
                                 add4_text.setText(address4);

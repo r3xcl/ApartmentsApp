@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +30,7 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__repairs);
+        setContentView(R.layout.activity_repairs);
 
         getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
 
@@ -75,7 +74,7 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
                         if(mon > 12) mon = 12;
                         cal.set(Calendar.MONTH, mon-1);
 
-                        year = (year<1900)?1900:(year>2100)?2100:year;
+                        year = (year<1900)?1900:(year>9999)?9999:year;
                         cal.set(Calendar.YEAR, year);
 
 

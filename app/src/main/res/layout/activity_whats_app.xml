@@ -4,31 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WhatsApp"
+    tools:context=".MessageIntegration"
     android:background="#FBD6D6">
-
-    <EditText
-        android:id="@+id/whatsapp_text"
-        android:layout_width="350dp"
-        android:layout_height="170dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/ubuntu_regular"
-        android:gravity="top"
-        android:hint="@string/type_note_here"
-        android:importantForAutofill="no"
-        android:includeFontPadding="false"
-        android:inputType="textMultiLine"
-        android:minHeight="@dimen/_100sdp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:textColor="#7B7B7B"
-        android:textColorHint="#7B7B7B"
-        android:textSize="@dimen/_13ssp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37" />
 
     <Button
         android:id="@+id/send_whatsapp"
@@ -58,7 +35,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/whatsapp_text"
-        app:layout_constraintVertical_bias="0.366" />
+        app:layout_constraintVertical_bias="0.365" />
 
     <TextView
         android:id="@+id/num_whatsapp"
@@ -80,30 +57,83 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/check_whatsapp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="WhatsApp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.216"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/whatsapp_text"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <CheckBox
-        android:id="@+id/check_email"
+    <TextView
+        android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="75dp"
-        android:text="Пошта"
+        android:text="Gmail"
+        android:textSize="16sp"
+        android:visibility="visible"
+        android:textColor="#333333"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.679"
+        app:layout_constraintHorizontal_bias="0.817"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.667" />
+        app:layout_constraintVertical_bias="0.576" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WhatsApp"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.576" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/check_email"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.757"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.609"
+        app:lottie_rawRes="@raw/checkbox" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/check_whatsapp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.609"
+        app:lottie_rawRes="@raw/checkbox" />
+
+    <EditText
+        android:id="@+id/whatsapp_text"
+        android:layout_width="350dp"
+        android:layout_height="170dp"
+        android:background="@drawable/button_ram"
+        android:fontFamily="@font/ubuntu_regular"
+        android:gravity="top"
+        android:hint="@string/type_note_here"
+        android:importantForAutofill="no"
+        android:includeFontPadding="false"
+        android:inputType="textMultiLine"
+        android:minHeight="@dimen/_100sdp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:textColor="#7B7B7B"
+        android:textColorHint="#7B7B7B"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

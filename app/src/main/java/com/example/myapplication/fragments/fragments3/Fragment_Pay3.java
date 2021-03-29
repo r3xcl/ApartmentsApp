@@ -63,7 +63,7 @@ public class Fragment_Pay3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment__pay3 ,container, false);
+        View view = inflater.inflate(R.layout.fragment_pay3,container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recview_pay3);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
