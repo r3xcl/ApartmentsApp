@@ -7,7 +7,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginTop="1dp"
     android:elevation="5dp"
-    app:cardBackgroundColor="#FDEEEE"
+    app:cardBackgroundColor="@color/clientROW"
     app:cardCornerRadius="5dp"
     app:cardUseCompatPadding="true">
 
@@ -75,6 +75,7 @@
                     android:id="@+id/delete_clients"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
+                    android:background="@color/clientROW"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/delete" />
@@ -83,7 +84,7 @@
                     android:id="@+id/edit_clients"
                     android:layout_width="33dp"
                     android:layout_height="33dp"
-                    android:background="#FDEEEE"
+                    android:background="@color/clientROW"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic___icon_icons_com_73779" />

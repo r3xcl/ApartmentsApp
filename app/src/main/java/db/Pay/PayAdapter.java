@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -71,11 +72,15 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
+                alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
                 Button color = alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
                 color.setTextColor(Color.RED);
 
                 Button color1 = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
                 color1.setTextColor(Color.RED);
+
+
             }
         });
 

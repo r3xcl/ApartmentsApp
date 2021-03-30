@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBD6D6"
-    tools:context=".CreateNoteActivity">
+    tools:context=".CreateNoteActivity"
+    android:background="@color/mainFon">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -31,7 +31,7 @@
                 android:src="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="#7B7B7B" />
+                app:tint="@color/text2" />
 
             <EditText
                 android:id="@+id/inputNoteTitle"
@@ -47,8 +47,8 @@
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
                 android:inputType="text"
-                android:textColor="#7B7B7B"
-                android:textColorHint="#7B7B7B"
+                android:textColor="@color/text2"
+                android:textColorHint="@color/text"
                 android:textSize="@dimen/_16ssp"
                 app:layout_constraintTop_toBottomOf="@id/imageBack" />
 
@@ -80,8 +80,8 @@
                 android:inputType="textMultiLine"
                 android:paddingTop="@dimen/_8sdp"
                 android:paddingBottom="@dimen/_8sdp"
-                android:textColor="#7B7B7B"
-                android:textColorHint="#7B7B7B"
+                android:textColor="@color/text2"
+                android:textColorHint="@color/text"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/viewSubtitleIndicator"
@@ -115,8 +115,8 @@
                 android:includeFontPadding="false"
                 android:inputType="textMultiLine"
                 android:minHeight="@dimen/_100sdp"
-                android:textColor="#7B7B7B"
-                android:textColorHint="#7B7B7B"
+                android:textColor="@color/text2"
+                android:textColorHint="@color/text"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle" />
@@ -147,7 +147,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imageBack"
                 app:layout_constraintVertical_bias="0.0"
-                app:tint="#7B7B7B" />
+                app:tint="@color/text2" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

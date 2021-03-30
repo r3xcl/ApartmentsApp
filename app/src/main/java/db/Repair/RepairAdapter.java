@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -72,6 +73,8 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
 
                 Button color1 = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
                 color1.setTextColor(Color.RED);
+
+                alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             }
         });
 
@@ -104,7 +107,6 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
 
 
 
-                dialogPlus.show();
 
                 update_repair.setOnClickListener(new View.OnClickListener() {
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityNote"
-    android:background="#FBD6D6">
+    android:background="@color/mainFon">
 
     <TextView
         android:id="@+id/textMyNotes"
@@ -18,7 +18,7 @@
         android:fontFamily="@font/ubuntu_bold"
         android:includeFontPadding="false"
         android:text="@string/my_notes"
-        android:textColor="#7B7B7B"
+        android:textColor="@color/text2"
         android:textSize="@dimen/_20ssp"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp"
@@ -57,8 +57,8 @@
             android:importantForAutofill="no"
             android:includeFontPadding="false"
             android:inputType="text"
-            android:textColor="#7B7B7B"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/text2"
+            android:textColorHint="@color/text"
             android:textSize="@dimen/_13ssp"/>
 
     </LinearLayout>

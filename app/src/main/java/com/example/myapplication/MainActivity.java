@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,15 +10,19 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,10 +33,16 @@ import com.google.firebase.database.ValueEventListener;
 public class  MainActivity extends AppCompatActivity  implements View.OnClickListener{
 
     SharedPreferences sharedPreferences;
+    private  SharedPreferences.Editor editor;
+    private int checkedItem;
+    private String selected;
+    private final String CHECKEDITEM = "checked_item";
 
     ImageButton add1,add2,add3,add4,
             new_home,new_home2,new_home3,new_home4,
             allclient,bloknot;
+
+    ImageView customization;
 
     TextView add1_text,add2_text,add3_text,add4_text;
 
@@ -58,7 +69,13 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         add3_text = (TextView) findViewById(R.id.add3_text);
         add4_text = (TextView) findViewById(R.id.add4_text);
 
+        customization = (ImageView) findViewById(R.id.customization);
+        customization.setOnClickListener(this);
+
         sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+
+        sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         String address1 = sharedPreferences.getString("address1","");
         add1_text.setText(address1);
@@ -139,6 +156,13 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
 
         vibr = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+
+        customization.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
 
         add1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -537,6 +561,75 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
             }
         });
 
+
+    }
+
+    private void showDialog() {
+
+        String [] themes = this.getResources().getStringArray(R.array.theme);
+
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+        builder.setTitle("Оберіть тему");
+        builder.setSingleChoiceItems(R.array.theme, getCheckedItem(), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                selected = themes[i];
+                checkedItem = i;
+            }
+        });
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if (selected == null){
+
+                    selected = themes[i];
+                    checkedItem = i;
+
+                }
+                switch (selected){
+
+                    case "Нічна тема":
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        
+                        break;
+
+                    case "Звичайна тема":
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        break;
+
+
+                }
+                setCheckedItem(i);
+            }
+        });
+
+        builder.setNegativeButton("Назад", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+
+        androidx.appcompat.app.AlertDialog dialog = builder.create();
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED);
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+    }
+
+    private int getCheckedItem(){
+
+        return sharedPreferences.getInt(CHECKEDITEM,0);
+
+    }
+
+    private void setCheckedItem(int i){
+
+        editor.putInt(CHECKEDITEM,i);
+        editor.apply();
 
     }
 

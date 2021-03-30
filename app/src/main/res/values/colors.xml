@@ -9,8 +9,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="fon">#A09D9D</color>
     <color name="fon1">#A09D9D</color>
+    <color name="text">#808080</color>
+    <color name="text2">#7B7B7B</color>
+    <color name="text3">#333333</color>
+    <color name="text4">#333333</color>
+    <color name="mainFonSplash">#FFFFFF</color>
     <color name="colorPrimary">#292929</color>
     <color name="colorPrimaryDark">#292929</color>
+    <color name="mainFon">#FBD6D6</color>
     <color name="colorAccent">#FDBE38</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorSearchIcon">#DBDBDB</color>
@@ -18,6 +24,8 @@
     <color name="colorQuickActionsBackground">#2F2D2E</color>
     <color name="colorIcons">#A4A4A4</color>
     <color name="colorTextSubtitle">#CECECE</color>
+    <color name="clientROW">#FDEEEE</color>
+    <color name="clientROWplus">#939393</color>
     <color name="colorDefaultNoteColor">#333333</color>
     <color name="colorNoteSubtitleText">#FAFAFA</color>
     <color name="colorMiscellaneousBackground">#1F1F1F</color>

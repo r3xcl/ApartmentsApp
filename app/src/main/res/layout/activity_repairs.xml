@@ -5,7 +5,7 @@
     android:id="@+id/add_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBD6D6"
+    android:background="@color/mainFon"
     tools:context=".ActivityRepairs">
 
     <EditText
@@ -49,6 +49,7 @@
         android:background="@drawable/button"
         android:onClick="onClick"
         android:text="Додати"
+        android:textColor="#fff"
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

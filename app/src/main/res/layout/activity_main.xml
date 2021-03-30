@@ -5,7 +5,7 @@
     android:id="@+id/add_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBD6D6"
+    android:background="@color/mainFon"
     android:onClick="onClick"
     tools:context=".MainActivity">
 
@@ -83,7 +83,7 @@
         android:onClick="onClickBloknot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.867"
@@ -120,7 +120,7 @@
         android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/add4"
-        app:layout_constraintHorizontal_bias="0.074"
+        app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_frame1" />
@@ -143,6 +143,7 @@
         android:layout_width="140dp"
         android:layout_height="20dp"
         android:textSize="14sp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.115"
@@ -155,6 +156,7 @@
         android:layout_width="140dp"
         android:layout_height="19dp"
         android:textSize="14sp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.113"
@@ -167,6 +169,7 @@
         android:layout_width="140dp"
         android:layout_height="20dp"
         android:textSize="14sp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.886"
@@ -179,6 +182,7 @@
         android:layout_width="140dp"
         android:layout_height="19dp"
         android:textSize="14sp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.886"
@@ -206,6 +210,7 @@
         android:layout_height="23dp"
         android:text="Список усіх орендарів"
         android:textSize="14sp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.937"
@@ -219,12 +224,25 @@
         android:layout_height="22dp"
         android:text="Нотатки"
         android:textSize="14sp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.891" />
+
+    <ImageView
+        android:id="@+id/customization"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.999"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.005"
+        app:srcCompat="@drawable/ic_customization" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

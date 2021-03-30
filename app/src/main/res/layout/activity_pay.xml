@@ -5,7 +5,7 @@
     android:id="@+id/add_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBD6D6"
+    android:background="@color/mainFon"
     tools:context=".ActivityPay">
 
     <EditText
@@ -50,6 +50,7 @@
         android:onClick="onClick"
         android:text="Додати"
         app:backgroundTint="#4CAF50"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
