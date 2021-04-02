@@ -12,9 +12,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +33,13 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
     Button but_home;
     public EditText edit_address, edit_info,edit_rooms,edit_floor,edit_dateown,edit_name;
+    public Spinner edit_districts,edit_cities;
+
+    String[] districts = {"Оберіть район...","Голосіївський район","Дарницький район","Деснянський район","Дніпровський район"
+            ,"Оболонський район","Печерський район","Подільський район","Святошинський район"
+            , "Солом'янський район","Шевченківський район"};
+
+    String[] cities = {"Оберіть місто...","Київ"};
 
 
    private DatabaseReference myDataBase ;
@@ -43,6 +55,119 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
         getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
         setContentView(R.layout.activity_add_new_apartment);
+
+        edit_districts = (Spinner) findViewById(R.id.edit_districts);
+        edit_districts.setEnabled(false);
+
+        edit_cities = (Spinner) findViewById(R.id.edit_cities);
+
+
+
+        //РАЙОНЫ
+        ArrayAdapter<String> adapter_districts = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,districts) {
+
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+
+
+                } else {
+
+                }
+                return view;
+            }
+        };
+
+        adapter_districts.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            edit_districts.setAdapter(adapter_districts);
+
+            edit_districts.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                    if(position > 0){
+
+                    }else {
+
+
+
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
+
+            //ГОРОДА
+        ArrayAdapter<String> adapter_cities = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,cities) {
+
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+
+
+                } else {
+
+                }
+                return view;
+            }
+        };
+
+        adapter_cities.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        edit_cities.setAdapter(adapter_cities);
+
+        edit_cities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                if(position > 0){
+
+                    edit_districts.setEnabled(true);
+
+                }else {
+
+                    edit_districts.setEnabled(false);
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
@@ -153,7 +278,6 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
             if (action.equals("1")) {
 
 
-
                 String id = "newApartment1";
                 String address = edit_address.getText().toString();
                 String rooms = edit_rooms.getText().toString();
@@ -162,30 +286,36 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                 String name = edit_name.getText().toString();
 
 
+                String city = edit_cities.getSelectedItem().toString();
+                String district = edit_districts.getSelectedItem().toString();
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
+
+                ApartmentsClass newApartment = new ApartmentsClass(id, address, city, district, rooms, floor, dateown, name);
 
 
                 myDataBase.child(id).setValue(newApartment);
 
 
+                if (edit_cities.getSelectedItem().toString().equals("Оберіть місто...") || edit_districts.getSelectedItem().toString().equals("Оберіть район...")) {
 
-                if(edit_address.getText().toString().length()!=0) {
-
-                    intent.putExtra("rooms1", edit_rooms.getText().toString());
-                    intent.putExtra("floor1", edit_floor.getText().toString());
-                    intent.putExtra("dateown1", edit_dateown.getText().toString());
-                    intent.putExtra("name1", edit_name.getText().toString());
-
-                    intent.putExtra("1", 1);
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    Toast.makeText(ActivityAddNewApartment.this, "Оберіть місто та район!", Toast.LENGTH_SHORT).show();
                 }else {
-                    edit_address.setError("Введіть дані!");
-                    edit_address.requestFocus();
+                    if (edit_address.getText().toString().length() != 0) {
+
+
+                        intent.putExtra("1", 1);
+                        setResult(RESULT_OK, intent);
+                        finish();
+
+                    } else {
+
+
+                        edit_address.setError("Введіть дані!");
+                        edit_address.requestFocus();
+                    }
+
+
                 }
-
-
             }
 
 
@@ -198,24 +328,33 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                 String dateown = edit_dateown.getText().toString();
                 String name = edit_name.getText().toString();
 
+                String city = edit_cities.getSelectedItem().toString();
+                String district = edit_districts.getSelectedItem().toString();
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
+
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name);
 
                 myDataBase.child(id).setValue(newApartment);
 
-                if(edit_address.getText().toString().length()!=0) {
+                if (edit_cities.getSelectedItem().toString().equals("Оберіть місто...") || edit_districts.getSelectedItem().toString().equals("Оберіть район...")) {
 
-                    intent.putExtra("rooms2", edit_rooms.getText().toString());
-                    intent.putExtra("floor2", edit_floor.getText().toString());
-                    intent.putExtra("dateown2", edit_dateown.getText().toString());
-                    intent.putExtra("name2", edit_name.getText().toString());
-
-                    intent.putExtra("2", 2);
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    Toast.makeText(ActivityAddNewApartment.this, "Оберіть місто та район!", Toast.LENGTH_SHORT).show();
                 }else {
-                    edit_address.setError("Введіть дані!");
-                    edit_address.requestFocus();
+                    if (edit_address.getText().toString().length() != 0) {
+
+
+                        intent.putExtra("2", 2);
+                        setResult(RESULT_OK, intent);
+                        finish();
+
+                    } else {
+
+
+                        edit_address.setError("Введіть дані!");
+                        edit_address.requestFocus();
+                    }
+
+
                 }
 
            }
@@ -230,28 +369,37 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                 String dateown = edit_dateown.getText().toString();
                 String name = edit_name.getText().toString();
 
+                String city = edit_cities.getSelectedItem().toString();
+                String district = edit_districts.getSelectedItem().toString();
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
+
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name);
 
                 myDataBase.child(id).setValue(newApartment);
 
 
-                if(edit_address.getText().toString().length()!=0) {
+                if (edit_cities.getSelectedItem().toString().equals("Оберіть місто...") || edit_districts.getSelectedItem().toString().equals("Оберіть район...")) {
 
-                    intent.putExtra("rooms3", edit_rooms.getText().toString());
-                    intent.putExtra("floor3", edit_floor.getText().toString());
-                    intent.putExtra("dateown3", edit_dateown.getText().toString());
-                    intent.putExtra("name3", edit_name.getText().toString());
-
-                    intent.putExtra("3", 3);
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    Toast.makeText(ActivityAddNewApartment.this, "Оберіть місто та район!", Toast.LENGTH_SHORT).show();
                 }else {
-                    edit_address.setError("Введіть дані!");
-                    edit_address.requestFocus();
-                }
+                    if (edit_address.getText().toString().length() != 0) {
+
+
+                        intent.putExtra("3", 3);
+                        setResult(RESULT_OK, intent);
+                        finish();
+
+                    } else {
+
+
+                        edit_address.setError("Введіть дані!");
+                        edit_address.requestFocus();
+                    }
+
 
                 }
+
+         }
 
          else if (action.equals("4")) {
 
@@ -262,27 +410,36 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                 String dateown = edit_dateown.getText().toString();
                 String name = edit_name.getText().toString();
 
+                String city = edit_cities.getSelectedItem().toString();
+                String district = edit_districts.getSelectedItem().toString();
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,rooms,floor,dateown,name);
+
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name);
 
                 myDataBase.child(id).setValue(newApartment);
 
 
-                if(edit_address.getText().toString().length()!=0) {
+                if (edit_cities.getSelectedItem().toString().equals("Оберіть місто...") || edit_districts.getSelectedItem().toString().equals("Оберіть район...")) {
 
-                    intent.putExtra("rooms4", edit_rooms.getText().toString());
-                    intent.putExtra("floor4", edit_floor.getText().toString());
-                    intent.putExtra("dateown4", edit_dateown.getText().toString());
-                    intent.putExtra("name4", edit_name.getText().toString());
-
-                    intent.putExtra("4", 4);
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    Toast.makeText(ActivityAddNewApartment.this, "Оберіть місто та район!", Toast.LENGTH_SHORT).show();
                 }else {
-                    edit_address.setError("Введіть дані!");
-                    edit_address.requestFocus();
-                }
+                    if (edit_address.getText().toString().length() != 0) {
+
+
+                        intent.putExtra("4", 4);
+                        setResult(RESULT_OK, intent);
+                        finish();
+
+                    } else {
+
+
+                        edit_address.setError("Введіть дані!");
+                        edit_address.requestFocus();
                     }
+
+
+                }
+         }
 
 
 

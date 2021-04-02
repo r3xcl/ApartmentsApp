@@ -3,7 +3,7 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -17,12 +17,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
 
-        <activity android:name=".files.FilesView">
+        <activity android:name=".InfoHome">
+
+            <intent-filter>
+                <action android:name="info1" />
+                <action android:name="info2" />
+                <action android:name="info3" />
+                <action android:name="info4" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
 
         </activity>
-
-        <activity android:name=".files.FilesUpload" >
-
+        <activity android:name=".files.FilesView"></activity>
+        <activity android:name=".files.FilesUpload">
             <intent-filter>
                 <action android:name="filesUP1" />
                 <action android:name="filesUP2" />
@@ -31,11 +39,8 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
-
-
-        <activity android:name=".files.Files" >
+        <activity android:name=".files.Files">
             <intent-filter>
                 <action android:name="files1" />
                 <action android:name="files2" />
@@ -45,7 +50,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MessageIntegration" />
         <activity android:name=".ActivityArchive">
             <intent-filter>

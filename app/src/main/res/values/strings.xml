@@ -20,6 +20,9 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="citieshint">Оберіть місто</string>
+    <string name="districtshint">Оберіть район</string>
+
     <string name="note_text">Введите текст заметки</string>
     <string name="note_details_title">Заметка</string>
     <string name="save">Сохранить</string>

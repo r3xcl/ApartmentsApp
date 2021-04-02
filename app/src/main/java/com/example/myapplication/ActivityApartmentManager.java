@@ -78,11 +78,11 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
     TextView info_address, info_patronymic, info_name, info_surname, info_number,
             info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
             , textView15, textView16, info_zastava
-            , textView20, textView23,info_email,textView10,textView11;
+            , textView20, textView23,info_email,textView10,textView11,city_id,district_id,info_district;
 
 
 
-    ImageView imageView4, image_client , delphoto_client;
+    ImageView imageView4, image_client , delphoto_client,info_home;
     private FusedLocationProviderClient fusedLocationProviderClient;
 
 
@@ -97,6 +97,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
         info_address = (TextView) findViewById(R.id.info_address);
+        city_id = (TextView) findViewById(R.id.city_id);
+        info_district = (TextView) findViewById(R.id.info_district);
         info_patronymic = (TextView) findViewById(R.id.info_patronymic);
         info_name = (TextView) findViewById(R.id.info_name);
         info_surname = (TextView) findViewById(R.id.info_surname);
@@ -134,6 +136,9 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
         delphoto_client = (ImageView) findViewById(R.id.delphoto_client);
         delphoto_client.setOnClickListener(this);
+
+        info_home = (ImageView) findViewById(R.id.info_home);
+        info_home.setOnClickListener(this);
 
         whatsapp = (ImageButton) findViewById(R.id.whatsapp);
         whatsapp.setOnClickListener(this);
@@ -219,16 +224,27 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     for(DataSnapshot data : snapshot.getChildren()){
 
                         String address = data.child("address").getValue().toString();
+                        String city = data.child("city").getValue().toString();
+                        String district = data.child("district").getValue().toString();
                         String dateown = data.child("dateown").getValue().toString();
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
 
 
 
-                        info_address.setText(address);
+
+                        info_address.setText(city+","+address);
+                        info_district.setText(district);
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+
+                        if(city.equals("Київ")){
+
+                            city_id.setText("Київ");
+
+                        }
+
 
 
 
@@ -354,6 +370,18 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             files.setOnClickListener(v -> {
                 Intent intent12 = new Intent("files1");
                 startActivityForResult(intent12, 200);
+            });
+
+
+
+            info_home.setOnClickListener(v -> {
+
+                Intent intent1 = new Intent("info1");
+                intent1.putExtra("city",city_id.getText().toString());
+                intent1.putExtra("district",info_district.getText().toString());
+                intent1.putExtra("rooms",info_rooms.getText().toString());
+                startActivityForResult(intent1, 0111);
+
             });
 
 
@@ -666,12 +694,15 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     for(DataSnapshot data : snapshot.getChildren()){
 
                         String address = data.child("address").getValue().toString();
+                        String city = data.child("city").getValue().toString();
+                        String district = data.child("district").getValue().toString();
                         String dateown = data.child("dateown").getValue().toString();
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
 
 
-                        info_address.setText(address);
+                        info_address.setText(city+","+address);
+                        info_district.setText(district);
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
@@ -1101,13 +1132,16 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     for(DataSnapshot data : snapshot.getChildren()){
 
                         String address = data.child("address").getValue().toString();
+                        String city = data.child("city").getValue().toString();
+                        String district = data.child("district").getValue().toString();
                         String dateown = data.child("dateown").getValue().toString();
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
 
 
-                        info_address.setText(address);
+                        info_address.setText(city+","+address);
                         info_dateown.setText(dateown);
+                        info_district.setText(district);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
 
@@ -1535,13 +1569,16 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     for(DataSnapshot data : snapshot.getChildren()){
 
                         String address = data.child("address").getValue().toString();
+                        String city = data.child("city").getValue().toString();
+                        String district = data.child("district").getValue().toString();
                         String dateown = data.child("dateown").getValue().toString();
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
 
 
-                        info_address.setText(address);
+                        info_address.setText(city+","+address);
                         info_dateown.setText(dateown);
+                        info_district.setText(district);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
 

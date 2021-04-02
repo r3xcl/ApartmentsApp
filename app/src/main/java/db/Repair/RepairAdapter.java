@@ -107,6 +107,7 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
 
 
 
+                dialogPlus.show();
 
                 update_repair.setOnClickListener(new View.OnClickListener() {
 
