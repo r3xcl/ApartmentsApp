@@ -1,8 +1,11 @@
 package db.Client;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,19 +30,26 @@ import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.prefs.Preferences;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAdapter.viewHolder> {
 
 
-   public ClientAdapter(@NonNull FirebaseRecyclerOptions<ClientClass>options){super(options);
-   }
+
+
+    public ClientAdapter(@NonNull FirebaseRecyclerOptions<ClientClass>options){super(options);
+
+
+    }
 
 
     protected void onBindViewHolder(@NonNull final viewHolder holder, final int position, @NonNull final ClientClass clientClass)
     {
-     holder.surname_text.setText(clientClass.getSurname());
-     holder.name_text.setText(clientClass.getName());
-     holder.number_text.setText(clientClass.getNumber());
+        holder.surname_text.setText(clientClass.getSurname());
+        holder.name_text.setText(clientClass.getName());
+        holder.number_text.setText(clientClass.getNumber());
 
 
 
@@ -142,23 +152,25 @@ public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAd
                         map.put("email",email.getText().toString());
 
 
-                            FirebaseDatabase.getInstance().getReference().child("New_Client")
-                                    .child(getRef(position).getKey()).updateChildren(map)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            dialogPlus.dismiss();
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            dialogPlus.dismiss();
-                                        }
-                                    });
 
 
-                        }
+                        FirebaseDatabase.getInstance().getReference().child("New_Client")
+                                .child(getRef(position).getKey()).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        dialogPlus.dismiss();
+                                    }
+                                });
+
+
+                    }
 
 
                 });
@@ -182,24 +194,27 @@ public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAd
 
     class viewHolder extends RecyclerView.ViewHolder{
 
-       TextView surname_text,name_text,number_text;
-       ImageView edit,delete;
+        TextView surname_text,name_text,number_text;
+        ImageView edit,delete;
 
-       public viewHolder(@NonNull View itemView) {
-           super(itemView);
-
-           surname_text=(TextView)itemView.findViewById(R.id.repair_name);
-           name_text=(TextView)itemView.findViewById(R.id.money_money);
-           number_text=(TextView)itemView.findViewById(R.id.money_date);
-
-           edit=(ImageButton)itemView.findViewById(R.id.edit_clients);
-           delete=(ImageView) itemView.findViewById(R.id.delete_clients);
+        public viewHolder(@NonNull View itemView) {
+            super(itemView);
 
 
 
+            surname_text=(TextView)itemView.findViewById(R.id.repair_name);
+            name_text=(TextView)itemView.findViewById(R.id.money_money);
+            number_text=(TextView)itemView.findViewById(R.id.money_date);
 
-       }
-   }
+            edit=(ImageButton)itemView.findViewById(R.id.edit_clients);
+            delete=(ImageView) itemView.findViewById(R.id.delete_clients);
+
+
+
+
+        }
+    }
 }
+
 
 

@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -27,13 +29,15 @@ import java.util.List;
 
 import db.Client.ClientClass;
 
-public class ActivityFindClient extends AppCompatActivity implements View.OnClickListener{
+public class ActivityFindClient extends AppCompatActivity {
 
     private ListView listView1;
     private ArrayAdapter<String> adapter1;
     private List<String> listData1;
     private DatabaseReference myDataBase ;
     private String New_Client = "New_Client";
+    String name;
+    DatabaseReference reference;
 
     private List<ClientClass> listTemp1;
 
@@ -48,22 +52,171 @@ public class ActivityFindClient extends AppCompatActivity implements View.OnClic
         getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
 
 
-            listView1 = findViewById(R.id.listView1);
-            listData1 = new ArrayList<>();
-            listTemp1 = new ArrayList<>();
-            adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData1);
+        listView1 = findViewById(R.id.listView1);
+        listData1 = new ArrayList<>();
+        listTemp1 = new ArrayList<>();
+        adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData1);
 
-            TextView empty = (TextView) findViewById(R.id.text_noclients);
+        TextView empty = (TextView) findViewById(R.id.text_noclients);
 
-            listView1.setEmptyView(empty); // ЕСЛИ НЕТ СОЗДАННЫХ ОРЕНДАТОРОВ
-            listView1.setAdapter(adapter1);
+        listView1.setEmptyView(empty); // ЕСЛИ НЕТ СОЗДАННЫХ ОРЕНДАТОРОВ
+        listView1.setAdapter(adapter1);
 
 
-            myDataBase = FirebaseDatabase.getInstance().getReference(New_Client);
 
-            getDataFromDB();
+        myDataBase = FirebaseDatabase.getInstance().getReference(New_Client);
 
-            setOnClickItem();
+        getDataFromDB();
+
+
+        if (action.equals("find_client1")) {
+
+            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ClientClass clientClass = listTemp1.get(position);
+
+                    name = clientClass.getName();
+
+
+                    reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+                    if(name.equals(clientClass.getName())){
+
+                        reference.child(name ).child("busyness").setValue("id_apart1");
+
+
+                    }
+
+                        intent.putExtra("surname1", clientClass.getSurname());
+                        intent.putExtra("name1", clientClass.getName());
+                        intent.putExtra("patronymic1", clientClass.getPatronymic());
+                        intent.putExtra("number1", clientClass.getNumber());
+                        intent.putExtra("datestart1", clientClass.getDatestart());
+                        intent.putExtra("dateend1", clientClass.getDateend());
+                        intent.putExtra("sumpay1", clientClass.getPay());
+                        intent.putExtra("zastava1", clientClass.getZastava());
+                        intent.putExtra("email1", clientClass.getEmail());
+
+                        intent.putExtra("111", 111);
+                        setResult(RESULT_OK, intent);
+
+                        finish();
+                    }
+
+            });
+        }
+
+        if (action.equals("find_client2")) {
+
+            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ClientClass clientClass = listTemp1.get(position);
+
+                    name = clientClass.getName();
+
+
+                    reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+                    if(name.equals(clientClass.getName())){
+
+                        reference.child(name ).child("busyness").setValue("id_apart2");
+
+
+                    }
+
+                    intent.putExtra("surname2", clientClass.getSurname());
+                    intent.putExtra("name2", clientClass.getName());
+                    intent.putExtra("patronymic2", clientClass.getPatronymic());
+                    intent.putExtra("number2", clientClass.getNumber());
+                    intent.putExtra("datestart2", clientClass.getDatestart());
+                    intent.putExtra("dateend2",clientClass.getDateend());
+                    intent.putExtra("sumpay2",clientClass.getPay());
+                    intent.putExtra("zastava2",clientClass.getZastava());
+                    intent.putExtra("email2",clientClass.getEmail());
+
+                    intent.putExtra("222", 222);
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+                }
+            });
+        }
+
+        if (action.equals("find_client3")) {
+
+            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ClientClass clientClass = listTemp1.get(position);
+
+                    name = clientClass.getName();
+
+
+                    reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+                    if(name.equals(clientClass.getName())){
+
+                        reference.child(name ).child("busyness").setValue("id_apart3");
+
+
+                    }
+
+                    intent.putExtra("surname3", clientClass.getSurname());
+                    intent.putExtra("name3", clientClass.getName());
+                    intent.putExtra("patronymic3", clientClass.getPatronymic());
+                    intent.putExtra("number3", clientClass.getNumber());
+                    intent.putExtra("datestart3", clientClass.getDatestart());
+                    intent.putExtra("dateend3",clientClass.getDateend());
+                    intent.putExtra("sumpay3",clientClass.getPay());
+                    intent.putExtra("zastava3",clientClass.getZastava());
+                    intent.putExtra("email3",clientClass.getEmail());
+
+                    intent.putExtra("333", 333);
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+                }
+            });
+        }
+
+        if (action.equals("find_client4")) {
+
+            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ClientClass clientClass = listTemp1.get(position);
+
+                    name = clientClass.getName();
+
+
+                    reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+                    if(name.equals(clientClass.getName())){
+
+                        reference.child(name).child("busyness").setValue("id_apart4");
+
+
+                    }
+
+                    intent.putExtra("surname4", clientClass.getSurname());
+                    intent.putExtra("name4", clientClass.getName());
+                    intent.putExtra("patronymic4", clientClass.getPatronymic());
+                    intent.putExtra("number4", clientClass.getNumber());
+                    intent.putExtra("datestart4", clientClass.getDatestart());
+                    intent.putExtra("dateend4",clientClass.getDateend());
+                    intent.putExtra("sumpay4",clientClass.getPay());
+                    intent.putExtra("zastava4",clientClass.getZastava());
+                    intent.putExtra("email4",clientClass.getEmail());
+
+                    intent.putExtra("444", 444);
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+                }
+            });
+        }
 
 
 
@@ -98,117 +251,9 @@ public class ActivityFindClient extends AppCompatActivity implements View.OnClic
         myDataBase.addValueEventListener(vListener);
     }
 
-    @Override
-    public void onClick(View v) {
-        
-    }
-
-    private void setOnClickItem(){
-
-        Intent intent = getIntent();
-        String action = intent.getAction();
-        if (action.equals("find_client1")) {
-
-            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ClientClass clientClass = listTemp1.get(position);
-
-                    intent.putExtra("surname1", clientClass.getSurname());
-                    intent.putExtra("name1", clientClass.getName());
-                    intent.putExtra("patronymic1", clientClass.getPatronymic());
-                    intent.putExtra("number1", clientClass.getNumber());
-                    intent.putExtra("datestart1", clientClass.getDatestart());
-                    intent.putExtra("dateend1",clientClass.getDateend());
-                    intent.putExtra("sumpay1",clientClass.getPay());
-                    intent.putExtra("zastava1",clientClass.getZastava());
-                    intent.putExtra("email1",clientClass.getEmail());
-
-                    intent.putExtra("111", 111);
-                    setResult(RESULT_OK, intent);
-
-                    finish();
-                }
-            });
-        }
-
-        if (action.equals("find_client2")) {
-
-            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ClientClass clientClass = listTemp1.get(position);
-
-                    intent.putExtra("surname2", clientClass.getSurname());
-                    intent.putExtra("name2", clientClass.getName());
-                    intent.putExtra("patronymic2", clientClass.getPatronymic());
-                    intent.putExtra("number2", clientClass.getNumber());
-                    intent.putExtra("datestart2", clientClass.getDatestart());
-                    intent.putExtra("dateend2",clientClass.getDateend());
-                    intent.putExtra("sumpay2",clientClass.getPay());
-                    intent.putExtra("zastava2",clientClass.getZastava());
-                    intent.putExtra("email2",clientClass.getEmail());
-
-                    intent.putExtra("222", 222);
-                    setResult(RESULT_OK, intent);
-
-                    finish();
-                }
-            });
-        }
-
-        if (action.equals("find_client3")) {
-
-            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ClientClass clientClass = listTemp1.get(position);
-
-                    intent.putExtra("surname3", clientClass.getSurname());
-                    intent.putExtra("name3", clientClass.getName());
-                    intent.putExtra("patronymic3", clientClass.getPatronymic());
-                    intent.putExtra("number3", clientClass.getNumber());
-                    intent.putExtra("datestart3", clientClass.getDatestart());
-                    intent.putExtra("dateend3",clientClass.getDateend());
-                    intent.putExtra("sumpay3",clientClass.getPay());
-                    intent.putExtra("zastava3",clientClass.getZastava());
-                    intent.putExtra("email3",clientClass.getEmail());
-
-                    intent.putExtra("333", 333);
-                    setResult(RESULT_OK, intent);
-
-                    finish();
-                }
-            });
-        }
-
-        if (action.equals("find_client4")) {
-
-            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ClientClass clientClass = listTemp1.get(position);
-
-                    intent.putExtra("surname4", clientClass.getSurname());
-                    intent.putExtra("name4", clientClass.getName());
-                    intent.putExtra("patronymic4", clientClass.getPatronymic());
-                    intent.putExtra("number4", clientClass.getNumber());
-                    intent.putExtra("datestart4", clientClass.getDatestart());
-                    intent.putExtra("dateend4",clientClass.getDateend());
-                    intent.putExtra("sumpay4",clientClass.getPay());
-                    intent.putExtra("zastava4",clientClass.getZastava());
-                    intent.putExtra("email4",clientClass.getEmail());
-
-                    intent.putExtra("444", 444);
-                    setResult(RESULT_OK, intent);
-
-                    finish();
-                }
-            });
-        }
 
 
-    }
+
 
     //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->
 

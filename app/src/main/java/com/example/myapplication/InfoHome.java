@@ -3,10 +3,12 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
@@ -14,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class InfoHome extends AppCompatActivity {
@@ -31,6 +34,10 @@ public class InfoHome extends AppCompatActivity {
         setContentView(R.layout.activity_info_home);
 
         WebInfoHome = (WebView) findViewById(R.id.WebInfoHome);
+
+        final ProgressDialog pd=new ProgressDialog(this);
+        pd.setTitle("");
+        pd.setMessage("Відкривається!");
 
         WebSettings webSettings = WebInfoHome.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -54,6 +61,10 @@ public class InfoHome extends AppCompatActivity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
+                if (!urlFinished.equals(url1)) {
+                    pd.show();
+                }
+
             }
 
             @Override
@@ -144,19 +155,19 @@ public class InfoHome extends AppCompatActivity {
                     }
 
                     if(rooms.equals("5")) {
-                        WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-nrooms-5-').click();})()");
+                        WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-nrooms-5').click();})()");
                     }
 
                     if(rooms.equals("6")) {
-                        WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-nrooms-5-').click();})()");
+                        WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-nrooms-5').click();})()");
                     }
 
                     if(!rooms.equals("7")) {
-                        WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-nrooms-5-').click();})()");
+                        WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-nrooms-5').click();})()");
                     }
 
                     if(rooms.equals("8")) {
-                        WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-nrooms-5-').click();})()");
+                        WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-nrooms-5').click();})()");
                     }
 
 
@@ -164,9 +175,10 @@ public class InfoHome extends AppCompatActivity {
                     WebInfoHome.loadUrl("javascript:(setTimeout(function(){document.getElementById('edit-find').click();},500))()");
                 }
 
+
                 urlFinished = url1;
 
-
+                pd.dismiss();
             }
         });
 
@@ -174,6 +186,8 @@ public class InfoHome extends AppCompatActivity {
 
 
         WebInfoHome.loadUrl(url1);
+
+
 
     }
 

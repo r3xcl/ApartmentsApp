@@ -290,9 +290,10 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         String pay = client_pay.getText().toString();
                         String zastava = client_info.getText().toString();
                         String email = client_email.getText().toString();
+                        String busyness = "0";
 
 
-                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava);
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
                         myDataBase.child(id).setValue(newClient);
 
                         intent.putExtra("11", 11);
@@ -301,7 +302,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
                         finish();
 
-                        Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActivityNewClient.this, "Орендаря додано!", Toast.LENGTH_LONG).show();
 
                     } else {
 
@@ -365,9 +366,10 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                             String pay = client_pay.getText().toString();
                             String zastava = client_info.getText().toString();
                             String email = client_email.getText().toString();
+                            String busyness = "0";
 
 
-                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava);
+                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
                             myDataBase.child(id).setValue(newClient);
 
                             intent.putExtra("22", 22);
@@ -376,7 +378,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
                             finish();
 
-                            Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ActivityNewClient.this, "Орендаря додано!", Toast.LENGTH_LONG).show();
 
                         } else {
 
@@ -440,9 +442,10 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                             String pay = client_pay.getText().toString();
                             String zastava = client_info.getText().toString();
                             String email = client_email.getText().toString();
+                            String busyness = "0";
 
 
-                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava);
+                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
                             myDataBase.child(id).setValue(newClient);
 
                             intent.putExtra("33", 33);
@@ -451,7 +454,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
                             finish();
 
-                            Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ActivityNewClient.this, "Орендаря додано!", Toast.LENGTH_LONG).show();
 
                         } else {
 
@@ -515,9 +518,10 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                             String pay = client_pay.getText().toString();
                             String zastava = client_info.getText().toString();
                             String email = client_email.getText().toString();
+                            String busyness = "0";
 
 
-                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava);
+                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
                             myDataBase.child(id).setValue(newClient);
 
                             intent.putExtra("44", 44);
@@ -526,7 +530,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
                             finish();
 
-                            Toast.makeText(ActivityNewClient.this, "Додано!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ActivityNewClient.this, "Орендаря додано!", Toast.LENGTH_LONG).show();
 
                         } else {
 

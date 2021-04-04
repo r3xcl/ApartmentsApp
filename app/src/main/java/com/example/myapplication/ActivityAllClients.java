@@ -68,13 +68,6 @@ public class ActivityAllClients extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 0) {
-            if(resultCode == RESULT_OK){
-                Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
     }
 
 

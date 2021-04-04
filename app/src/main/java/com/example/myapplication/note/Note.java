@@ -95,7 +95,9 @@ public class Note implements Serializable {
     }
 
     public void setWebLink(String webLink) {
+
         this.webLink = webLink;
+
     }
 
     @NonNull

@@ -78,7 +78,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
     TextView info_address, info_patronymic, info_name, info_surname, info_number,
             info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
             , textView15, textView16, info_zastava
-            , textView20, textView23,info_email,textView10,textView11,city_id,district_id,info_district;
+            , textView20, textView23,info_email,textView10,textView11,city_id,info_district,info_city;
 
 
 
@@ -123,6 +123,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         info_rooms = (TextView) findViewById(R.id.info_rooms);
         info_floor = (TextView) findViewById(R.id.info_floor);
         info_dateown = (TextView) findViewById(R.id.info_dateown);
+        info_city = (TextView) findViewById(R.id.info_city);
 
 
         sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
@@ -233,7 +234,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
 
-                        info_address.setText(city+","+address);
+                        info_address.setText(address);
+                        info_city.setText(city+",");
                         info_district.setText(district);
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
@@ -292,6 +294,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             String client_zastava1 = sharedPreferences.getString("client_zastava1","");
             info_zastava.setText(client_zastava1 + " Грн.");
+
 
             if(info_name.length()>0){
 
@@ -487,6 +490,18 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         map.put("floor",floor.getText().toString());
                         map.put("dateown",dateown.getText().toString());
 
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("address1",address.getText().toString());
+
+                        editor.apply();
+
+                        Intent intent1 = new Intent();
+                        intent1.putExtra("address1",address.getText().toString());
+                        setResult(RESULT_OK,intent1);
+
+
+
                        FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment1").updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -562,6 +577,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
                 date();
+
+                NObusyness();
 
                 info_surname.setText("");
                 String client_surname = info_surname.getText().toString();
@@ -701,11 +718,18 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         String rooms = data.child("rooms").getValue().toString();
 
 
-                        info_address.setText(city+","+address);
+                        info_address.setText(address);
+                        info_city.setText(city+",");
                         info_district.setText(district);
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+
+                        if(city.equals("Київ")){
+
+                            city_id.setText("Київ");
+
+                        }
 
 
                     }
@@ -819,6 +843,15 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             });
 
 
+            info_home.setOnClickListener(v -> {
+
+                Intent intent1 = new Intent("info1");
+                intent1.putExtra("city",city_id.getText().toString());
+                intent1.putExtra("district",info_district.getText().toString());
+                intent1.putExtra("rooms",info_rooms.getText().toString());
+                startActivityForResult(intent1, 0111);
+
+            });
 
             apartment_edit.setOnClickListener(v -> {
 
@@ -922,6 +955,16 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         map.put("floor",floor.getText().toString());
                         map.put("dateown",dateown.getText().toString());
 
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("address2",address.getText().toString());
+
+                        editor.apply();
+
+                        Intent intent1 = new Intent();
+                        intent1.putExtra("address2",address.getText().toString());
+                        setResult(RESULT_OK,intent1);
+
                         FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment2").updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -1007,6 +1050,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             delete_client.setOnClickListener(v -> {
 
                 date();
+                NObusyness();
 
                 info_surname.setText("");
                 String client_surname = info_surname.getText().toString();
@@ -1139,11 +1183,18 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         String rooms = data.child("rooms").getValue().toString();
 
 
-                        info_address.setText(city+","+address);
-                        info_dateown.setText(dateown);
+                        info_address.setText(address);
+                        info_city.setText(city+",");
                         info_district.setText(district);
+                        info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+
+                        if(city.equals("Київ")){
+
+                            city_id.setText("Київ");
+
+                        }
 
 
                     }
@@ -1267,6 +1318,15 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             });
 
 
+            info_home.setOnClickListener(v -> {
+
+                Intent intent1 = new Intent("info1");
+                intent1.putExtra("city",city_id.getText().toString());
+                intent1.putExtra("district",info_district.getText().toString());
+                intent1.putExtra("rooms",info_rooms.getText().toString());
+                startActivityForResult(intent1, 0111);
+
+            });
 
             map.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1404,6 +1464,16 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         map.put("floor",floor.getText().toString());
                         map.put("dateown",dateown.getText().toString());
 
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("address3",address.getText().toString());
+
+                        editor.apply();
+
+                        Intent intent1 = new Intent();
+                        intent1.putExtra("address3",address.getText().toString());
+                        setResult(RESULT_OK,intent1);
+
                         FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment3").updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -1443,6 +1513,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             delete_client.setOnClickListener(v -> {
 
                 date();
+                NObusyness();
 
                 info_surname.setText("");
                 String client_surname = info_surname.getText().toString();
@@ -1576,11 +1647,18 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         String rooms = data.child("rooms").getValue().toString();
 
 
-                        info_address.setText(city+","+address);
-                        info_dateown.setText(dateown);
+                        info_address.setText(address);
+                        info_city.setText(city+",");
                         info_district.setText(district);
+                        info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+
+                        if(city.equals("Київ")){
+
+                            city_id.setText("Київ");
+
+                        }
 
 
                     }
@@ -1699,6 +1777,15 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             });
 
 
+            info_home.setOnClickListener(v -> {
+
+                Intent intent1 = new Intent("info1");
+                intent1.putExtra("city",city_id.getText().toString());
+                intent1.putExtra("district",info_district.getText().toString());
+                intent1.putExtra("rooms",info_rooms.getText().toString());
+                startActivityForResult(intent1, 0111);
+
+            });
 
             archive.setOnClickListener(v -> {
                 Intent intent5 = new Intent("archive4");
@@ -1841,6 +1928,17 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         map.put("floor",floor.getText().toString());
                         map.put("dateown",dateown.getText().toString());
 
+
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("address4",address.getText().toString());
+
+                        editor.apply();
+
+                        Intent intent1 = new Intent();
+                        intent1.putExtra("address4",address.getText().toString());
+                        setResult(RESULT_OK,intent1);
+
                         FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment4").updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -1880,6 +1978,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             delete_client.setOnClickListener(v -> {
 
                 date();
+                NObusyness();
 
                 info_surname.setText("");
                 String client_surname = info_surname.getText().toString();
@@ -1926,6 +2025,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 SharedPreferences.Editor editor1 = preferences.edit();
                 editor1.putString("image3",null);
                 editor1.commit();
+
+                editor.apply();
 
 
                 delete_client.setVisibility(View.INVISIBLE);
@@ -2601,340 +2702,378 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             }
         }
 
-
+        String name1 = sharedPreferences.getString("client_name1", "");
+        String name2 = sharedPreferences.getString("client_name2", "");
+        String name3 = sharedPreferences.getString("client_name3", "");
+        String name4 = sharedPreferences.getString("client_name4", "");
 
         if (requestCode == 111) {
-            if(resultCode==RESULT_OK){
-
+            if(resultCode==RESULT_OK) {
                 String client_name = data.getStringExtra("name1");
-                info_name.setText(client_name);
+
+                if (client_name.equals(name1) || client_name.equals(name2) || client_name.equals(name3) || client_name.equals(name4)) {
+
+                    Toast.makeText(ActivityApartmentManager.this,
+                            "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    info_name.setText(client_name);
 
 
-                String client_surname = data.getStringExtra("surname1");
-                info_surname.setText(client_surname);
+                    String client_surname = data.getStringExtra("surname1");
+                    info_surname.setText(client_surname);
 
-                String client_patronymic = data.getStringExtra("patronymic1");
-                info_patronymic.setText(client_patronymic);
+                    String client_patronymic = data.getStringExtra("patronymic1");
+                    info_patronymic.setText(client_patronymic);
 
-                String client_number = data.getStringExtra("number1");
-                info_number.setText(client_number);
+                    String client_number = data.getStringExtra("number1");
+                    info_number.setText(client_number);
 
-                String client_datestart = data.getStringExtra("datestart1");
-                info_date_start.setText(client_datestart);
+                    String client_datestart = data.getStringExtra("datestart1");
+                    info_date_start.setText(client_datestart);
 
-                String client_dateend = data.getStringExtra("dateend1");
-                info_date_end.setText(client_dateend);
+                    String client_dateend = data.getStringExtra("dateend1");
+                    info_date_end.setText(client_dateend);
 
-                String client_pay = data.getStringExtra("sumpay1");
-                if (client_pay.isEmpty()){
+                    String client_pay = data.getStringExtra("sumpay1");
+                    if (client_pay.isEmpty()) {
 
-                    info_pay.setText(client_pay +"     "+ 0 +" Грн.");
+                        info_pay.setText(client_pay + "     " + 0 + " Грн.");
 
-                }else {
-                    info_pay.setText(client_pay + " Грн.");
+                    } else {
+                        info_pay.setText(client_pay + " Грн.");
+                    }
+
+                    String client_zastava = data.getStringExtra("zastava1");
+                    info_zastava.setText(client_zastava + " Грн.");
+
+                    String client_email = data.getStringExtra("email1");
+                    info_email.setText(client_email);
+
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    editor.putString("client_name1", client_name);
+                    editor.putString("client_surname1", client_surname);
+                    editor.putString("client_patronymic1", client_patronymic);
+                    editor.putString("client_number1", client_number);
+                    editor.putString("client_datestart1", client_datestart);
+                    editor.putString("client_dateend1", client_dateend);
+                    editor.putString("client_pay1", client_pay);
+                    editor.putString("client_zastava1", client_zastava);
+                    editor.putString("client_email1", client_email);
+
+                    editor.apply();
+
+
+                    delete_client.setVisibility(View.VISIBLE);
+                    info_pay.setVisibility(View.VISIBLE);
+                    find_client.setVisibility(View.INVISIBLE);
+                    textView11.setVisibility(View.INVISIBLE);
+                    add_client.setVisibility(View.INVISIBLE);
+
+                    imageView4.setVisibility(View.VISIBLE);
+
+                    call.setVisibility(View.VISIBLE);
+                    addphoto.setVisibility(View.VISIBLE);
+                    whatsapp.setVisibility(View.VISIBLE);
+
+
+                    textView15.setVisibility(View.VISIBLE);
+                    textView16.setVisibility(View.VISIBLE);
+                    textView10.setVisibility(View.VISIBLE);
+                    textView20.setVisibility(View.VISIBLE);
+
+                    info_surname.setVisibility(View.VISIBLE);
+                    info_name.setVisibility(View.VISIBLE);
+                    info_patronymic.setVisibility(View.VISIBLE);
+                    info_number.setVisibility(View.VISIBLE);
+                    info_date_start.setVisibility(View.VISIBLE);
+                    info_date_end.setVisibility(View.VISIBLE);
+                    info_zastava.setVisibility(View.VISIBLE);
+
+                    busyness();
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
-
-                String client_zastava = data.getStringExtra("zastava1");
-                info_zastava.setText(client_zastava + " Грн.");
-
-                String client_email = data.getStringExtra("email1");
-                info_email.setText(client_email);
-
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putString("client_name1",client_name);
-                editor.putString("client_surname1",client_surname);
-                editor.putString("client_patronymic1",client_patronymic);
-                editor.putString("client_number1",client_number);
-                editor.putString("client_datestart1",client_datestart);
-                editor.putString("client_dateend1",client_dateend);
-                editor.putString("client_pay1",client_pay);
-                editor.putString("client_zastava1",client_zastava);
-                editor.putString("client_email1",client_email);
-
-                editor.apply();
-
-
-                delete_client.setVisibility(View.VISIBLE);
-                info_pay.setVisibility(View.VISIBLE);
-                find_client.setVisibility(View.INVISIBLE);
-                textView11.setVisibility(View.INVISIBLE);
-                add_client.setVisibility(View.INVISIBLE);
-
-                imageView4.setVisibility(View.VISIBLE);
-
-                call.setVisibility(View.VISIBLE);
-                addphoto.setVisibility(View.VISIBLE);
-                whatsapp.setVisibility(View.VISIBLE);
-
-
-
-                textView15.setVisibility(View.VISIBLE);
-                textView16.setVisibility(View.VISIBLE);
-                textView10.setVisibility(View.VISIBLE);
-                textView20.setVisibility(View.VISIBLE);
-
-                info_surname.setVisibility(View.VISIBLE);
-                info_name.setVisibility(View.VISIBLE);
-                info_patronymic.setVisibility(View.VISIBLE);
-                info_number.setVisibility(View.VISIBLE);
-                info_date_start.setVisibility(View.VISIBLE);
-                info_date_end.setVisibility(View.VISIBLE);
-                info_zastava.setVisibility(View.VISIBLE);
-
-
-                Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
-                toast.show();
             }
         }
 
         if (requestCode == 222) {
-            if(resultCode==RESULT_OK){
+            if(resultCode==RESULT_OK) {
                 String client_name = data.getStringExtra("name2");
-                info_name.setText(client_name);
+
+                if (client_name.equals(name1) || client_name.equals(name2) || client_name.equals(name3) || client_name.equals(name4)) {
+
+                    Toast.makeText(ActivityApartmentManager.this,
+                            "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
+
+                } else {
+                    info_name.setText(client_name);
 
 
-                String client_surname = data.getStringExtra("surname2");
-                info_surname.setText(client_surname);
+                    String client_surname = data.getStringExtra("surname2");
+                    info_surname.setText(client_surname);
 
-                String client_patronymic = data.getStringExtra("patronymic2");
-                info_patronymic.setText(client_patronymic);
+                    String client_patronymic = data.getStringExtra("patronymic2");
+                    info_patronymic.setText(client_patronymic);
 
-                String client_number = data.getStringExtra("number2");
-                info_number.setText(client_number);
+                    String client_number = data.getStringExtra("number2");
+                    info_number.setText(client_number);
 
-                String client_datestart = data.getStringExtra("datestart2");
-                info_date_start.setText(client_datestart);
+                    String client_datestart = data.getStringExtra("datestart2");
+                    info_date_start.setText(client_datestart);
 
-                String client_dateend = data.getStringExtra("dateend2");
-                info_date_end.setText(client_dateend);
+                    String client_dateend = data.getStringExtra("dateend2");
+                    info_date_end.setText(client_dateend);
 
-                String client_pay = data.getStringExtra("sumpay2");
-                if (client_pay.isEmpty()){
+                    String client_pay = data.getStringExtra("sumpay2");
+                    if (client_pay.isEmpty()) {
 
-                    info_pay.setText(client_pay +"     "+ 0 +" Грн.");
+                        info_pay.setText(client_pay + "     " + 0 + " Грн.");
 
-                }else {
-                    info_pay.setText(client_pay + " Грн.");
+                    } else {
+                        info_pay.setText(client_pay + " Грн.");
+                    }
+
+                    String client_zastava = data.getStringExtra("zastava2");
+                    info_zastava.setText(client_zastava + " Грн.");
+
+                    String client_email = data.getStringExtra("email2");
+                    info_email.setText(client_email);
+
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    editor.putString("client_name2", client_name);
+                    editor.putString("client_surname2", client_surname);
+                    editor.putString("client_patronymic2", client_patronymic);
+                    editor.putString("client_number2", client_number);
+                    editor.putString("client_datestart2", client_datestart);
+                    editor.putString("client_dateend2", client_dateend);
+                    editor.putString("client_pay2", client_pay);
+                    editor.putString("client_zastava2", client_zastava);
+                    editor.putString("client_email2", client_email);
+
+                    editor.apply();
+
+
+                    delete_client.setVisibility(View.VISIBLE);
+                    info_pay.setVisibility(View.VISIBLE);
+                    find_client.setVisibility(View.INVISIBLE);
+                    textView11.setVisibility(View.INVISIBLE);
+                    add_client.setVisibility(View.INVISIBLE);
+
+                    call.setVisibility(View.VISIBLE);
+                    addphoto.setVisibility(View.VISIBLE);
+                    whatsapp.setVisibility(View.VISIBLE);
+
+                    imageView4.setVisibility(View.VISIBLE);
+
+
+                    textView15.setVisibility(View.VISIBLE);
+                    textView16.setVisibility(View.VISIBLE);
+                    textView10.setVisibility(View.VISIBLE);
+                    textView20.setVisibility(View.VISIBLE);
+
+                    info_surname.setVisibility(View.VISIBLE);
+                    info_name.setVisibility(View.VISIBLE);
+                    info_patronymic.setVisibility(View.VISIBLE);
+                    info_number.setVisibility(View.VISIBLE);
+                    info_date_start.setVisibility(View.VISIBLE);
+                    info_date_end.setVisibility(View.VISIBLE);
+                    info_zastava.setVisibility(View.VISIBLE);
+
+                    busyness();
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
-
-                String client_zastava = data.getStringExtra("zastava2");
-                info_zastava.setText(client_zastava + " Грн.");
-
-                String client_email = data.getStringExtra("email2");
-                info_email.setText(client_email);
-
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putString("client_name2",client_name);
-                editor.putString("client_surname2",client_surname);
-                editor.putString("client_patronymic2",client_patronymic);
-                editor.putString("client_number2",client_number);
-                editor.putString("client_datestart2",client_datestart);
-                editor.putString("client_dateend2",client_dateend);
-                editor.putString("client_pay2",client_pay);
-                editor.putString("client_zastava2",client_zastava);
-                editor.putString("client_email2",client_email);
-
-                editor.apply();
-
-
-                delete_client.setVisibility(View.VISIBLE);
-                info_pay.setVisibility(View.VISIBLE);
-                find_client.setVisibility(View.INVISIBLE);
-                textView11.setVisibility(View.INVISIBLE);
-                add_client.setVisibility(View.INVISIBLE);
-
-                call.setVisibility(View.VISIBLE);
-                addphoto.setVisibility(View.VISIBLE);
-                whatsapp.setVisibility(View.VISIBLE);
-
-                imageView4.setVisibility(View.VISIBLE);
-
-
-
-                textView15.setVisibility(View.VISIBLE);
-                textView16.setVisibility(View.VISIBLE);
-                textView10.setVisibility(View.VISIBLE);
-                textView20.setVisibility(View.VISIBLE);
-
-                info_surname.setVisibility(View.VISIBLE);
-                info_name.setVisibility(View.VISIBLE);
-                info_patronymic.setVisibility(View.VISIBLE);
-                info_number.setVisibility(View.VISIBLE);
-                info_date_start.setVisibility(View.VISIBLE);
-                info_date_end.setVisibility(View.VISIBLE);
-                info_zastava.setVisibility(View.VISIBLE);
-
-                Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
-                toast.show();
             }
         }
 
         if (requestCode == 333) {
-            if(resultCode==RESULT_OK){
+            if(resultCode==RESULT_OK) {
                 String client_name = data.getStringExtra("name3");
-                info_name.setText(client_name);
+
+                if (client_name.equals(name1) || client_name.equals(name2) || client_name.equals(name3) || client_name.equals(name4)) {
+
+                    Toast.makeText(ActivityApartmentManager.this,
+                            "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
+
+                } else {
+                    info_name.setText(client_name);
 
 
-                String client_surname = data.getStringExtra("surname3");
-                info_surname.setText(client_surname);
+                    String client_surname = data.getStringExtra("surname3");
+                    info_surname.setText(client_surname);
 
-                String client_patronymic = data.getStringExtra("patronymic3");
-                info_patronymic.setText(client_patronymic);
+                    String client_patronymic = data.getStringExtra("patronymic3");
+                    info_patronymic.setText(client_patronymic);
 
-                String client_number = data.getStringExtra("number3");
-                info_number.setText(client_number);
+                    String client_number = data.getStringExtra("number3");
+                    info_number.setText(client_number);
 
-                String client_datestart = data.getStringExtra("datestart3");
-                info_date_start.setText(client_datestart);
+                    String client_datestart = data.getStringExtra("datestart3");
+                    info_date_start.setText(client_datestart);
 
-                String client_dateend = data.getStringExtra("dateend3");
-                info_date_end.setText(client_dateend);
+                    String client_dateend = data.getStringExtra("dateend3");
+                    info_date_end.setText(client_dateend);
 
-                String client_pay = data.getStringExtra("sumpay3");
-                if (client_pay.isEmpty()){
+                    String client_pay = data.getStringExtra("sumpay3");
+                    if (client_pay.isEmpty()) {
 
-                    info_pay.setText(client_pay +"     "+ 0 +" Грн.");
+                        info_pay.setText(client_pay + "     " + 0 + " Грн.");
 
-                }else {
-                    info_pay.setText(client_pay + " Грн.");
+                    } else {
+                        info_pay.setText(client_pay + " Грн.");
+                    }
+
+                    String client_zastava = data.getStringExtra("zastava3");
+                    info_zastava.setText(client_zastava + " Грн.");
+
+                    String client_email = data.getStringExtra("email3");
+                    info_email.setText(client_email);
+
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    editor.putString("client_name3", client_name);
+                    editor.putString("client_surname3", client_surname);
+                    editor.putString("client_patronymic3", client_patronymic);
+                    editor.putString("client_number3", client_number);
+                    editor.putString("client_datestart3", client_datestart);
+                    editor.putString("client_dateend3", client_dateend);
+                    editor.putString("client_pay3", client_pay);
+                    editor.putString("client_zastava3", client_zastava);
+                    editor.putString("client_email3", client_email);
+
+                    editor.apply();
+
+                    delete_client.setVisibility(View.VISIBLE);
+                    info_pay.setVisibility(View.VISIBLE);
+                    find_client.setVisibility(View.INVISIBLE);
+                    textView11.setVisibility(View.INVISIBLE);
+                    add_client.setVisibility(View.INVISIBLE);
+
+                    imageView4.setVisibility(View.VISIBLE);
+
+                    call.setVisibility(View.VISIBLE);
+                    addphoto.setVisibility(View.VISIBLE);
+                    whatsapp.setVisibility(View.VISIBLE);
+
+
+                    textView15.setVisibility(View.VISIBLE);
+                    textView10.setVisibility(View.VISIBLE);
+                    textView16.setVisibility(View.VISIBLE);
+                    textView20.setVisibility(View.VISIBLE);
+
+                    info_surname.setVisibility(View.VISIBLE);
+                    info_name.setVisibility(View.VISIBLE);
+                    info_patronymic.setVisibility(View.VISIBLE);
+                    info_number.setVisibility(View.VISIBLE);
+                    info_date_start.setVisibility(View.VISIBLE);
+                    info_date_end.setVisibility(View.VISIBLE);
+                    info_zastava.setVisibility(View.VISIBLE);
+
+                    busyness();
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
-
-                String client_zastava = data.getStringExtra("zastava3");
-                info_zastava.setText(client_zastava + " Грн.");
-
-                String client_email = data.getStringExtra("email3");
-                info_email.setText(client_email);
-
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putString("client_name3",client_name);
-                editor.putString("client_surname3",client_surname);
-                editor.putString("client_patronymic3",client_patronymic);
-                editor.putString("client_number3",client_number);
-                editor.putString("client_datestart3",client_datestart);
-                editor.putString("client_dateend3",client_dateend);
-                editor.putString("client_pay3",client_pay);
-                editor.putString("client_zastava3",client_zastava);
-                editor.putString("client_email3",client_email);
-
-                editor.apply();
-
-                delete_client.setVisibility(View.VISIBLE);
-                info_pay.setVisibility(View.VISIBLE);
-                find_client.setVisibility(View.INVISIBLE);
-                textView11.setVisibility(View.INVISIBLE);
-                add_client.setVisibility(View.INVISIBLE);
-
-                imageView4.setVisibility(View.VISIBLE);
-
-                call.setVisibility(View.VISIBLE);
-                addphoto.setVisibility(View.VISIBLE);
-                whatsapp.setVisibility(View.VISIBLE);
-
-
-
-                textView15.setVisibility(View.VISIBLE);
-                textView10.setVisibility(View.VISIBLE);
-                textView16.setVisibility(View.VISIBLE);
-                textView20.setVisibility(View.VISIBLE);
-
-                info_surname.setVisibility(View.VISIBLE);
-                info_name.setVisibility(View.VISIBLE);
-                info_patronymic.setVisibility(View.VISIBLE);
-                info_number.setVisibility(View.VISIBLE);
-                info_date_start.setVisibility(View.VISIBLE);
-                info_date_end.setVisibility(View.VISIBLE);
-                info_zastava.setVisibility(View.VISIBLE);
-
-                Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
-                toast.show();
             }
         }
         if (requestCode == 444) {
-            if(resultCode==RESULT_OK){
+            if(resultCode==RESULT_OK) {
                 String client_name = data.getStringExtra("name4");
-                info_name.setText(client_name);
+
+                if (client_name.equals(name1) || client_name.equals(name2) || client_name.equals(name3) || client_name.equals(name4)) {
+
+                    Toast.makeText(ActivityApartmentManager.this,
+                            "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
+
+                } else {
+                    info_name.setText(client_name);
 
 
-                String client_surname = data.getStringExtra("surname4");
-                info_surname.setText(client_surname);
+                    String client_surname = data.getStringExtra("surname4");
+                    info_surname.setText(client_surname);
 
-                String client_patronymic = data.getStringExtra("patronymic4");
-                info_patronymic.setText(client_patronymic);
+                    String client_patronymic = data.getStringExtra("patronymic4");
+                    info_patronymic.setText(client_patronymic);
 
-                String client_number = data.getStringExtra("number4");
-                info_number.setText(client_number);
+                    String client_number = data.getStringExtra("number4");
+                    info_number.setText(client_number);
 
-                String client_datestart = data.getStringExtra("datestart4");
-                info_date_start.setText(client_datestart);
+                    String client_datestart = data.getStringExtra("datestart4");
+                    info_date_start.setText(client_datestart);
 
-                String client_dateend = data.getStringExtra("dateend4");
-                info_date_end.setText(client_dateend);
+                    String client_dateend = data.getStringExtra("dateend4");
+                    info_date_end.setText(client_dateend);
 
-                String client_pay = data.getStringExtra("sumpay4");
-                if (client_pay.isEmpty()){
+                    String client_pay = data.getStringExtra("sumpay4");
+                    if (client_pay.isEmpty()) {
 
-                    info_pay.setText(client_pay +"     "+ 0 +" Грн.");
+                        info_pay.setText(client_pay + "     " + 0 + " Грн.");
 
-                }else {
-                    info_pay.setText(client_pay + " Грн.");
+                    } else {
+                        info_pay.setText(client_pay + " Грн.");
+                    }
+
+                    String client_zastava = data.getStringExtra("zastava4");
+                    info_zastava.setText(client_zastava + " Грн.");
+
+                    String client_email = data.getStringExtra("email4");
+                    info_email.setText(client_email);
+
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    editor.putString("client_name4", client_name);
+                    editor.putString("client_surname4", client_surname);
+                    editor.putString("client_patronymic4", client_patronymic);
+                    editor.putString("client_number4", client_number);
+                    editor.putString("client_datestart4", client_datestart);
+                    editor.putString("client_dateend4", client_dateend);
+                    editor.putString("client_pay4", client_pay);
+                    editor.putString("client_zastava4", client_zastava);
+                    editor.putString("client_email4", client_email);
+
+                    editor.apply();
+
+                    delete_client.setVisibility(View.VISIBLE);
+                    info_pay.setVisibility(View.VISIBLE);
+                    find_client.setVisibility(View.INVISIBLE);
+                    textView11.setVisibility(View.INVISIBLE);
+                    add_client.setVisibility(View.INVISIBLE);
+
+                    imageView4.setVisibility(View.VISIBLE);
+
+                    call.setVisibility(View.VISIBLE);
+                    addphoto.setVisibility(View.VISIBLE);
+                    whatsapp.setVisibility(View.VISIBLE);
+
+
+                    textView15.setVisibility(View.VISIBLE);
+                    textView16.setVisibility(View.VISIBLE);
+                    textView10.setVisibility(View.VISIBLE);
+                    textView20.setVisibility(View.VISIBLE);
+
+                    info_surname.setVisibility(View.VISIBLE);
+                    info_name.setVisibility(View.VISIBLE);
+                    info_patronymic.setVisibility(View.VISIBLE);
+                    info_number.setVisibility(View.VISIBLE);
+                    info_date_start.setVisibility(View.VISIBLE);
+                    info_date_end.setVisibility(View.VISIBLE);
+                    info_zastava.setVisibility(View.VISIBLE);
+
+                    busyness();
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
-
-                String client_zastava = data.getStringExtra("zastava4");
-                info_zastava.setText(client_zastava + " Грн.");
-
-                String client_email = data.getStringExtra("email4");
-                info_email.setText(client_email);
-
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putString("client_name4",client_name);
-                editor.putString("client_surname4",client_surname);
-                editor.putString("client_patronymic4",client_patronymic);
-                editor.putString("client_number4",client_number);
-                editor.putString("client_datestart4",client_datestart);
-                editor.putString("client_dateend4",client_dateend);
-                editor.putString("client_pay4",client_pay);
-                editor.putString("client_zastava4",client_zastava);
-                editor.putString("client_email4",client_email);
-
-                editor.apply();
-
-                delete_client.setVisibility(View.VISIBLE);
-                info_pay.setVisibility(View.VISIBLE);
-                find_client.setVisibility(View.INVISIBLE);
-                textView11.setVisibility(View.INVISIBLE);
-                add_client.setVisibility(View.INVISIBLE);
-
-                imageView4.setVisibility(View.VISIBLE);
-
-                call.setVisibility(View.VISIBLE);
-                addphoto.setVisibility(View.VISIBLE);
-                whatsapp.setVisibility(View.VISIBLE);
-
-
-
-                textView15.setVisibility(View.VISIBLE);
-                textView16.setVisibility(View.VISIBLE);
-                textView10.setVisibility(View.VISIBLE);
-                textView20.setVisibility(View.VISIBLE);
-
-                info_surname.setVisibility(View.VISIBLE);
-                info_name.setVisibility(View.VISIBLE);
-                info_patronymic.setVisibility(View.VISIBLE);
-                info_number.setVisibility(View.VISIBLE);
-                info_date_start.setVisibility(View.VISIBLE);
-                info_date_end.setVisibility(View.VISIBLE);
-                info_zastava.setVisibility(View.VISIBLE);
-
-                Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
-                toast.show();
             }
         }
 
@@ -2989,6 +3128,50 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         if(_Name.equals(info_name.getText().toString())){
 
             reference.child(_Name ).child("dateend").setValue(date);
+
+            return true;
+
+        }else {
+
+            return  false;
+
+        }
+
+    }
+
+    private  boolean busyness(){
+
+
+        _Name = info_name.getText().toString();
+
+
+        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+        if(_Name.equals(info_name.getText().toString())){
+
+            reference.child(_Name ).child("busyness").setValue("1");
+
+            return true;
+
+        }else {
+
+            return  false;
+
+        }
+
+    }
+
+    private  boolean NObusyness(){
+
+
+        _Name = info_name.getText().toString();
+
+
+        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+        if(_Name.equals(info_name.getText().toString())){
+
+            reference.child(_Name ).child("busyness").setValue("0");
 
             return true;
 

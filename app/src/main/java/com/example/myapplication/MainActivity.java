@@ -30,9 +30,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import db.ApartmentsClass;
+import db.Repair.RepairClass;
+
 public class  MainActivity extends AppCompatActivity  implements View.OnClickListener{
 
+    String _Name;
+    DatabaseReference reference;
     SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences1;
     private  SharedPreferences.Editor editor;
     private int checkedItem;
     private String selected;
@@ -74,8 +80,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
         sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
-        sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+        sharedPreferences1 = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
+        editor = sharedPreferences1.edit();
+
 
         String address1 = sharedPreferences.getString("address1","");
         add1_text.setText(address1);
@@ -216,7 +223,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                 vibr.vibrate(70);
                 Intent intent = new Intent("new_home1");
 
-                startActivity(intent);
+                startActivityForResult(intent,11);
                 Animatoo.animateSlideRight(MainActivity.this);
 
             }
@@ -244,6 +251,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 add1.setVisibility(View.VISIBLE);
                                 add1_text.setText("");
 
+                                NObusyness1();
+
                                 String address1 = add1_text.getText().toString();
 
                                 String client_name = "";
@@ -269,14 +278,17 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 editor.putString("client_email1",client_email);
                                 editor.putString("address1",address1);
 
+
                                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                                 SharedPreferences.Editor editor1 = preferences.edit();
                                 editor1.putString("image1",null);
                                 editor1.commit();
 
-                                editor.apply();
 
                                 add1_text.setText(address1);
+
+                                editor.apply();
+
                             }
                         })
                         .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
@@ -300,7 +312,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                 Intent intent = new Intent("new_home2");
 
 
-                startActivity(intent);
+                startActivityForResult(intent,22);
                 Animatoo.animateSlideLeft(MainActivity.this);
 
             }
@@ -328,6 +340,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 add2.setVisibility(View.VISIBLE);
                                 add2_text.setText("");
 
+                                NObusyness2();
                                 String address2 = add2_text.getText().toString();
 
                                 String client_name = "";
@@ -382,7 +395,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                 Intent intent = new Intent("new_home3");
 
 
-                startActivity(intent);
+                startActivityForResult(intent,33);
                 Animatoo.animateSlideRight(MainActivity.this);
 
             }
@@ -409,6 +422,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 add3.setVisibility(View.VISIBLE);
                                 add3_text.setText("");
 
+                                NObusyness3();
                                 String address3 = add3_text.getText().toString();
 
                                 String client_name = "";
@@ -463,7 +477,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                 Intent intent = new Intent("new_home4");
 
 
-                startActivity(intent);
+                startActivityForResult(intent,44);
                 Animatoo.animateSlideLeft(MainActivity.this);
 
             }
@@ -489,6 +503,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                             public void onClick(DialogInterface dialog, int which) {
                                 add4.setVisibility(View.VISIBLE);
                                 add4_text.setText("");
+
+                                NObusyness4();
 
                                 String address4 = add4_text.getText().toString();
 
@@ -635,6 +651,55 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 11){
+            if(resultCode==RESULT_OK){
+
+                String address1 = data.getStringExtra("address1");
+
+                add1_text.setText(address1);
+
+            }
+
+
+        }
+
+        if(requestCode == 22){
+            if(resultCode==RESULT_OK){
+
+                String address1 = data.getStringExtra("address2");
+
+                add2_text.setText(address1);
+
+            }
+
+
+        }
+
+        if(requestCode == 33){
+            if(resultCode==RESULT_OK){
+
+                String address1 = data.getStringExtra("address3");
+
+                add3_text.setText(address1);
+
+            }
+
+
+        }
+
+        if(requestCode == 44){
+            if(resultCode==RESULT_OK){
+
+                String address1 = data.getStringExtra("address4");
+
+                add4_text.setText(address1);
+
+            }
+
+
+        }
+
         if (requestCode == 1){
             if(resultCode==RESULT_OK){
 
@@ -833,6 +898,94 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
 
 
+
+    }
+
+    private  boolean NObusyness1(){
+
+
+        _Name = sharedPreferences.getString("client_name1","");
+
+
+        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+        if(_Name.equals(_Name)){
+
+            reference.child(_Name ).child("busyness").setValue("0");
+
+            return true;
+
+        }else {
+
+            return  false;
+
+        }
+
+    }
+
+    private  boolean NObusyness2(){
+
+
+        _Name = sharedPreferences.getString("client_name2","");
+
+
+        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+        if(_Name.equals(_Name)){
+
+            reference.child(_Name ).child("busyness").setValue("0");
+
+            return true;
+
+        }else {
+
+            return  false;
+
+        }
+
+    }
+
+    private  boolean NObusyness3(){
+
+
+        _Name = sharedPreferences.getString("client_name3","");
+
+
+        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+        if(_Name.equals(_Name)){
+
+            reference.child(_Name ).child("busyness").setValue("0");
+
+            return true;
+
+        }else {
+
+            return  false;
+
+        }
+
+    }
+
+    private  boolean NObusyness4(){
+
+
+        _Name = sharedPreferences.getString("client_name4","");
+
+
+        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+
+        if(_Name.equals(_Name)){
+
+            reference.child(_Name ).child("busyness").setValue("0");
+
+            return true;
+
+        }else {
+
+            return  false;
+
+        }
 
     }
 }
