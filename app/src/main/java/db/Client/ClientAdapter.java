@@ -36,10 +36,11 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAdapter.viewHolder> {
 
-
+SharedPreferences sharedPreferences;
 
 
     public ClientAdapter(@NonNull FirebaseRecyclerOptions<ClientClass>options){super(options);
+
 
 
     }

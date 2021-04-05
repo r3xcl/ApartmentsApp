@@ -7,10 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
+
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,6 +32,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+
+import com.example.myapplication.message.MessageIntegration;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -51,15 +52,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.prefs.Preferences;
+
+import db.Client.ClientClass;
+import db.Pay.PayClass;
 
 public class  ActivityApartmentManager extends AppCompatActivity implements View.OnClickListener {
 
@@ -82,7 +83,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
 
-    ImageView imageView4, image_client , delphoto_client,info_home;
+    ImageView imageView4, image_client , delphoto_client,info_home,imageshome;
     private FusedLocationProviderClient fusedLocationProviderClient;
 
 
@@ -135,6 +136,9 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         files = (ImageButton) findViewById(R.id.files);
         files.setOnClickListener(this);
 
+        imageshome = (ImageView) findViewById(R.id.imageshome);
+        imageshome.setOnClickListener(this);
+
         delphoto_client = (ImageView) findViewById(R.id.delphoto_client);
         delphoto_client.setOnClickListener(this);
 
@@ -166,6 +170,19 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
         apartment_edit = (ImageButton) findViewById(R.id.apartment_edit);
         apartment_edit.setOnClickListener(this);
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+
+
+        imageshome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent1 = new Intent("image1");
+                startActivityForResult(intent1,129);
+            }
+        });
 
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(ActivityApartmentManager.this);
@@ -256,6 +273,74 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+            Query query4 = reference.child("New_Client").orderByChild("busyness").equalTo("idApart1");
+            query4.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+
+                        for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+
+                            String dateend = snapShot.child("dateend").getValue().toString();
+                            String datestart = snapShot.child("datestart").getValue().toString();
+                            String email = snapShot.child("email").getValue().toString();
+                            String name = snapShot.child("name").getValue().toString();
+                            String number = snapShot.child("number").getValue().toString();
+                            String patronymic = snapShot.child("patronymic").getValue().toString();
+                            String pay = snapShot.child("pay").getValue().toString();
+                            String surname = snapShot.child("surname").getValue().toString();
+                            String zastava = snapShot.child("zastava").getValue().toString();
+
+                            info_date_end.setText(dateend);
+                            info_date_start.setText(datestart);
+                            info_email.setText(email);
+                            info_name.setText(name);
+                            info_number.setText(number);
+                            info_patronymic.setText(patronymic);
+                            info_surname.setText(surname);
+
+                            if(pay.equals("")){
+
+                                info_pay.setText("0 Грн.");
+                            }else {
+                                info_pay.setText(pay + " Грн.");
+                            }
+
+                            if(zastava.equals("")){
+
+                                info_zastava.setText("0 Грн.");
+
+                            }else {
+                                info_zastava.setText(zastava + " Грн.");
+                            }
+
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putString("client_name1",name);
+                            editor.putString("client_surname1",surname);
+                            editor.putString("client_patronymic1",patronymic);
+                            editor.putString("client_number1",number);
+                            editor.putString("client_datestart1",datestart);
+                            editor.putString("client_dateend1",dateend);
+                            editor.putString("client_pay1",pay);
+                            editor.putString("client_zastava1",zastava);
+                            editor.putString("client_email1",email);
+
+                            editor.apply();
+
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
                 }
             });
@@ -576,9 +661,36 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             delete_client.setOnClickListener(v -> {
 
 
-                date();
+
+                String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+
+                Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart1");
+                query11.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+
+                            for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+                                String key = snapShot.getKey();
+
+                                reference1.child("New_Client").child(key).child("dateend").setValue(date);
+
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 NObusyness();
+
 
                 info_surname.setText("");
                 String client_surname = info_surname.getText().toString();
@@ -738,6 +850,74 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+            Query query5 = reference.child("New_Client").orderByChild("busyness").equalTo("idApart2");
+            query5.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+
+                        for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+
+                            String dateend = snapShot.child("dateend").getValue().toString();
+                            String datestart = snapShot.child("datestart").getValue().toString();
+                            String email = snapShot.child("email").getValue().toString();
+                            String name = snapShot.child("name").getValue().toString();
+                            String number = snapShot.child("number").getValue().toString();
+                            String patronymic = snapShot.child("patronymic").getValue().toString();
+                            String pay = snapShot.child("pay").getValue().toString();
+                            String surname = snapShot.child("surname").getValue().toString();
+                            String zastava = snapShot.child("zastava").getValue().toString();
+
+                            info_date_end.setText(dateend);
+                            info_date_start.setText(datestart);
+                            info_email.setText(email);
+                            info_name.setText(name);
+                            info_number.setText(number);
+                            info_patronymic.setText(patronymic);
+                            info_surname.setText(surname);
+
+                            if(pay.equals("")){
+
+                                info_pay.setText("0 Грн.");
+                            }else {
+                                info_pay.setText(pay + " Грн.");
+                            }
+
+                            if(zastava.equals("")){
+
+                                info_zastava.setText("0 Грн.");
+
+                            }else {
+                                info_zastava.setText(zastava + " Грн.");
+                            }
+
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putString("client_name2",name);
+                            editor.putString("client_surname2",surname);
+                            editor.putString("client_patronymic2",patronymic);
+                            editor.putString("client_number2",number);
+                            editor.putString("client_datestart2",datestart);
+                            editor.putString("client_dateend2",dateend);
+                            editor.putString("client_pay2",pay);
+                            editor.putString("client_zastava2",zastava);
+                            editor.putString("client_email2",email);
+
+                            editor.apply();
+
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
                 }
             });
@@ -1049,7 +1229,34 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             delete_client.setOnClickListener(v -> {
 
-                date();
+
+                String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+
+                Query query22 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart2");
+                query22.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+
+                            for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+                                String key = snapShot.getKey();
+
+                                reference1.child("New_Client").child(key).child("dateend").setValue(date);
+
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
                 NObusyness();
 
                 info_surname.setText("");
@@ -1512,7 +1719,34 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             delete_client.setOnClickListener(v -> {
 
-                date();
+
+                String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+
+                Query query33 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart3");
+                query33.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+
+                            for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+                                String key = snapShot.getKey();
+
+                                reference1.child("New_Client").child(key).child("dateend").setValue(date);
+
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
                 NObusyness();
 
                 info_surname.setText("");
@@ -1667,6 +1901,142 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+            Query query6 = reference.child("New_Client").orderByChild("busyness").equalTo("idApart3");
+            query6.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+
+                        for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+
+                            String dateend = snapShot.child("dateend").getValue().toString();
+                            String datestart = snapShot.child("datestart").getValue().toString();
+                            String email = snapShot.child("email").getValue().toString();
+                            String name = snapShot.child("name").getValue().toString();
+                            String number = snapShot.child("number").getValue().toString();
+                            String patronymic = snapShot.child("patronymic").getValue().toString();
+                            String pay = snapShot.child("pay").getValue().toString();
+                            String surname = snapShot.child("surname").getValue().toString();
+                            String zastava = snapShot.child("zastava").getValue().toString();
+
+                            info_date_end.setText(dateend);
+                            info_date_start.setText(datestart);
+                            info_email.setText(email);
+                            info_name.setText(name);
+                            info_number.setText(number);
+                            info_patronymic.setText(patronymic);
+                            info_surname.setText(surname);
+
+                            if(pay.equals("")){
+
+                                info_pay.setText("0 Грн.");
+                            }else {
+                                info_pay.setText(pay + " Грн.");
+                            }
+
+                            if(zastava.equals("")){
+
+                                info_zastava.setText("0 Грн.");
+
+                            }else {
+                                info_zastava.setText(zastava + " Грн.");
+                            }
+
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putString("client_name3",name);
+                            editor.putString("client_surname3",surname);
+                            editor.putString("client_patronymic3",patronymic);
+                            editor.putString("client_number3",number);
+                            editor.putString("client_datestart3",datestart);
+                            editor.putString("client_dateend3",dateend);
+                            editor.putString("client_pay3",pay);
+                            editor.putString("client_zastava3",zastava);
+                            editor.putString("client_email3",email);
+
+                            editor.apply();
+
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+            Query query7 = reference.child("New_Client").orderByChild("busyness").equalTo("idApart4");
+            query7.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+
+                        for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+
+                            String dateend = snapShot.child("dateend").getValue().toString();
+                            String datestart = snapShot.child("datestart").getValue().toString();
+                            String email = snapShot.child("email").getValue().toString();
+                            String name = snapShot.child("name").getValue().toString();
+                            String number = snapShot.child("number").getValue().toString();
+                            String patronymic = snapShot.child("patronymic").getValue().toString();
+                            String pay = snapShot.child("pay").getValue().toString();
+                            String surname = snapShot.child("surname").getValue().toString();
+                            String zastava = snapShot.child("zastava").getValue().toString();
+
+                            info_date_end.setText(dateend);
+                            info_date_start.setText(datestart);
+                            info_email.setText(email);
+                            info_name.setText(name);
+                            info_number.setText(number);
+                            info_patronymic.setText(patronymic);
+                            info_surname.setText(surname);
+
+                            if(pay.equals("")){
+
+                                info_pay.setText("0 Грн.");
+                            }else {
+                                info_pay.setText(pay + " Грн.");
+                            }
+
+                            if(zastava.equals("")){
+
+                                info_zastava.setText("0 Грн.");
+
+                            }else {
+                                info_zastava.setText(zastava + " Грн.");
+                            }
+
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putString("client_name4",name);
+                            editor.putString("client_surname4",surname);
+                            editor.putString("client_patronymic4",patronymic);
+                            editor.putString("client_number4",number);
+                            editor.putString("client_datestart4",datestart);
+                            editor.putString("client_dateend4",dateend);
+                            editor.putString("client_pay4",pay);
+                            editor.putString("client_zastava4",zastava);
+                            editor.putString("client_email4",email);
+
+                            editor.apply();
+
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
                 }
             });
@@ -1977,7 +2347,34 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             delete_client.setOnClickListener(v -> {
 
-                date();
+                String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+
+                Query query44 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart4");
+                query44.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+
+                            for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+                                String key = snapShot.getKey();
+
+                                reference1.child("New_Client").child(key).child("dateend").setValue(date);
+
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
                 NObusyness();
 
                 info_surname.setText("");
@@ -2365,6 +2762,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 info_date_end.setVisibility(View.VISIBLE);
                 info_zastava.setVisibility(View.VISIBLE);
 
+                busynessid1();
+
                 Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                 toast.show();
             }
@@ -2443,6 +2842,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 info_date_end.setVisibility(View.VISIBLE);
                 info_zastava.setVisibility(View.VISIBLE);
 
+                busynessid2();
+
                 Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                 toast.show();
             }
@@ -2519,6 +2920,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 info_date_start.setVisibility(View.VISIBLE);
                 info_date_end.setVisibility(View.VISIBLE);
                 info_zastava.setVisibility(View.VISIBLE);
+
+                busynessid3();
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                 toast.show();
@@ -2597,6 +3000,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 info_date_start.setVisibility(View.VISIBLE);
                 info_date_end.setVisibility(View.VISIBLE);
                 info_zastava.setVisibility(View.VISIBLE);
+
+                busynessid4();
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                 toast.show();
@@ -2702,21 +3107,11 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             }
         }
 
-        String name1 = sharedPreferences.getString("client_name1", "");
-        String name2 = sharedPreferences.getString("client_name2", "");
-        String name3 = sharedPreferences.getString("client_name3", "");
-        String name4 = sharedPreferences.getString("client_name4", "");
 
         if (requestCode == 111) {
             if(resultCode==RESULT_OK) {
                 String client_name = data.getStringExtra("name1");
 
-                if (client_name.equals(name1) || client_name.equals(name2) || client_name.equals(name3) || client_name.equals(name4)) {
-
-                    Toast.makeText(ActivityApartmentManager.this,
-                            "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
-
-                } else {
 
                     info_name.setText(client_name);
 
@@ -2793,24 +3188,18 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     info_date_end.setVisibility(View.VISIBLE);
                     info_zastava.setVisibility(View.VISIBLE);
 
-                    busyness();
+                    busynessid1();
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                     toast.show();
-                }
             }
+
         }
 
         if (requestCode == 222) {
             if(resultCode==RESULT_OK) {
                 String client_name = data.getStringExtra("name2");
 
-                if (client_name.equals(name1) || client_name.equals(name2) || client_name.equals(name3) || client_name.equals(name4)) {
-
-                    Toast.makeText(ActivityApartmentManager.this,
-                            "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
-
-                } else {
                     info_name.setText(client_name);
 
 
@@ -2886,24 +3275,18 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     info_date_end.setVisibility(View.VISIBLE);
                     info_zastava.setVisibility(View.VISIBLE);
 
-                    busyness();
+                    busynessid2();
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-            }
+
         }
 
         if (requestCode == 333) {
             if(resultCode==RESULT_OK) {
                 String client_name = data.getStringExtra("name3");
 
-                if (client_name.equals(name1) || client_name.equals(name2) || client_name.equals(name3) || client_name.equals(name4)) {
-
-                    Toast.makeText(ActivityApartmentManager.this,
-                            "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
-
-                } else {
                     info_name.setText(client_name);
 
 
@@ -2978,23 +3361,18 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     info_date_end.setVisibility(View.VISIBLE);
                     info_zastava.setVisibility(View.VISIBLE);
 
-                    busyness();
+                    busynessid3();
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-            }
+
         }
         if (requestCode == 444) {
             if(resultCode==RESULT_OK) {
                 String client_name = data.getStringExtra("name4");
 
-                if (client_name.equals(name1) || client_name.equals(name2) || client_name.equals(name3) || client_name.equals(name4)) {
 
-                    Toast.makeText(ActivityApartmentManager.this,
-                            "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
-
-                } else {
                     info_name.setText(client_name);
 
 
@@ -3069,12 +3447,12 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     info_date_end.setVisibility(View.VISIBLE);
                     info_zastava.setVisibility(View.VISIBLE);
 
-                    busyness();
+                    busynessid4();
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-            }
+
         }
 
 
@@ -3115,72 +3493,163 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
 
-    private  boolean date(){
+    private  void busynessid1(){
 
 
         _Name = info_name.getText().toString();
 
 
-        String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        Query query111 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
+        query111.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
 
-        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
 
-        if(_Name.equals(info_name.getText().toString())){
+                        String key = snapShot.getKey();
 
-            reference.child(_Name ).child("dateend").setValue(date);
+                        reference1.child("New_Client").child(key).child("busyness").setValue("idApart1");
 
-            return true;
+                    }
 
-        }else {
+                }
+            }
 
-            return  false;
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-        }
+            }
+        });
 
     }
 
-    private  boolean busyness(){
+    private  void busynessid2(){
+
+        _Name = info_name.getText().toString();
+
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        Query query222 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
+        query222.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+                        String key = snapShot.getKey();
+
+                        reference1.child("New_Client").child(key).child("busyness").setValue("idApart2");
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private  void busynessid3(){
 
 
         _Name = info_name.getText().toString();
 
 
-        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        Query query333 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
+        query333.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
 
-        if(_Name.equals(info_name.getText().toString())){
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
 
-            reference.child(_Name ).child("busyness").setValue("1");
+                        String key = snapShot.getKey();
 
-            return true;
+                        reference1.child("New_Client").child(key).child("busyness").setValue("idApart3");
 
-        }else {
+                    }
 
-            return  false;
+                }
+            }
 
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
-    private  boolean NObusyness(){
+    private  void busynessid4(){
+
+
+        _Name = info_name.getText().toString();
+
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        Query query444 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
+        query444.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+                        String key = snapShot.getKey();
+
+                        reference1.child("New_Client").child(key).child("busyness").setValue("idApart4");
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private  void NObusyness() {
 
 
         _Name = info_name.getText().toString();
 
 
-        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        Query query11 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
+        query11.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
 
-        if(_Name.equals(info_name.getText().toString())){
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
 
-            reference.child(_Name ).child("busyness").setValue("0");
+                        String key = snapShot.getKey();
 
-            return true;
+                        reference1.child("New_Client").child(key).child("busyness").setValue("0");
 
-        }else {
+                    }
 
-            return  false;
+                }
+            }
 
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
+
+
 
 }

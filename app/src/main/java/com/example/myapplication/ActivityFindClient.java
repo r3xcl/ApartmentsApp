@@ -41,6 +41,8 @@ public class ActivityFindClient extends AppCompatActivity {
 
     private List<ClientClass> listTemp1;
 
+    SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,12 @@ public class ActivityFindClient extends AppCompatActivity {
         String action = intent.getAction();
         getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+
+        String name1 = sharedPreferences.getString("client_name1", "");
+        String name2 = sharedPreferences.getString("client_name2", "");
+        String name3 = sharedPreferences.getString("client_name3", "");
+        String name4 = sharedPreferences.getString("client_name4", "");
 
         listView1 = findViewById(R.id.listView1);
         listData1 = new ArrayList<>();
@@ -78,15 +86,12 @@ public class ActivityFindClient extends AppCompatActivity {
 
                     name = clientClass.getName();
 
+                    if (name.equals(name1) || name.equals(name2) || name.equals(name3) || name.equals(name4)) {
 
-                    reference = FirebaseDatabase.getInstance().getReference("New_Client");
+                        Toast.makeText(ActivityFindClient.this,
+                                "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
 
-                    if(name.equals(clientClass.getName())){
-
-                        reference.child(name ).child("busyness").setValue("id_apart1");
-
-
-                    }
+                    } else {
 
                         intent.putExtra("surname1", clientClass.getSurname());
                         intent.putExtra("name1", clientClass.getName());
@@ -103,6 +108,7 @@ public class ActivityFindClient extends AppCompatActivity {
 
                         finish();
                     }
+                }
 
             });
         }
@@ -117,29 +123,29 @@ public class ActivityFindClient extends AppCompatActivity {
                     name = clientClass.getName();
 
 
-                    reference = FirebaseDatabase.getInstance().getReference("New_Client");
+                    if (name.equals(name1) || name.equals(name2) || name.equals(name3) || name.equals(name4)) {
 
-                    if(name.equals(clientClass.getName())){
+                        Toast.makeText(ActivityFindClient.this,
+                                "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
 
-                        reference.child(name ).child("busyness").setValue("id_apart2");
+                    } else {
 
 
+                        intent.putExtra("surname2", clientClass.getSurname());
+                        intent.putExtra("name2", clientClass.getName());
+                        intent.putExtra("patronymic2", clientClass.getPatronymic());
+                        intent.putExtra("number2", clientClass.getNumber());
+                        intent.putExtra("datestart2", clientClass.getDatestart());
+                        intent.putExtra("dateend2", clientClass.getDateend());
+                        intent.putExtra("sumpay2", clientClass.getPay());
+                        intent.putExtra("zastava2", clientClass.getZastava());
+                        intent.putExtra("email2", clientClass.getEmail());
+
+                        intent.putExtra("222", 222);
+                        setResult(RESULT_OK, intent);
+
+                        finish();
                     }
-
-                    intent.putExtra("surname2", clientClass.getSurname());
-                    intent.putExtra("name2", clientClass.getName());
-                    intent.putExtra("patronymic2", clientClass.getPatronymic());
-                    intent.putExtra("number2", clientClass.getNumber());
-                    intent.putExtra("datestart2", clientClass.getDatestart());
-                    intent.putExtra("dateend2",clientClass.getDateend());
-                    intent.putExtra("sumpay2",clientClass.getPay());
-                    intent.putExtra("zastava2",clientClass.getZastava());
-                    intent.putExtra("email2",clientClass.getEmail());
-
-                    intent.putExtra("222", 222);
-                    setResult(RESULT_OK, intent);
-
-                    finish();
                 }
             });
         }
@@ -154,29 +160,29 @@ public class ActivityFindClient extends AppCompatActivity {
                     name = clientClass.getName();
 
 
-                    reference = FirebaseDatabase.getInstance().getReference("New_Client");
+                    if (name.equals(name1) || name.equals(name2) || name.equals(name3) || name.equals(name4)) {
 
-                    if(name.equals(clientClass.getName())){
+                        Toast.makeText(ActivityFindClient.this,
+                                "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
 
-                        reference.child(name ).child("busyness").setValue("id_apart3");
+                    } else {
 
 
+                        intent.putExtra("surname3", clientClass.getSurname());
+                        intent.putExtra("name3", clientClass.getName());
+                        intent.putExtra("patronymic3", clientClass.getPatronymic());
+                        intent.putExtra("number3", clientClass.getNumber());
+                        intent.putExtra("datestart3", clientClass.getDatestart());
+                        intent.putExtra("dateend3", clientClass.getDateend());
+                        intent.putExtra("sumpay3", clientClass.getPay());
+                        intent.putExtra("zastava3", clientClass.getZastava());
+                        intent.putExtra("email3", clientClass.getEmail());
+
+                        intent.putExtra("333", 333);
+                        setResult(RESULT_OK, intent);
+
+                        finish();
                     }
-
-                    intent.putExtra("surname3", clientClass.getSurname());
-                    intent.putExtra("name3", clientClass.getName());
-                    intent.putExtra("patronymic3", clientClass.getPatronymic());
-                    intent.putExtra("number3", clientClass.getNumber());
-                    intent.putExtra("datestart3", clientClass.getDatestart());
-                    intent.putExtra("dateend3",clientClass.getDateend());
-                    intent.putExtra("sumpay3",clientClass.getPay());
-                    intent.putExtra("zastava3",clientClass.getZastava());
-                    intent.putExtra("email3",clientClass.getEmail());
-
-                    intent.putExtra("333", 333);
-                    setResult(RESULT_OK, intent);
-
-                    finish();
                 }
             });
         }
@@ -191,29 +197,27 @@ public class ActivityFindClient extends AppCompatActivity {
                     name = clientClass.getName();
 
 
-                    reference = FirebaseDatabase.getInstance().getReference("New_Client");
+                    if (name.equals(name1) || name.equals(name2) || name.equals(name3) || name.equals(name4)) {
 
-                    if(name.equals(clientClass.getName())){
+                        Toast.makeText(ActivityFindClient.this,
+                                "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
 
-                        reference.child(name).child("busyness").setValue("id_apart4");
+                    } else {
+                        intent.putExtra("surname4", clientClass.getSurname());
+                        intent.putExtra("name4", clientClass.getName());
+                        intent.putExtra("patronymic4", clientClass.getPatronymic());
+                        intent.putExtra("number4", clientClass.getNumber());
+                        intent.putExtra("datestart4", clientClass.getDatestart());
+                        intent.putExtra("dateend4", clientClass.getDateend());
+                        intent.putExtra("sumpay4", clientClass.getPay());
+                        intent.putExtra("zastava4", clientClass.getZastava());
+                        intent.putExtra("email4", clientClass.getEmail());
 
+                        intent.putExtra("444", 444);
+                        setResult(RESULT_OK, intent);
 
+                        finish();
                     }
-
-                    intent.putExtra("surname4", clientClass.getSurname());
-                    intent.putExtra("name4", clientClass.getName());
-                    intent.putExtra("patronymic4", clientClass.getPatronymic());
-                    intent.putExtra("number4", clientClass.getNumber());
-                    intent.putExtra("datestart4", clientClass.getDatestart());
-                    intent.putExtra("dateend4",clientClass.getDateend());
-                    intent.putExtra("sumpay4",clientClass.getPay());
-                    intent.putExtra("zastava4",clientClass.getZastava());
-                    intent.putExtra("email4",clientClass.getEmail());
-
-                    intent.putExtra("444", 444);
-                    setResult(RESULT_OK, intent);
-
-                    finish();
                 }
             });
         }

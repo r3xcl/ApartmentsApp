@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -268,6 +269,8 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                     if (client_name.getText().toString().length() != 0
                             && client_datestart.getText().toString().length() != 0 && client_dateend.getText().toString().length() != 0
                             && client_info.getText().toString().length() != 0) {
+
+
 
                         intent.putExtra("client_name1", client_name.getText().toString());
                         intent.putExtra("client_surname1", client_surname.getText().toString());

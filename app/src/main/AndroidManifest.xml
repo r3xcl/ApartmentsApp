@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,9 +16,20 @@
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".addimagehome.ImagesMain">
 
+            <intent-filter>
+                <action android:name="image1" />
+                <action android:name="image2" />
+                <action android:name="image3" />
+                <action android:name="image4" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".addimagehome.ImagesActivity" />
         <activity android:name=".InfoHome">
-
             <intent-filter>
                 <action android:name="info1" />
                 <action android:name="info2" />
@@ -27,9 +38,8 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".files.FilesView"></activity>
+        <activity android:name=".files.FilesView" />
         <activity android:name=".files.FilesUpload">
             <intent-filter>
                 <action android:name="filesUP1" />
@@ -50,7 +60,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MessageIntegration" />
+        <activity android:name=".message.MessageIntegration" />
         <activity android:name=".ActivityArchive">
             <intent-filter>
                 <action android:name="archive1" />

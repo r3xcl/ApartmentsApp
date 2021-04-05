@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MessageIntegration"
+    tools:context=".message.MessageIntegration"
     android:background="@color/mainFon">
 
     <Button
@@ -29,9 +29,25 @@
         android:layout_height="41dp"
         android:background="@drawable/button"
         android:text="Відправити"
+        android:textColor="#FFFFFF"
         android:visibility="invisible"
         app:backgroundTint="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whatsapp_text"
+        app:layout_constraintVertical_bias="0.365" />
+
+    <Button
+        android:id="@+id/send_all"
+        android:layout_width="137dp"
+        android:layout_height="41dp"
+        android:background="@drawable/button"
+        android:text="Відправити"
         android:textColor="#FFFFFF"
+        android:visibility="invisible"
+        app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -64,10 +80,10 @@
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gmail"
+        android:text="Email"
+        android:textColor="@color/text3"
         android:textSize="16sp"
         android:visibility="visible"
-        android:textColor="@color/text3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.817"
