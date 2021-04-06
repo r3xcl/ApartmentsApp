@@ -43,7 +43,7 @@ public class ActivityNote extends AppCompatActivity implements NotesListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        getSupportActionBar().hide();//УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
         ImageView imageAddNoteMain = findViewById(R.id.imageAddNoteMain);
         imageAddNoteMain.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +147,7 @@ public class ActivityNote extends AppCompatActivity implements NotesListener {
         }
     }
 
-    //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void hideKeyboard() {
@@ -163,5 +163,4 @@ public class ActivityNote extends AppCompatActivity implements NotesListener {
         return super.dispatchTouchEvent(ev);
     }
 
-    // <---
 }

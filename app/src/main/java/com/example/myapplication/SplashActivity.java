@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_);
 
-        getSupportActionBar().hide();//УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
         iv_house = (ImageView)findViewById(R.id.iv_house);
         iv_beat = (ImageView)findViewById(R.id.iv_beat);

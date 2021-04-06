@@ -92,7 +92,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apartment_manager);
-        getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
 
 

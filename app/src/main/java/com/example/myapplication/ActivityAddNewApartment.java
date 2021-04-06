@@ -53,7 +53,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_add_new_apartment);
 
         edit_districts = (Spinner) findViewById(R.id.edit_districts);
@@ -63,7 +63,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
 
 
-        //РАЙОНЫ
+
         ArrayAdapter<String> adapter_districts = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,districts) {
 
             @Override
@@ -116,7 +116,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
 
 
-            //ГОРОДА
+
         ArrayAdapter<String> adapter_cities = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,cities) {
 
             @Override
@@ -474,7 +474,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
 
 
-    //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void hideKeyboard() {
@@ -492,6 +492,6 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
 
 
-    // <---
+
 
 }

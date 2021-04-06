@@ -39,7 +39,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_note);
 
-        getSupportActionBar().hide();//УБИРАЕМ ВЕРХНЮЮ ШАПК
+        getSupportActionBar().hide();
 
         ImageView imageBack = findViewById(R.id.imageBack);
         imageBack.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +183,6 @@ public class CreateNoteActivity extends AppCompatActivity {
 
     }
 
-    //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void hideKeyboard() {
@@ -199,6 +198,6 @@ public class CreateNoteActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
-    // <---
+
 
 }

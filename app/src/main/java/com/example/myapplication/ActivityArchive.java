@@ -34,7 +34,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
 
-        getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
         faddmoney = (FloatingActionButton)findViewById(R.id.faddmoney);
         faddmoney.setOnClickListener(this);
@@ -219,7 +219,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void hideKeyboard() {
@@ -237,7 +237,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
 
 
-    // <---
+
 
 
 }

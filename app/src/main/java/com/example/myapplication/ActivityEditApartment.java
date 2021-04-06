@@ -21,7 +21,7 @@ public class ActivityEditApartment extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_apartment);
 
-        getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
         apartment_room = (TextView)findViewById(R.id.apartment_room);
         apartment_floor = (TextView)findViewById(R.id.apartment_floor);
@@ -123,7 +123,6 @@ public class ActivityEditApartment extends AppCompatActivity implements View.OnC
         }
     }
 
-    //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void hideKeyboard() {
@@ -139,5 +138,5 @@ public class ActivityEditApartment extends AppCompatActivity implements View.OnC
         return super.dispatchTouchEvent(ev);
     }
 
-    // <---
+
 }

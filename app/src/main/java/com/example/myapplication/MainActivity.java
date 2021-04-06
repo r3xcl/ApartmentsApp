@@ -68,7 +68,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
         myDataBase = FirebaseDatabase.getInstance().getReference(New_Apartment);
 
-        getSupportActionBar().hide();//УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
         add1_text = (TextView) findViewById(R.id.add1_text);
         add2_text = (TextView) findViewById(R.id.add2_text);

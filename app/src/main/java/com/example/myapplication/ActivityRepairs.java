@@ -32,7 +32,7 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repairs);
 
-        getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
         sum_repair = (EditText) findViewById(R.id.sum_repair);
         name_repair = (EditText) findViewById(R.id.name_repair);

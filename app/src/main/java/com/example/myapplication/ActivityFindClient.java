@@ -36,7 +36,7 @@ public class ActivityFindClient extends AppCompatActivity {
     private List<String> listData1;
     private DatabaseReference myDataBase ;
     private String New_Client = "New_Client";
-    String name;
+    String name,surname,number;
     DatabaseReference reference;
 
     private List<ClientClass> listTemp1;
@@ -55,10 +55,29 @@ public class ActivityFindClient extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
+        String surname1 = sharedPreferences.getString("client_surname1","");
         String name1 = sharedPreferences.getString("client_name1", "");
+        String number1 = sharedPreferences.getString("client_number1","");
+
+        String id1 = surname1 + name1 + number1;
+
+        String surname2 = sharedPreferences.getString("client_surname2","");
         String name2 = sharedPreferences.getString("client_name2", "");
+        String number2 = sharedPreferences.getString("client_number2","");
+
+        String id2 = surname2 + name2 + number2;
+
+        String surname3 = sharedPreferences.getString("client_surname3","");
         String name3 = sharedPreferences.getString("client_name3", "");
+        String number3 = sharedPreferences.getString("client_number3","");
+
+        String id3 = surname3 + name3 + number3;
+
+        String surname4 = sharedPreferences.getString("client_surname4","");
         String name4 = sharedPreferences.getString("client_name4", "");
+        String number4 = sharedPreferences.getString("client_number4","");
+
+        String id4 = surname4 + name4 + number4;
 
         listView1 = findViewById(R.id.listView1);
         listData1 = new ArrayList<>();
@@ -84,9 +103,13 @@ public class ActivityFindClient extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ClientClass clientClass = listTemp1.get(position);
 
+                    surname = clientClass.getSurname();
                     name = clientClass.getName();
+                    number = clientClass.getNumber();
 
-                    if (name.equals(name1) || name.equals(name2) || name.equals(name3) || name.equals(name4)) {
+                   String idd = surname + name + number;
+
+                    if (idd.equals(id1) || idd.equals(id2) || idd.equals(id3) || idd.equals(id4)) {
 
                         Toast.makeText(ActivityFindClient.this,
                                 "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
@@ -120,10 +143,14 @@ public class ActivityFindClient extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ClientClass clientClass = listTemp1.get(position);
 
+                    surname = clientClass.getSurname();
                     name = clientClass.getName();
+                    number = clientClass.getNumber();
+
+                    String idd = surname + name + number;
 
 
-                    if (name.equals(name1) || name.equals(name2) || name.equals(name3) || name.equals(name4)) {
+                    if (idd.equals(id1) || idd.equals(id2) || idd.equals(id3) || idd.equals(id4)) {
 
                         Toast.makeText(ActivityFindClient.this,
                                 "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
@@ -157,10 +184,14 @@ public class ActivityFindClient extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ClientClass clientClass = listTemp1.get(position);
 
+                    surname = clientClass.getSurname();
                     name = clientClass.getName();
+                    number = clientClass.getNumber();
+
+                    String idd = surname + name + number;
 
 
-                    if (name.equals(name1) || name.equals(name2) || name.equals(name3) || name.equals(name4)) {
+                    if (idd.equals(id1) || idd.equals(id2) || idd.equals(id3) || idd.equals(id4)) {
 
                         Toast.makeText(ActivityFindClient.this,
                                 "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();
@@ -194,10 +225,14 @@ public class ActivityFindClient extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ClientClass clientClass = listTemp1.get(position);
 
+                    surname = clientClass.getSurname();
                     name = clientClass.getName();
+                    number = clientClass.getNumber();
+
+                    String idd = surname + name + number;
 
 
-                    if (name.equals(name1) || name.equals(name2) || name.equals(name3) || name.equals(name4)) {
+                    if (idd.equals(id1) || idd.equals(id2) || idd.equals(id3) || idd.equals(id4)) {
 
                         Toast.makeText(ActivityFindClient.this,
                                 "Орендатор вже обраний в іншій квартирі! Оберіть іншого!", Toast.LENGTH_LONG).show();

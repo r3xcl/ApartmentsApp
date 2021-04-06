@@ -31,7 +31,7 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
-        getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
         sum = (EditText) findViewById(R.id.sum);
         date_pay = (EditText) findViewById(R.id.date_pay);

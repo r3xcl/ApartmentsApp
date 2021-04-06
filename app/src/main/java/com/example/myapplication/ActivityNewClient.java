@@ -297,7 +297,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
 
                         ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
-                        myDataBase.child(id).setValue(newClient);
+                        myDataBase.push().setValue(newClient);
 
                         intent.putExtra("11", 11);
                         setResult(RESULT_OK, intent);
@@ -373,7 +373,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
 
                             ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
-                            myDataBase.child(id).setValue(newClient);
+                            myDataBase.push().setValue(newClient);
 
                             intent.putExtra("22", 22);
                             setResult(RESULT_OK, intent);
@@ -449,7 +449,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
 
                             ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
-                            myDataBase.child(id).setValue(newClient);
+                            myDataBase.push().setValue(newClient);
 
                             intent.putExtra("33", 33);
                             setResult(RESULT_OK, intent);
@@ -525,7 +525,7 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
 
                             ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
-                            myDataBase.child(id).setValue(newClient);
+                            myDataBase.push().setValue(newClient);
 
                             intent.putExtra("44", 44);
                             setResult(RESULT_OK, intent);

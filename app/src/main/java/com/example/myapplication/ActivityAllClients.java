@@ -127,7 +127,6 @@ public class ActivityAllClients extends AppCompatActivity {
 
     }
 
-    //ПРИ НАЖАТИИ НА ЭКРАН СКРЫВАЕМ КЛАВИАТУРУ --->
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void hideKeyboard() {
@@ -145,6 +144,5 @@ public class ActivityAllClients extends AppCompatActivity {
 
 
 
-    // <---
 }
 

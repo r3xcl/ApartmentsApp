@@ -14,7 +14,7 @@ public class ActivityShowAllinfoClient extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_allinfo_client);
-        getSupportActionBar().hide();//УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
         surname  = (TextView) findViewById(R.id.surname);
         name  = (TextView) findViewById(R.id.name);
