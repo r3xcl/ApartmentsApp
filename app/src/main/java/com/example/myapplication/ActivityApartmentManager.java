@@ -71,6 +71,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
     String _Name;
+    String _Number;
 
     Button add_client, delete_client, find_client;
 
@@ -3497,6 +3498,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
         _Name = info_name.getText().toString();
+
 
 
         DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();

@@ -901,91 +901,119 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     }
 
-    private  boolean NObusyness1(){
+    private  void NObusyness1(){
 
 
-        _Name = sharedPreferences.getString("client_name1","");
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart1");
+        query11.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
 
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
 
-        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+                        String key = snapShot.getKey();
 
-        if(_Name.equals(_Name)){
+                        reference1.child("New_Client").child(key).child("busyness").setValue("0");
 
-            reference.child(_Name ).child("busyness").setValue("0");
+                    }
 
-            return true;
+                }
+            }
 
-        }else {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-            return  false;
-
-        }
-
-    }
-
-    private  boolean NObusyness2(){
-
-
-        _Name = sharedPreferences.getString("client_name2","");
-
-
-        reference = FirebaseDatabase.getInstance().getReference("New_Client");
-
-        if(_Name.equals(_Name)){
-
-            reference.child(_Name ).child("busyness").setValue("0");
-
-            return true;
-
-        }else {
-
-            return  false;
-
-        }
+            }
+        });
 
     }
 
-    private  boolean NObusyness3(){
+    private  void NObusyness2(){
 
 
-        _Name = sharedPreferences.getString("client_name3","");
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart2");
+        query11.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
 
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
 
-        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+                        String key = snapShot.getKey();
 
-        if(_Name.equals(_Name)){
+                        reference1.child("New_Client").child(key).child("busyness").setValue("0");
 
-            reference.child(_Name ).child("busyness").setValue("0");
+                    }
 
-            return true;
+                }
+            }
 
-        }else {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-            return  false;
-
-        }
+            }
+        });
 
     }
 
-    private  boolean NObusyness4(){
+    private  void NObusyness3(){
 
 
-        _Name = sharedPreferences.getString("client_name4","");
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart3");
+        query11.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+                        String key = snapShot.getKey();
+
+                        reference1.child("New_Client").child(key).child("busyness").setValue("0");
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private  void NObusyness4(){
 
 
-        reference = FirebaseDatabase.getInstance().getReference("New_Client");
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart4");
+        query11.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
 
-        if(_Name.equals(_Name)){
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
 
-            reference.child(_Name ).child("busyness").setValue("0");
+                        String key = snapShot.getKey();
 
-            return true;
+                        reference1.child("New_Client").child(key).child("busyness").setValue("0");
 
-        }else {
+                    }
 
-            return  false;
+                }
+            }
 
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 }

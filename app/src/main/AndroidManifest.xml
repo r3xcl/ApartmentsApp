@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,8 +17,8 @@
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".addimages.ViewActivity"></activity>
         <activity android:name=".addimages.ShowImages">
-
             <intent-filter>
                 <action android:name="showimage1" />
                 <action android:name="showimage2" />
@@ -26,22 +27,17 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".addimages.ImagesMain">
-
+        <activity android:name=".addimages.AddImage">
             <intent-filter>
-            <action android:name="image1" />
-            <action android:name="image2" />
-            <action android:name="image3" />
-            <action android:name="image4" />
+                <action android:name="image1" />
+                <action android:name="image2" />
+                <action android:name="image3" />
+                <action android:name="image4" />
 
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
-
-
         <activity android:name=".InfoHome">
             <intent-filter>
                 <action android:name="info1" />
