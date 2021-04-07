@@ -109,8 +109,8 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
     }
 
     public void onClick(View v) {
-        Intent intent = getIntent();
-        String action = intent.getAction();
+        Intent intent1 = getIntent();
+        String action = intent1.getAction();
 
         if (action.equals("pay1")) {
             if(sum.getText().toString().length()!=0 && date_pay.getText().toString().length()!=0) {
@@ -120,14 +120,13 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
                 String summ = sum.getText().toString();
                 String namee = name.getText().toString();
 
-
-
-
                 PayClass newPay = new PayClass(id,summ,pay,namee);
                 myDataBase.push().setValue(newPay);
 
-                intent.putExtra("11111", 11111);
-                setResult(RESULT_OK, intent);
+
+
+                intent1.putExtra("11111", 11111);
+                setResult(RESULT_OK, intent1);
                 Toast.makeText(this,"Оплату додано!",Toast.LENGTH_LONG).show();
                 finish();
 
@@ -145,14 +144,14 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
                 String summ = sum.getText().toString();
                 String namee = name.getText().toString();
 
-
+                intent1.putExtra("pay2",summ);
 
 
                 PayClass newPay = new PayClass(id,summ,pay,namee);
                 myDataBase.push().setValue(newPay);
 
-                intent.putExtra("22222", 22222);
-                setResult(RESULT_OK, intent);
+                intent1.putExtra("22222", 22222);
+                setResult(RESULT_OK, intent1);
                 Toast.makeText(this,"Оплату додано!",Toast.LENGTH_LONG).show();
                 finish();
 
@@ -170,13 +169,13 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
                 String namee = name.getText().toString();
                 String id = "apartment3";
 
-
+                intent1.putExtra("pay3",summ);
 
                 PayClass newPay = new PayClass(id,summ,pay,namee);
                 myDataBase.push().setValue(newPay);
 
-                intent.putExtra("33333", 33333);
-                setResult(RESULT_OK, intent);
+                intent1.putExtra("33333", 33333);
+                setResult(RESULT_OK, intent1);
                 Toast.makeText(this,"Оплату додано!",Toast.LENGTH_LONG).show();
                 finish();
 
@@ -194,13 +193,13 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
                 String namee = name.getText().toString();
                 String id = "apartment4";
 
-
+                intent1.putExtra("pay4",summ);
 
                 PayClass newPay = new PayClass(id,summ,pay,namee);
                 myDataBase.push().setValue(newPay);
 
-                intent.putExtra("44444", 44444);
-                setResult(RESULT_OK, intent);
+                intent1.putExtra("44444", 44444);
+                setResult(RESULT_OK, intent1);
                 Toast.makeText(this,"Оплату додано!",Toast.LENGTH_LONG).show();
                 finish();
 

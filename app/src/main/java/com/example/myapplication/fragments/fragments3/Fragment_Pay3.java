@@ -31,7 +31,7 @@ public class Fragment_Pay3 extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
 
-    TextView amount_pay,amount_repair,amountall;
+
     private String mParam1;
     private String mParam2;
     RecyclerView recyclerView;
@@ -75,88 +75,7 @@ public class Fragment_Pay3 extends Fragment {
         payAdapter = new PayAdapter(options);
         recyclerView.setAdapter(payAdapter);
 
-        amount_pay = (TextView) view.findViewById(R.id.amount_pay);
-        amount_repair = (TextView) view.findViewById(R.id.amount_repair);
-        amountall = (TextView) view.findViewById(R.id.amount);
 
-        amount_repair.setText(""+0);
-        amount_pay.setText(""+0);
-        amountall.setText(""+0+" Грн.");
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-
-        Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment3");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    int sum = 0;
-                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
-                        PayClass payClass = snapShot.getValue(PayClass.class);
-                        int amount = Integer.parseInt(payClass.getPay());
-                        sum = sum + amount;
-
-                        amount_pay.setText(""+sum);
-
-                        if(amount_pay.getText().toString()==""){
-
-                            amount_pay.setText(""+0);
-
-                        }
-
-
-                        int p = Integer.parseInt(amount_pay.getText().toString());
-                        amountall.setText(""+(p) + " Грн.");
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment3");
-        query2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    int sum = 0;
-                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
-                        RepairClass repairClass = snapShot.getValue(RepairClass.class);
-                        int amount = Integer.parseInt(repairClass.getSum());
-                        sum = sum + amount;
-
-                        amount_repair.setText(""+sum);
-
-                        if(amount_pay.getText().toString()==""){
-
-                            amount_pay.setText(""+0);
-
-                        }
-
-                        if (amount_repair.getText().toString()==""){
-
-                            amount_repair.setText(""+0);
-
-                        }
-
-                        int p = Integer.parseInt(amount_pay.getText().toString());
-                        int r = Integer.parseInt(amount_repair.getText().toString());
-
-                        amountall.setText(""+(p-r) + " Грн.");
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         return view;
     }

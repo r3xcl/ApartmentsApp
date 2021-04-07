@@ -16,19 +16,32 @@
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".addimagehome.ImagesMain">
+        <activity android:name=".addimages.ShowImages">
 
             <intent-filter>
-                <action android:name="image1" />
-                <action android:name="image2" />
-                <action android:name="image3" />
-                <action android:name="image4" />
+                <action android:name="showimage1" />
+                <action android:name="showimage2" />
+                <action android:name="showimage3" />
+                <action android:name="showimage4" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
         </activity>
-        <activity android:name=".addimagehome.ImagesActivity" />
+        <activity android:name=".addimages.ImagesMain">
+
+            <intent-filter>
+            <action android:name="image1" />
+            <action android:name="image2" />
+            <action android:name="image3" />
+            <action android:name="image4" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+
+        </activity>
+
+
         <activity android:name=".InfoHome">
             <intent-filter>
                 <action android:name="info1" />

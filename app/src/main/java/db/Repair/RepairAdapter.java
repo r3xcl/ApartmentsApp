@@ -1,7 +1,9 @@
 package db.Repair;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.ActivityArchive;
 import com.example.myapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -31,7 +34,9 @@ import java.util.Map;
 public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAdapter.viewHolder> {
 
 
+
     public RepairAdapter(@NonNull FirebaseRecyclerOptions<RepairClass>options){super(options);
+
     }
 
 
@@ -40,6 +45,8 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
         holder.repair_date.setText(repairClass.getDate());
         holder.repair_name.setText(repairClass.getName());
         holder.repair_money.setText(repairClass.getSum()+" Грн.");
+
+
 
 
         holder.delete_repair.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +62,8 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FirebaseDatabase.getInstance().getReference().child("Repairs_History")
                                 .child(getRef(position).getKey()).removeValue();
+
+
                     }
                 });
 
@@ -75,6 +84,10 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
                 color1.setTextColor(Color.RED);
 
                 alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+
+
+
             }
         });
 

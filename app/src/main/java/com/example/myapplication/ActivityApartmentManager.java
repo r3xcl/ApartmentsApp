@@ -175,15 +175,6 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
 
-        imageshome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent1 = new Intent("image1");
-                startActivityForResult(intent1,129);
-            }
-        });
-
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(ActivityApartmentManager.this);
 
@@ -231,6 +222,15 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
         if (action.equals("new_home1")) {
 
+
+            imageshome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent1 = new Intent("showimage1");
+                    startActivityForResult(intent1,129);
+                }
+            });
 
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
             Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment1");
