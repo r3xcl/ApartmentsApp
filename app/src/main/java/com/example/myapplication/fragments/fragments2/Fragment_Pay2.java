@@ -36,6 +36,11 @@ public class Fragment_Pay2 extends Fragment {
     RecyclerView recyclerView;
     PayAdapter payAdapter;
 
+    PayClass payClass = new PayClass();
+    String user = payClass.getUser();
+
+    String auth = user.replaceAll("[^A-Za-z0-9]","");
+
     public Fragment_Pay2() {
 
     }
@@ -69,7 +74,7 @@ public class Fragment_Pay2 extends Fragment {
 
         FirebaseRecyclerOptions<PayClass> options =
                 new FirebaseRecyclerOptions.Builder<PayClass>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Pay_History").orderByChild("id").equalTo("apartment2"),PayClass.class).build();
+                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("Pay_History").orderByChild("id").equalTo("apartment2"),PayClass.class).build();
 
         payAdapter = new PayAdapter(options);
         recyclerView.setAdapter(payAdapter);

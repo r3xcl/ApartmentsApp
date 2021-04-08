@@ -2,17 +2,26 @@ package db.Repair;
 
 public class RepairClass {
 
-    String date,sum,id,name;
+    String date,sum,id,name,user;
 
-    public RepairClass(String id, String sum, String date, String name) {
+    public RepairClass(String id, String sum, String date, String name,String user) {
         this.id = id;
         this.sum = sum;
         this.date = date;
         this.name = name;
+        this.user = user;
     }
 
     public RepairClass(){
 
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getId() {

@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,6 +27,7 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
 
     private DatabaseReference myDataBase;
     private String RepairClass = "Repairs_History";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_repairs);
 
         getSupportActionBar().hide();
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         sum_repair = (EditText) findViewById(R.id.sum_repair);
         name_repair = (EditText) findViewById(R.id.name_repair);
@@ -106,7 +111,7 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
         add_repair = (Button) findViewById(R.id.add_repair);
         add_repair.setOnClickListener(this);
 
-        myDataBase = FirebaseDatabase.getInstance().getReference(RepairClass);
+        myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(RepairClass);
     }
 
     @Override
@@ -118,14 +123,17 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
         if (action.equals("remont1")) {
             if(sum_repair.getText().toString().length()!=0 && date_repair.getText().toString().length()!=0) {
 
+                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
                 String id = "apartment1";
                 String date = date_repair.getText().toString();
                 String sum = sum_repair.getText().toString();
                 String name = name_repair.getText().toString();
+                String user =auth;
 
 
 
-                db.Repair.RepairClass repairClass = new RepairClass(id,sum,date,name);
+                db.Repair.RepairClass repairClass = new RepairClass(id,sum,date,name,user);
                 myDataBase.push().setValue(repairClass);
 
                 intent.putExtra("111111", 101);
@@ -141,15 +149,16 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
         if (action.equals("remont2")) {
             if(sum_repair.getText().toString().length()!=0 && date_repair.getText().toString().length()!=0) {
 
-
+                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
                 String id = "apartment2";
                 String pay = date_repair.getText().toString();
                 String summ = sum_repair.getText().toString();
                 String name = name_repair.getText().toString();
+                String user = auth;
 
 
-                db.Repair.RepairClass repairClass = new RepairClass(id,summ,pay,name);
+                db.Repair.RepairClass repairClass = new RepairClass(id,summ,pay,name,user);
                 myDataBase.push().setValue(repairClass);
 
                 intent.putExtra("222222", 202);
@@ -165,15 +174,16 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
         if (action.equals("remont3")) {
             if(sum_repair.getText().toString().length()!=0 && date_repair.getText().toString().length()!=0) {
 
-
+                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
                 String id = "apartment3";
                 String pay = date_repair.getText().toString();
                 String summ = sum_repair.getText().toString();
                 String name = name_repair.getText().toString();
+                String user = auth;
 
 
-                db.Repair.RepairClass repairClass = new RepairClass(id,summ,pay,name);
+                db.Repair.RepairClass repairClass = new RepairClass(id,summ,pay,name,user);
                 myDataBase.push().setValue(repairClass);
 
 
@@ -191,16 +201,17 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
         if (action.equals("remont4")) {
             if(sum_repair.getText().toString().length()!=0 && date_repair.getText().toString().length()!=0) {
 
-
+                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
                 String id = "apartment4";
 
                 String pay = date_repair.getText().toString();
                 String summ = sum_repair.getText().toString();
                 String name = name_repair.getText().toString();
+                String user = auth;
 
 
-                db.Repair.RepairClass repairClass = new RepairClass(id,summ,pay,name);
+                db.Repair.RepairClass repairClass = new RepairClass(id,summ,pay,name,user);
                 myDataBase.push().setValue(repairClass);
 
 

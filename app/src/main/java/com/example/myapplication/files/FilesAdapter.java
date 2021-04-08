@@ -34,13 +34,14 @@ public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAda
     }
 
 
+
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull FileInfoModel model) {
 
         holder.header.setText(model.getFileName());
         holder.link.setText(model.getFileUrl());
 
-
+        String user = model.getUser();
 
         holder.img1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +71,12 @@ public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAda
                 AlertDialog.Builder builder=new AlertDialog.Builder(holder.itemView.getContext());
                 builder.setTitle("Оберіть дію");
 
-
+                String auth = user.replaceAll("[^A-Za-z0-9]","");
 
                 builder.setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference().child("My_Documents")
+                        FirebaseDatabase.getInstance().getReference(auth).child("My_Documents")
                                 .child(getRef(position).getKey()).removeValue();
                     }
                 });

@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -33,12 +34,19 @@ public class ActivityAllClients extends AppCompatActivity {
     RecyclerView recView;
     ClientAdapter adapter;
     FloatingActionButton fb;
+    SharedPreferences sharedPreferences;
+
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.GRAY));
@@ -52,7 +60,7 @@ public class ActivityAllClients extends AppCompatActivity {
 
         FirebaseRecyclerOptions<ClientClass> options =
          new FirebaseRecyclerOptions.Builder<ClientClass>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("New_Client"),ClientClass.class).build();
+                .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("New_Client"),ClientClass.class).build();
 
         adapter = new ClientAdapter(options);
         recView.setAdapter(adapter);
@@ -116,9 +124,14 @@ public class ActivityAllClients extends AppCompatActivity {
 
     private void processsearch(String s)
     {
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
         FirebaseRecyclerOptions<ClientClass> options =
                 new FirebaseRecyclerOptions.Builder<ClientClass>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("New_Client").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), ClientClass.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("New_Client").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), ClientClass.class)
                         .build();
 
         adapter=new ClientAdapter(options);

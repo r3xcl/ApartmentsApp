@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
    private DatabaseReference myDataBase ;
    private FirebaseDatabase rootNode;
+   SharedPreferences sharedPreferences;
    private String New_Apartment = "New_Apartment";
    ApartmentsClass apartmentsClass;
 
@@ -62,7 +64,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
         edit_cities = (Spinner) findViewById(R.id.edit_cities);
 
 
-
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
         ArrayAdapter<String> adapter_districts = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,districts) {
 
@@ -254,9 +256,9 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
         edit_name = (EditText) findViewById(R.id.edit_name);
 
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
-
-        myDataBase = FirebaseDatabase.getInstance().getReference(New_Apartment);
+        myDataBase = FirebaseDatabase.getInstance().getReference(auth);
 
 
 
@@ -272,8 +274,11 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
             Intent intent = getIntent();
             String action = intent.getAction();
 
+            String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
             rootNode = FirebaseDatabase.getInstance();
-            myDataBase = rootNode.getReference("New_Apartment");
+            myDataBase = rootNode.getReference(auth).child("New_Apartment");
+
 
             if (action.equals("1")) {
 

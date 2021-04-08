@@ -2,13 +2,22 @@ package db.Pay;
 
 public class PayClass {
 
-    String pay,date,id,name;
+    String pay,date,id,name,user;
 
-    public PayClass(String id,String pay, String date,String name) {
+    public PayClass(String id,String pay, String date,String name,String user) {
         this.id = id;
         this.pay = pay;
         this.date = date;
         this.name = name;
+        this.user = user;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public PayClass(){

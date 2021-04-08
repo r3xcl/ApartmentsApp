@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,12 +27,17 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
 
     private DatabaseReference myDataBase;
     private String PayClass = "Pay_History";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
         getSupportActionBar().hide();
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
 
         sum = (EditText) findViewById(R.id.sum);
         date_pay = (EditText) findViewById(R.id.date_pay);
@@ -105,7 +111,7 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
         add_oplaty = (Button) findViewById(R.id.add_oplaty);
         add_oplaty.setOnClickListener(this);
 
-        myDataBase = FirebaseDatabase.getInstance().getReference(PayClass);
+        myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(PayClass);
     }
 
     public void onClick(View v) {
@@ -115,12 +121,15 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
         if (action.equals("pay1")) {
             if(sum.getText().toString().length()!=0 && date_pay.getText().toString().length()!=0) {
 
+                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
                 String id = "apartment1";
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
                 String namee = name.getText().toString();
+                String user = auth;
 
-                PayClass newPay = new PayClass(id,summ,pay,namee);
+                PayClass newPay = new PayClass(id,summ,pay,namee,user);
                 myDataBase.push().setValue(newPay);
 
 
@@ -138,16 +147,18 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
         if (action.equals("pay2")) {
             if(sum.getText().toString().length()!=0 && date_pay.getText().toString().length()!=0) {
 
+                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
                 String pay = date_pay.getText().toString();
                 String id = "apartment2";
                 String summ = sum.getText().toString();
                 String namee = name.getText().toString();
+                String user = auth;
 
                 intent1.putExtra("pay2",summ);
 
 
-                PayClass newPay = new PayClass(id,summ,pay,namee);
+                PayClass newPay = new PayClass(id,summ,pay,namee,user);
                 myDataBase.push().setValue(newPay);
 
                 intent1.putExtra("22222", 22222);
@@ -163,15 +174,17 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
         if (action.equals("pay3")) {
             if(sum.getText().toString().length()!=0 && date_pay.getText().toString().length()!=0) {
 
+                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
                 String namee = name.getText().toString();
+                String user = auth;
                 String id = "apartment3";
 
                 intent1.putExtra("pay3",summ);
 
-                PayClass newPay = new PayClass(id,summ,pay,namee);
+                PayClass newPay = new PayClass(id,summ,pay,namee,user);
                 myDataBase.push().setValue(newPay);
 
                 intent1.putExtra("33333", 33333);
@@ -187,15 +200,17 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
         if (action.equals("pay4")) {
             if(sum.getText().toString().length()!=0 && date_pay.getText().toString().length()!=0) {
 
+                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
                 String namee = name.getText().toString();
+                String user = auth;
                 String id = "apartment4";
 
                 intent1.putExtra("pay4",summ);
 
-                PayClass newPay = new PayClass(id,summ,pay,namee);
+                PayClass newPay = new PayClass(id,summ,pay,namee,user);
                 myDataBase.push().setValue(newPay);
 
                 intent1.putExtra("44444", 44444);

@@ -4,13 +4,14 @@ package db.Client;
 
 public class ClientClass {
 
-    String id,surname,name,patronymic,number,email,datestart,dateend,pay,zastava,busyness;
+    String id,surname,name,patronymic,number,email,datestart,dateend,pay,zastava,busyness,user;
 
     public ClientClass() {
     }
 
 
-    public ClientClass(String id, String surname, String name, String patronymic, String number, String email, String datestart, String dateend, String pay, String zastava, String busyness) {
+
+    public ClientClass(String id, String surname, String name, String patronymic, String number, String email, String datestart, String dateend, String pay, String zastava, String busyness, String user) {
         this.id = id;
         this.surname = surname;
         this.email = email;
@@ -22,6 +23,7 @@ public class ClientClass {
         this.pay = pay;
         this.zastava = zastava;
         this.busyness = busyness;
+        this.user = user;
     }
 
     public String getSurname(){return surname;}
@@ -57,5 +59,13 @@ public class ClientClass {
 
     public void setBusyness(String busyness) {
         this.busyness = busyness;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

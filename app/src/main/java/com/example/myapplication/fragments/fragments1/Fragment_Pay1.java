@@ -1,5 +1,6 @@
 package com.example.myapplication.fragments.fragments1;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,8 @@ import db.Pay.PayAdapter;
 import db.Pay.PayClass;
 import db.Repair.RepairClass;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class Fragment_Pay1 extends Fragment implements View.OnClickListener{
 
@@ -39,6 +42,7 @@ public class Fragment_Pay1 extends Fragment implements View.OnClickListener{
 
 
 
+
     public Fragment_Pay1() {
 
 
@@ -49,6 +53,7 @@ public class Fragment_Pay1 extends Fragment implements View.OnClickListener{
         Fragment_Pay1 fragment = new Fragment_Pay1();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
+
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -60,8 +65,8 @@ public class Fragment_Pay1 extends Fragment implements View.OnClickListener{
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
+        }
 
 
     }
@@ -70,14 +75,21 @@ public class Fragment_Pay1 extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+
+
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
         View view = inflater.inflate(R.layout.fragment_pay1, container, false);
+
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recview_pay);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         FirebaseRecyclerOptions<PayClass> options =
                 new FirebaseRecyclerOptions.Builder<PayClass>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Pay_History").orderByChild("id").equalTo("apartment1"),PayClass.class).build();
+                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("Pay_History").orderByChild("id").equalTo("apartment1"),PayClass.class).build();
 
         payAdapter = new PayAdapter(options);
         recyclerView.setAdapter(payAdapter);

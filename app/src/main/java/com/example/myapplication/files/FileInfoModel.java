@@ -2,16 +2,25 @@ package com.example.myapplication.files;
 
 public class FileInfoModel {
 
-    String id,filename,fileurl;
+    String id,filename,fileurl,user;
 
 
     public FileInfoModel() {
     }
 
-    public FileInfoModel(String id,String filename, String fileurl) {
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public FileInfoModel(String id, String filename, String fileurl, String user) {
         this.id = id;
         this.filename = filename;
         this.fileurl = fileurl;
+        this.user = user;
     }
 
     public String getId() {

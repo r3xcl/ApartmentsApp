@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import db.Client.ClientClass;
+
 public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.viewHolder> {
 
 
@@ -40,9 +42,13 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
 
     protected void onBindViewHolder(@NonNull final viewHolder holder, final int position, @NonNull final PayClass payClass)
     {
+
+
         holder.money_date.setText(payClass.getDate());
         holder.money_money.setText(payClass.getPay()+" Грн.");
         holder.money_name.setText(payClass.getName());
+
+        String user = payClass.getUser();
 
 
 
@@ -52,12 +58,12 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
                 AlertDialog.Builder builder=new AlertDialog.Builder(holder.itemView.getContext());
                 builder.setTitle("Оберіть дію");
 
-
+                String auth = user.replaceAll("[^A-Za-z0-9]","");
 
                 builder.setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference().child("Pay_History")
+                        FirebaseDatabase.getInstance().getReference(auth).child("Pay_History")
                                 .child(getRef(position).getKey()).removeValue();
                     }
                 });
@@ -126,9 +132,9 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
                         map.put("pay",pay.getText().toString());
                         map.put("date",date.getText().toString());
 
+                        String auth = user.replaceAll("[^A-Za-z0-9]","");
 
-
-                        FirebaseDatabase.getInstance().getReference().child("Pay_History")
+                        FirebaseDatabase.getInstance().getReference(auth).child("Pay_History")
                                 .child(getRef(position).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

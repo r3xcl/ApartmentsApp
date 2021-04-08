@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -43,17 +44,21 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
 
     StorageReference storageReference;
     DatabaseReference databaseReference;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_files_upload);
 
-        getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
-        storageReference= FirebaseStorage.getInstance().getReference();
-        databaseReference= FirebaseDatabase.getInstance().getReference("My_Documents");
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+        storageReference= FirebaseStorage.getInstance().getReference(auth);
+        databaseReference= FirebaseDatabase.getInstance().getReference(auth).child("My_Documents");
 
         filetitle=findViewById(R.id.filetitle);
 
@@ -155,7 +160,9 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
 
                                     String id = "apartment1";
 
-                                    FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString());
+                                    String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                                    FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString(),auth);
                                     databaseReference.child(databaseReference.push().getKey()).setValue(obj);
 
                                     pd.dismiss();
@@ -198,9 +205,11 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                                 @Override
                                 public void onSuccess(Uri uri) {
 
+                                    String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
                                     String id = "apartment2";
 
-                                    FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString());
+                                    FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString(),auth);
                                     databaseReference.child(databaseReference.push().getKey()).setValue(obj);
 
                                     pd.dismiss();
@@ -244,7 +253,9 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
 
                                     String id = "apartment3";
 
-                                    FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString());
+                                    String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                                    FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString(),auth);
                                     databaseReference.child(databaseReference.push().getKey()).setValue(obj);
 
                                     pd.dismiss();
@@ -289,7 +300,9 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
 
                                     String id = "apartment4";
 
-                                    FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString());
+                                    String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                                    FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString(),auth);
                                     databaseReference.child(databaseReference.push().getKey()).setValue(obj);
 
                                     pd.dismiss();

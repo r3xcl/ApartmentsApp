@@ -86,12 +86,13 @@ public class ActivityFindClient extends AppCompatActivity {
 
         TextView empty = (TextView) findViewById(R.id.text_noclients);
 
-        listView1.setEmptyView(empty); // ЕСЛИ НЕТ СОЗДАННЫХ ОРЕНДАТОРОВ
+        listView1.setEmptyView(empty);
         listView1.setAdapter(adapter1);
 
 
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
-        myDataBase = FirebaseDatabase.getInstance().getReference(New_Client);
+        myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(New_Client);
 
         getDataFromDB();
 

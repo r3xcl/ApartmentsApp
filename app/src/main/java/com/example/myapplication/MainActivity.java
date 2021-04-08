@@ -652,6 +652,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
         if(requestCode == 11){
             if(resultCode==RESULT_OK){
 
@@ -703,7 +705,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         if (requestCode == 1){
             if(resultCode==RESULT_OK){
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
                 Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment1");
 
                 query.addValueEventListener(new ValueEventListener() {
@@ -745,7 +748,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         }else if (requestCode == 2){
             if (resultCode==RESULT_OK){
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
                 Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment2");
 
                 query.addValueEventListener(new ValueEventListener() {
@@ -784,7 +787,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         }else if (requestCode == 3){
             if (resultCode==RESULT_OK){
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
                 Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment3");
 
                 query.addValueEventListener(new ValueEventListener() {
@@ -823,7 +826,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         }else if (requestCode == 4){
             if (resultCode==RESULT_OK){
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
                 Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment4");
 
                 query.addValueEventListener(new ValueEventListener() {
@@ -903,8 +906,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     private  void NObusyness1(){
 
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
         Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart1");
         query11.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -932,8 +936,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     private  void NObusyness2(){
 
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
         Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart2");
         query11.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -961,8 +966,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     private  void NObusyness3(){
 
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
         Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart3");
         query11.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -990,8 +996,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     private  void NObusyness4(){
 
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
         Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart4");
         query11.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

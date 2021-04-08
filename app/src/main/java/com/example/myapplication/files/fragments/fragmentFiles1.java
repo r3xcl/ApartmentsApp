@@ -33,6 +33,11 @@ public class fragmentFiles1 extends Fragment {
     RecyclerView recview1;
     FilesAdapter filesAdapter;
 
+    FileInfoModel fileInfoModel = new FileInfoModel();
+    String user = fileInfoModel.getUser();
+
+    String auth = user.replaceAll("[^A-Za-z0-9]","");
+
     public fragmentFiles1() {
 
     }
@@ -66,7 +71,7 @@ public class fragmentFiles1 extends Fragment {
 
         FirebaseRecyclerOptions<FileInfoModel> options =
                 new FirebaseRecyclerOptions.Builder<FileInfoModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("My_Documents").orderByChild("id").equalTo("apartment1"), FileInfoModel.class).build();
+                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("My_Documents").orderByChild("id").equalTo("apartment1"), FileInfoModel.class).build();
 
         filesAdapter = new FilesAdapter(options);
         recview1.setAdapter(filesAdapter);

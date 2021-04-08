@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -39,13 +40,15 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
     private DatabaseReference myDataBase ;
     private String New_Client = "New_Client";
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_client);
         getSupportActionBar().hide();//УБИРАЕМ ВЕРХНЮЮ ШАПКУ
 
-
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
         client_name = (EditText) findViewById(R.id.client_name);
         client_surname = (EditText) findViewById(R.id.client_surname);
@@ -191,8 +194,9 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
                  }
              });
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
-        myDataBase = FirebaseDatabase.getInstance().getReference(New_Client);
+        myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(New_Client);
 
     }
 
@@ -293,10 +297,11 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                         String pay = client_pay.getText().toString();
                         String zastava = client_info.getText().toString();
                         String email = client_email.getText().toString();
+                        String user = sharedPreferences.getString("auth","");
                         String busyness = "0";
 
 
-                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
+                        ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness,user);
                         myDataBase.push().setValue(newClient);
 
                         intent.putExtra("11", 11);
@@ -370,9 +375,10 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                             String zastava = client_info.getText().toString();
                             String email = client_email.getText().toString();
                             String busyness = "0";
+                            String user = sharedPreferences.getString("auth","");
 
 
-                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
+                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness,user);
                             myDataBase.push().setValue(newClient);
 
                             intent.putExtra("22", 22);
@@ -445,10 +451,11 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                             String pay = client_pay.getText().toString();
                             String zastava = client_info.getText().toString();
                             String email = client_email.getText().toString();
+                            String user = sharedPreferences.getString("auth","");
                             String busyness = "0";
 
 
-                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
+                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness,user);
                             myDataBase.push().setValue(newClient);
 
                             intent.putExtra("33", 33);
@@ -521,10 +528,11 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
                             String pay = client_pay.getText().toString();
                             String zastava = client_info.getText().toString();
                             String email = client_email.getText().toString();
+                            String user = sharedPreferences.getString("auth","");
                             String busyness = "0";
 
 
-                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness);
+                            ClientClass newClient = new ClientClass(id, surname, name, patronymic, number, email, datestart, dateend, pay, zastava,busyness,user);
                             myDataBase.push().setValue(newClient);
 
                             intent.putExtra("44", 44);

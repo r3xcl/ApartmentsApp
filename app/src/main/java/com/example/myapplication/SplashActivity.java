@@ -53,7 +53,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(SplashActivity.this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(SplashActivity.this,AuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 finish();
 
             }

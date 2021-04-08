@@ -220,6 +220,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         });
 
 
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         if (action.equals("new_home1")) {
 
@@ -233,7 +234,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 }
             });
 
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
             Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment1");
 
             query.addValueEventListener(new ValueEventListener() {
@@ -279,7 +280,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             });
 
 
-            Query query4 = reference.child("New_Client").orderByChild("busyness").equalTo("idApart1");
+            Query query4 = databaseReference.child("New_Client").orderByChild("busyness").equalTo("idApart1");
             query4.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -588,7 +589,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
 
-                       FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment1").updateChildren(map)
+                       FirebaseDatabase.getInstance().getReference(auth).child("New_Apartment").child("newApartment1").updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -665,7 +666,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                 String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
-                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
 
                 Query query11 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart1");
                 query11.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -814,7 +815,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
 
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
             Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment2");
 
             query.addValueEventListener(new ValueEventListener() {
@@ -856,7 +857,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             });
 
 
-            Query query5 = reference.child("New_Client").orderByChild("busyness").equalTo("idApart2");
+            Query query5 = databaseReference.child("New_Client").orderByChild("busyness").equalTo("idApart2");
             query5.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -1146,7 +1147,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         intent1.putExtra("address2",address.getText().toString());
                         setResult(RESULT_OK,intent1);
 
-                        FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment2").updateChildren(map)
+                        FirebaseDatabase.getInstance().getReference(auth).child("New_Apartment").child("newApartment2").updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -1233,7 +1234,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                 String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
-                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
 
                 Query query22 = reference1.child("New_Client").orderByChild("busyness").equalTo("idApart2");
                 query22.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -1374,7 +1375,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         if (action.equals("new_home3")) {
             info_address.setText(getIntent().getStringExtra("address_3"));
 
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
             Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment3");
 
             query.addValueEventListener(new ValueEventListener() {
@@ -1682,7 +1683,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         intent1.putExtra("address3",address.getText().toString());
                         setResult(RESULT_OK,intent1);
 
-                        FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment3").updateChildren(map)
+                        FirebaseDatabase.getInstance().getReference(auth).child("New_Apartment").child("newApartment3").updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -1865,7 +1866,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         if (action.equals("new_home4")) {
             info_address.setText(getIntent().getStringExtra("address_4"));
 
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
             Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment4");
 
             query.addValueEventListener(new ValueEventListener() {
@@ -1907,7 +1908,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             });
 
 
-            Query query6 = reference.child("New_Client").orderByChild("busyness").equalTo("idApart3");
+            Query query6 = databaseReference.child("New_Client").orderByChild("busyness").equalTo("idApart3");
             query6.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -1975,7 +1976,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             });
 
 
-            Query query7 = reference.child("New_Client").orderByChild("busyness").equalTo("idApart4");
+            Query query7 = databaseReference.child("New_Client").orderByChild("busyness").equalTo("idApart4");
             query7.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -2310,7 +2311,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         intent1.putExtra("address4",address.getText().toString());
                         setResult(RESULT_OK,intent1);
 
-                        FirebaseDatabase.getInstance().getReference().child("New_Apartment").child("newApartment4").updateChildren(map)
+                        FirebaseDatabase.getInstance().getReference(auth).child("New_Apartment").child("newApartment4").updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -3494,14 +3495,18 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
 
+
     private  void busynessid1(){
 
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         _Name = info_name.getText().toString();
 
 
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
         Query query111 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
         query111.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -3529,9 +3534,12 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
     private  void busynessid2(){
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
         _Name = info_name.getText().toString();
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
         Query query222 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
         query222.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -3560,10 +3568,13 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
     private  void busynessid3(){
 
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
         _Name = info_name.getText().toString();
 
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
         Query query333 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
         query333.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -3592,9 +3603,12 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
     private  void busynessid4(){
 
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
         _Name = info_name.getText().toString();
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
         Query query444 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
         query444.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -3623,10 +3637,13 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
     private  void NObusyness() {
 
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
         _Name = info_name.getText().toString();
 
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
         Query query11 = reference1.child("New_Client").orderByChild("name").equalTo(_Name);
         query11.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

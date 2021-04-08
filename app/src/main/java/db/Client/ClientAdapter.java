@@ -36,7 +36,8 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class ClientAdapter extends FirebaseRecyclerAdapter<ClientClass, ClientAdapter.viewHolder> {
 
-SharedPreferences sharedPreferences;
+
+
 
 
     public ClientAdapter(@NonNull FirebaseRecyclerOptions<ClientClass>options){super(options);
@@ -52,6 +53,7 @@ SharedPreferences sharedPreferences;
         holder.name_text.setText(clientClass.getName());
         holder.number_text.setText(clientClass.getNumber());
 
+        String user = clientClass.getUser();
 
 
 
@@ -61,12 +63,14 @@ SharedPreferences sharedPreferences;
                 AlertDialog.Builder builder=new AlertDialog.Builder(holder.itemView.getContext());
                 builder.setTitle("Оберіть дію");
 
-
+                String auth = user.replaceAll("[^A-Za-z0-9]","");
 
                 builder.setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference().child("New_Client")
+
+
+                        FirebaseDatabase.getInstance().getReference(auth).child("New_Client")
                                 .child(getRef(position).getKey()).removeValue();
                     }
                 });
@@ -153,9 +157,9 @@ SharedPreferences sharedPreferences;
                         map.put("email",email.getText().toString());
 
 
+                        String auth = user.replaceAll("[^A-Za-z0-9]","");
 
-
-                        FirebaseDatabase.getInstance().getReference().child("New_Client")
+                        FirebaseDatabase.getInstance().getReference(auth).child("New_Client")
                                 .child(getRef(position).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -203,6 +207,7 @@ SharedPreferences sharedPreferences;
 
 
 
+
             surname_text=(TextView)itemView.findViewById(R.id.repair_name);
             name_text=(TextView)itemView.findViewById(R.id.money_money);
             number_text=(TextView)itemView.findViewById(R.id.money_date);
@@ -215,6 +220,8 @@ SharedPreferences sharedPreferences;
 
         }
     }
+
+
 }
 
 
