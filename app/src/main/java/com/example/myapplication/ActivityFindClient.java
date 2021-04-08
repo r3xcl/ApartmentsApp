@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -109,6 +110,7 @@ public class ActivityFindClient extends AppCompatActivity {
                     number = clientClass.getNumber();
 
                    String idd = surname + name + number;
+
 
                     if (idd.equals(id1) || idd.equals(id2) || idd.equals(id3) || idd.equals(id4)) {
 

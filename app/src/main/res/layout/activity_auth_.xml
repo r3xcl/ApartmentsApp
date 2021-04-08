@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBD6D6"
+    android:background="@color/mainFon"
     android:id="@+id/auth"
     tools:context=".AuthActivity">
 
@@ -69,9 +69,10 @@
         app:backgroundTint="#B7BDB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regi_pass"
-        app:layout_constraintVertical_bias="0.096" />
+        app:layout_constraintVertical_bias="0.24" />
 
     <TextView
         android:id="@+id/Forgot"
@@ -84,7 +85,7 @@
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="0.789" />
 
     <TextView
         android:id="@+id/Registr"
@@ -94,10 +95,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="0.789" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -109,7 +110,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.894" />
+        app:layout_constraintVertical_bias="0.88" />
+
+    <CheckBox
+        android:id="@+id/checkBoxSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Запам'ятати"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

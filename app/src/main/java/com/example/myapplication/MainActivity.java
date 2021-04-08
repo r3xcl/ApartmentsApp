@@ -1121,4 +1121,110 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         });
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
+        Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment1");
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot data : snapshot.getChildren()){
+
+                    String address = data.child("address").getValue().toString();
+
+
+                    add1_text.setText(address);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        Query query2 = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment2");
+
+        query2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot data : snapshot.getChildren()){
+
+                    String address = data.child("address").getValue().toString();
+
+
+                    add2_text.setText(address);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        Query query3 = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment3");
+
+        query3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot data : snapshot.getChildren()){
+
+                    String address = data.child("address").getValue().toString();
+
+
+                    add3_text.setText(address);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Query query4 = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment4");
+
+        query4.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot data : snapshot.getChildren()){
+
+                    String address = data.child("address").getValue().toString();
+
+
+                    add4_text.setText(address);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 }

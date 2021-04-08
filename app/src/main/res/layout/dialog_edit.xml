@@ -62,6 +62,27 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.034" />
 
+            <EditText
+                android:id="@+id/uid"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button"
+                android:hint="Прізвище"
+                android:paddingLeft="15dp"
+                android:visibility="gone"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.034" />
+
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="match_parent"

@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -75,12 +76,12 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
     Button add_client, delete_client, find_client;
 
-    ImageButton apartment_edit, call,  addphoto, map, archive, whatsapp ,files;
+    ImageButton apartment_edit, call,  addphoto, map, archive, whatsapp ,files,apartment_edit_client;
 
     TextView info_address, info_patronymic, info_name, info_surname, info_number,
             info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
             , textView15, textView16, info_zastava
-            , textView20, textView23,info_email,textView10,textView11,city_id,info_district,info_city;
+            , textView20, textView23,info_email,textView10,textView11,city_id,info_district,info_city,info_uid;
 
 
 
@@ -110,6 +111,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         info_pay = (TextView) findViewById(R.id.info_pay);
         info_zastava = (TextView) findViewById(R.id.info_zastava);
         info_email = (TextView) findViewById(R.id.info_email);
+        info_uid = (TextView) findViewById(R.id.info_uid);
 
 
         textView23 = (TextView) findViewById(R.id.textView23);
@@ -133,6 +135,9 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
         call = (ImageButton) findViewById(R.id.call);
         call.setOnClickListener(this);
+
+        apartment_edit_client = (ImageButton) findViewById(R.id.apartment_edit_client);
+        apartment_edit_client.setOnClickListener(this);
 
         files = (ImageButton) findViewById(R.id.files);
         files.setOnClickListener(this);
@@ -298,6 +303,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                             String pay = snapShot.child("pay").getValue().toString();
                             String surname = snapShot.child("surname").getValue().toString();
                             String zastava = snapShot.child("zastava").getValue().toString();
+                            String uid = snapShot.getKey();
+
 
                             info_date_end.setText(dateend);
                             info_date_start.setText(datestart);
@@ -306,6 +313,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                             info_number.setText(number);
                             info_patronymic.setText(patronymic);
                             info_surname.setText(surname);
+                            info_uid.setText(uid);
 
                             if(pay.equals("")){
 
@@ -329,6 +337,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                                 call.setVisibility(View.VISIBLE);
                                 whatsapp.setVisibility(View.VISIBLE);
                                 imageView4.setVisibility(View.VISIBLE);
+                                apartment_edit_client.setVisibility(View.VISIBLE);
                                 textView10.setVisibility(View.VISIBLE);
                                 textView11.setVisibility(View.INVISIBLE);
 
@@ -359,6 +368,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                                 call.setVisibility(View.INVISIBLE);
                                 whatsapp.setVisibility(View.INVISIBLE);
                                 imageView4.setVisibility(View.INVISIBLE);
+                                apartment_edit_client.setVisibility(View.INVISIBLE);
 
                                 info_surname.setVisibility(View.INVISIBLE);
 
@@ -440,7 +450,224 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             });
 
+            apartment_edit_client.setOnClickListener(v ->{
 
+                DialogPlus dialogPlus = DialogPlus.newDialog(this)
+                        .setContentHolder(new ViewHolder(R.layout.dialog_edit))
+                        .create();
+
+                View myview=dialogPlus.getHolderView();
+
+                Button update_edit=myview.findViewById(R.id.update_edit);
+
+                final EditText surname = myview.findViewById(R.id.surname_edit);
+                final EditText name = myview.findViewById(R.id.name_edit);
+                final EditText patronymic = myview.findViewById(R.id.patronymic_edit);
+                final EditText number = myview.findViewById(R.id.number_edit);
+                final EditText email = myview.findViewById(R.id.email_edit);
+                final EditText datestart = myview.findViewById(R.id.datestart_edit);
+                final EditText dateend = myview.findViewById(R.id.dateend_edit);
+                final EditText pay = myview.findViewById(R.id.pay_edit);
+                final EditText zastava = myview.findViewById(R.id.zastava_client);
+                final EditText uid = myview.findViewById(R.id.uid);
+
+
+                datestart.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            datestart.setText(current);
+                            datestart.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+                dateend.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            dateend.setText(current);
+                            dateend.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                surname.setText(info_surname.getText().toString());
+                name.setText(info_name.getText().toString());
+                patronymic.setText(info_patronymic.getText().toString());
+                number.setText(info_number.getText().toString());
+                email.setText(info_email.getText().toString());
+                datestart.setText(info_date_start.getText().toString());
+                dateend.setText(info_date_end.getText().toString());
+                pay.setText(info_pay.getText().toString().replaceAll("[^0-9]",""));
+                zastava.setText(info_zastava.getText().toString().replaceAll("[^0-9]",""));
+                uid.setText(info_uid.getText().toString());
+
+
+                dialogPlus.show();
+
+                update_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Map<String,Object> map = new HashMap<>();
+
+                        map.put("surname",surname.getText().toString());
+                        map.put("name",name.getText().toString());
+                        map.put("patronymic",patronymic.getText().toString());
+                        map.put("number",number.getText().toString());
+                        map.put("email",email.getText().toString());
+                        map.put("datestart",datestart.getText().toString());
+                        map.put("dateend",dateend.getText().toString());
+                        map.put("pay",pay.getText().toString());
+                        map.put("zastava",zastava.getText().toString());
+
+                        info_surname.setText(surname.getText().toString());
+                        info_name.setText(name.getText().toString());
+                        info_patronymic.setText(patronymic.getText().toString());
+                        info_number.setText(number.getText().toString());
+                        info_email.setText(email.getText().toString());
+                        info_date_start.setText(datestart.getText().toString());
+                        info_date_end.setText(dateend.getText().toString());
+                        info_pay.setText(pay.getText().toString()+ " Грн.");
+                        info_zastava.setText(zastava.getText().toString()+ " Грн.");
+
+
+                        Intent intent1 = new Intent();
+
+                        setResult(RESULT_OK,intent1);
+
+                        String uidd = uid.getText().toString();
+
+                        FirebaseDatabase.getInstance().getReference(auth).child("New_Client").child(uidd).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialogPlus.dismiss();
+                            }
+                        });
+
+                    }
+                });
+            });
 
             apartment_edit.setOnClickListener(v -> {
 
@@ -720,6 +947,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 delphoto_client.setVisibility(View.INVISIBLE);
 
                 imageView4.setVisibility(View.INVISIBLE);
+                apartment_edit_client.setVisibility(View.INVISIBLE);
 
 
 
@@ -841,6 +1069,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                             String pay = snapShot.child("pay").getValue().toString();
                             String surname = snapShot.child("surname").getValue().toString();
                             String zastava = snapShot.child("zastava").getValue().toString();
+                            String uid = snapShot.getKey();
+
 
                             info_date_end.setText(dateend);
                             info_date_start.setText(datestart);
@@ -849,6 +1079,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                             info_number.setText(number);
                             info_patronymic.setText(patronymic);
                             info_surname.setText(surname);
+                            info_uid.setText(uid);
 
                             if(pay.equals("")){
 
@@ -873,6 +1104,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                                 call.setVisibility(View.VISIBLE);
                                 whatsapp.setVisibility(View.VISIBLE);
                                 imageView4.setVisibility(View.VISIBLE);
+                                apartment_edit_client.setVisibility(View.VISIBLE);
                                 textView10.setVisibility(View.VISIBLE);
 
                                 info_surname.setVisibility(View.VISIBLE);
@@ -903,6 +1135,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                                 call.setVisibility(View.INVISIBLE);
                                 whatsapp.setVisibility(View.INVISIBLE);
                                 imageView4.setVisibility(View.INVISIBLE);
+                                apartment_edit_client.setVisibility(View.INVISIBLE);
 
                                 info_surname.setVisibility(View.INVISIBLE);
 
@@ -968,6 +1201,225 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 intent1.putExtra("rooms",info_rooms.getText().toString());
                 startActivityForResult(intent1, 0111);
 
+            });
+
+            apartment_edit_client.setOnClickListener(v ->{
+
+                DialogPlus dialogPlus = DialogPlus.newDialog(this)
+                        .setContentHolder(new ViewHolder(R.layout.dialog_edit))
+                        .create();
+
+                View myview=dialogPlus.getHolderView();
+
+                Button update_edit=myview.findViewById(R.id.update_edit);
+
+                final EditText surname = myview.findViewById(R.id.surname_edit);
+                final EditText name = myview.findViewById(R.id.name_edit);
+                final EditText patronymic = myview.findViewById(R.id.patronymic_edit);
+                final EditText number = myview.findViewById(R.id.number_edit);
+                final EditText email = myview.findViewById(R.id.email_edit);
+                final EditText datestart = myview.findViewById(R.id.datestart_edit);
+                final EditText dateend = myview.findViewById(R.id.dateend_edit);
+                final EditText pay = myview.findViewById(R.id.pay_edit);
+                final EditText zastava = myview.findViewById(R.id.zastava_client);
+                final EditText uid = myview.findViewById(R.id.uid);
+
+
+                datestart.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            datestart.setText(current);
+                            datestart.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+                dateend.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            dateend.setText(current);
+                            dateend.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                surname.setText(info_surname.getText().toString());
+                name.setText(info_name.getText().toString());
+                patronymic.setText(info_patronymic.getText().toString());
+                number.setText(info_number.getText().toString());
+                email.setText(info_email.getText().toString());
+                datestart.setText(info_date_start.getText().toString());
+                dateend.setText(info_date_end.getText().toString());
+                pay.setText(info_pay.getText().toString().replaceAll("[^0-9]",""));
+                zastava.setText(info_zastava.getText().toString().replaceAll("[^0-9]",""));
+                uid.setText(info_uid.getText().toString());
+
+
+                dialogPlus.show();
+
+                update_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Map<String,Object> map = new HashMap<>();
+
+                        map.put("surname",surname.getText().toString());
+                        map.put("name",name.getText().toString());
+                        map.put("patronymic",patronymic.getText().toString());
+                        map.put("number",number.getText().toString());
+                        map.put("email",email.getText().toString());
+                        map.put("datestart",datestart.getText().toString());
+                        map.put("dateend",dateend.getText().toString());
+                        map.put("pay",pay.getText().toString());
+                        map.put("zastava",zastava.getText().toString());
+
+                        info_surname.setText(surname.getText().toString());
+                        info_name.setText(name.getText().toString());
+                        info_patronymic.setText(patronymic.getText().toString());
+                        info_number.setText(number.getText().toString());
+                        info_email.setText(email.getText().toString());
+                        info_date_start.setText(datestart.getText().toString());
+                        info_date_end.setText(dateend.getText().toString());
+                        info_pay.setText(pay.getText().toString()+ " Грн.");
+                        info_zastava.setText(zastava.getText().toString()+ " Грн.");
+
+
+                        Intent intent1 = new Intent();
+
+                        setResult(RESULT_OK,intent1);
+
+                        String uidd = uid.getText().toString();
+
+                        FirebaseDatabase.getInstance().getReference(auth).child("New_Client").child(uidd).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialogPlus.dismiss();
+                            }
+                        });
+
+                    }
+                });
             });
 
             apartment_edit.setOnClickListener(v -> {
@@ -1250,6 +1702,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 info_pay.setVisibility(View.INVISIBLE);
 
                 imageView4.setVisibility(View.INVISIBLE);
+                apartment_edit_client.setVisibility(View.INVISIBLE);
 
                 textView15.setVisibility(View.INVISIBLE);
                 textView16.setVisibility(View.INVISIBLE);
@@ -1366,6 +1819,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                             String pay = snapShot.child("pay").getValue().toString();
                             String surname = snapShot.child("surname").getValue().toString();
                             String zastava = snapShot.child("zastava").getValue().toString();
+                            String uid = snapShot.getKey();
+                            info_uid.setText(uid);
 
                             info_date_end.setText(dateend);
                             info_date_start.setText(datestart);
@@ -1398,6 +1853,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                                 call.setVisibility(View.VISIBLE);
                                 whatsapp.setVisibility(View.VISIBLE);
                                 imageView4.setVisibility(View.VISIBLE);
+                                apartment_edit_client.setVisibility(View.VISIBLE);
                                 textView10.setVisibility(View.VISIBLE);
 
                                 info_surname.setVisibility(View.VISIBLE);
@@ -1428,6 +1884,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                                 call.setVisibility(View.INVISIBLE);
                                 whatsapp.setVisibility(View.INVISIBLE);
                                 imageView4.setVisibility(View.INVISIBLE);
+                                apartment_edit_client.setVisibility(View.INVISIBLE);
 
                                 info_surname.setVisibility(View.INVISIBLE);
 
@@ -1540,7 +1997,224 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             });
 
+            apartment_edit_client.setOnClickListener(v ->{
 
+                DialogPlus dialogPlus = DialogPlus.newDialog(this)
+                        .setContentHolder(new ViewHolder(R.layout.dialog_edit))
+                        .create();
+
+                View myview=dialogPlus.getHolderView();
+
+                Button update_edit=myview.findViewById(R.id.update_edit);
+
+                final EditText surname = myview.findViewById(R.id.surname_edit);
+                final EditText name = myview.findViewById(R.id.name_edit);
+                final EditText patronymic = myview.findViewById(R.id.patronymic_edit);
+                final EditText number = myview.findViewById(R.id.number_edit);
+                final EditText email = myview.findViewById(R.id.email_edit);
+                final EditText datestart = myview.findViewById(R.id.datestart_edit);
+                final EditText dateend = myview.findViewById(R.id.dateend_edit);
+                final EditText pay = myview.findViewById(R.id.pay_edit);
+                final EditText zastava = myview.findViewById(R.id.zastava_client);
+                final EditText uid = myview.findViewById(R.id.uid);
+
+
+                datestart.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            datestart.setText(current);
+                            datestart.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+                dateend.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            dateend.setText(current);
+                            dateend.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                surname.setText(info_surname.getText().toString());
+                name.setText(info_name.getText().toString());
+                patronymic.setText(info_patronymic.getText().toString());
+                number.setText(info_number.getText().toString());
+                email.setText(info_email.getText().toString());
+                datestart.setText(info_date_start.getText().toString());
+                dateend.setText(info_date_end.getText().toString());
+                pay.setText(info_pay.getText().toString().replaceAll("[^0-9]",""));
+                zastava.setText(info_zastava.getText().toString().replaceAll("[^0-9]",""));
+                uid.setText(info_uid.getText().toString());
+
+
+                dialogPlus.show();
+
+                update_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Map<String,Object> map = new HashMap<>();
+
+                        map.put("surname",surname.getText().toString());
+                        map.put("name",name.getText().toString());
+                        map.put("patronymic",patronymic.getText().toString());
+                        map.put("number",number.getText().toString());
+                        map.put("email",email.getText().toString());
+                        map.put("datestart",datestart.getText().toString());
+                        map.put("dateend",dateend.getText().toString());
+                        map.put("pay",pay.getText().toString());
+                        map.put("zastava",zastava.getText().toString());
+
+                        info_surname.setText(surname.getText().toString());
+                        info_name.setText(name.getText().toString());
+                        info_patronymic.setText(patronymic.getText().toString());
+                        info_number.setText(number.getText().toString());
+                        info_email.setText(email.getText().toString());
+                        info_date_start.setText(datestart.getText().toString());
+                        info_date_end.setText(dateend.getText().toString());
+                        info_pay.setText(pay.getText().toString()+ " Грн.");
+                        info_zastava.setText(zastava.getText().toString()+ " Грн.");
+
+
+                        Intent intent1 = new Intent();
+
+                        setResult(RESULT_OK,intent1);
+
+                        String uidd = uid.getText().toString();
+
+                        FirebaseDatabase.getInstance().getReference(auth).child("New_Client").child(uidd).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialogPlus.dismiss();
+                            }
+                        });
+
+                    }
+                });
+            });
 
             apartment_edit.setOnClickListener(v -> {
 
@@ -1775,9 +2449,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 info_pay.setVisibility(View.INVISIBLE);
 
                 imageView4.setVisibility(View.INVISIBLE);
-
-
-
+                apartment_edit_client.setVisibility(View.INVISIBLE);
 
 
                 textView15.setVisibility(View.INVISIBLE);
@@ -1897,6 +2569,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                             String pay = snapShot.child("pay").getValue().toString();
                             String surname = snapShot.child("surname").getValue().toString();
                             String zastava = snapShot.child("zastava").getValue().toString();
+                            String uid = snapShot.getKey();
+                            info_uid.setText(uid);
 
                             info_date_end.setText(dateend);
                             info_date_start.setText(datestart);
@@ -1944,6 +2618,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                                 call.setVisibility(View.VISIBLE);
                                 whatsapp.setVisibility(View.VISIBLE);
                                 imageView4.setVisibility(View.VISIBLE);
+                                apartment_edit_client.setVisibility(View.VISIBLE);
 
                                 info_surname.setVisibility(View.VISIBLE);
 
@@ -1974,6 +2649,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                                 call.setVisibility(View.INVISIBLE);
                                 whatsapp.setVisibility(View.INVISIBLE);
                                 imageView4.setVisibility(View.INVISIBLE);
+                                apartment_edit_client.setVisibility(View.INVISIBLE);
                                 textView10.setVisibility(View.INVISIBLE);
 
                                 info_surname.setVisibility(View.INVISIBLE);
@@ -2071,6 +2747,225 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                 }
 
+            });
+
+            apartment_edit_client.setOnClickListener(v ->{
+
+                DialogPlus dialogPlus = DialogPlus.newDialog(this)
+                        .setContentHolder(new ViewHolder(R.layout.dialog_edit))
+                        .create();
+
+                View myview=dialogPlus.getHolderView();
+
+                Button update_edit=myview.findViewById(R.id.update_edit);
+
+                final EditText surname = myview.findViewById(R.id.surname_edit);
+                final EditText name = myview.findViewById(R.id.name_edit);
+                final EditText patronymic = myview.findViewById(R.id.patronymic_edit);
+                final EditText number = myview.findViewById(R.id.number_edit);
+                final EditText email = myview.findViewById(R.id.email_edit);
+                final EditText datestart = myview.findViewById(R.id.datestart_edit);
+                final EditText dateend = myview.findViewById(R.id.dateend_edit);
+                final EditText pay = myview.findViewById(R.id.pay_edit);
+                final EditText zastava = myview.findViewById(R.id.zastava_client);
+                final EditText uid = myview.findViewById(R.id.uid);
+
+
+                datestart.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            datestart.setText(current);
+                            datestart.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+                dateend.addTextChangedListener(new TextWatcher() {
+
+                    private String current = "";
+                    private String ddmmyyyy = "DDMMYYYY";
+                    private Calendar cal = Calendar.getInstance();
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (!s.toString().equals(current)) {
+
+                            String clean = s.toString().replaceAll("[^\\d.]", "");
+                            String cleanC = current.replaceAll("[^\\d.]", "");
+
+                            int cl = clean.length();
+                            int sel = cl;
+                            for (int i = 2; i <= cl && i < 6; i += 2) {
+                                sel++;
+                            }
+
+                            if (clean.equals(cleanC)) sel--;
+
+                            if (clean.length() < 8){
+                                clean = clean + ddmmyyyy.substring(clean.length());
+                            }else{
+
+                                int day  = Integer.parseInt(clean.substring(0,2));
+                                int mon  = Integer.parseInt(clean.substring(2,4));
+                                int year = Integer.parseInt(clean.substring(4,8));
+
+                                if(mon > 12) mon = 12;
+                                cal.set(Calendar.MONTH, mon-1);
+
+                                year = (year<1900)?1900:(year>2100)?2100:year;
+                                cal.set(Calendar.YEAR, year);
+
+
+                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                                clean = String.format("%02d%02d%02d",day, mon, year);
+                            }
+
+                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                                    clean.substring(2, 4),
+                                    clean.substring(4, 8));
+
+                            sel = sel < 0 ? 0 : sel;
+                            current = clean;
+                            dateend.setText(current);
+                            dateend.setSelection(sel < current.length() ? sel : current.length());
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                surname.setText(info_surname.getText().toString());
+                name.setText(info_name.getText().toString());
+                patronymic.setText(info_patronymic.getText().toString());
+                number.setText(info_number.getText().toString());
+                email.setText(info_email.getText().toString());
+                datestart.setText(info_date_start.getText().toString());
+                dateend.setText(info_date_end.getText().toString());
+                pay.setText(info_pay.getText().toString().replaceAll("[^0-9]",""));
+                zastava.setText(info_zastava.getText().toString().replaceAll("[^0-9]",""));
+                uid.setText(info_uid.getText().toString());
+
+
+                dialogPlus.show();
+
+                update_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Map<String,Object> map = new HashMap<>();
+
+                        map.put("surname",surname.getText().toString());
+                        map.put("name",name.getText().toString());
+                        map.put("patronymic",patronymic.getText().toString());
+                        map.put("number",number.getText().toString());
+                        map.put("email",email.getText().toString());
+                        map.put("datestart",datestart.getText().toString());
+                        map.put("dateend",dateend.getText().toString());
+                        map.put("pay",pay.getText().toString());
+                        map.put("zastava",zastava.getText().toString());
+
+                        info_surname.setText(surname.getText().toString());
+                        info_name.setText(name.getText().toString());
+                        info_patronymic.setText(patronymic.getText().toString());
+                        info_number.setText(number.getText().toString());
+                        info_email.setText(email.getText().toString());
+                        info_date_start.setText(datestart.getText().toString());
+                        info_date_end.setText(dateend.getText().toString());
+                        info_pay.setText(pay.getText().toString()+ " Грн.");
+                        info_zastava.setText(zastava.getText().toString()+ " Грн.");
+
+
+                        Intent intent1 = new Intent();
+
+                        setResult(RESULT_OK,intent1);
+
+                        String uidd = uid.getText().toString();
+
+                        FirebaseDatabase.getInstance().getReference(auth).child("New_Client").child(uidd).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialogPlus.dismiss();
+                            }
+                        });
+
+                    }
+                });
             });
 
             apartment_edit.setOnClickListener(v -> {
@@ -2310,8 +3205,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 info_pay.setVisibility(View.INVISIBLE);
 
                 imageView4.setVisibility(View.INVISIBLE);
-
-
+                apartment_edit_client.setVisibility(View.INVISIBLE);
 
                 textView15.setVisibility(View.INVISIBLE);
                 textView16.setVisibility(View.INVISIBLE);
@@ -2623,6 +3517,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
 
                 imageView4.setVisibility(View.VISIBLE);
+                apartment_edit_client.setVisibility(View.VISIBLE);
 
 
 
@@ -2699,6 +3594,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 info_pay.setVisibility(View.VISIBLE);
 
                 imageView4.setVisibility(View.VISIBLE);
+                apartment_edit_client.setVisibility(View.VISIBLE);
 
                 call.setVisibility(View.VISIBLE);
                 addphoto.setVisibility(View.VISIBLE);
@@ -2782,6 +3678,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 whatsapp.setVisibility(View.VISIBLE);
 
                 imageView4.setVisibility(View.VISIBLE);
+                apartment_edit_client.setVisibility(View.VISIBLE);
 
 
 
@@ -2862,6 +3759,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 whatsapp.setVisibility(View.VISIBLE);
 
                 imageView4.setVisibility(View.VISIBLE);
+                apartment_edit_client.setVisibility(View.VISIBLE);
 
 
 
@@ -2987,6 +3885,10 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
         if (requestCode == 111) {
             if(resultCode==RESULT_OK) {
+
+                String uid = data.getStringExtra("uid1");
+                info_uid.setText(uid);
+
                 String client_name = data.getStringExtra("name1");
 
 
@@ -3046,6 +3948,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     add_client.setVisibility(View.INVISIBLE);
 
                     imageView4.setVisibility(View.VISIBLE);
+                    apartment_edit_client.setVisibility(View.VISIBLE);
 
                     call.setVisibility(View.VISIBLE);
                     addphoto.setVisibility(View.VISIBLE);
@@ -3066,6 +3969,14 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     info_zastava.setVisibility(View.VISIBLE);
 
                     busynessid1();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            uid1();
+                        }
+                    },100);
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                     toast.show();
@@ -3137,6 +4048,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     whatsapp.setVisibility(View.VISIBLE);
 
                     imageView4.setVisibility(View.VISIBLE);
+                apartment_edit_client.setVisibility(View.VISIBLE);
 
 
                     textView15.setVisibility(View.VISIBLE);
@@ -3153,6 +4065,14 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     info_zastava.setVisibility(View.VISIBLE);
 
                     busynessid2();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            uid2();
+                        }
+                    },100);
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                     toast.show();
@@ -3219,6 +4139,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     add_client.setVisibility(View.INVISIBLE);
 
                     imageView4.setVisibility(View.VISIBLE);
+                apartment_edit_client.setVisibility(View.VISIBLE);
 
                     call.setVisibility(View.VISIBLE);
                     addphoto.setVisibility(View.VISIBLE);
@@ -3239,6 +4160,14 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     info_zastava.setVisibility(View.VISIBLE);
 
                     busynessid3();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            uid3();
+                        }
+                    },100);
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                     toast.show();
@@ -3305,6 +4234,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     add_client.setVisibility(View.INVISIBLE);
 
                     imageView4.setVisibility(View.VISIBLE);
+                apartment_edit_client.setVisibility(View.VISIBLE);
 
                     call.setVisibility(View.VISIBLE);
                     addphoto.setVisibility(View.VISIBLE);
@@ -3325,6 +4255,14 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                     info_zastava.setVisibility(View.VISIBLE);
 
                     busynessid4();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            uid4();
+                        }
+                    },100);
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Орендаря додано!", Toast.LENGTH_SHORT);
                     toast.show();
@@ -3355,9 +4293,6 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
         super.onResume();
 
-
-
-
     }
 
 
@@ -3368,6 +4303,138 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
     }
 
+
+    private void uid1(){
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
+        Query query4 = databaseReference.child("New_Client").orderByChild("busyness").equalTo("idApart1");
+        query4.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+
+                        String uid = snapShot.getKey();
+
+                        info_uid.setText(uid);
+
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void uid2(){
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
+        Query query4 = databaseReference.child("New_Client").orderByChild("busyness").equalTo("idApart2");
+        query4.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+
+                        String uid = snapShot.getKey();
+
+                        info_uid.setText(uid);
+
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void uid3(){
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
+        Query query4 = databaseReference.child("New_Client").orderByChild("busyness").equalTo("idApart3");
+        query4.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+
+                        String uid = snapShot.getKey();
+
+                        info_uid.setText(uid);
+
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void uid4(){
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
+        Query query4 = databaseReference.child("New_Client").orderByChild("busyness").equalTo("idApart4");
+        query4.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
+
+
+                        String uid = snapShot.getKey();
+
+                        info_uid.setText(uid);
+
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
 
 
@@ -3404,6 +4471,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
             }
         });
+
+
 
     }
 
@@ -3543,6 +4612,9 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         });
 
     }
+
+
+
 
 
 

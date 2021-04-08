@@ -553,6 +553,21 @@
         app:layout_constraintVertical_bias="0.945"
         app:srcCompat="@drawable/ic___icon_icons_com_73779" />
 
+
+    <ImageButton
+        android:id="@+id/apartment_edit_client"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.424"
+        app:srcCompat="@drawable/edit_client_in_home" />
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="69dp"
@@ -632,6 +647,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.84"
         app:srcCompat="@drawable/ic_info_home" />
+
+    <TextView
+        android:id="@+id/info_uid"
+        android:layout_width="180dp"
+        android:layout_height="42dp"
+        android:text="TextView"
+        android:visibility="gone"
+        android:textSize="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.576" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
