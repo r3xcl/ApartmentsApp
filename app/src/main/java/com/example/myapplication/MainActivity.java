@@ -83,63 +83,17 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         sharedPreferences1 = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
         editor = sharedPreferences1.edit();
 
-
-        String address1 = sharedPreferences.getString("address1","");
-        add1_text.setText(address1);
-
-        String address2 = sharedPreferences.getString("address2","");
-        add2_text.setText(address2);
-
-        String address3 = sharedPreferences.getString("address3","");
-        add3_text.setText(address3);
-
-        String address4 = sharedPreferences.getString("address4","");
-        add4_text.setText(address4);
-
         add1 = (ImageButton) findViewById(R.id.add1);
         add1.setOnClickListener(this);
-
-        if(add1_text.length()>0){
-
-            add1.setVisibility(View.INVISIBLE);
-
-        }else {
-            add1.setVisibility(View.VISIBLE);
-        }
 
         add2 = (ImageButton) findViewById(R.id.add2);
         add2.setOnClickListener(this);
 
-        if(add2_text.length()>0){
-
-            add2.setVisibility(View.INVISIBLE);
-
-        }else {
-            add2.setVisibility(View.VISIBLE);
-        }
-
         add3 = (ImageButton) findViewById(R.id.add3);
         add3.setOnClickListener(this);
 
-        if(add3_text.length()>0){
-
-            add3.setVisibility(View.INVISIBLE);
-
-        }else {
-            add3.setVisibility(View.VISIBLE);
-        }
-
         add4 = (ImageButton) findViewById(R.id.add4);
         add4.setOnClickListener(this);
-
-        if(add4_text.length()>0){
-
-            add4.setVisibility(View.INVISIBLE);
-
-        }else {
-            add4.setVisibility(View.VISIBLE);
-        }
-
 
         new_home = (ImageButton) findViewById(R.id.new_home);
         new_home.setOnClickListener(this);
@@ -152,6 +106,150 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
         new_home4 = (ImageButton) findViewById(R.id.new_home4);
         new_home4.setOnClickListener(this);
+
+
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
+        Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment1");
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot data : snapshot.getChildren()){
+
+                    String address = data.child("address").getValue().toString();
+
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("address1",address);
+                    editor.apply();
+
+                    add1_text.setText(address);
+
+                    if(address.length()>0){
+
+                        add1.setVisibility(View.INVISIBLE);
+
+                    }else {
+                        add1.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        Query query2 = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment2");
+
+        query2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot data : snapshot.getChildren()){
+
+                    String address = data.child("address").getValue().toString();
+
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("address2",address);
+                    editor.apply();
+
+                    add2_text.setText(address);
+
+                    if(address.length()>0){
+
+                        add2.setVisibility(View.INVISIBLE);
+
+                    }else {
+                        add2.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Query query3 = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment3");
+
+        query3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot data : snapshot.getChildren()){
+
+                    String address = data.child("address").getValue().toString();
+
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("address3",address);
+                    editor.apply();
+
+                    add3_text.setText(address);
+
+                    if(address.length()>0){
+
+                        add3.setVisibility(View.INVISIBLE);
+
+                    }else {
+                        add3.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Query query4 = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment4");
+
+        query4.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot data : snapshot.getChildren()){
+
+                    String address = data.child("address").getValue().toString();
+
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("address4",address);
+                    editor.apply();
+
+                    add4_text.setText(address);
+
+                    if(address.length()>0){
+
+                        add4.setVisibility(View.INVISIBLE);
+
+                    }else {
+                        add4.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         bloknot = (ImageButton) findViewById(R.id.bloknot);

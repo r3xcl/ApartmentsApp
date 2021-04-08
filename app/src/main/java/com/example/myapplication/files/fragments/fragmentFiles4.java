@@ -1,5 +1,6 @@
 package com.example.myapplication.files.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import db.Pay.PayAdapter;
 import db.Pay.PayClass;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class fragmentFiles4 extends Fragment {
 
 
@@ -33,10 +36,7 @@ public class fragmentFiles4 extends Fragment {
     RecyclerView recview1;
     FilesAdapter filesAdapter;
 
-    FileInfoModel fileInfoModel = new FileInfoModel();
-    String user = fileInfoModel.getUser();
 
-    String auth = user.replaceAll("[^A-Za-z0-9]","");
 
     public fragmentFiles4() {
 
@@ -63,7 +63,10 @@ public class fragmentFiles4 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
+
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
         View view =  inflater.inflate(R.layout.fragment_files4, container, false);
 
         recview1 = (RecyclerView) view.findViewById(R.id.recview_file4);

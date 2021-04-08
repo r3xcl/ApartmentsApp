@@ -168,11 +168,10 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                                     pd.dismiss();
                                     Toast.makeText(getApplicationContext(), "Файл завантажений!", Toast.LENGTH_LONG).show();
 
-                                    filelogo.setVisibility(View.INVISIBLE);
-                                    cancelfile.setVisibility(View.INVISIBLE);
-                                    imagebrowse.setVisibility(View.VISIBLE);
-                                    imageupload.setVisibility(View.INVISIBLE);
-                                    filetitle.setText("");
+
+
+
+                                    finish();
                                 }
                             });
 
@@ -215,11 +214,8 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                                     pd.dismiss();
                                     Toast.makeText(getApplicationContext(), "Файл завантажений!", Toast.LENGTH_LONG).show();
 
-                                    filelogo.setVisibility(View.INVISIBLE);
-                                    cancelfile.setVisibility(View.INVISIBLE);
-                                    imagebrowse.setVisibility(View.VISIBLE);
-                                    imageupload.setVisibility(View.INVISIBLE);
-                                    filetitle.setText("");
+
+                                    finish();
                                 }
                             });
 
@@ -261,11 +257,7 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                                     pd.dismiss();
                                     Toast.makeText(getApplicationContext(), "Файл завантажений!", Toast.LENGTH_LONG).show();
 
-                                    filelogo.setVisibility(View.INVISIBLE);
-                                    cancelfile.setVisibility(View.INVISIBLE);
-                                    imagebrowse.setVisibility(View.VISIBLE);
-                                    imageupload.setVisibility(View.INVISIBLE);
-                                    filetitle.setText("");
+                                    finish();
                                 }
                             });
 
@@ -308,11 +300,7 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                                     pd.dismiss();
                                     Toast.makeText(getApplicationContext(), "Файл завантажений!", Toast.LENGTH_LONG).show();
 
-                                    filelogo.setVisibility(View.INVISIBLE);
-                                    cancelfile.setVisibility(View.INVISIBLE);
-                                    imagebrowse.setVisibility(View.VISIBLE);
-                                    imageupload.setVisibility(View.INVISIBLE);
-                                    filetitle.setText("");
+                                    finish();
                                 }
                             });
 

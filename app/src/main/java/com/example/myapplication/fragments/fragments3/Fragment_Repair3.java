@@ -1,5 +1,6 @@
 package com.example.myapplication.fragments.fragments3;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,8 @@ import db.Pay.PayClass;
 import db.Repair.RepairAdapter;
 import db.Repair.RepairClass;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Fragment_Repair3 extends Fragment {
 
 
@@ -36,10 +39,7 @@ public class Fragment_Repair3 extends Fragment {
     RecyclerView recyclerView;
     RepairAdapter repairAdapter;
 
-    RepairClass repairClass = new RepairClass();
-    String user = repairClass.getUser();
 
-    String auth = user.replaceAll("[^A-Za-z0-9]","");
 
     public Fragment_Repair3() {
 
@@ -68,7 +68,10 @@ public class Fragment_Repair3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+
+
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
         View view = inflater.inflate(R.layout.fragment_repair3, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recview_remont3);
