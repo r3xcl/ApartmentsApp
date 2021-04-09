@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,13 +30,18 @@ public class ShowImages extends AppCompatActivity {
 
     DatabaseReference DataRef;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_images);
         getSupportActionBar().hide();
 
-        DataRef = FirebaseDatabase.getInstance().getReference().child("Image");
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+        DataRef = FirebaseDatabase.getInstance().getReference(auth).child("Image");
 
         recyclerViewAllPhoto = findViewById(R.id.recyclerViewAllPhoto);
 
@@ -45,21 +51,216 @@ public class ShowImages extends AppCompatActivity {
 
         recyclerViewAllPhoto.setHasFixedSize(true);
 
-        faddphotohome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        Intent intent = getIntent();
+        String action = intent.getAction();
 
-                startActivity(new Intent(getApplicationContext(),AddImage.class));
+        if(action.equals("showimage1")) {
 
-            }
-        });
+            faddphotohome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        LoadData();
+                    Intent intent1 = new Intent("addimage1");
+                    startActivityForResult(intent1, 1);
+
+                }
+            });
+
+            LoadData1();
+        }
+
+        if(action.equals("showimage2")) {
+
+            faddphotohome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent1 = new Intent("addimage2");
+                    startActivityForResult(intent1, 2);
+
+                }
+            });
+
+            LoadData2();
+        }
+
+        if(action.equals("showimage3")) {
+
+            faddphotohome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent1 = new Intent("addimage3");
+                    startActivityForResult(intent1, 1);
+
+                }
+            });
+
+            LoadData3();
+        }
+
+        if(action.equals("showimage4")) {
+
+            faddphotohome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent1 = new Intent("addimage4");
+                    startActivityForResult(intent1, 4);
+
+                }
+            });
+
+            LoadData4();
+        }
     }
 
-    private void LoadData() {
+    private void LoadData1() {
 
-        options = new FirebaseRecyclerOptions.Builder<Image>().setQuery(DataRef,Image.class).build();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+        options = new FirebaseRecyclerOptions.Builder<Image>().setQuery(FirebaseDatabase.getInstance().getReference(auth)
+                .child("Image").orderByChild("ImageID").equalTo("id1"),Image.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<Image, MyViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Image model) {
+
+                holder.textphoto.setText(model.getImageName());
+
+                Picasso.get().load(model.getImageUrl()).into(holder.image_single_view);
+
+                holder.v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ShowImages.this,ViewActivity.class);
+
+                        intent.putExtra("ImageKey",getRef(position).getKey());
+
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+            @NonNull
+            @Override
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_photo_home,parent,false);
+
+                return new MyViewHolder(v);
+            }
+        };
+
+        adapter.startListening();
+        recyclerViewAllPhoto.setAdapter(adapter);
+
+
+    }
+
+    private void LoadData2() {
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+        options = new FirebaseRecyclerOptions.Builder<Image>().setQuery(FirebaseDatabase.getInstance().getReference(auth)
+                .child("Image").orderByChild("ImageID").equalTo("id2"),Image.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<Image, MyViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Image model) {
+
+                holder.textphoto.setText(model.getImageName());
+
+                Picasso.get().load(model.getImageUrl()).into(holder.image_single_view);
+
+                holder.v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ShowImages.this,ViewActivity.class);
+
+                        intent.putExtra("ImageKey",getRef(position).getKey());
+
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+            @NonNull
+            @Override
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_photo_home,parent,false);
+
+                return new MyViewHolder(v);
+            }
+        };
+
+        adapter.startListening();
+        recyclerViewAllPhoto.setAdapter(adapter);
+
+
+    }
+
+    private void LoadData3() {
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+        options = new FirebaseRecyclerOptions.Builder<Image>().setQuery(FirebaseDatabase.getInstance().getReference(auth)
+                .child("Image").orderByChild("ImageID").equalTo("id3"),Image.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<Image, MyViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Image model) {
+
+                holder.textphoto.setText(model.getImageName());
+
+                Picasso.get().load(model.getImageUrl()).into(holder.image_single_view);
+
+                holder.v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ShowImages.this,ViewActivity.class);
+
+                        intent.putExtra("ImageKey",getRef(position).getKey());
+
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+            @NonNull
+            @Override
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_photo_home,parent,false);
+
+                return new MyViewHolder(v);
+            }
+        };
+
+        adapter.startListening();
+        recyclerViewAllPhoto.setAdapter(adapter);
+
+
+    }
+
+    private void LoadData4() {
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+        options = new FirebaseRecyclerOptions.Builder<Image>().setQuery(FirebaseDatabase.getInstance().getReference(auth)
+                .child("Image").orderByChild("ImageID").equalTo("id4"),Image.class).build();
 
         adapter = new FirebaseRecyclerAdapter<Image, MyViewHolder>(options) {
             @Override

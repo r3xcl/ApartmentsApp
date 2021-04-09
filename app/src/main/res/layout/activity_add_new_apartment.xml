@@ -60,42 +60,6 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/activity2hat" />
 
-    <EditText
-        android:id="@+id/edit_floor"
-        android:layout_width="350dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="5sp"
-        android:layout_marginRight="5sp"
-        android:background="@drawable/style_activity2_add"
-        android:ems="10"
-        android:hint="Поверх"
-        android:inputType="number"
-        android:paddingLeft="15dp"
-        android:textColor="@color/text3"
-        android:textColorHint="@color/text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.595" />
-
-    <Button
-        android:id="@+id/but_home"
-        android:layout_width="102dp"
-        android:layout_height="41dp"
-        android:background="@drawable/button"
-        android:onClick="onClickSave"
-        android:text="Додати"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.895" />
-
     <RelativeLayout
         android:layout_width="350dp"
         android:layout_height="45dp"
@@ -135,7 +99,7 @@
         app:layout_constraintVertical_bias="0.498" />
 
     <EditText
-        android:id="@+id/edit_dateown"
+        android:id="@+id/edit_size"
         android:layout_width="350dp"
         android:layout_height="45dp"
         android:layout_marginLeft="5sp"
@@ -143,17 +107,32 @@
         android:layout_marginRight="5sp"
         android:background="@drawable/style_activity2_add"
         android:ems="10"
-        android:hint="Дата купівлі"
-        android:inputType="date"
+        android:hint="Загальна площа"
+        android:inputType="number"
         android:paddingLeft="15dp"
         android:textColor="@color/text3"
         android:textColorHint="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.594" />
+
+    <Button
+        android:id="@+id/but_home"
+        android:layout_width="102dp"
+        android:layout_height="41dp"
+        android:background="@drawable/button"
+        android:onClick="onClickSave"
+        android:text="Додати"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.977" />
 
     <EditText
         android:id="@+id/edit_info"
@@ -170,6 +149,47 @@
         android:textColor="@color/text3"
         android:textColorHint="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.882" />
+
+    <EditText
+        android:id="@+id/edit_floor"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="5sp"
+        android:background="@drawable/style_activity2_add"
+        android:ems="10"
+        android:hint="Поверх"
+        android:inputType="number"
+        android:paddingLeft="15dp"
+        android:textColor="@color/text3"
+        android:textColorHint="@color/text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.69" />
+
+    <EditText
+        android:id="@+id/edit_dateown"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="5sp"
+        android:background="@drawable/style_activity2_add"
+        android:ems="10"
+        android:hint="Дата купівлі"
+        android:inputType="date"
+        android:paddingLeft="15dp"
+        android:textColor="@color/text3"
+        android:textColorHint="@color/text"
+        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"

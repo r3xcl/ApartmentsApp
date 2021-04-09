@@ -48,7 +48,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
             new_home,new_home2,new_home3,new_home4,
             allclient,bloknot;
 
-    ImageView customization;
+    ImageView customization,exit;
 
     TextView add1_text,add2_text,add3_text,add4_text;
 
@@ -100,6 +100,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
         new_home2 = (ImageButton) findViewById(R.id.new_home2);
         new_home2.setOnClickListener(this);
+
+        exit = (ImageView) findViewById(R.id.exit);
+        exit.setOnClickListener(this);
 
         new_home3 = (ImageButton) findViewById(R.id.new_home3);
         new_home3.setOnClickListener(this);
@@ -269,6 +272,13 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
             }
         });
 
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogExit();
+            }
+        });
+
         add1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -387,6 +397,14 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
                                 editor.apply();
 
+                                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
+
+                                reference1.child("New_Apartment").child("newApartment1").removeValue();
+                                reference1.child("My_Documents").child("id1").removeValue();
+
+
                             }
                         })
                         .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
@@ -469,9 +487,18 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 editor1.putString("image2",null);
                                 editor1.commit();
 
+                                add2_text.setText(address2);
+
                                 editor.apply();
 
-                                add2_text.setText(address2);
+                                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
+
+                                reference1.child("New_Apartment").child("newApartment2").removeValue();
+                                reference1.child("My_Documents").child("id2").removeValue();
+
+
                             }
                         })
                         .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
@@ -551,9 +578,18 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 editor1.putString("image3",null);
                                 editor1.commit();
 
+                                add3_text.setText(address3);
+
                                 editor.apply();
 
-                                add3_text.setText(address3);
+                                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
+
+                                reference1.child("New_Apartment").child("newApartment3").removeValue();
+                                reference1.child("My_Documents").child("id3").removeValue();
+
+
                             }
                         })
                         .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
@@ -637,6 +673,15 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 editor.apply();
 
                                 add4_text.setText(address4);
+
+                                String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
+
+                                reference1.child("New_Apartment").child("newApartment4").removeValue();
+                                reference1.child("My_Documents").child("id4").removeValue();
+
+
                             }
                         })
                         .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
@@ -733,6 +778,47 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
     }
+
+
+    private void showDialogExit() {
+
+
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+        builder.setTitle("Вихід!");
+        builder.setMessage("Ви впевнені?");
+
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("authsave","no");
+                editor.apply();
+
+                finish();
+
+                startActivity(new Intent(MainActivity.this,AuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
+
+        builder.setNegativeButton("Назад", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+
+        androidx.appcompat.app.AlertDialog dialog = builder.create();
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED);
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+    }
+
 
     private int getCheckedItem(){
 
@@ -1077,6 +1163,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
                         String key = snapShot.getKey();
 
+
+
                         reference1.child("New_Client").child(key).child("busyness").setValue("0");
 
                     }
@@ -1163,7 +1251,6 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                 for(DataSnapshot data : snapshot.getChildren()){
 
                     String address = data.child("address").getValue().toString();
-
 
                     add2_text.setText(address);
 

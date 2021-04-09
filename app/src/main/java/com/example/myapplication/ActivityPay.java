@@ -129,6 +129,7 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
                 String namee = name.getText().toString();
                 String user = auth;
 
+
                 PayClass newPay = new PayClass(id,summ,pay,namee,user);
                 myDataBase.push().setValue(newPay);
 

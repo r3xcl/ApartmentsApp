@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -41,12 +42,17 @@ public class ViewActivity extends AppCompatActivity {
 
     StorageReference StorageRef;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_photo_home);
 
         getSupportActionBar().hide();
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         btnDeletePhoto = findViewById(R.id.btnDeletePhoto);
 
@@ -58,13 +64,13 @@ public class ViewActivity extends AppCompatActivity {
 
         image_single_view_activity = findViewById(R.id.image_single_view_activity);
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Image");
+        ref = FirebaseDatabase.getInstance().getReference(auth).child("Image");
 
         String ImageKey = getIntent().getStringExtra("ImageKey");
 
-        DataRef = FirebaseDatabase.getInstance().getReference().child("Image").child(ImageKey);
+        DataRef = FirebaseDatabase.getInstance().getReference(auth).child("Image").child(ImageKey);
 
-        StorageRef = FirebaseStorage.getInstance().getReference().child("Image").child(ImageKey + ".jpg");
+        StorageRef = FirebaseStorage.getInstance().getReference(auth).child("Image").child(ImageKey + ".jpg");
 
         ref.child(ImageKey).addValueEventListener(new ValueEventListener() {
             @Override

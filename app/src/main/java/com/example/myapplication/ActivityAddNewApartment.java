@@ -33,7 +33,7 @@ import db.ApartmentsClass;
 public class ActivityAddNewApartment extends AppCompatActivity implements View.OnClickListener {
 
     Button but_home;
-    public EditText edit_address, edit_info,edit_rooms,edit_floor,edit_dateown,edit_name;
+    public EditText edit_address, edit_info,edit_rooms,edit_floor,edit_dateown,edit_name,edit_size;
     public Spinner edit_districts,edit_cities;
 
     String[] districts = {"Оберіть район...","Голосіївський район","Дарницький район","Деснянський район","Дніпровський район"
@@ -182,6 +182,8 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
         edit_info = (EditText) findViewById(R.id.edit_info);
 
+        edit_size = (EditText) findViewById(R.id.edit_size);
+
         edit_rooms = (EditText) findViewById(R.id.edit_rooms);
 
         edit_floor = (EditText) findViewById(R.id.edit_floor);
@@ -289,13 +291,14 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                 String floor = edit_floor.getText().toString();
                 String dateown = edit_dateown.getText().toString();
                 String name = edit_name.getText().toString();
+                String size = edit_size.getText().toString();
 
 
                 String city = edit_cities.getSelectedItem().toString();
                 String district = edit_districts.getSelectedItem().toString();
 
 
-                ApartmentsClass newApartment = new ApartmentsClass(id, address, city, district, rooms, floor, dateown, name);
+                ApartmentsClass newApartment = new ApartmentsClass(id, address, city, district, rooms, floor, dateown, name,size);
 
 
                 myDataBase.child(id).setValue(newApartment);
@@ -332,12 +335,13 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                 String floor = edit_floor.getText().toString();
                 String dateown = edit_dateown.getText().toString();
                 String name = edit_name.getText().toString();
+                String size = edit_size.getText().toString();
 
                 String city = edit_cities.getSelectedItem().toString();
                 String district = edit_districts.getSelectedItem().toString();
 
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name);
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name,size);
 
                 myDataBase.child(id).setValue(newApartment);
 
@@ -373,12 +377,13 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                 String floor = edit_floor.getText().toString();
                 String dateown = edit_dateown.getText().toString();
                 String name = edit_name.getText().toString();
+                String size = edit_size.getText().toString();
 
                 String city = edit_cities.getSelectedItem().toString();
                 String district = edit_districts.getSelectedItem().toString();
 
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name);
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name,size);
 
                 myDataBase.child(id).setValue(newApartment);
 
@@ -414,12 +419,13 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                 String floor = edit_floor.getText().toString();
                 String dateown = edit_dateown.getText().toString();
                 String name = edit_name.getText().toString();
+                String size = edit_size.getText().toString();
 
                 String city = edit_cities.getSelectedItem().toString();
                 String district = edit_districts.getSelectedItem().toString();
 
 
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name);
+                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name,size);
 
                 myDataBase.child(id).setValue(newApartment);
 

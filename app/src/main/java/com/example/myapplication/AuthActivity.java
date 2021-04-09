@@ -1,18 +1,24 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -34,6 +40,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     TextView Forgot,Registr;
     Button button_vhod;
     ProgressBar progressBar;
+    CheckBox checkBoxSave;
 
     private FirebaseAuth mAuth;
     FirebaseDatabase db;
@@ -86,6 +93,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         auth = findViewById(R.id.auth);
 
        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        checkBoxSave = findViewById(R.id.checkBoxSave);
 
 
     }
@@ -245,8 +254,13 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
             if(task.isSuccessful()) {
                 Toast.makeText(AuthActivity.this, "Авторизація успішна!", Toast.LENGTH_SHORT).show();
-
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                if(checkBoxSave.isChecked()){
+
+                    editor.putString("authsave","yes");
+
+                }
 
                 editor.putString("auth",email);
                 editor.apply();
@@ -259,5 +273,19 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(AuthActivity.this, "Дані не вірні! ", Toast.LENGTH_SHORT).show();
 
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN)
+            hideKeyboard();
+        return super.dispatchTouchEvent(ev);
     }
 }

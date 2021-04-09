@@ -31,10 +31,10 @@
         </activity>
         <activity android:name=".addimages.AddImage">
             <intent-filter>
-                <action android:name="image1" />
-                <action android:name="image2" />
-                <action android:name="image3" />
-                <action android:name="image4" />
+                <action android:name="addimage1" />
+                <action android:name="addimage2" />
+                <action android:name="addimage3" />
+                <action android:name="addimage4" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

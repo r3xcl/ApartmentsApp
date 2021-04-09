@@ -2,13 +2,13 @@ package db;
 
 public class ApartmentsClass {
 
-    public String id,address,city,district,rooms,floor,dateown,name;
+    public String id,address,city,district,rooms,floor,dateown,name,size;
 
 
     public ApartmentsClass() {
     }
 
-    public ApartmentsClass(String id,String address,String city,String district, String rooms, String floor, String dateown,String name) {
+    public ApartmentsClass(String id,String address,String city,String district, String rooms, String floor, String dateown,String name,String size) {
         this.id = id;
         this.address = address;
         this.city = city;
@@ -17,6 +17,7 @@ public class ApartmentsClass {
         this.floor = floor;
         this.dateown = dateown;
         this.name = name;
+        this.size = size;
     }
 
     public String getId() {
@@ -83,6 +84,11 @@ public class ApartmentsClass {
         this.district = district;
     }
 
+    public String getSize() {
+        return size;
+    }
 
-
+    public void setSize(String size) {
+        this.size = size;
+    }
 }

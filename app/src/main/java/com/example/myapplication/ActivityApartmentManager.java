@@ -81,7 +81,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
     TextView info_address, info_patronymic, info_name, info_surname, info_number,
             info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
             , textView15, textView16, info_zastava
-            , textView20, textView23,info_email,textView10,textView11,city_id,info_district,info_city,info_uid;
+            , textView20, textView23,info_email,textView10,textView11,city_id,info_district,info_city,info_uid,info_size;
 
 
 
@@ -110,6 +110,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         info_date_end = (TextView) findViewById(R.id.info_date_end);
         info_pay = (TextView) findViewById(R.id.info_pay);
         info_zastava = (TextView) findViewById(R.id.info_zastava);
+        info_size = (TextView) findViewById(R.id.info_size);
         info_email = (TextView) findViewById(R.id.info_email);
         info_uid = (TextView) findViewById(R.id.info_uid);
 
@@ -254,6 +255,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         String dateown = data.child("dateown").getValue().toString();
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
+                        String size = data.child("size").getValue().toString();
 
 
 
@@ -264,6 +266,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+                        info_size.setText(size);
 
                         if(city.equals("Київ")){
 
@@ -683,6 +686,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                   final EditText rooms = myview.findViewById(R.id.rooms_edit);
                   final EditText floor = myview.findViewById(R.id.floor_edit);
                   final EditText dateown = myview.findViewById(R.id.dateown_edit);
+                  final EditText size = myview.findViewById(R.id.size_edit);
 
 
                 dateown.addTextChangedListener(new TextWatcher() {
@@ -755,6 +759,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 rooms.setText(info_rooms.getText().toString());
                 floor.setText(info_floor.getText().toString());
                 dateown.setText(info_dateown.getText().toString());
+                size.setText(info_size.getText().toString());
 
                   dialogPlus.show();
 
@@ -769,6 +774,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         map.put("rooms",rooms.getText().toString());
                         map.put("floor",floor.getText().toString());
                         map.put("dateown",dateown.getText().toString());
+                        map.put("size",size.getText().toString());
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -1008,6 +1014,14 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
             info_address.setText(getIntent().getStringExtra("address_2"));
 
 
+            imageshome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent1 = new Intent("showimage2");
+                    startActivityForResult(intent1,139);
+                }
+            });
 
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
             Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment2");
@@ -1024,6 +1038,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         String dateown = data.child("dateown").getValue().toString();
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
+                        String size = data.child("size").getValue().toString();
 
 
                         info_address.setText(address);
@@ -1032,6 +1047,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+                        info_size.setText(size);
 
                         if(city.equals("Київ")){
 
@@ -1436,6 +1452,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 final EditText rooms = myview.findViewById(R.id.rooms_edit);
                 final EditText floor = myview.findViewById(R.id.floor_edit);
                 final EditText dateown = myview.findViewById(R.id.dateown_edit);
+                final EditText size = myview.findViewById(R.id.size_edit);
 
 
                 dateown.addTextChangedListener(new TextWatcher() {
@@ -1509,6 +1526,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 rooms.setText(info_rooms.getText().toString());
                 floor.setText(info_floor.getText().toString());
                 dateown.setText(info_dateown.getText().toString());
+                size.setText(info_size.getText().toString());
 
                 dialogPlus.show();
 
@@ -1523,6 +1541,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         map.put("rooms",rooms.getText().toString());
                         map.put("floor",floor.getText().toString());
                         map.put("dateown",dateown.getText().toString());
+                        map.put("size",size.getText().toString());
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -1758,6 +1777,16 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         }
 
         if (action.equals("new_home3")) {
+
+            imageshome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent1 = new Intent("showimage3");
+                    startActivityForResult(intent1,149);
+                }
+            });
+
             info_address.setText(getIntent().getStringExtra("address_3"));
 
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
@@ -1775,6 +1804,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         String dateown = data.child("dateown").getValue().toString();
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
+                        String size = data.child("size").getValue().toString();
 
 
                         info_address.setText(address);
@@ -1783,6 +1813,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+                        info_size.setText(size);
 
                         if(city.equals("Київ")){
 
@@ -2230,11 +2261,13 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 final EditText rooms = myview.findViewById(R.id.rooms_edit);
                 final EditText floor = myview.findViewById(R.id.floor_edit);
                 final EditText dateown = myview.findViewById(R.id.dateown_edit);
+                final EditText size = myview.findViewById(R.id.size_edit);
 
                 address.setText(info_address.getText().toString());
                 rooms.setText(info_rooms.getText().toString());
                 floor.setText(info_floor.getText().toString());
                 dateown.setText(info_dateown.getText().toString());
+                size.setText(info_size.getText().toString());
 
                 dateown.addTextChangedListener(new TextWatcher() {
 
@@ -2316,6 +2349,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         map.put("rooms",rooms.getText().toString());
                         map.put("floor",floor.getText().toString());
                         map.put("dateown",dateown.getText().toString());
+                        map.put("size",size.getText().toString());
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -2506,6 +2540,16 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         }
 
         if (action.equals("new_home4")) {
+
+            imageshome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent1 = new Intent("showimage4");
+                    startActivityForResult(intent1,159);
+                }
+            });
+
             info_address.setText(getIntent().getStringExtra("address_4"));
 
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
@@ -2523,6 +2567,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         String dateown = data.child("dateown").getValue().toString();
                         String floor = data.child("floor").getValue().toString();
                         String rooms = data.child("rooms").getValue().toString();
+                        String size = data.child("size").getValue().toString();
 
 
                         info_address.setText(address);
@@ -2531,6 +2576,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         info_dateown.setText(dateown);
                         info_floor.setText(floor);
                         info_rooms.setText(rooms);
+                        info_size.setText(size);
 
                         if(city.equals("Київ")){
 
@@ -2982,6 +3028,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 final EditText rooms = myview.findViewById(R.id.rooms_edit);
                 final EditText floor = myview.findViewById(R.id.floor_edit);
                 final EditText dateown = myview.findViewById(R.id.dateown_edit);
+                final EditText size = myview.findViewById(R.id.size_edit);
 
 
                 dateown.addTextChangedListener(new TextWatcher() {
@@ -3055,6 +3102,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 rooms.setText(info_rooms.getText().toString());
                 floor.setText(info_floor.getText().toString());
                 dateown.setText(info_dateown.getText().toString());
+                size.setText(info_size.getText().toString());
 
                 dialogPlus.show();
 
@@ -3069,6 +3117,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                         map.put("rooms",rooms.getText().toString());
                         map.put("floor",floor.getText().toString());
                         map.put("dateown",dateown.getText().toString());
+                        map.put("size",size.getText().toString());
 
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();

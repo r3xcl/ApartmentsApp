@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
@@ -15,6 +16,8 @@ public class SplashActivity extends AppCompatActivity {
 
     ImageView iv_house,iv_beat;
     TextView splash_text;
+
+    SharedPreferences sharedPreferences;
 
     CharSequence charSequence;
 
@@ -33,6 +36,7 @@ public class SplashActivity extends AppCompatActivity {
         iv_beat = (ImageView)findViewById(R.id.iv_beat);
         splash_text = (TextView) findViewById(R.id.splash_text);
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
         ObjectAnimator objectAnimator1 = ObjectAnimator.ofPropertyValuesHolder
                 (iv_house,
@@ -53,8 +57,18 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(SplashActivity.this,AuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                finish();
+                String authsave = sharedPreferences.getString("authsave","");
+
+                if(authsave.equals("yes")){
+
+                    startActivity(new Intent(SplashActivity.this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    finish();
+
+                }else {
+
+                    startActivity(new Intent(SplashActivity.this, AuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    finish();
+                }
 
             }
         },4000);
