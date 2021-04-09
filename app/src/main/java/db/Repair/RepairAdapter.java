@@ -47,6 +47,7 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
         holder.repair_money.setText(repairClass.getSum()+" Грн.");
 
         String user = repairClass.getUser();
+        String id = repairClass.getId();
 
 
         holder.delete_repair.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +61,7 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
                 builder.setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference(auth).child("Repairs_History")
+                        FirebaseDatabase.getInstance().getReference(auth).child("Repairs_History").child(id)
                                 .child(getRef(position).getKey()).removeValue();
 
 
@@ -135,7 +136,7 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
 
                         String auth = user.replaceAll("[^A-Za-z0-9]","");
 
-                        FirebaseDatabase.getInstance().getReference(auth).child("Repairs_History")
+                        FirebaseDatabase.getInstance().getReference(auth).child("Repairs_History").child(id)
                                 .child(getRef(position).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

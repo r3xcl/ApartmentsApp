@@ -121,14 +121,17 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
         if (action.equals("pay1")) {
             if(sum.getText().toString().length()!=0 && date_pay.getText().toString().length()!=0) {
 
+
+
                 String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(PayClass).child("apartment1");
 
                 String id = "apartment1";
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
                 String namee = name.getText().toString();
                 String user = auth;
-
 
                 PayClass newPay = new PayClass(id,summ,pay,namee,user);
                 myDataBase.push().setValue(newPay);
@@ -149,6 +152,8 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
             if(sum.getText().toString().length()!=0 && date_pay.getText().toString().length()!=0) {
 
                 String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(PayClass).child("apartment2");
 
                 String pay = date_pay.getText().toString();
                 String id = "apartment2";
@@ -177,6 +182,8 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
 
                 String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
+                myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(PayClass).child("apartment3");
+
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();
                 String namee = name.getText().toString();
@@ -202,6 +209,8 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
             if(sum.getText().toString().length()!=0 && date_pay.getText().toString().length()!=0) {
 
                 String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(PayClass).child("apartment4");
 
                 String pay = date_pay.getText().toString();
                 String summ = sum.getText().toString();

@@ -402,7 +402,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
 
                                 reference1.child("New_Apartment").child("newApartment1").removeValue();
-                                reference1.child("My_Documents").child("id1").removeValue();
+                                reference1.child("My_Documents").child("apartment1").removeValue();
+                                reference1.child("Pay_History").child("apartment1").removeValue();
+                                reference1.child("Repairs_History").child("apartment1").removeValue();
 
 
                             }
@@ -496,7 +498,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
 
                                 reference1.child("New_Apartment").child("newApartment2").removeValue();
-                                reference1.child("My_Documents").child("id2").removeValue();
+                                reference1.child("My_Documents").child("apartment2").removeValue();
+                                reference1.child("Pay_History").child("apartment2").removeValue();
+                                reference1.child("Repairs_History").child("apartment2").removeValue();
 
 
                             }
@@ -587,7 +591,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
 
                                 reference1.child("New_Apartment").child("newApartment3").removeValue();
-                                reference1.child("My_Documents").child("id3").removeValue();
+                                reference1.child("My_Documents").child("apartment3").removeValue();
+                                reference1.child("Pay_History").child("apartment3").removeValue();
+                                reference1.child("Repairs_History").child("apartment3").removeValue();
 
 
                             }
@@ -679,7 +685,9 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                                 DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference(auth);
 
                                 reference1.child("New_Apartment").child("newApartment4").removeValue();
-                                reference1.child("My_Documents").child("id4").removeValue();
+                                reference1.child("My_Documents").child("apartment4").removeValue();
+                                reference1.child("Pay_History").child("apartment4").removeValue();
+                                reference1.child("Repairs_History").child("apartment4").removeValue();
 
 
                             }

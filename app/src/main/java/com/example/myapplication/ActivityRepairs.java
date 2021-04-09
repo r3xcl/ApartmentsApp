@@ -125,6 +125,8 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
 
                 String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
+                myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(RepairClass).child("apartment1");
+
                 String id = "apartment1";
                 String date = date_repair.getText().toString();
                 String sum = sum_repair.getText().toString();
@@ -151,6 +153,8 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
 
                 String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
+                myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(RepairClass).child("apartment2");
+
                 String id = "apartment2";
                 String pay = date_repair.getText().toString();
                 String summ = sum_repair.getText().toString();
@@ -175,6 +179,8 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
             if(sum_repair.getText().toString().length()!=0 && date_repair.getText().toString().length()!=0) {
 
                 String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(RepairClass).child("apartment3");
 
                 String id = "apartment3";
                 String pay = date_repair.getText().toString();
@@ -202,6 +208,8 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
             if(sum_repair.getText().toString().length()!=0 && date_repair.getText().toString().length()!=0) {
 
                 String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+                myDataBase = FirebaseDatabase.getInstance().getReference(auth).child(RepairClass).child("apartment4");
 
                 String id = "apartment4";
 

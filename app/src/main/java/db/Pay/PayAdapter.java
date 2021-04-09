@@ -49,6 +49,7 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
         holder.money_name.setText(payClass.getName());
 
         String user = payClass.getUser();
+        String id = payClass.getId();
 
 
 
@@ -63,7 +64,7 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
                 builder.setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference(auth).child("Pay_History")
+                        FirebaseDatabase.getInstance().getReference(auth).child("Pay_History").child(id)
                                 .child(getRef(position).getKey()).removeValue();
                     }
                 });
@@ -134,7 +135,7 @@ public class PayAdapter extends FirebaseRecyclerAdapter<PayClass,PayAdapter.view
 
                         String auth = user.replaceAll("[^A-Za-z0-9]","");
 
-                        FirebaseDatabase.getInstance().getReference(auth).child("Pay_History")
+                        FirebaseDatabase.getInstance().getReference(auth).child("Pay_History").child(id)
                                 .child(getRef(position).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

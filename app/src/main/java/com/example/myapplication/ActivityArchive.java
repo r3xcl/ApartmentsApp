@@ -87,7 +87,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-            Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment1");
+            Query query = reference.child("Pay_History").child("apartment1").orderByChild("id").equalTo("apartment1");
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -121,7 +121,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 }
             });
 
-            Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment1");
+            Query query2 = reference.child("Repairs_History").child("apartment1").orderByChild("id").equalTo("apartment1");
             query2.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -206,7 +206,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-            Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment2");
+            Query query = reference.child("Pay_History").child("apartment2").orderByChild("id").equalTo("apartment2");
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -239,7 +239,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 }
             });
 
-            Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment2");
+            Query query2 = reference.child("Repairs_History").child("apartment2").orderByChild("id").equalTo("apartment2");
             query2.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -322,7 +322,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-            Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment3");
+            Query query = reference.child("Pay_History").child("apartment3").orderByChild("id").equalTo("apartment3");
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -355,7 +355,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 }
             });
 
-            Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment3");
+            Query query2 = reference.child("Repairs_History").child("apartment3").orderByChild("id").equalTo("apartment3");
             query2.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -439,7 +439,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-            Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment4");
+            Query query = reference.child("Pay_History").child("apartment4").orderByChild("id").equalTo("apartment4");
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -472,7 +472,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                 }
             });
 
-            Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment4");
+            Query query2 = reference.child("Repairs_History").child("apartment4").orderByChild("id").equalTo("apartment4");
             query2.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -565,7 +565,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-                Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment1");
+                Query query = reference.child("Pay_History").child("apartment1").orderByChild("id").equalTo("apartment1");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -599,7 +599,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                     }
                 });
 
-                Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment1");
+                Query query2 = reference.child("Repairs_History").child("apartment1").orderByChild("id").equalTo("apartment1");
                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -652,7 +652,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-                Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment2");
+                Query query = reference.child("Pay_History").child("apartment2").orderByChild("id").equalTo("apartment2");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -685,7 +685,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                     }
                 });
 
-                Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment2");
+                Query query2 = reference.child("Repairs_History").child("apartment2").orderByChild("id").equalTo("apartment2");
                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -734,7 +734,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
             if (resultCode == RESULT_OK) {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-                Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment3");
+                Query query = reference.child("Pay_History").child("apartment3").orderByChild("id").equalTo("apartment3");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -767,7 +767,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                     }
                 });
 
-                Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment3");
+                Query query2 = reference.child("Repairs_History").child("apartment3").orderByChild("id").equalTo("apartment3");
                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -818,7 +818,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-                Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment4");
+                Query query = reference.child("Pay_History").child("apartment4").orderByChild("id").equalTo("apartment4");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -851,7 +851,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                     }
                 });
 
-                Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment4");
+                Query query2 = reference.child("Repairs_History").child("apartment4").orderByChild("id").equalTo("apartment4");
                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -901,7 +901,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-                Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment1");
+                Query query = reference.child("Pay_History").child("apartment1").orderByChild("id").equalTo("apartment1");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -935,7 +935,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                     }
                 });
 
-                Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment1");
+                Query query2 = reference.child("Repairs_History").child("apartment1").orderByChild("id").equalTo("apartment1");
                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -984,7 +984,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
             if (resultCode == RESULT_OK) {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-                Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment2");
+                Query query = reference.child("Pay_History").child("apartment2").orderByChild("id").equalTo("apartment2");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -1017,7 +1017,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                     }
                 });
 
-                Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment2");
+                Query query2 = reference.child("Repairs_History").child("apartment2").orderByChild("id").equalTo("apartment2");
                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -1066,7 +1066,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
             if (resultCode == RESULT_OK) {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-                Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment3");
+                Query query = reference.child("Pay_History").child("apartment3").orderByChild("id").equalTo("apartment3");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -1099,7 +1099,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                     }
                 });
 
-                Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment3");
+                Query query2 = reference.child("Repairs_History").child("apartment3").orderByChild("id").equalTo("apartment3");
                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -1148,7 +1148,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
             if (resultCode == RESULT_OK) {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference(auth);
 
-                Query query = reference.child("Pay_History").orderByChild("id").equalTo("apartment4");
+                Query query = reference.child("Pay_History").child("apartment4").orderByChild("id").equalTo("apartment4");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -1181,7 +1181,7 @@ public class ActivityArchive extends AppCompatActivity implements View.OnClickLi
                     }
                 });
 
-                Query query2 = reference.child("Repairs_History").orderByChild("id").equalTo("apartment4");
+                Query query2 = reference.child("Repairs_History").child("apartment4").orderByChild("id").equalTo("apartment4");
                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

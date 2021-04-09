@@ -42,6 +42,7 @@ public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAda
         holder.link.setText(model.getFileUrl());
 
         String user = model.getUser();
+        String id = model.getId();
 
         holder.img1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +77,7 @@ public class FilesAdapter extends FirebaseRecyclerAdapter<FileInfoModel,FilesAda
                 builder.setPositiveButton("Видалити", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference(auth).child("My_Documents")
+                        FirebaseDatabase.getInstance().getReference(auth).child("My_Documents").child(id)
                                 .child(getRef(position).getKey()).removeValue();
                     }
                 });

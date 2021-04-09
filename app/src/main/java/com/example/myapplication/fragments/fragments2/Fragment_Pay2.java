@@ -77,7 +77,7 @@ public class Fragment_Pay2 extends Fragment {
 
         FirebaseRecyclerOptions<PayClass> options =
                 new FirebaseRecyclerOptions.Builder<PayClass>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("Pay_History").orderByChild("id").equalTo("apartment2"),PayClass.class).build();
+                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("Pay_History").child("apartment2").orderByChild("id").equalTo("apartment2"),PayClass.class).build();
 
         payAdapter = new PayAdapter(options);
         recyclerView.setAdapter(payAdapter);

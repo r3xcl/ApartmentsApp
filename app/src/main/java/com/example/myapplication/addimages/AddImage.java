@@ -239,10 +239,10 @@ public class AddImage extends AppCompatActivity  {
 
                         HashMap hashMap = new HashMap();
                         hashMap.put("ImageName",imageName);
-                        hashMap.put("ImageID","id1");
+                        hashMap.put("ImageID","apartment1");
                         hashMap.put("ImageUrl",uri.toString());
 
-                        DataRef.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        DataRef.child("apartment1").child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
 
@@ -287,10 +287,10 @@ public class AddImage extends AppCompatActivity  {
 
                         HashMap hashMap = new HashMap();
                         hashMap.put("ImageName", imageName);
-                        hashMap.put("ImageID", "id2");
+                        hashMap.put("ImageID", "apartment2");
                         hashMap.put("ImageUrl", uri.toString());
 
-                        DataRef.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        DataRef.child("apartment2").child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
 
@@ -332,10 +332,10 @@ public class AddImage extends AppCompatActivity  {
 
                         HashMap hashMap = new HashMap();
                         hashMap.put("ImageName", imageName);
-                        hashMap.put("ImageID", "id3");
+                        hashMap.put("ImageID", "apartment3");
                         hashMap.put("ImageUrl", uri.toString());
 
-                        DataRef.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        DataRef.child("apartment3").child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
 
@@ -377,10 +377,10 @@ public class AddImage extends AppCompatActivity  {
 
                         HashMap hashMap = new HashMap();
                         hashMap.put("ImageName", imageName);
-                        hashMap.put("ImageID", "id4");
+                        hashMap.put("ImageID", "apartment4");
                         hashMap.put("ImageUrl", uri.toString());
 
-                        DataRef.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        DataRef.child("apartment4").child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
 

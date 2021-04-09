@@ -79,7 +79,7 @@ public class Fragment_Repair1 extends Fragment {
 
         FirebaseRecyclerOptions<RepairClass> options1 =
                 new FirebaseRecyclerOptions.Builder<RepairClass>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("Repairs_History").orderByChild("id").equalTo("apartment1"), RepairClass.class).build();
+                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("Repairs_History").child("apartment1").orderByChild("id").equalTo("apartment1"), RepairClass.class).build();
 
         repairAdapter = new RepairAdapter(options1);
         recyclerView.setAdapter(repairAdapter);

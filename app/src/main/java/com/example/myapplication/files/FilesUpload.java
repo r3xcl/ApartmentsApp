@@ -163,7 +163,7 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                                     String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
                                     FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString(),auth);
-                                    databaseReference.child("id1").child(databaseReference.push().getKey()).setValue(obj);
+                                    databaseReference.child("apartment1").child(databaseReference.push().getKey()).setValue(obj);
 
                                     pd.dismiss();
                                     Toast.makeText(getApplicationContext(), "Файл завантажений!", Toast.LENGTH_LONG).show();
@@ -209,7 +209,7 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                                     String id = "apartment2";
 
                                     FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString(),auth);
-                                    databaseReference.child("id2").child(databaseReference.push().getKey()).setValue(obj);
+                                    databaseReference.child("apartment2").child(databaseReference.push().getKey()).setValue(obj);
 
                                     pd.dismiss();
                                     Toast.makeText(getApplicationContext(), "Файл завантажений!", Toast.LENGTH_LONG).show();
@@ -252,7 +252,7 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                                     String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
                                     FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString(),auth);
-                                    databaseReference.child("id3").child(databaseReference.push().getKey()).setValue(obj);
+                                    databaseReference.child("apartment3").child(databaseReference.push().getKey()).setValue(obj);
 
                                     pd.dismiss();
                                     Toast.makeText(getApplicationContext(), "Файл завантажений!", Toast.LENGTH_LONG).show();
@@ -295,7 +295,7 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                                     String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
                                     FileInfoModel obj = new FileInfoModel(id, filetitle.getText().toString(), uri.toString(),auth);
-                                    databaseReference.child("id4").child(databaseReference.push().getKey()).setValue(obj);
+                                    databaseReference.child("apartment4").child(databaseReference.push().getKey()).setValue(obj);
 
                                     pd.dismiss();
                                     Toast.makeText(getApplicationContext(), "Файл завантажений!", Toast.LENGTH_LONG).show();

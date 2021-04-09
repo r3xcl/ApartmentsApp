@@ -89,7 +89,7 @@ public class Fragment_Pay1 extends Fragment implements View.OnClickListener{
 
         FirebaseRecyclerOptions<PayClass> options =
                 new FirebaseRecyclerOptions.Builder<PayClass>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("Pay_History").orderByChild("id").equalTo("apartment1"),PayClass.class).build();
+                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("Pay_History").child("apartment1").orderByChild("id").equalTo("apartment1"),PayClass.class).build();
 
         payAdapter = new PayAdapter(options);
         recyclerView.setAdapter(payAdapter);

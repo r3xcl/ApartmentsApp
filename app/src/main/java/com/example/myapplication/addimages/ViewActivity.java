@@ -67,12 +67,13 @@ public class ViewActivity extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference(auth).child("Image");
 
         String ImageKey = getIntent().getStringExtra("ImageKey");
+        String id = getIntent().getStringExtra("id");
 
-        DataRef = FirebaseDatabase.getInstance().getReference(auth).child("Image").child(ImageKey);
+        DataRef = FirebaseDatabase.getInstance().getReference(auth).child("Image").child(id).child(ImageKey);
 
         StorageRef = FirebaseStorage.getInstance().getReference(auth).child("Image").child(ImageKey + ".jpg");
 
-        ref.child(ImageKey).addValueEventListener(new ValueEventListener() {
+        ref.child(id).child(ImageKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -129,7 +130,7 @@ public class ViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ref.child(ImageKey).addValueEventListener(new ValueEventListener() {
+                ref.child(id).child(ImageKey).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 

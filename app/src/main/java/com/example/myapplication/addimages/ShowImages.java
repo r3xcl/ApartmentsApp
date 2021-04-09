@@ -122,7 +122,7 @@ public class ShowImages extends AppCompatActivity {
         String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         options = new FirebaseRecyclerOptions.Builder<Image>().setQuery(FirebaseDatabase.getInstance().getReference(auth)
-                .child("Image").orderByChild("ImageID").equalTo("id1"),Image.class).build();
+                .child("Image").child("apartment1").orderByChild("ImageID").equalTo("apartment1"),Image.class).build();
 
         adapter = new FirebaseRecyclerAdapter<Image, MyViewHolder>(options) {
             @Override
@@ -138,6 +138,7 @@ public class ShowImages extends AppCompatActivity {
                         Intent intent = new Intent(ShowImages.this,ViewActivity.class);
 
                         intent.putExtra("ImageKey",getRef(position).getKey());
+                        intent.putExtra("id","apartment1");
 
                         startActivity(intent);
                     }
@@ -168,7 +169,7 @@ public class ShowImages extends AppCompatActivity {
         String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         options = new FirebaseRecyclerOptions.Builder<Image>().setQuery(FirebaseDatabase.getInstance().getReference(auth)
-                .child("Image").orderByChild("ImageID").equalTo("id2"),Image.class).build();
+                .child("Image").child("apartment2").orderByChild("ImageID").equalTo("apartment2"),Image.class).build();
 
         adapter = new FirebaseRecyclerAdapter<Image, MyViewHolder>(options) {
             @Override
@@ -184,6 +185,7 @@ public class ShowImages extends AppCompatActivity {
                         Intent intent = new Intent(ShowImages.this,ViewActivity.class);
 
                         intent.putExtra("ImageKey",getRef(position).getKey());
+                        intent.putExtra("id","apartment2");
 
                         startActivity(intent);
                     }
@@ -214,7 +216,7 @@ public class ShowImages extends AppCompatActivity {
         String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         options = new FirebaseRecyclerOptions.Builder<Image>().setQuery(FirebaseDatabase.getInstance().getReference(auth)
-                .child("Image").orderByChild("ImageID").equalTo("id3"),Image.class).build();
+                .child("Image").child("apartment3").orderByChild("ImageID").equalTo("apartment3"),Image.class).build();
 
         adapter = new FirebaseRecyclerAdapter<Image, MyViewHolder>(options) {
             @Override
@@ -230,6 +232,7 @@ public class ShowImages extends AppCompatActivity {
                         Intent intent = new Intent(ShowImages.this,ViewActivity.class);
 
                         intent.putExtra("ImageKey",getRef(position).getKey());
+                        intent.putExtra("id","apartment3");
 
                         startActivity(intent);
                     }
@@ -260,7 +263,7 @@ public class ShowImages extends AppCompatActivity {
         String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         options = new FirebaseRecyclerOptions.Builder<Image>().setQuery(FirebaseDatabase.getInstance().getReference(auth)
-                .child("Image").orderByChild("ImageID").equalTo("id4"),Image.class).build();
+                .child("Image").child("apartment4").orderByChild("ImageID").equalTo("apartment4"),Image.class).build();
 
         adapter = new FirebaseRecyclerAdapter<Image, MyViewHolder>(options) {
             @Override
@@ -276,6 +279,7 @@ public class ShowImages extends AppCompatActivity {
                         Intent intent = new Intent(ShowImages.this,ViewActivity.class);
 
                         intent.putExtra("ImageKey",getRef(position).getKey());
+                        intent.putExtra("id","apartment4");
 
                         startActivity(intent);
                     }
