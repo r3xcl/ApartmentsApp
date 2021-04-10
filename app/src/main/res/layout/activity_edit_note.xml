@@ -34,7 +34,7 @@
                 app:tint="@color/text2" />
 
             <EditText
-                android:id="@+id/inputNoteTitle"
+                android:id="@+id/inputNoteTitleEdit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -60,8 +60,8 @@
                 android:includeFontPadding="false"
                 android:textColor="#7B7B7B"
                 android:textSize="@dimen/_10ssp"
-                app:layout_constraintEnd_toEndOf="@id/inputNoteTitle"
-                app:layout_constraintTop_toBottomOf="@id/inputNoteTitle"
+                app:layout_constraintEnd_toEndOf="@id/inputNoteTitleEdit"
+                app:layout_constraintTop_toBottomOf="@id/inputNoteTitleEdit"
 
                 />
 
@@ -101,7 +101,7 @@
                 app:layout_constraintTop_toTopOf="@id/inputNoteSubtitle" />
 
             <EditText
-                android:id="@+id/inputNoteText"
+                android:id="@+id/inputNoteTextEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -125,7 +125,7 @@
 
 
             <ImageView
-                android:id="@+id/imageSave"
+                android:id="@+id/imageSaveEdit"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginEnd="56dp"

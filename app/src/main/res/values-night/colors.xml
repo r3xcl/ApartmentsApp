@@ -37,7 +37,16 @@
     <color name="colorSearchBackground">#A09D9D</color>
 
 
-
+    <color name="gray" >#cdc9c3</color>
+    <color name="green" >#c6ebc9</color>
+    <color name="lightgreen" >#cfffa5</color>
+    <color name="skyblue" >#a7c5eb</color>
+    <color name="pink" >#f3e6e3</color>
+    <color name="color1" >#efbbcf</color>
+    <color name="color2" >#d6b0b1</color>
+    <color name="color3" >#ccf6c8</color>
+    <color name="color4" >#ffe0ac</color>
+    <color name="color5" >#e5cfe5</color>
 
 
 </resources>

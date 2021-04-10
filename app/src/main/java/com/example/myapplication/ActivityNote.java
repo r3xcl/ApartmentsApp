@@ -1,166 +1,233 @@
 package com.example.myapplication;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-
-import android.view.MotionEvent;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.myapplication.note.Note;
-import com.example.myapplication.note.NotesAdapter;
-import com.example.myapplication.note.NotesDatabase;
-import com.example.myapplication.note.NotesListener;
+import com.example.myapplication.note.CreateNote;
+import com.example.myapplication.note.EditNote;
+import com.example.myapplication.note.NoteModel;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class ActivityNote extends AppCompatActivity implements NotesListener {
+public class ActivityNote extends AppCompatActivity {
 
-    public static final int REQUEST_CODE_ADD_NOTE = 1 ;
-    public static final int REQUEST_CODE_UPDATE_NOTE = 2;
-    public static final int REQUEST_CODE_SHOW_NOTE = 3;
+    ImageView imageAddNoteMain;
+    CardView notecard;
+    private FirebaseAuth firebaseAuth;
+    SharedPreferences sharedPreferences;
 
-    private RecyclerView noteRecyclerView;
 
-    private List<Note>noteList;
-    private NotesAdapter notesAdapter;
+    RecyclerView mrecyclerview;
+    StaggeredGridLayoutManager staggeredGridLayoutManager;
 
-    private int noteClickedPosition = 1;
+
+    FirebaseUser firebaseUser;
+    FirebaseFirestore firebaseFirestore;
+
+    FirestoreRecyclerAdapter<NoteModel,NoteViewHolder> noteAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        getSupportActionBar().hide();
+        imageAddNoteMain=findViewById(R.id.imageAddNoteMain);
 
-        ImageView imageAddNoteMain = findViewById(R.id.imageAddNoteMain);
+        notecard=findViewById(R.id.notecard);
+
+        firebaseAuth=FirebaseAuth.getInstance();
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+
+        String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
+
+        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        firebaseFirestore=FirebaseFirestore.getInstance();
+
+        getSupportActionBar().hide();
         imageAddNoteMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(),CreateNoteActivity.class),REQUEST_CODE_ADD_NOTE);
+
+                startActivity(new Intent(ActivityNote.this, CreateNote.class));
+
             }
         });
 
-        noteRecyclerView = findViewById(R.id.notesRecyclerView);
-        noteRecyclerView.setLayoutManager(
-                new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
-        );
 
-        noteList = new ArrayList<>();
-        notesAdapter = new NotesAdapter(noteList,this);
-        noteRecyclerView.setAdapter(notesAdapter);
+        Query query=firebaseFirestore.collection(auth).document(firebaseUser.getUid()).collection("myNotes").orderBy("title",Query.Direction.ASCENDING);
 
-        getNotes(REQUEST_CODE_SHOW_NOTE,false);
-    }
+        FirestoreRecyclerOptions<NoteModel> allusernotes= new FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query,NoteModel.class).build();
 
-    @Override
-    public void onNoteClicked(Note note, int position) {
-
-        noteClickedPosition = position;
-        Intent intent = new Intent(getApplicationContext(),CreateNoteActivity.class);
-
-        intent.putExtra("update",true);
-        intent.putExtra("note",note);
-        startActivityForResult(intent,REQUEST_CODE_UPDATE_NOTE);
-
-
-    }
-
-    private void getNotes (final int requestCode,final boolean isNoteDel) {
-
-        class GetNotesTask extends AsyncTask<Void,Void, List<Note>>{
-
+        noteAdapter= new FirestoreRecyclerAdapter<NoteModel, NoteViewHolder>(allusernotes) {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            protected  List<Note> doInBackground(Void... voids){
-                return NotesDatabase
-                        .getDataBase(getApplicationContext())
-                        .noteDao().getAllNotes();
-            }
-
-            @Override
-            protected void onPostExecute(List<Note> notes){
-
-                super.onPostExecute(notes);
-                if(requestCode == REQUEST_CODE_SHOW_NOTE){
-
-                    noteList.addAll(notes);
-                    notesAdapter.notifyDataSetChanged();
-
-                }else if(requestCode == REQUEST_CODE_ADD_NOTE){
-
-                    noteList.add(0,notes.get(0));
-                    notesAdapter.notifyItemInserted(0);
-                    noteRecyclerView.smoothScrollToPosition(0);
-
-                }else if (requestCode == REQUEST_CODE_UPDATE_NOTE){
-
-                    noteList.remove(noteClickedPosition);
+            protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int i, @NonNull NoteModel firebasemodel) {
 
 
-                    if(isNoteDel){
+                ImageView popupbutton=noteViewHolder.itemView.findViewById(R.id.menupopbutton);
 
-                        notesAdapter.notifyItemRemoved(noteClickedPosition);
+                int colourcode=getRandomColor();
+                noteViewHolder.mnote.setBackgroundColor(noteViewHolder.itemView.getResources().getColor(colourcode,null));
 
-                    }else {
+                noteViewHolder.notetitle.setText(firebasemodel.getTitle());
+                noteViewHolder.notecontent.setText(firebasemodel.getContent());
 
-                        noteList.add(noteClickedPosition,notes.get(noteClickedPosition));
-                        notesAdapter.notifyItemChanged(noteClickedPosition);
+                String docId=noteAdapter.getSnapshots().getSnapshot(i).getId();
 
+
+
+                popupbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        PopupMenu popupMenu=new PopupMenu(v.getContext(),v);
+                        popupMenu.setGravity(Gravity.END);
+                        popupMenu.getMenu().add("Edit").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+
+                                Intent intent=new Intent(v.getContext(), EditNote.class);
+                                intent.putExtra("title",firebasemodel.getTitle());
+                                intent.putExtra("content",firebasemodel.getContent());
+                                intent.putExtra("noteId",docId);
+                                v.getContext().startActivity(intent);
+                                return false;
+                            }
+                        });
+
+                        popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                //Toast.makeText(v.getContext(),"This note is deleted",Toast.LENGTH_SHORT).show();
+                                DocumentReference documentReference=firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("myNotes").document(docId);
+                                documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(v.getContext(),"Видалено!",Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(v.getContext(),"Помилка видалення!",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+
+                                return false;
+                            }
+                        });
+
+                        popupMenu.show();
                     }
+                });
 
-                }
+
             }
 
-        }
-        new GetNotesTask().execute();
+            @NonNull
+            @Override
+            public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_note,parent,false);
+                return new NoteViewHolder(view);
+            }
+        };
 
+
+        mrecyclerview=findViewById(R.id.notesRecyclerView);
+        mrecyclerview.setHasFixedSize(true);
+        staggeredGridLayoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        mrecyclerview.setLayoutManager(staggeredGridLayoutManager);
+        mrecyclerview.setAdapter(noteAdapter);
+
+
+    }
+
+    public class NoteViewHolder extends RecyclerView.ViewHolder
+    {
+        private TextView notetitle;
+        private TextView notecontent;
+        LinearLayout mnote;
+
+        public NoteViewHolder(@NonNull View itemView) {
+            super(itemView);
+            notetitle=itemView.findViewById(R.id.notetitle);
+            notecontent=itemView.findViewById(R.id.notecontent);
+            mnote=itemView.findViewById(R.id.note);
+
+
+        }
+    }
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        noteAdapter.startListening();
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == REQUEST_CODE_ADD_NOTE&&resultCode == RESULT_OK){
-
-            getNotes(REQUEST_CODE_ADD_NOTE,false);
-        }else if (requestCode == REQUEST_CODE_UPDATE_NOTE && resultCode == RESULT_OK){
-
-
-            if(data != null){
-
-                getNotes(REQUEST_CODE_UPDATE_NOTE,data.getBooleanExtra("isNoteDel",false));
-
-            }
-
+    protected void onStop() {
+        super.onStop();
+        if(noteAdapter!=null)
+        {
+            noteAdapter.stopListening();
         }
     }
 
 
+    private int getRandomColor()
+    {
+        List<Integer> colorcode=new ArrayList<>();
+        colorcode.add(R.color.gray);
+        colorcode.add(R.color.pink);
+        colorcode.add(R.color.lightgreen);
+        colorcode.add(R.color.skyblue);
+        colorcode.add(R.color.color1);
+        colorcode.add(R.color.color2);
+        colorcode.add(R.color.color3);
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
-    }
+        colorcode.add(R.color.color4);
+        colorcode.add(R.color.color5);
+        colorcode.add(R.color.green);
+
+        Random random=new Random();
+        int number=random.nextInt(colorcode.size());
+        return colorcode.get(number);
 
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_DOWN)
-            hideKeyboard();
-        return super.dispatchTouchEvent(ev);
+
     }
 
 }

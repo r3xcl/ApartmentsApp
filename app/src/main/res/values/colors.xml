@@ -38,6 +38,15 @@
 
 
 
-
+    <color name="gray" >#F6E0C0</color>
+    <color name="green" >#D3FBD6</color>
+    <color name="lightgreen" >#cfffa5</color>
+    <color name="skyblue" >#B2D2FB</color>
+    <color name="pink" >#f3e6e3</color>
+    <color name="color1" >#efbbcf</color>
+    <color name="color2" >#F1C4C5</color>
+    <color name="color3" >#A0F498</color>
+    <color name="color4" >#ffe0ac</color>
+    <color name="color5" >#FBD3FB</color>
 
 </resources>

@@ -34,7 +34,7 @@
                 app:tint="@color/text2" />
 
             <EditText
-                android:id="@+id/inputNoteTitle"
+                android:id="@+id/inputNoteTitleDetail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -60,8 +60,8 @@
                 android:includeFontPadding="false"
                 android:textColor="#7B7B7B"
                 android:textSize="@dimen/_10ssp"
-                app:layout_constraintEnd_toEndOf="@id/inputNoteTitle"
-                app:layout_constraintTop_toBottomOf="@id/inputNoteTitle"
+                app:layout_constraintEnd_toEndOf="@id/inputNoteTitleDetail"
+                app:layout_constraintTop_toBottomOf="@id/inputNoteTitleDetail"
 
                 />
 
@@ -101,7 +101,7 @@
                 app:layout_constraintTop_toTopOf="@id/inputNoteSubtitle" />
 
             <EditText
-                android:id="@+id/inputNoteText"
+                android:id="@+id/inputNoteTextDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -124,24 +124,20 @@
 
 
 
-            <ImageView
-                android:id="@+id/imageSave"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginEnd="56dp"
-                android:background="@drawable/background_done_button"
-                android:contentDescription="@string/app_name"
-                android:padding="@dimen/_4sdp"
-                android:src="@drawable/ic_done"
-                app:layout_constraintBottom_toBottomOf="@id/imageBack"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/imageBack"
-                app:layout_constraintVertical_bias="0.0"
-                app:tint="@color/text2" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/GoEditNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="670dp"
+        android:layout_marginLeft="280dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/edit" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

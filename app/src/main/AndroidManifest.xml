@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
 
+
+        <activity android:name=".note.CreateNote" android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".note.EditNote" android:screenOrientation="portrait"></activity>
+
+
         <activity android:name=".addimages.ViewActivity" android:screenOrientation="portrait"></activity>
 
         <activity android:name=".AuthActivity" android:screenOrientation="portrait"></activity>
@@ -101,10 +107,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".CreateNoteActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ActivityPay">
             <intent-filter>
                 <action android:name="pay1" />
