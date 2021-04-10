@@ -449,6 +449,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 intent1.putExtra("city",city_id.getText().toString());
                 intent1.putExtra("district",info_district.getText().toString());
                 intent1.putExtra("rooms",info_rooms.getText().toString());
+                intent1.putExtra("year",info_dateown.getText().toString());
+                intent1.putExtra("size",info_size.getText().toString());
                 startActivityForResult(intent1, 0111);
 
             });
@@ -689,71 +691,6 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                   final EditText size = myview.findViewById(R.id.size_edit);
 
 
-                dateown.addTextChangedListener(new TextWatcher() {
-
-                    private String current = "";
-                    private String ddmmyyyy = "DDMMYYYY";
-                    private Calendar cal = Calendar.getInstance();
-
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
-
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if (!s.toString().equals(current)) {
-
-                            String clean = s.toString().replaceAll("[^\\d.]", "");
-                            String cleanC = current.replaceAll("[^\\d.]", "");
-
-                            int cl = clean.length();
-                            int sel = cl;
-                            for (int i = 2; i <= cl && i < 6; i += 2) {
-                                sel++;
-                            }
-
-                            if (clean.equals(cleanC)) sel--;
-
-                            if (clean.length() < 8){
-                                clean = clean + ddmmyyyy.substring(clean.length());
-                            }else{
-
-                                int day  = Integer.parseInt(clean.substring(0,2));
-                                int mon  = Integer.parseInt(clean.substring(2,4));
-                                int year = Integer.parseInt(clean.substring(4,8));
-
-                                if(mon > 12) mon = 12;
-                                cal.set(Calendar.MONTH, mon-1);
-
-                                year = (year<1900)?1900:(year>2100)?2100:year;
-                                cal.set(Calendar.YEAR, year);
-
-
-                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
-                                clean = String.format("%02d%02d%02d",day, mon, year);
-                            }
-
-                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                                    clean.substring(2, 4),
-                                    clean.substring(4, 8));
-
-                            sel = sel < 0 ? 0 : sel;
-                            current = clean;
-                            dateown.setText(current);
-                            dateown.setSelection(sel < current.length() ? sel : current.length());
-
-
-
-                        }
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
 
                 address.setText(info_address.getText().toString());
                 rooms.setText(info_rooms.getText().toString());
@@ -1215,6 +1152,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 intent1.putExtra("city",city_id.getText().toString());
                 intent1.putExtra("district",info_district.getText().toString());
                 intent1.putExtra("rooms",info_rooms.getText().toString());
+                intent1.putExtra("year",info_dateown.getText().toString());
+                intent1.putExtra("size",info_size.getText().toString());
                 startActivityForResult(intent1, 0111);
 
             });
@@ -1453,73 +1392,6 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 final EditText floor = myview.findViewById(R.id.floor_edit);
                 final EditText dateown = myview.findViewById(R.id.dateown_edit);
                 final EditText size = myview.findViewById(R.id.size_edit);
-
-
-                dateown.addTextChangedListener(new TextWatcher() {
-
-                    private String current = "";
-                    private String ddmmyyyy = "DDMMYYYY";
-                    private Calendar cal = Calendar.getInstance();
-
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
-
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if (!s.toString().equals(current)) {
-
-                            String clean = s.toString().replaceAll("[^\\d.]", "");
-                            String cleanC = current.replaceAll("[^\\d.]", "");
-
-                            int cl = clean.length();
-                            int sel = cl;
-                            for (int i = 2; i <= cl && i < 6; i += 2) {
-                                sel++;
-                            }
-
-                            if (clean.equals(cleanC)) sel--;
-
-                            if (clean.length() < 8){
-                                clean = clean + ddmmyyyy.substring(clean.length());
-                            }else{
-
-                                int day  = Integer.parseInt(clean.substring(0,2));
-                                int mon  = Integer.parseInt(clean.substring(2,4));
-                                int year = Integer.parseInt(clean.substring(4,8));
-
-                                if(mon > 12) mon = 12;
-                                cal.set(Calendar.MONTH, mon-1);
-
-                                year = (year<1900)?1900:(year>2100)?2100:year;
-                                cal.set(Calendar.YEAR, year);
-
-
-                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
-                                clean = String.format("%02d%02d%02d",day, mon, year);
-                            }
-
-                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                                    clean.substring(2, 4),
-                                    clean.substring(4, 8));
-
-                            sel = sel < 0 ? 0 : sel;
-                            current = clean;
-                            dateown.setText(current);
-                            dateown.setSelection(sel < current.length() ? sel : current.length());
-
-
-
-                        }
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
 
 
                 address.setText(info_address.getText().toString());
@@ -1991,6 +1863,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 intent1.putExtra("city",city_id.getText().toString());
                 intent1.putExtra("district",info_district.getText().toString());
                 intent1.putExtra("rooms",info_rooms.getText().toString());
+                intent1.putExtra("year",info_dateown.getText().toString());
+                intent1.putExtra("size",info_size.getText().toString());
                 startActivityForResult(intent1, 0111);
 
             });
@@ -2269,71 +2143,6 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 dateown.setText(info_dateown.getText().toString());
                 size.setText(info_size.getText().toString());
 
-                dateown.addTextChangedListener(new TextWatcher() {
-
-                    private String current = "";
-                    private String ddmmyyyy = "DDMMYYYY";
-                    private Calendar cal = Calendar.getInstance();
-
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
-
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if (!s.toString().equals(current)) {
-
-                            String clean = s.toString().replaceAll("[^\\d.]", "");
-                            String cleanC = current.replaceAll("[^\\d.]", "");
-
-                            int cl = clean.length();
-                            int sel = cl;
-                            for (int i = 2; i <= cl && i < 6; i += 2) {
-                                sel++;
-                            }
-
-                            if (clean.equals(cleanC)) sel--;
-
-                            if (clean.length() < 8){
-                                clean = clean + ddmmyyyy.substring(clean.length());
-                            }else{
-
-                                int day  = Integer.parseInt(clean.substring(0,2));
-                                int mon  = Integer.parseInt(clean.substring(2,4));
-                                int year = Integer.parseInt(clean.substring(4,8));
-
-                                if(mon > 12) mon = 12;
-                                cal.set(Calendar.MONTH, mon-1);
-
-                                year = (year<1900)?1900:(year>2100)?2100:year;
-                                cal.set(Calendar.YEAR, year);
-
-
-                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
-                                clean = String.format("%02d%02d%02d",day, mon, year);
-                            }
-
-                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                                    clean.substring(2, 4),
-                                    clean.substring(4, 8));
-
-                            sel = sel < 0 ? 0 : sel;
-                            current = clean;
-                            dateown.setText(current);
-                            dateown.setSelection(sel < current.length() ? sel : current.length());
-
-
-
-                        }
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
 
 
                 dialogPlus.show();
@@ -2752,6 +2561,8 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 intent1.putExtra("city",city_id.getText().toString());
                 intent1.putExtra("district",info_district.getText().toString());
                 intent1.putExtra("rooms",info_rooms.getText().toString());
+                intent1.putExtra("year",info_dateown.getText().toString());
+                intent1.putExtra("size",info_size.getText().toString());
                 startActivityForResult(intent1, 0111);
 
             });
@@ -3029,73 +2840,6 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
                 final EditText floor = myview.findViewById(R.id.floor_edit);
                 final EditText dateown = myview.findViewById(R.id.dateown_edit);
                 final EditText size = myview.findViewById(R.id.size_edit);
-
-
-                dateown.addTextChangedListener(new TextWatcher() {
-
-                    private String current = "";
-                    private String ddmmyyyy = "DDMMYYYY";
-                    private Calendar cal = Calendar.getInstance();
-
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
-
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if (!s.toString().equals(current)) {
-
-                            String clean = s.toString().replaceAll("[^\\d.]", "");
-                            String cleanC = current.replaceAll("[^\\d.]", "");
-
-                            int cl = clean.length();
-                            int sel = cl;
-                            for (int i = 2; i <= cl && i < 6; i += 2) {
-                                sel++;
-                            }
-
-                            if (clean.equals(cleanC)) sel--;
-
-                            if (clean.length() < 8){
-                                clean = clean + ddmmyyyy.substring(clean.length());
-                            }else{
-
-                                int day  = Integer.parseInt(clean.substring(0,2));
-                                int mon  = Integer.parseInt(clean.substring(2,4));
-                                int year = Integer.parseInt(clean.substring(4,8));
-
-                                if(mon > 12) mon = 12;
-                                cal.set(Calendar.MONTH, mon-1);
-
-                                year = (year<1900)?1900:(year>2100)?2100:year;
-                                cal.set(Calendar.YEAR, year);
-
-
-                                day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
-                                clean = String.format("%02d%02d%02d",day, mon, year);
-                            }
-
-                            clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                                    clean.substring(2, 4),
-                                    clean.substring(4, 8));
-
-                            sel = sel < 0 ? 0 : sel;
-                            current = clean;
-                            dateown.setText(current);
-                            dateown.setSelection(sel < current.length() ? sel : current.length());
-
-
-
-                        }
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
 
 
                 address.setText(info_address.getText().toString());

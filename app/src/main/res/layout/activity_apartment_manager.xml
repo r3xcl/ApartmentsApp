@@ -473,20 +473,6 @@
         app:layout_constraintVertical_bias="0.973"
         app:srcCompat="@drawable/ic_archive_86332" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:hint="Дата купівлі:"
-        android:textColorHint="@color/text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.864" />
-
     <ImageButton
         android:id="@+id/apartment_edit"
         android:layout_width="50dp"
@@ -552,6 +538,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.648" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="140dp"
+        android:layout_height="25dp"
+        android:hint="Рік будівництва:"
+        android:textColorHint="@color/text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.864" />
 
     <TextView
         android:id="@+id/textView46"
@@ -647,6 +647,7 @@
         app:layout_constraintVertical_bias="0.789"
         app:srcCompat="@drawable/ic_photo_photography_image_picture_108525" />
 
+
     <TextView
         android:id="@+id/info_dateown"
         android:layout_width="100dp"
@@ -655,11 +656,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.603"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.864" />
-
 
     <ImageButton
         android:id="@+id/apartment_edit_client"

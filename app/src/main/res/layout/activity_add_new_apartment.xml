@@ -183,7 +183,7 @@
         android:layout_marginRight="5sp"
         android:background="@drawable/style_activity2_add"
         android:ems="10"
-        android:hint="Дата купівлі"
+        android:hint="Рік будівництва"
         android:inputType="date"
         android:paddingLeft="15dp"
         android:textColor="@color/text3"

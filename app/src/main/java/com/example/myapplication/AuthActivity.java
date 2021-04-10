@@ -229,7 +229,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v.getId() == R.id.button_vhod && user_pass.getText().toString().length()!=0
                 && user_email.getText().toString().length()!=0 ){
-            signin(user_email.getText().toString(), user_pass.getText().toString());
+            signin(user_email.getText().toString().trim(), user_pass.getText().toString().trim());
 
         }
 

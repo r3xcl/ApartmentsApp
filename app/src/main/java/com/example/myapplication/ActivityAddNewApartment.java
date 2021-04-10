@@ -189,71 +189,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
         edit_floor = (EditText) findViewById(R.id.edit_floor);
 
         edit_dateown = (EditText) findViewById(R.id.edit_dateown);
-        edit_dateown.addTextChangedListener(new TextWatcher() {
 
-            private String current = "";
-            private String ddmmyyyy = "DDMMYYYY";
-            private Calendar cal = Calendar.getInstance();
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().equals(current)) {
-
-                    String clean = s.toString().replaceAll("[^\\d.]", "");
-                    String cleanC = current.replaceAll("[^\\d.]", "");
-
-                    int cl = clean.length();
-                    int sel = cl;
-                    for (int i = 2; i <= cl && i < 6; i += 2) {
-                        sel++;
-                    }
-
-                    if (clean.equals(cleanC)) sel--;
-
-                    if (clean.length() < 8){
-                        clean = clean + ddmmyyyy.substring(clean.length());
-                    }else{
-
-                        int day  = Integer.parseInt(clean.substring(0,2));
-                        int mon  = Integer.parseInt(clean.substring(2,4));
-                        int year = Integer.parseInt(clean.substring(4,8));
-
-                        if(mon > 12) mon = 12;
-                        cal.set(Calendar.MONTH, mon-1);
-
-                        year = (year<1900)?1900:(year>9999)?9999:year;
-                        cal.set(Calendar.YEAR, year);
-
-
-                        day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
-                        clean = String.format("%02d%02d%02d",day, mon, year);
-                    }
-
-                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                            clean.substring(2, 4),
-                            clean.substring(4, 8));
-
-                    sel = sel < 0 ? 0 : sel;
-                    current = clean;
-                    edit_dateown.setText(current);
-                    edit_dateown.setSelection(sel < current.length() ? sel : current.length());
-
-
-
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
 
         edit_name = (EditText) findViewById(R.id.edit_name);
@@ -285,76 +221,100 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
             if (action.equals("1")) {
 
 
-                String id = "newApartment1";
-                String address = edit_address.getText().toString();
-                String rooms = edit_rooms.getText().toString();
-                String floor = edit_floor.getText().toString();
-                String dateown = edit_dateown.getText().toString();
-                String name = edit_name.getText().toString();
-                String size = edit_size.getText().toString();
+                 String year = edit_dateown.getText().toString();
 
 
-                String city = edit_cities.getSelectedItem().toString();
-                String district = edit_districts.getSelectedItem().toString();
+                         if (edit_cities.getSelectedItem().toString().equals("Оберіть місто...") || edit_districts.getSelectedItem().toString().equals("Оберіть район...")) {
+
+                             Toast.makeText(ActivityAddNewApartment.this, "Оберіть місто та район!", Toast.LENGTH_SHORT).show();
+                         } else {
+                             if (edit_address.getText().toString().length() != 0) {
+
+                                 if (!year.equals("") && Integer.parseInt(edit_dateown.getText().toString()) < 1900
+                                         && Integer.parseInt(edit_dateown.getText().toString()) < 2100) {
+
+                                         Toast.makeText(ActivityAddNewApartment.this, "Рік введений некоректно!", Toast.LENGTH_SHORT).show();
+                                     } else {
+
+                                     intent.putExtra("1", 1);
+                                     setResult(RESULT_OK, intent);
+
+                                     String id = "newApartment1";
+                                     String address = edit_address.getText().toString();
+                                     String rooms = edit_rooms.getText().toString();
+                                     String floor = edit_floor.getText().toString();
+                                     String dateown = edit_dateown.getText().toString();
+                                     String name = edit_name.getText().toString();
+                                     String size = edit_size.getText().toString();
 
 
-                ApartmentsClass newApartment = new ApartmentsClass(id, address, city, district, rooms, floor, dateown, name,size);
+                                     String city = edit_cities.getSelectedItem().toString();
+                                     String district = edit_districts.getSelectedItem().toString();
 
 
-                myDataBase.child(id).setValue(newApartment);
+                                     ApartmentsClass newApartment = new ApartmentsClass(id, address, city, district, rooms, floor, dateown, name,size);
 
 
-                if (edit_cities.getSelectedItem().toString().equals("Оберіть місто...") || edit_districts.getSelectedItem().toString().equals("Оберіть район...")) {
+                                     myDataBase.child(id).setValue(newApartment);
 
-                    Toast.makeText(ActivityAddNewApartment.this, "Оберіть місто та район!", Toast.LENGTH_SHORT).show();
-                }else {
-                    if (edit_address.getText().toString().length() != 0) {
+                                     finish();
+                                 }
 
-
-                        intent.putExtra("1", 1);
-                        setResult(RESULT_OK, intent);
-                        finish();
-
-                    } else {
+                             } else {
 
 
-                        edit_address.setError("Введіть дані!");
-                        edit_address.requestFocus();
-                    }
+                                 edit_address.setError("Введіть дані!");
+                                 edit_address.requestFocus();
+                             }
 
 
-                }
+                         }
+
+
+
             }
 
 
         else if (action.equals("2")) {
 
-                String id = "newApartment2";
-                String address = edit_address.getText().toString();
-                String rooms = edit_rooms.getText().toString();
-                String floor = edit_floor.getText().toString();
-                String dateown = edit_dateown.getText().toString();
-                String name = edit_name.getText().toString();
-                String size = edit_size.getText().toString();
+                String year = edit_dateown.getText().toString();
 
-                String city = edit_cities.getSelectedItem().toString();
-                String district = edit_districts.getSelectedItem().toString();
-
-
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name,size);
-
-                myDataBase.child(id).setValue(newApartment);
 
                 if (edit_cities.getSelectedItem().toString().equals("Оберіть місто...") || edit_districts.getSelectedItem().toString().equals("Оберіть район...")) {
 
                     Toast.makeText(ActivityAddNewApartment.this, "Оберіть місто та район!", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     if (edit_address.getText().toString().length() != 0) {
 
+                        if (!year.equals("") && Integer.parseInt(edit_dateown.getText().toString()) < 1900
+                                && Integer.parseInt(edit_dateown.getText().toString()) < 2100) {
 
-                        intent.putExtra("2", 2);
-                        setResult(RESULT_OK, intent);
-                        finish();
+                            Toast.makeText(ActivityAddNewApartment.this, "Рік введений некоректно!", Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            intent.putExtra("2", 2);
+                            setResult(RESULT_OK, intent);
+
+                            String id = "newApartment2";
+                            String address = edit_address.getText().toString();
+                            String rooms = edit_rooms.getText().toString();
+                            String floor = edit_floor.getText().toString();
+                            String dateown = edit_dateown.getText().toString();
+                            String name = edit_name.getText().toString();
+                            String size = edit_size.getText().toString();
+
+
+                            String city = edit_cities.getSelectedItem().toString();
+                            String district = edit_districts.getSelectedItem().toString();
+
+
+                            ApartmentsClass newApartment = new ApartmentsClass(id, address, city, district, rooms, floor, dateown, name,size);
+
+
+                            myDataBase.child(id).setValue(newApartment);
+
+                            finish();
+                        }
 
                     } else {
 
@@ -371,33 +331,44 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
          else if (action.equals("3")) {
 
-                String id = "newApartment3";
-                String address = edit_address.getText().toString();
-                String rooms = edit_rooms.getText().toString();
-                String floor = edit_floor.getText().toString();
-                String dateown = edit_dateown.getText().toString();
-                String name = edit_name.getText().toString();
-                String size = edit_size.getText().toString();
-
-                String city = edit_cities.getSelectedItem().toString();
-                String district = edit_districts.getSelectedItem().toString();
-
-
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name,size);
-
-                myDataBase.child(id).setValue(newApartment);
+                String year = edit_dateown.getText().toString();
 
 
                 if (edit_cities.getSelectedItem().toString().equals("Оберіть місто...") || edit_districts.getSelectedItem().toString().equals("Оберіть район...")) {
 
                     Toast.makeText(ActivityAddNewApartment.this, "Оберіть місто та район!", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     if (edit_address.getText().toString().length() != 0) {
 
+                        if (!year.equals("") && Integer.parseInt(edit_dateown.getText().toString()) < 1900
+                                && Integer.parseInt(edit_dateown.getText().toString()) < 2100) {
 
-                        intent.putExtra("3", 3);
-                        setResult(RESULT_OK, intent);
-                        finish();
+                            Toast.makeText(ActivityAddNewApartment.this, "Рік введений некоректно!", Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            intent.putExtra("3", 3);
+                            setResult(RESULT_OK, intent);
+
+                            String id = "newApartment3";
+                            String address = edit_address.getText().toString();
+                            String rooms = edit_rooms.getText().toString();
+                            String floor = edit_floor.getText().toString();
+                            String dateown = edit_dateown.getText().toString();
+                            String name = edit_name.getText().toString();
+                            String size = edit_size.getText().toString();
+
+
+                            String city = edit_cities.getSelectedItem().toString();
+                            String district = edit_districts.getSelectedItem().toString();
+
+
+                            ApartmentsClass newApartment = new ApartmentsClass(id, address, city, district, rooms, floor, dateown, name,size);
+
+
+                            myDataBase.child(id).setValue(newApartment);
+
+                            finish();
+                        }
 
                     } else {
 
@@ -413,33 +384,44 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
          else if (action.equals("4")) {
 
-                String id = "newApartment4";
-                String address = edit_address.getText().toString();
-                String rooms = edit_rooms.getText().toString();
-                String floor = edit_floor.getText().toString();
-                String dateown = edit_dateown.getText().toString();
-                String name = edit_name.getText().toString();
-                String size = edit_size.getText().toString();
-
-                String city = edit_cities.getSelectedItem().toString();
-                String district = edit_districts.getSelectedItem().toString();
-
-
-                ApartmentsClass newApartment = new ApartmentsClass(id,address,city,district,rooms,floor,dateown,name,size);
-
-                myDataBase.child(id).setValue(newApartment);
+                String year = edit_dateown.getText().toString();
 
 
                 if (edit_cities.getSelectedItem().toString().equals("Оберіть місто...") || edit_districts.getSelectedItem().toString().equals("Оберіть район...")) {
 
                     Toast.makeText(ActivityAddNewApartment.this, "Оберіть місто та район!", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     if (edit_address.getText().toString().length() != 0) {
 
+                        if (!year.equals("") && Integer.parseInt(edit_dateown.getText().toString()) < 1900
+                                && Integer.parseInt(edit_dateown.getText().toString()) < 2100) {
 
-                        intent.putExtra("4", 4);
-                        setResult(RESULT_OK, intent);
-                        finish();
+                            Toast.makeText(ActivityAddNewApartment.this, "Рік введений некоректно!", Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            intent.putExtra("4", 4);
+                            setResult(RESULT_OK, intent);
+
+                            String id = "newApartment4";
+                            String address = edit_address.getText().toString();
+                            String rooms = edit_rooms.getText().toString();
+                            String floor = edit_floor.getText().toString();
+                            String dateown = edit_dateown.getText().toString();
+                            String name = edit_name.getText().toString();
+                            String size = edit_size.getText().toString();
+
+
+                            String city = edit_cities.getSelectedItem().toString();
+                            String district = edit_districts.getSelectedItem().toString();
+
+
+                            ApartmentsClass newApartment = new ApartmentsClass(id, address, city, district, rooms, floor, dateown, name, size);
+
+
+                            myDataBase.child(id).setValue(newApartment);
+
+                            finish();
+                        }
 
                     } else {
 
@@ -450,7 +432,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
 
 
                 }
-         }
+            }
 
 
 

@@ -26,18 +26,17 @@
         android:layout_marginLeft="5sp"
         android:layout_marginTop="5sp"
         android:layout_marginRight="5sp"
-        android:layout_marginBottom="296dp"
         android:background="@drawable/style_activity2_add"
         android:ems="10"
         android:hint="Пароль"
-        android:password="true"
         android:inputType="textPersonName"
         android:paddingLeft="15dp"
+        android:password="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575" />
 
     <EditText
         android:id="@+id/regi_mail"
@@ -46,7 +45,6 @@
         android:layout_marginLeft="5sp"
         android:layout_marginTop="5sp"
         android:layout_marginRight="5sp"
-        android:layout_marginBottom="364dp"
         android:background="@drawable/style_activity2_add"
         android:ems="10"
         android:hint="Електронна пошта"
@@ -55,8 +53,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.481"
+        tools:ignore="UnknownIdInLayout" />
 
     <Button
         android:id="@+id/button_vhod"
