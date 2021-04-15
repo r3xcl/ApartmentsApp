@@ -123,12 +123,11 @@
                 app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle" />
 
 
-
             <ImageView
                 android:id="@+id/imageSave"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:layout_marginEnd="56dp"
+                android:layout_marginEnd="32dp"
                 android:background="@drawable/background_done_button"
                 android:contentDescription="@string/app_name"
                 android:padding="@dimen/_4sdp"
@@ -136,7 +135,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/imageBack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imageBack"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_bias="0.2"
                 app:tint="@color/text2" />
 
 

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -22,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import db.ApartmentsClass;
 import db.Repair.RepairClass;
 
-public class  MainActivity extends AppCompatActivity  implements View.OnClickListener{
+public class  MainActivity extends AppCompatActivity  implements View.OnClickListener,BottomNavigationView.OnNavigationItemSelectedListener{
 
     String _Name;
     DatabaseReference reference;
@@ -43,6 +45,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
     private int checkedItem;
     private String selected;
     private final String CHECKEDITEM = "checked_item";
+
+    com.google.android.material.bottomnavigation.BottomNavigationView bottomNavigationView;
 
     ImageButton add1,add2,add3,add4,
             new_home,new_home2,new_home3,new_home4,
@@ -75,8 +79,10 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         add3_text = (TextView) findViewById(R.id.add3_text);
         add4_text = (TextView) findViewById(R.id.add4_text);
 
-        customization = (ImageView) findViewById(R.id.customization);
-        customization.setOnClickListener(this);
+
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
 
@@ -101,8 +107,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         new_home2 = (ImageButton) findViewById(R.id.new_home2);
         new_home2.setOnClickListener(this);
 
-        exit = (ImageView) findViewById(R.id.exit);
-        exit.setOnClickListener(this);
+
 
         new_home3 = (ImageButton) findViewById(R.id.new_home3);
         new_home3.setOnClickListener(this);
@@ -265,19 +270,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
         vibr = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
-        customization.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog();
-            }
-        });
 
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialogExit();
-            }
-        });
 
         add1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -758,7 +751,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
                     case "Нічна тема":
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                        
+
                         break;
 
                     case "Звичайна тема":
@@ -1321,5 +1314,25 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
             }
         });
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id){
+
+            case R.id.navigation_cust:
+                showDialog();
+                return  true;
+
+            case R.id.navigation_exit:
+                showDialogExit();
+                return  true;
+
+        }
+
+        return false;
     }
 }

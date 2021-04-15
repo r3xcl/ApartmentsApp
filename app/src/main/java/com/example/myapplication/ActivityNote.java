@@ -113,7 +113,7 @@ public class ActivityNote extends AppCompatActivity {
 
                         PopupMenu popupMenu=new PopupMenu(v.getContext(),v);
                         popupMenu.setGravity(Gravity.END);
-                        popupMenu.getMenu().add("Edit").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        popupMenu.getMenu().add("Редагувати").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
 
@@ -126,11 +126,11 @@ public class ActivityNote extends AppCompatActivity {
                             }
                         });
 
-                        popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        popupMenu.getMenu().add("Видалити").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                //Toast.makeText(v.getContext(),"This note is deleted",Toast.LENGTH_SHORT).show();
-                                DocumentReference documentReference=firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("myNotes").document(docId);
+
+                                DocumentReference documentReference=firebaseFirestore.collection(auth).document(firebaseUser.getUid()).collection("myNotes").document(docId);
                                 documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {

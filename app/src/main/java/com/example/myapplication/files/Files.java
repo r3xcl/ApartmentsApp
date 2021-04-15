@@ -46,7 +46,7 @@ public class Files extends AppCompatActivity implements View.OnClickListener{
         Intent intent = getIntent();
         String action = intent.getAction();
 
-        getSupportActionBar().hide(); //УБИРАЕМ ВЕРХНЮЮ ШАПКУ
+        getSupportActionBar().hide();
 
 
 

@@ -137,17 +137,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ActivityEditApartment" android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="apartment_edit1" />
-                <action android:name="apartment_edit2" />
-                <action android:name="apartment_edit3" />
-                <action android:name="apartment_edit4" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".ActivityFindClient" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="find_client1" />

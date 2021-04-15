@@ -26,7 +26,7 @@
         android:background="@drawable/button"
         android:text="Завантажити"
         android:textColor="#FFFFFF"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

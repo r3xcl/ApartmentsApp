@@ -75,7 +75,7 @@ public class fragmentFiles1 extends Fragment {
 
         FirebaseRecyclerOptions<FileInfoModel> options =
                 new FirebaseRecyclerOptions.Builder<FileInfoModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("My_Documents").child("id1").orderByChild("id").equalTo("apartment1"), FileInfoModel.class).build();
+                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("My_Documents").child("apartment1").orderByChild("id").equalTo("apartment1"), FileInfoModel.class).build();
 
         filesAdapter = new FilesAdapter(options);
         recview1.setAdapter(filesAdapter);

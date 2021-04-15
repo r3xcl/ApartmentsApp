@@ -37,6 +37,7 @@
         app:layout_constraintVertical_bias="0.137"
         app:srcCompat="@drawable/ic_house_real_estate_home_house_icon_150392" />
 
+
     <ImageButton
         android:id="@+id/add1"
         android:layout_width="160dp"
@@ -102,16 +103,18 @@
         app:layout_constraintVertical_bias="0.137"
         app:srcCompat="@drawable/ic_frame1" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="434dp"
-        android:layout_height="54dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/hat" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="500dp"
+            android:layout_height="54dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/hat" />
+
 
     <ImageButton
         android:id="@+id/add3"
@@ -142,53 +145,53 @@
         android:id="@+id/add1_text"
         android:layout_width="140dp"
         android:layout_height="20dp"
-        android:textSize="14sp"
         android:textColor="@color/text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/new_home"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/new_home"
-        app:layout_constraintVertical_bias="0.221" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/add3_text"
         android:layout_width="140dp"
-        android:layout_height="19dp"
-        android:textSize="14sp"
+        android:layout_height="20dp"
         android:textColor="@color/text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/new_home3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/new_home3"
-        app:layout_constraintVertical_bias="0.325" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/add2_text"
         android:layout_width="140dp"
         android:layout_height="20dp"
-        android:textSize="14sp"
         android:textColor="@color/text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/new_home2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/new_home2"
-        app:layout_constraintVertical_bias="0.221" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/add4_text"
         android:layout_width="140dp"
-        android:layout_height="19dp"
-        android:textSize="14sp"
+        android:layout_height="20dp"
         android:textColor="@color/text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/new_home4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/new_home4"
-        app:layout_constraintVertical_bias="0.325" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/allclient"
@@ -209,31 +212,32 @@
         android:layout_width="152dp"
         android:layout_height="23dp"
         android:text="Список усіх орендарів"
-        android:textSize="14sp"
         android:textColor="@color/text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/allclient"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.892" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView30"
         android:layout_width="58dp"
         android:layout_height="22dp"
         android:text="Нотатки"
-        android:textSize="14sp"
         android:textColor="@color/text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bloknot"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="360dp"
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/button2"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -241,21 +245,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/navigation"
+        >
 
-        <ImageView
-            android:id="@+id/customization"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            app:srcCompat="@drawable/ic_customization" />
-
-        <ImageView
-            android:id="@+id/exit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginVertical="8dp"
-            android:layout_marginLeft="310dp"
-            app:srcCompat="@drawable/ic_exit" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 

@@ -26,7 +26,7 @@
         android:layout_marginStart="19dp"
         android:text="Список орендарів порожній"
         android:textSize="26sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +34,9 @@
 
     <ListView
         android:id="@+id/listView1"
-        android:layout_width="360dp"
-        android:layout_height="676dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.630"

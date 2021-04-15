@@ -55,14 +55,8 @@ public class InfoHome extends AppCompatActivity {
         String size = intent1.getStringExtra("size");
 
 
-        int from = ((Integer.parseInt(size))*75)/100;
-        int to = from + ((Integer.parseInt(size))*50)/50;
 
-        int yearhome = Integer.parseInt(year);
 
-        int today = Calendar.getInstance().get(Calendar.YEAR);
-
-        int razn = today - yearhome;
 
 
         WebInfoHome.setWebViewClient(new WebViewClient() {
@@ -188,16 +182,28 @@ public class InfoHome extends AppCompatActivity {
 
 
                     if(!size.equals("")) {
+
+                        int from = ((Integer.parseInt(size))*75)/100;
+                        int to = from + ((Integer.parseInt(size))*50)/50;
+
                         WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-sqrtotal-from').value = '" + from  + "';})()");
 
                         WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-sqrtotal-to').value = '" + to  + "';})()");
                     }
 
-                    if (razn < 7 )
-                    {
+                    if ( !year.equals("")) {
 
-                        WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-newly').click();})()");
+                        int yearhome = Integer.parseInt(year);
 
+                        int today = Calendar.getInstance().get(Calendar.YEAR);
+
+                        int razn = today - yearhome;
+
+                        if (razn < 7) {
+
+                            WebInfoHome.loadUrl("javascript:(function(){document.getElementById('edit-newly').click();})()");
+
+                        }
                     }
 
                     WebInfoHome.loadUrl("javascript:(setTimeout(function(){document.getElementById('edit-find').click();},500))()");
