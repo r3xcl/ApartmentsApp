@@ -3,9 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
     android:layout_marginTop="1dp"
     android:elevation="5dp"
     app:cardBackgroundColor="@color/clientROW"
@@ -13,7 +14,7 @@
     app:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:layout_width="338dp"
+        android:layout_width="match_parent"
         android:layout_height="101dp"
         android:padding="16dp">
 
@@ -39,7 +40,7 @@
             android:textSize="20dp" />
 
         <LinearLayout
-            android:layout_width="30dp"
+            android:layout_width="match_parent"
             android:layout_height="66dp"
             android:orientation="vertical">
 
@@ -71,10 +72,10 @@
 
             <ImageButton
                 android:id="@+id/download_files"
-                android:background="@color/clientROW"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/clientROW"
                 app:srcCompat="@drawable/ic_folderreddownload_93315" />
 
         </LinearLayout>
@@ -84,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="" />
 
     </LinearLayout>
 

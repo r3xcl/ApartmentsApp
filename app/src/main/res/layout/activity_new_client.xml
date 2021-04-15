@@ -11,12 +11,14 @@
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="692dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_addclient" />
 
     <ImageView
@@ -36,18 +38,18 @@
         android:id="@+id/client_name"
         android:layout_width="320dp"
         android:layout_height="35dp"
+        android:background="@drawable/edittext_ram"
         android:ems="10"
         android:hint="Ім'я"
         android:inputType="textCapSentences"
         android:paddingLeft="16dp"
-        android:textSize="14sp"
         android:textColor="@color/text3"
-        android:background="@drawable/edittext_ram"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.284" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/client_surname"
+        app:layout_constraintVertical_bias="0.03" />
 
     <EditText
         android:id="@+id/client_surname"
@@ -61,131 +63,134 @@
         android:textColor="@color/text3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.214" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toTopOf="@+id/imageView12"
+        app:layout_constraintVertical_bias="0.105" />
 
     <EditText
         android:id="@+id/client_email"
         android:layout_width="320dp"
         android:layout_height="35dp"
+        android:background="@drawable/edittext_ram"
         android:ems="10"
         android:hint="Електронна пошта"
         android:inputType="textEmailAddress"
         android:paddingLeft="15dp"
         android:textColor="@color/text3"
         android:textSize="14sp"
-        android:background="@drawable/edittext_ram"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/client_number"
+        app:layout_constraintVertical_bias="0.04" />
 
     <EditText
         android:id="@+id/client_patronymic"
         android:layout_width="320dp"
         android:layout_height="35dp"
+        android:background="@drawable/edittext_ram"
         android:ems="10"
         android:hint="По батькові"
-        android:background="@drawable/edittext_ram"
         android:inputType="textCapSentences"
         android:paddingLeft="15dp"
-        android:textSize="14sp"
         android:textColor="@color/text3"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/client_name"
+        app:layout_constraintVertical_bias="0.033" />
 
     <EditText
         android:id="@+id/client_number"
         android:layout_width="320dp"
         android:layout_height="35dp"
+        android:background="@drawable/edittext_ram"
         android:ems="10"
         android:hint="Номер телефона"
         android:inputType="number"
         android:paddingLeft="15dp"
         android:textColor="@color/text3"
-        android:background="@drawable/edittext_ram"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.443" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/client_patronymic"
+        app:layout_constraintVertical_bias="0.042" />
 
     <EditText
         android:id="@+id/client_datestart"
         android:layout_width="320dp"
         android:layout_height="35dp"
+        android:background="@drawable/edittext_ram"
         android:ems="10"
         android:hint="Початок оренди "
         android:inputType="date"
         android:paddingLeft="15dp"
         android:textColor="@color/text3"
         android:textSize="14sp"
-        android:background="@drawable/edittext_ram"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.596" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/client_email"
+        app:layout_constraintVertical_bias="0.049" />
 
     <EditText
         android:id="@+id/client_dateend"
         android:layout_width="320dp"
         android:layout_height="35dp"
+        android:background="@drawable/edittext_ram"
         android:ems="10"
         android:hint="Кінець оренди "
         android:inputType="date"
         android:paddingLeft="15dp"
-        android:textColor="@color/text3"
 
+        android:textColor="@color/text3"
         android:textSize="14sp"
-        android:background="@drawable/edittext_ram"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/client_datestart"
+        app:layout_constraintVertical_bias="0.071" />
 
     <EditText
         android:id="@+id/client_pay"
         android:layout_width="320dp"
         android:layout_height="35dp"
+        android:background="@drawable/edittext_ram"
         android:ems="10"
         android:hint="Місячна оплата"
         android:inputType="numberSigned"
         android:paddingLeft="15dp"
-        android:textSize="14sp"
         android:textColor="@color/text3"
-        android:background="@drawable/edittext_ram"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/client_dateend"
+        app:layout_constraintVertical_bias="0.068" />
 
     <EditText
         android:id="@+id/client_info"
         android:layout_width="320dp"
         android:layout_height="35dp"
+        android:background="@drawable/edittext_ram"
         android:ems="10"
         android:hint="Застава"
         android:inputType="numberSigned"
         android:paddingLeft="15dp"
         android:textColor="@color/text3"
         android:textSize="14sp"
-        android:background="@drawable/edittext_ram"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.816" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/client_pay"
+        app:layout_constraintVertical_bias="0.345" />
 
     <Button
         android:id="@+id/add_new_client"

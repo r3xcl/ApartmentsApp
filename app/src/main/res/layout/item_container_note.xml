@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="5dp"
-        app:cardCornerRadius="15dp"
+        app:cardCornerRadius="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardMaxElevation="5dp"
         android:id="@+id/notecard">
@@ -19,7 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:id="@+id/note"
             android:orientation="vertical">
 
@@ -41,7 +40,6 @@
                     android:paddingBottom="10dp"
                     android:text="This is your Developer"
                     android:textColor="@color/black"
-
                     android:textSize="20sp">
 
 
