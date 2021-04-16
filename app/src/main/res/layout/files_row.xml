@@ -19,74 +19,66 @@
         android:padding="16dp">
 
 
-        <ImageView
-            android:id="@+id/img1"
-            android:layout_width="78dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="-13dp"
-            android:layout_marginTop="-5dp"
-            android:src="@drawable/ic_pdf" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="75dp">
+
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pdf"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/header"
-            android:layout_width="209dp"
+            android:layout_width="194dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:layout_marginTop="20dp"
-            android:textColor="#000"
             android:layout_toRightOf="@id/img1"
             android:gravity="center_vertical"
             android:text="Назва"
+            android:textColor="#000"
             android:textSize="20dp" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+
 
 
             <ImageView
                 android:id="@+id/delete_file"
-                android:layout_width="match_parent"
-                android:layout_height="27dp"
-                android:background="@color/clientROW"
-                app:srcCompat="@drawable/delete"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="-1dp" />
-
-            <TextView
-                android:id="@+id/textView41"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="4sp" />
-            <TextView
-                android:id="@+id/textView42"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="4sp" />
-            <TextView
-                android:id="@+id/textView43"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="4sp" />
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/delete" />
 
             <ImageButton
                 android:id="@+id/download_files"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/clientROW"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/ic_folderreddownload_93315" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/link"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="" />
 
-    </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>
