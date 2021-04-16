@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.myapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -24,6 +25,8 @@ public class ShowImages extends AppCompatActivity {
 
     RecyclerView recyclerViewAllPhoto;
     FloatingActionButton faddphotohome;
+
+    ImageButton back;
 
     FirebaseRecyclerOptions<Image> options;
     FirebaseRecyclerAdapter<Image,MyViewHolder> adapter;
@@ -46,6 +49,7 @@ public class ShowImages extends AppCompatActivity {
         recyclerViewAllPhoto = findViewById(R.id.recyclerViewAllPhoto);
 
         faddphotohome = findViewById(R.id.faddphotohome);
+        back = findViewById(R.id.back);
 
         recyclerViewAllPhoto.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -53,6 +57,13 @@ public class ShowImages extends AppCompatActivity {
 
         Intent intent = getIntent();
         String action = intent.getAction();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         if(action.equals("showimage1")) {
 

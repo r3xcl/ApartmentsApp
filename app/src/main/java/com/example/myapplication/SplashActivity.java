@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
     CharSequence charSequence;
 
     int index;
-    long delay = 200;
+    long delay = 100;
     Handler handler=new Handler();
 
     @Override
@@ -43,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
                         PropertyValuesHolder.ofFloat("scaleX",1.2f),
                  PropertyValuesHolder.ofFloat("scaleY",1.2f));
 
-        objectAnimator1.setDuration(500);
+        objectAnimator1.setDuration(550);
         objectAnimator1.setRepeatCount(ValueAnimator.INFINITE);
         objectAnimator1.setRepeatMode(ValueAnimator.REVERSE);
 
@@ -71,7 +71,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
 
             }
-        },4000);
+        },2500);
 
 
     }
@@ -98,4 +98,29 @@ public class SplashActivity extends AppCompatActivity {
 
         handler.postDelayed(runnable,delay);
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
+        String authsave = sharedPreferences.getString("authsave","");
+
+        if(authsave.equals("yes")){
+
+            startActivity(new Intent(SplashActivity.this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+
+        }else {
+
+            startActivity(new Intent(SplashActivity.this, AuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+        }
+    }
+
+
+
+
+
+
 }
