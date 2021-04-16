@@ -32,7 +32,7 @@ import java.util.Map;
 public class CreateNote extends AppCompatActivity {
 
     EditText mcreatetitleofnote, mcreatecontentofnote;
-    ImageView msavenote;
+    ImageView msavenote,imageBack;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
@@ -48,6 +48,7 @@ public class CreateNote extends AppCompatActivity {
         msavenote = findViewById(R.id.imageSave);
         mcreatecontentofnote = findViewById(R.id.inputNoteText);
         mcreatetitleofnote = findViewById(R.id.inputNoteTitle);
+        imageBack = findViewById(R.id.imageBack);
 
         getSupportActionBar().hide();
 
@@ -95,6 +96,12 @@ public class CreateNote extends AppCompatActivity {
             }
         });
 
+        imageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

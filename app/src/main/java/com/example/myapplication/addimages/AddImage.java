@@ -424,25 +424,27 @@ public class AddImage extends AppCompatActivity  {
 
         }
 
-        if(requestCode == 2){
+        if(requestCode == 2 && resultCode != RESULT_CANCELED){
 
 
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,bytes);
-            String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(),bitmap,"val",null);
+               Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+               ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+               bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+               String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), bitmap, "val", null);
 
-            imageUri = Uri.parse(path);
+               imageUri = Uri.parse(path);
 
-            isImageAdded=true;
-            addphotogallery.setVisibility(View.INVISIBLE);
-            addphotocamera.setVisibility(View.INVISIBLE);
-            showaddphoto.setVisibility(View.VISIBLE);
-            showaddphoto.setImageURI(imageUri);
-            textnamephoto.setVisibility(View.VISIBLE);
-            uploadphotohome.setVisibility(View.VISIBLE);
+               isImageAdded = true;
+               addphotogallery.setVisibility(View.INVISIBLE);
+               addphotocamera.setVisibility(View.INVISIBLE);
+               showaddphoto.setVisibility(View.VISIBLE);
+               showaddphoto.setImageURI(imageUri);
+               textnamephoto.setVisibility(View.VISIBLE);
+               uploadphotohome.setVisibility(View.VISIBLE);
+
 
         }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

@@ -104,8 +104,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:textColor="#F1F1F1"
-            android:textColorHint="#090909"
-            app:backgroundTint="#B7BDB7"
+
+            app:backgroundTint="#4CAF50"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"

@@ -32,7 +32,7 @@ public class EditNote extends AppCompatActivity {
 
     Intent data;
     EditText medittitleofnote,meditcontentofnote;
-    ImageView msaveeditnote;
+    ImageView msaveeditnote,imageBack;
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
@@ -47,6 +47,7 @@ public class EditNote extends AppCompatActivity {
         medittitleofnote=findViewById(R.id.inputNoteTitleEdit);
         meditcontentofnote=findViewById(R.id.inputNoteTextEdit);
         msaveeditnote=findViewById(R.id.imageSaveEdit);
+        imageBack=findViewById(R.id.imageBack);
 
         data=getIntent();
 
@@ -93,6 +94,12 @@ public class EditNote extends AppCompatActivity {
             }
         });
 
+        imageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         String notetitle=data.getStringExtra("title");
         String notecontent=data.getStringExtra("content");

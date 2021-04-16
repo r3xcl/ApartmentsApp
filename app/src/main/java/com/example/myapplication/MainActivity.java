@@ -275,7 +275,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         add1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("1");
                 startActivityForResult(intent,1);
                 Animatoo.animateSlideRight(MainActivity.this);
@@ -288,7 +288,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         add2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("2");
                 startActivityForResult(intent,2);
                 Animatoo.animateSlideLeft(MainActivity.this);
@@ -299,7 +299,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         add3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("3");
                 startActivityForResult(intent,3);
                 Animatoo.animateSlideRight(MainActivity.this);
@@ -310,7 +310,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         add4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("4");
                 startActivityForResult(intent,4);
                 Animatoo.animateSlideLeft(MainActivity.this);
@@ -321,7 +321,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         new_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("new_home1");
 
                 startActivityForResult(intent,11);
@@ -333,7 +333,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         new_home.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 v.startAnimation(buttonClick);
                 createOneDialog("Оберіть дію");
                 return false;
@@ -419,7 +419,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         new_home2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("new_home2");
 
 
@@ -432,7 +432,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         new_home2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 v.startAnimation(buttonClick);
                 createOneDialog("Оберіть дію");
                 return false;
@@ -513,7 +513,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         new_home3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("new_home3");
 
 
@@ -526,7 +526,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         new_home3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 v.startAnimation(buttonClick);
                 createOneDialog("Оберіть дію");
                 return false;
@@ -606,7 +606,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         new_home4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("new_home4");
 
 
@@ -619,7 +619,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         new_home4.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 v.startAnimation(buttonClick);
                 createOneDialog("Оберіть дію");
                 return false;
@@ -702,7 +702,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         allclient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("allclient");
                 startActivityForResult(intent,66);
                 Animatoo.animateSlideLeft(MainActivity.this);
@@ -713,7 +713,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         bloknot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vibr.vibrate(70);
+                vibr.vibrate(50);
                 Intent intent = new Intent("bloknot");
                 startActivityForResult(intent,77);
                 Animatoo.animateSlideRight(MainActivity.this);
@@ -733,6 +733,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         builder.setSingleChoiceItems(R.array.theme, getCheckedItem(), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
+
                 selected = themes[i];
                 checkedItem = i;
             }
@@ -743,8 +744,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
             public void onClick(DialogInterface dialog, int i) {
                 if (selected == null){
 
-                    selected = themes[i];
-                    checkedItem = i;
+                    selected = themes[0];
+                    checkedItem = 0;
 
                 }
                 switch (selected){
