@@ -80,6 +80,9 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
                 filelogo.setVisibility(View.INVISIBLE);
                 cancelfile.setVisibility(View.INVISIBLE);
                 imagebrowse.setVisibility(View.VISIBLE);
+
+                filetitle.setVisibility(View.INVISIBLE);
+                imageupload.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -132,6 +135,8 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
             cancelfile.setVisibility(View.VISIBLE);
             imagebrowse.setVisibility(View.INVISIBLE);
             imageupload.setVisibility(View.VISIBLE);
+
+            filetitle.setVisibility(View.VISIBLE);
         }
 
     }

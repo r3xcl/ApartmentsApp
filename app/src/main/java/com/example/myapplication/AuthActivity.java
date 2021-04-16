@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -102,25 +103,25 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showRegWindow() {
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Реєстрація");
-        dialog.setMessage("Введіть дані для реєстрації!");
+        android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(this);
+        builder.setTitle("Реєстрація");
+        builder.setMessage("Введіть дані для реєстрації!");
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View register_wind = inflater.inflate(R.layout.register_wind,null);
-        dialog.setView(register_wind);
+        builder.setView(register_wind);
 
          regi_mail = register_wind.findViewById(R.id.regi_mail);
          regi_pass = register_wind.findViewById(R.id.regi_pass);
 
-         dialog.setNegativeButton("Відмінити", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Відмінити", new DialogInterface.OnClickListener() {
              @Override
              public void onClick(DialogInterface dialog, int which) {
                  dialog.dismiss();
              }
          });
 
-         dialog.setPositiveButton("Зареєструватися", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Зареєструватися", new DialogInterface.OnClickListener() {
              @Override
              public void onClick(DialogInterface dialog, int which) {
 
@@ -149,8 +150,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-
                  mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                      @Override
                      public void onComplete(@NonNull Task<AuthResult> task) {
@@ -169,27 +168,35 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
              }
 
          });
-         dialog.show();
+
+         android.app.AlertDialog alertDialog = builder.create();
+         alertDialog.show();
+
+         Button color = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+         color.setTextColor(Color.RED);
+
+         Button color1 = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+         color1.setTextColor(Color.RED);
 
 
     }
 
     public void ForgotShow() {
 
-        AlertDialog.Builder ResetPass = new AlertDialog.Builder(this);
-        ResetPass.setTitle("Відновити пароль?");
-        ResetPass.setMessage("Введіть свою електронну пошту.");
+        android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(this);
+        builder.setTitle("Відновити пароль?");
+        builder.setMessage("Введіть свою електронну пошту.");
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View resit_mail = inflater.inflate(R.layout.resit_mail,null);
-        ResetPass.setView(resit_mail);
+        builder.setView(resit_mail);
 
         res_mail = resit_mail.findViewById(R.id.res_mail);
 
 
 
 
-        ResetPass.setPositiveButton("Так", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Так", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -217,13 +224,21 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        ResetPass.setNegativeButton("Ні", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Ні", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
             }
         });
-        ResetPass.show();
+
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button color = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        color.setTextColor(Color.RED);
+
+        Button color1 = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        color1.setTextColor(Color.RED);
     }
 
     @Override

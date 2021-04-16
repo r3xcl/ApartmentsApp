@@ -46,10 +46,11 @@
         android:textColor="@color/text3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/client_patronymic"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/client_patronymic"
         app:layout_constraintTop_toBottomOf="@+id/client_surname"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <EditText
         android:id="@+id/client_surname"
@@ -63,9 +64,9 @@
         android:textColor="@color/text3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/client_name"
         app:layout_constraintHorizontal_bias="0.733"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/client_name"
         app:layout_constraintTop_toTopOf="@+id/imageView12"
         app:layout_constraintVertical_bias="0.105" />
 
@@ -81,10 +82,10 @@
         android:textColor="@color/text3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/client_datestart"
+        app:layout_constraintStart_toStartOf="@+id/client_datestart"
         app:layout_constraintTop_toBottomOf="@+id/client_number"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.050" />
 
     <EditText
         android:id="@+id/client_patronymic"
@@ -98,10 +99,10 @@
         android:textColor="@color/text3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/client_number"
+        app:layout_constraintStart_toStartOf="@+id/client_number"
         app:layout_constraintTop_toBottomOf="@+id/client_name"
-        app:layout_constraintVertical_bias="0.033" />
+        app:layout_constraintVertical_bias="0.040" />
 
     <EditText
         android:id="@+id/client_number"
@@ -115,10 +116,10 @@
         android:textColor="@color/text3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/client_email"
+        app:layout_constraintStart_toStartOf="@+id/client_email"
         app:layout_constraintTop_toBottomOf="@+id/client_patronymic"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <EditText
         android:id="@+id/client_datestart"
@@ -132,10 +133,10 @@
         android:textColor="@color/text3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/client_dateend"
+        app:layout_constraintStart_toStartOf="@+id/client_dateend"
         app:layout_constraintTop_toBottomOf="@+id/client_email"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.055" />
 
     <EditText
         android:id="@+id/client_dateend"
@@ -150,11 +151,11 @@
         android:textColor="@color/text3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/client_pay"
         app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/client_pay"
         app:layout_constraintTop_toBottomOf="@+id/client_datestart"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.060" />
 
     <EditText
         android:id="@+id/client_pay"
@@ -168,11 +169,11 @@
         android:textColor="@color/text3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/client_info"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/client_info"
         app:layout_constraintTop_toBottomOf="@+id/client_dateend"
-        app:layout_constraintVertical_bias="0.068" />
+        app:layout_constraintVertical_bias="0.072" />
 
     <EditText
         android:id="@+id/client_info"
@@ -185,12 +186,12 @@
         android:paddingLeft="15dp"
         android:textColor="@color/text3"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView12"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="@+id/imageView12"
         app:layout_constraintTop_toBottomOf="@+id/client_pay"
-        app:layout_constraintVertical_bias="0.345" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <Button
         android:id="@+id/add_new_client"
@@ -199,8 +200,8 @@
         android:background="@drawable/button"
         android:onClick="onClick"
         android:text="Додати"
-        app:backgroundTint="#4CAF50"
         android:textColor="#FFFFFFFF"
+        app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

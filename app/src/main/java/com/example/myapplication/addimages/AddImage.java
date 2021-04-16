@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,8 +47,7 @@ public class AddImage extends AppCompatActivity  {
     EditText textnamephoto;
     ImageView showaddphoto,addphotocamera,addphotogallery;
     Button uploadphotohome;
-    TextView procent;
-    ProgressBar progressBar_photo;
+
 
     Uri imageUri;
     boolean isImageAdded=false;
@@ -76,13 +76,7 @@ public class AddImage extends AppCompatActivity  {
 
         uploadphotohome = findViewById(R.id.uploadphotohome);
 
-        procent = findViewById(R.id.procent);
 
-        progressBar_photo = findViewById(R.id.progressBar_photo);
-
-
-        procent.setVisibility(View.GONE);
-        progressBar_photo.setVisibility(View.GONE);
 
         DataRef = FirebaseDatabase.getInstance().getReference(auth).child("Image");
         StorageRef = FirebaseStorage.getInstance().getReference(auth).child("Image");
@@ -225,8 +219,9 @@ public class AddImage extends AppCompatActivity  {
 
     private void uploadImage1(String imageName) {
 
-        progressBar_photo.setVisibility(View.VISIBLE);
-        procent.setVisibility(View.VISIBLE);
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Файл завантажується!");
+        pd.show();
 
         final String key = DataRef.push().getKey();
         StorageRef.child(key+".jpg").putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -236,6 +231,8 @@ public class AddImage extends AppCompatActivity  {
                 StorageRef.child(key+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+
+                        pd.dismiss();
 
                         HashMap hashMap = new HashMap();
                         hashMap.put("ImageName",imageName);
@@ -259,10 +256,9 @@ public class AddImage extends AppCompatActivity  {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
 
-                double progress = (snapshot.getBytesTransferred()*100/snapshot.getTotalByteCount());
-                progressBar_photo.setProgress((int)progress);
-                procent.setText(progress + " %");
 
+                float percent = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                pd.setMessage("Завантаження :" + " " + (int) percent + "%");
 
             }
         });
@@ -273,8 +269,9 @@ public class AddImage extends AppCompatActivity  {
 
     private void uploadImage2(String imageName) {
 
-        progressBar_photo.setVisibility(View.VISIBLE);
-        procent.setVisibility(View.VISIBLE);
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Файл завантажується!");
+        pd.show();
 
         final String key = DataRef.push().getKey();
         StorageRef.child(key + ".jpg").putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -289,6 +286,8 @@ public class AddImage extends AppCompatActivity  {
                         hashMap.put("ImageName", imageName);
                         hashMap.put("ImageID", "apartment2");
                         hashMap.put("ImageUrl", uri.toString());
+
+                        pd.dismiss();
 
                         DataRef.child("apartment2").child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -307,10 +306,9 @@ public class AddImage extends AppCompatActivity  {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
 
-                double progress = (snapshot.getBytesTransferred() * 100 / snapshot.getTotalByteCount());
-                progressBar_photo.setProgress((int) progress);
-                procent.setText(progress + " %");
 
+                float percent = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                pd.setMessage("Завантаження :" + " " + (int) percent + "%");
 
             }
         });
@@ -318,8 +316,9 @@ public class AddImage extends AppCompatActivity  {
 
     private void uploadImage3(String imageName) {
 
-        progressBar_photo.setVisibility(View.VISIBLE);
-        procent.setVisibility(View.VISIBLE);
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Файл завантажується!");
+        pd.show();
 
         final String key = DataRef.push().getKey();
         StorageRef.child(key + ".jpg").putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -334,6 +333,8 @@ public class AddImage extends AppCompatActivity  {
                         hashMap.put("ImageName", imageName);
                         hashMap.put("ImageID", "apartment3");
                         hashMap.put("ImageUrl", uri.toString());
+
+                        pd.dismiss();
 
                         DataRef.child("apartment3").child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -352,10 +353,9 @@ public class AddImage extends AppCompatActivity  {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
 
-                double progress = (snapshot.getBytesTransferred() * 100 / snapshot.getTotalByteCount());
-                progressBar_photo.setProgress((int) progress);
-                procent.setText(progress + " %");
 
+                float percent = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                pd.setMessage("Завантаження :" + " " + (int) percent + "%");
 
             }
         });
@@ -363,8 +363,9 @@ public class AddImage extends AppCompatActivity  {
 
     private void uploadImage4(String imageName) {
 
-        progressBar_photo.setVisibility(View.VISIBLE);
-        procent.setVisibility(View.VISIBLE);
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Файл завантажується!");
+        pd.show();
 
         final String key = DataRef.push().getKey();
         StorageRef.child(key + ".jpg").putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -379,6 +380,8 @@ public class AddImage extends AppCompatActivity  {
                         hashMap.put("ImageName", imageName);
                         hashMap.put("ImageID", "apartment4");
                         hashMap.put("ImageUrl", uri.toString());
+
+                        pd.dismiss();
 
                         DataRef.child("apartment4").child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -397,11 +400,8 @@ public class AddImage extends AppCompatActivity  {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
 
-                double progress = (snapshot.getBytesTransferred() * 100 / snapshot.getTotalByteCount());
-                progressBar_photo.setProgress((int) progress);
-                procent.setText(progress + " %");
-
-
+                float percent = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                pd.setMessage("Завантаження :" + " " + (int) percent + "%");
             }
         });
     }
@@ -420,6 +420,7 @@ public class AddImage extends AppCompatActivity  {
             showaddphoto.setImageURI(imageUri);
             textnamephoto.setVisibility(View.VISIBLE);
             uploadphotohome.setVisibility(View.VISIBLE);
+
 
         }
 
