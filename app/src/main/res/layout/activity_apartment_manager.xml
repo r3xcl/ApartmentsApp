@@ -7,7 +7,6 @@
     tools:context=".ActivityApartmentManager"
     android:background="@color/mainFon">
 
-
     <TextView
         android:id="@+id/textView11"
         android:layout_width="match_parent"
@@ -262,6 +261,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.408" />
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:background="#A09D9D"
+        android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
 
     <Button
         android:id="@+id/delete_client"

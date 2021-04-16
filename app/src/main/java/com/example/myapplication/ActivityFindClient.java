@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class ActivityFindClient extends AppCompatActivity {
     private String New_Client = "New_Client";
     String name,surname,number;
     DatabaseReference reference;
+    ImageButton back;
 
     private List<ClientClass> listTemp1;
 
@@ -90,6 +92,7 @@ public class ActivityFindClient extends AppCompatActivity {
         listView1.setEmptyView(empty);
         listView1.setAdapter(adapter1);
 
+        back = findViewById(R.id.back);
 
         String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
@@ -97,6 +100,13 @@ public class ActivityFindClient extends AppCompatActivity {
 
         getDataFromDB();
 
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         if (action.equals("find_client1")) {
 

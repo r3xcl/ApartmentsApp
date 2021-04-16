@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class MessageIntegration extends AppCompatActivity  implements View.OnCli
     EditText whatsapp_text;
     Button send_message,send_email;
     TextView num_whatsapp,email,textView45,textView44;
+    ImageButton back;
 
 
     boolean isCheckedWhatsApp = false;
@@ -51,6 +53,8 @@ public class MessageIntegration extends AppCompatActivity  implements View.OnCli
         send_email = (Button) findViewById(R.id.send_email);
         send_email.setOnClickListener(this);
 
+        back = findViewById(R.id.back);
+
         LottieAnimationView lottieCheckWhats = findViewById(R.id.check_whatsapp);
         LottieAnimationView lottieCheckEmail = findViewById(R.id.check_email);
 
@@ -65,6 +69,12 @@ public class MessageIntegration extends AppCompatActivity  implements View.OnCli
 
 
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         lottieCheckWhats.setOnClickListener(new View.OnClickListener() {

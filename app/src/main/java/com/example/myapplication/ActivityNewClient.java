@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -37,6 +38,8 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
 
     Button add_new_client;
 
+    ImageButton back;
+
     private DatabaseReference myDataBase ;
     private String New_Client = "New_Client";
 
@@ -59,6 +62,15 @@ public class ActivityNewClient extends AppCompatActivity implements View.OnClick
         client_info = (EditText) findViewById(R.id.client_info);
         client_pay = (EditText) findViewById(R.id.client_pay);
         client_email = (EditText) findViewById(R.id.client_email);
+
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         add_new_client = (Button) findViewById(R.id.add_new_client);
         add_new_client.setOnClickListener(this);

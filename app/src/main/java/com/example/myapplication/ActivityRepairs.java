@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,8 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
     EditText sum_repair,date_repair,name_repair;
 
     Button add_repair;
+
+    ImageButton back;
 
     private DatabaseReference myDataBase;
     private String RepairClass = "Repairs_History";
@@ -42,6 +45,14 @@ public class ActivityRepairs extends AppCompatActivity implements View.OnClickLi
         sum_repair = (EditText) findViewById(R.id.sum_repair);
         name_repair = (EditText) findViewById(R.id.name_repair);
         date_repair = (EditText) findViewById(R.id.date_repair);
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         date_repair.addTextChangedListener(new TextWatcher() {
 
             private String current = "";

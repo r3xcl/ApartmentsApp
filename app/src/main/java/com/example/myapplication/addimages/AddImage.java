@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,6 +48,7 @@ public class AddImage extends AppCompatActivity  {
     EditText textnamephoto;
     ImageView showaddphoto,addphotocamera,addphotogallery;
     Button uploadphotohome;
+    ImageButton back;
 
 
     Uri imageUri;
@@ -75,6 +77,7 @@ public class AddImage extends AppCompatActivity  {
         addphotogallery = findViewById(R.id.addphotogallery);
 
         uploadphotohome = findViewById(R.id.uploadphotohome);
+        back = findViewById(R.id.back);
 
 
 
@@ -84,6 +87,12 @@ public class AddImage extends AppCompatActivity  {
         Intent intent = getIntent();
         String action = intent.getAction();
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         addphotogallery.setOnClickListener(new View.OnClickListener() {
 

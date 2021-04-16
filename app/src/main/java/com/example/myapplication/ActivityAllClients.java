@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -35,6 +37,7 @@ public class ActivityAllClients extends AppCompatActivity {
     ClientAdapter adapter;
     FloatingActionButton fb;
     SharedPreferences sharedPreferences;
+    ImageButton back;
 
 
 
@@ -56,6 +59,7 @@ public class ActivityAllClients extends AppCompatActivity {
         setTitle("Пошук");
 
         recView=(RecyclerView)findViewById(R.id.recyclerView);
+        back=findViewById(R.id.back);
         recView.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseRecyclerOptions<ClientClass> options =
@@ -69,6 +73,13 @@ public class ActivityAllClients extends AppCompatActivity {
      fb.setOnClickListener(v -> {
          Intent intent = new Intent("new_client1");
        startActivityForResult(intent,1);
+     });
+
+     back.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             finish();
+         }
      });
 
 

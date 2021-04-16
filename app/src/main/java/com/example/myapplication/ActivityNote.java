@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -46,6 +47,8 @@ public class ActivityNote extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     SharedPreferences sharedPreferences;
 
+    ImageButton back;
+
 
     RecyclerView mrecyclerview;
     StaggeredGridLayoutManager staggeredGridLayoutManager;
@@ -64,6 +67,7 @@ public class ActivityNote extends AppCompatActivity {
         imageAddNoteMain=findViewById(R.id.imageAddNoteMain);
 
         notecard=findViewById(R.id.notecard);
+        back=findViewById(R.id.back);
 
         firebaseAuth=FirebaseAuth.getInstance();
 
@@ -84,6 +88,13 @@ public class ActivityNote extends AppCompatActivity {
             }
         });
 
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Query query=firebaseFirestore.collection(auth).document(firebaseUser.getUid()).collection("myNotes").orderBy("title",Query.Direction.ASCENDING);
 

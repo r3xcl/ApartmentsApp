@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
     EditText filetitle;
     Uri filepath;
     Button imageupload;
+    ImageButton back;
 
     StorageReference storageReference;
     DatabaseReference databaseReference;
@@ -61,6 +63,7 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
         databaseReference= FirebaseDatabase.getInstance().getReference(auth).child("My_Documents");
 
         filetitle=findViewById(R.id.filetitle);
+        back=findViewById(R.id.back);
 
         imagebrowse=findViewById(R.id.imagebrowse);
 
@@ -86,6 +89,13 @@ public class FilesUpload extends AppCompatActivity implements View.OnClickListen
             }
         });
 
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         imagebrowse.setOnClickListener(new View.OnClickListener() {
             @Override

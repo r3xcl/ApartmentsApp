@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.myapplication.R;
 import com.example.myapplication.files.fragments.fragmentFiles1;
@@ -38,6 +39,8 @@ public class Files extends AppCompatActivity implements View.OnClickListener{
 
     FloatingActionButton fb;
 
+    ImageButton back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,14 @@ public class Files extends AppCompatActivity implements View.OnClickListener{
 
         getSupportActionBar().hide();
 
+      back = findViewById(R.id.back);
 
+      back.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              finish();
+          }
+      });
 
         if (action.equals("files1")) {
 

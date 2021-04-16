@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,8 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
     private String PayClass = "Pay_History";
     SharedPreferences sharedPreferences;
 
+    ImageButton back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,15 @@ public class ActivityPay extends AppCompatActivity implements View.OnClickListen
         sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
         String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
+
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         sum = (EditText) findViewById(R.id.sum);
         date_pay = (EditText) findViewById(R.id.date_pay);

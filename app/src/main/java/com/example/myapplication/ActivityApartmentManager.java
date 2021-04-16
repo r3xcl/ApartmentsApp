@@ -76,7 +76,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
     Button add_client, delete_client, find_client;
 
-    ImageButton apartment_edit, call,  addphoto, map, archive, whatsapp ,files,apartment_edit_client;
+    ImageButton apartment_edit, call,  addphoto, map, archive, whatsapp ,files,apartment_edit_client,back;
 
     TextView info_address, info_patronymic, info_name, info_surname, info_number,
             info_date_start, info_rooms, info_floor, info_dateown, info_date_end, info_pay
@@ -113,6 +113,7 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         info_size = (TextView) findViewById(R.id.info_size);
         info_email = (TextView) findViewById(R.id.info_email);
         info_uid = (TextView) findViewById(R.id.info_uid);
+        back =  findViewById(R.id.back);
 
 
         textView23 = (TextView) findViewById(R.id.textView23);
@@ -180,7 +181,12 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
-
+       back.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               finish();
+           }
+       });
 
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(ActivityApartmentManager.this);

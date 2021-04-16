@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class ViewActivity extends AppCompatActivity {
 
     TextView textphoto_activity;
 
+    ImageButton back;
+
     ImageView image_single_view_activity;
 
     ProgressBar progressBarphotohome;
@@ -55,6 +58,7 @@ public class ViewActivity extends AppCompatActivity {
         String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
 
         btnDeletePhoto = findViewById(R.id.btnDeletePhoto);
+        back = findViewById(R.id.back);
 
         textphoto_activity = findViewById(R.id.textphoto_activity);
 
@@ -94,6 +98,13 @@ public class ViewActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

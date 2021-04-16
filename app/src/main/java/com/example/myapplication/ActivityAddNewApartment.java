@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
     Button but_home;
     public EditText edit_address, edit_info,edit_rooms,edit_floor,edit_dateown,edit_name,edit_size;
     public Spinner edit_districts,edit_cities;
+    ImageButton back;
 
     String[] districts = {"Оберіть район...","Голосіївський район","Дарницький район","Деснянський район","Дніпровський район"
             ,"Оболонський район","Печерський район","Подільський район","Святошинський район"
@@ -62,6 +64,7 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
         edit_districts.setEnabled(false);
 
         edit_cities = (Spinner) findViewById(R.id.edit_cities);
+        back =  findViewById(R.id.back);
 
 
         sharedPreferences = getSharedPreferences("SHARED_PREF",MODE_PRIVATE);
@@ -92,6 +95,13 @@ public class ActivityAddNewApartment extends AppCompatActivity implements View.O
                 return view;
             }
         };
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         adapter_districts.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             edit_districts.setAdapter(adapter_districts);
