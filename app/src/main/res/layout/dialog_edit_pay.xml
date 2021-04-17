@@ -139,7 +139,9 @@
 
             <Button
                 android:id="@+id/update_pay"
-                android:layout_width="175dp"
+                android:layout_width="match_parent"
+                android:layout_marginStart="120dp"
+                android:layout_marginEnd="120dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
 
@@ -157,11 +159,6 @@
 
             <TextView
                 android:id="@+id/textView35"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textView36"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

@@ -38,14 +38,16 @@
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_width="335dp"
+        android:layout_width="match_parent"
         android:layout_height="548dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/button_ram"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/add_new_client"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
         app:layout_constraintVertical_bias="0.435"
         app:srcCompat="@drawable/ic_group3" />
 
@@ -71,6 +73,7 @@
         android:id="@+id/client_surname"
         android:layout_width="320dp"
         android:layout_height="35dp"
+        android:layout_marginTop="20sp"
         android:background="@drawable/edittext_ram"
         android:ems="10"
         android:hint="Прізвище"
@@ -210,17 +213,20 @@
 
     <Button
         android:id="@+id/add_new_client"
-        android:layout_width="140dp"
-        android:layout_height="37dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/button"
+        android:gravity="center"
         android:onClick="onClick"
         android:text="Додати"
         android:textColor="#FFFFFFFF"
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

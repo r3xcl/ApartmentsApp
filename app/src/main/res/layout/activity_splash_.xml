@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/iv_house"
-            android:layout_width="189dp"
-            android:layout_height="180dp"
+            android:layout_width="179dp"
+            android:layout_height="170dp"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_house"
 
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/splash_text"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="#FE8B3F"
             android:layout_marginTop="25dp"

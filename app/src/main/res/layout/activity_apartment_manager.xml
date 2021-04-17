@@ -28,6 +28,7 @@
 
     <ImageView
         android:id="@+id/imageView4"
+        android:layout_marginTop="5dp"
         android:layout_width="202dp"
         android:layout_height="280dp"
         android:background="@drawable/button_ram2"
@@ -85,7 +86,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.009" />
+        app:layout_constraintVertical_bias="0.011" />
 
     <TextView
         android:id="@+id/textView16"
@@ -93,6 +94,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/_10sdp"
         android:text="З"
+        android:layout_marginTop="3dp"
         android:textColor="@color/text"
         android:textSize="18sp"
         android:visibility="invisible"
@@ -101,7 +103,7 @@
         app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.039" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/textView20"
@@ -117,7 +119,7 @@
         app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.239" />
+        app:layout_constraintVertical_bias="0.128" />
 
     <TextView
         android:id="@+id/info_zastava"
@@ -165,7 +167,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/info_date_start"
-        app:layout_constraintVertical_bias="0.072" />
+        app:layout_constraintVertical_bias="0.17" />
 
     <TextView
         android:id="@+id/textView10"
@@ -181,7 +183,7 @@
         app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <TextView
         android:id="@+id/info_name"
@@ -257,10 +259,10 @@
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.408" />
+        app:layout_constraintVertical_bias="0.411" />
 
     <ImageButton
         android:id="@+id/back"
@@ -336,6 +338,7 @@
         android:id="@+id/addphoto"
         android:layout_width="128dp"
         android:layout_height="128dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button_kryg"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -343,13 +346,14 @@
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="@+id/info_pay"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.025"
+        app:layout_constraintVertical_bias="0.028"
         app:srcCompat="@drawable/ic_addphoto" />
 
     <TextView
         android:id="@+id/info_pay"
         android:layout_width="120dp"
         android:layout_height="25dp"
+        android:layout_marginTop="3dp"
         android:background="@drawable/button_ram2"
         android:paddingLeft="15dp"
         android:textColor="@color/text"
@@ -366,13 +370,14 @@
         android:id="@+id/image_client"
         android:layout_width="128dp"
         android:layout_height="128dp"
+        android:layout_marginTop="10dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/info_pay"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.933"
+        app:layout_constraintVertical_bias="0.8"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
@@ -384,8 +389,8 @@
         app:layout_constraintEnd_toEndOf="@+id/addphoto"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/addphoto"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.142"
+        app:layout_constraintTop_toTopOf="@+id/addphoto"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/delete" />
 
     <TextView
@@ -704,7 +709,7 @@
         app:layout_constraintHorizontal_bias="0.959"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.952"
+        app:layout_constraintVertical_bias="0.976"
         app:srcCompat="@drawable/edit_client_in_home" />
 
     <TextView

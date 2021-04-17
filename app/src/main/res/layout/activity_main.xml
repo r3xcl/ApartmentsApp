@@ -10,17 +10,16 @@
     tools:context=".MainActivity">
 
 
-
     <ImageButton
         android:id="@+id/new_home2"
         android:layout_width="160dp"
         android:layout_height="159dp"
         android:background="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/add2"
+        app:layout_constraintEnd_toEndOf="@id/add2"
         app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/add2"
+        app:layout_constraintTop_toTopOf="@id/add2"
         app:layout_constraintVertical_bias="0.137"
         app:srcCompat="@drawable/ic_house_real_estate_home_house_icon_150392" />
 
@@ -29,11 +28,11 @@
         android:layout_width="160dp"
         android:layout_height="159dp"
         android:background="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/add1"
+        app:layout_constraintEnd_toEndOf="@+id/add1"
         app:layout_constraintHorizontal_bias="0.069"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/add1"
+        app:layout_constraintTop_toTopOf="@+id/add1"
         app:layout_constraintVertical_bias="0.137"
         app:srcCompat="@drawable/ic_house_real_estate_home_house_icon_150392" />
 
@@ -44,12 +43,12 @@
         android:layout_height="159dp"
         android:background="@drawable/button"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/new_home3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.137"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.355"
         app:srcCompat="@drawable/ic_frame1" />
 
     <ImageButton
@@ -57,11 +56,12 @@
         android:layout_width="160dp"
         android:layout_height="159dp"
         android:background="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/add3"
+        app:layout_constraintEnd_toEndOf="@+id/add3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add3"
+        app:layout_constraintTop_toTopOf="@+id/add3"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_house_real_estate_home_house_icon_150392" />
 
     <ImageButton
@@ -69,11 +69,12 @@
         android:layout_width="160dp"
         android:layout_height="159dp"
         android:background="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/add4"
+        app:layout_constraintEnd_toEndOf="@+id/add4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add4"
+        app:layout_constraintTop_toTopOf="@+id/add4"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_house_real_estate_home_house_icon_150392" />
 
     <ImageButton
@@ -82,39 +83,39 @@
         android:layout_height="159dp"
         android:background="@drawable/button"
         android:onClick="onClickBloknot"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867"
+        app:layout_constraintVertical_bias="0.956"
         app:srcCompat="@drawable/ic_bloknot" />
+
 
     <ImageButton
         android:id="@+id/add2"
         android:layout_width="160dp"
         android:layout_height="159dp"
         android:background="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/new_home4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.137"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.36"
         app:srcCompat="@drawable/ic_frame1" />
 
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/hat" />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/hat" />
 
 
     <ImageButton
@@ -122,11 +123,12 @@
         android:layout_width="160dp"
         android:layout_height="159dp"
         android:background="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bloknot"
         app:layout_constraintEnd_toEndOf="@+id/add4"
-        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintHorizontal_bias="0.074"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add1_text"
+        app:layout_constraintVertical_bias="0.491"
         app:srcCompat="@drawable/ic_frame1" />
 
     <ImageButton
@@ -135,64 +137,62 @@
         android:layout_height="159dp"
         android:layout_marginEnd="4dp"
         android:background="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/allclient"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_home2"
+        app:layout_constraintVertical_bias="0.491"
         app:srcCompat="@drawable/ic_frame1" />
 
     <TextView
         android:id="@+id/add1_text"
-        android:layout_width="140dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/new_home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/new_home"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="@+id/new_home"
+        app:layout_constraintStart_toStartOf="@+id/new_home" />
 
     <TextView
         android:id="@+id/add3_text"
-        android:layout_width="140dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/new_home3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/new_home3"
+        app:layout_constraintEnd_toEndOf="@+id/new_home3"
+        app:layout_constraintStart_toStartOf="@+id/new_home3"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/add2_text"
         android:layout_width="140dp"
         android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/new_home2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.886"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/new_home2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="@+id/new_home2"
+        app:layout_constraintStart_toStartOf="@+id/new_home2" />
 
     <TextView
         android:id="@+id/add4_text"
-        android:layout_width="140dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/new_home4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.886"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/new_home4"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="@+id/new_home4"
+        app:layout_constraintStart_toStartOf="@+id/new_home4" />
 
     <ImageButton
         android:id="@+id/allclient"
@@ -200,57 +200,56 @@
         android:layout_height="159dp"
         android:background="@drawable/button"
         android:onClick="onClickRead"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867"
+        app:layout_constraintVertical_bias="0.956"
         app:srcCompat="@drawable/ic_user_menu_80_icon_icons_com_57244" />
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="152dp"
+        android:layout_width="0dp"
         android:layout_height="23dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="2dp"
         android:text="Список усіх орендарів"
         android:textColor="@color/text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/allclient"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/allclient"
         app:layout_constraintHorizontal_bias="0.932"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="@+id/allclient" />
 
     <TextView
         android:id="@+id/textView30"
-        android:layout_width="58dp"
+        android:layout_width="0dp"
         android:layout_height="22dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
         android:text="Нотатки"
         android:textColor="@color/text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/bloknot"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.185"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="@+id/bloknot"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="@+id/bloknot" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/button2"
-        app:itemTextColor="@color/text3"
         app:itemIconTint="@color/text3"
+        app:itemTextColor="@color/text3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/navigation"
-        >
+        app:menu="@menu/navigation">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

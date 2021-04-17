@@ -55,7 +55,9 @@
 
     <Button
         android:id="@+id/send_all"
-        android:layout_width="137dp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
         android:layout_height="41dp"
         android:background="@drawable/button"
         android:text="Відправити"
