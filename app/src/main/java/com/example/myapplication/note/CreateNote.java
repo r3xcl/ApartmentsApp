@@ -1,14 +1,19 @@
 package com.example.myapplication.note;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -74,6 +79,7 @@ public class CreateNote extends AppCompatActivity {
                     Map<String, Object> note = new HashMap<>();
                     note.put("title", title);
                     note.put("content", content);
+                    note.put("user", auth);
 
                     finish();
 
@@ -114,5 +120,19 @@ public class CreateNote extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN)
+            hideKeyboard();
+        return super.dispatchTouchEvent(ev);
     }
 }

@@ -4,6 +4,7 @@ public class NoteModel {
 
     private String title;
     private String content;
+    private String user;
 
 
     public NoteModel()
@@ -11,10 +12,11 @@ public class NoteModel {
 
     }
 
-    public NoteModel(String title, String content)
+    public NoteModel(String title, String content,String user)
     {
         this.title=title;
         this.content=content;
+        this.user=user;
     }
 
 
@@ -32,5 +34,13 @@ public class NoteModel {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }
