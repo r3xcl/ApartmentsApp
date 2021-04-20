@@ -927,7 +927,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
 
 
-                add1.setVisibility(View.GONE);
+                add1.setVisibility(View.INVISIBLE);
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
                 toast.show();}
@@ -966,7 +966,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                 });
 
 
-                add2.setVisibility(View.GONE);
+                add2.setVisibility(View.INVISIBLE);
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
                 toast.show();}
@@ -1005,7 +1005,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                 });
 
 
-                add3.setVisibility(View.GONE);
+                add3.setVisibility(View.INVISIBLE);
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
                 toast.show();}
@@ -1045,7 +1045,7 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
 
 
-                add4.setVisibility(View.GONE);
+                add4.setVisibility(View.INVISIBLE);
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Квартира додана!", Toast.LENGTH_SHORT);
                 toast.show();}

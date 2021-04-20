@@ -97,8 +97,6 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
         getSupportActionBar().hide();
 
 
-
-
         info_address = (TextView) findViewById(R.id.info_address);
         city_id = (TextView) findViewById(R.id.city_id);
         info_district = (TextView) findViewById(R.id.info_district);
@@ -341,7 +339,12 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                             if(info_name.length()>0){
 
-                                addphoto.setVisibility(View.VISIBLE);
+                                SharedPreferences sharedPreferences1 = PreferenceManager.getDefaultSharedPreferences(ActivityApartmentManager.this);
+                                String ImageURI = sharedPreferences1.getString("image1",null);
+                                if (ImageURI == null) {
+                                    addphoto.setVisibility(View.VISIBLE);
+                                }
+
                                 info_pay.setVisibility(View.VISIBLE);
                                 call.setVisibility(View.VISIBLE);
                                 whatsapp.setVisibility(View.VISIBLE);
@@ -1058,7 +1061,11 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                             if(info_name.length()>0){
 
-                                addphoto.setVisibility(View.VISIBLE);
+                                SharedPreferences sharedPreferences1 = PreferenceManager.getDefaultSharedPreferences(ActivityApartmentManager.this);
+                                String ImageURI = sharedPreferences1.getString("image2",null);
+                                if (ImageURI == null) {
+                                    addphoto.setVisibility(View.VISIBLE);
+                                }
                                 info_pay.setVisibility(View.VISIBLE);
                                 call.setVisibility(View.VISIBLE);
                                 whatsapp.setVisibility(View.VISIBLE);
@@ -1757,7 +1764,11 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                             if(info_name.length()>0){
 
-                                addphoto.setVisibility(View.VISIBLE);
+                                SharedPreferences sharedPreferences1 = PreferenceManager.getDefaultSharedPreferences(ActivityApartmentManager.this);
+                                String ImageURI = sharedPreferences1.getString("image3",null);
+                                if (ImageURI == null) {
+                                    addphoto.setVisibility(View.VISIBLE);
+                                }
                                 info_pay.setVisibility(View.VISIBLE);
                                 call.setVisibility(View.VISIBLE);
                                 whatsapp.setVisibility(View.VISIBLE);
@@ -2474,7 +2485,11 @@ public class  ActivityApartmentManager extends AppCompatActivity implements View
 
                             if(info_name.length()>0){
 
-                                addphoto.setVisibility(View.VISIBLE);
+                                SharedPreferences sharedPreferences1 = PreferenceManager.getDefaultSharedPreferences(ActivityApartmentManager.this);
+                                String ImageURI = sharedPreferences1.getString("image4",null);
+                                if (ImageURI == null) {
+                                    addphoto.setVisibility(View.VISIBLE);
+                                }
                                 info_pay.setVisibility(View.VISIBLE);
                                 call.setVisibility(View.VISIBLE);
                                 whatsapp.setVisibility(View.VISIBLE);

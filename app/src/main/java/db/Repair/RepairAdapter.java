@@ -1,5 +1,6 @@
 package db.Repair;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -63,6 +64,8 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FirebaseDatabase.getInstance().getReference(auth).child("Repairs_History").child(id)
                                 .child(getRef(position).getKey()).removeValue();
+
+                        ((Activity)view.getContext()).recreate();
 
 
                     }
@@ -142,12 +145,14 @@ public class RepairAdapter extends FirebaseRecyclerAdapter<RepairClass, RepairAd
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         dialogPlus.dismiss();
+                                        ((Activity)view.getContext()).recreate();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         dialogPlus.dismiss();
+                                        ((Activity)view.getContext()).recreate();
                                     }
                                 });
 

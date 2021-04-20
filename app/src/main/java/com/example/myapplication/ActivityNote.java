@@ -206,7 +206,8 @@ public class ActivityNote extends AppCompatActivity {
 
          @Override
          public void onTextChanged(CharSequence s, int start, int before, int count) {
-             Query query=firebaseFirestore.collection(auth).document(firebaseUser.getUid()).collection("myNotes").whereEqualTo("title",s.toString()).orderBy("title",Query.Direction.ASCENDING);
+             Query query=firebaseFirestore.collection(auth).document(firebaseUser.getUid()).collection("myNotes")
+                     .orderBy("title").startAt(s.toString()).endAt(s.toString()+"\uf8ff");
 
              FirestoreRecyclerOptions<NoteModel> allusernotes= new FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query,NoteModel.class).build();
 
@@ -298,7 +299,8 @@ public class ActivityNote extends AppCompatActivity {
 
              if(s.toString().equals("")) {
 
-                 Query query = firebaseFirestore.collection(auth).document(firebaseUser.getUid()).collection("myNotes").orderBy("title", Query.Direction.ASCENDING);
+                 Query query = firebaseFirestore.collection(auth).document(firebaseUser.getUid())
+                         .collection("myNotes").orderBy("title");
 
                  FirestoreRecyclerOptions<NoteModel> allusernotes = new FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query, NoteModel.class).build();
 
