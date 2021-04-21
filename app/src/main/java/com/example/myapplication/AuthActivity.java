@@ -208,7 +208,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
 
-                String mail = res_mail.getText().toString();
+                String mail = res_mail.getText().toString().trim();
                 mAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
