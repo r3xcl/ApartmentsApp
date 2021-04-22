@@ -113,7 +113,8 @@ public class ActivityNote extends AppCompatActivity {
 
 
 
-        Query query=firebaseFirestore.collection(auth).document(firebaseUser.getUid()).collection("myNotes").orderBy("title",Query.Direction.ASCENDING);
+        Query query=firebaseFirestore.collection(auth).document(firebaseUser.getUid()).collection("myNotes")
+                .orderBy("title",Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<NoteModel> allusernotes= new FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query,NoteModel.class).build();
 

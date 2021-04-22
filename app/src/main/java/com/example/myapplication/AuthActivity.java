@@ -14,6 +14,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,15 +23,18 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.addimages.Image;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,11 +43,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AuthActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText user_email, user_pass,regi_mail,regi_pass,res_mail;
+    EditText user_email, user_pass,regi_mail,regi_pass,res_mail,regi_passs;
     TextView Forgot,Registr;
     Button button_vhod;
-    ProgressBar progressBar;
+
     CheckBox checkBoxSave;
+    ImageView show_pass,hide_pass;
 
     private FirebaseAuth mAuth;
     FirebaseDatabase db;
@@ -79,6 +85,9 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         user_email = (EditText) findViewById(R.id.regi_mail);
         user_pass = (EditText) findViewById(R.id.regi_pass);
         res_mail = (EditText) findViewById(R.id.res_mail);
+        regi_passs = (EditText) findViewById(R.id.regi_passs);
+        show_pass = (ImageView) findViewById(R.id.show_pass);
+        hide_pass = (ImageView) findViewById(R.id.hide_pass);
 
         Forgot = (TextView) findViewById(R.id.Forgot);
         Forgot.setOnClickListener(this);
@@ -87,16 +96,40 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         Registr = (TextView)findViewById(R.id.Registr) ;
         Registr.setOnClickListener(this);
 
-
-
         findViewById(R.id.button_vhod).setOnClickListener(this);
 
 
         auth = findViewById(R.id.auth);
 
-       progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
 
         checkBoxSave = findViewById(R.id.checkBoxSave);
+
+        hide_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!regi_passs.getText().toString().isEmpty()){
+                regi_passs.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    hide_pass.setVisibility(View.INVISIBLE);
+                    show_pass.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
+
+        show_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!regi_passs.getText().toString().isEmpty()){
+
+                    regi_passs.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    show_pass.setVisibility(View.INVISIBLE);
+                    hide_pass.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
 
 
     }
@@ -243,9 +276,9 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.button_vhod && user_pass.getText().toString().length()!=0
+        if (v.getId() == R.id.button_vhod && regi_passs.getText().toString().length()!=0
                 && user_email.getText().toString().length()!=0 ){
-            signin(user_email.getText().toString().trim(), user_pass.getText().toString().trim());
+            signin(user_email.getText().toString().trim(), regi_passs.getText().toString().trim());
 
         }
 
@@ -284,7 +317,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(AuthActivity.this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 finish();
 
-                progressBar.setVisibility(View.VISIBLE);
+
             }else
                 Toast.makeText(AuthActivity.this, "Дані не вірні! ", Toast.LENGTH_SHORT).show();
 

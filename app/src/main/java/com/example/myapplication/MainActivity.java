@@ -118,6 +118,53 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
         String auth = sharedPreferences.getString("auth","").replaceAll("[^A-Za-z0-9]","");
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(auth);
+
+        DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference();
+        Query query1 = databaseReference2.child("Update").orderByChild("id").equalTo("update");
+        query1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for ( DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+                    String update = dataSnapshot.child("version").getValue().toString();
+
+                    if(update.equals("1")){
+
+                        AlertDialog alertDialog;
+
+                        alertDialog = new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Оновлення")
+                                .setMessage("Вийшла нова версія! Встановити?")
+                                .setCancelable(true)
+                                .setPositiveButton("Так", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+
+
+                                    }
+                                })
+                                .setNeutralButton("Назад", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                }).show();
+
+                        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED);
+                        alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.RED);
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         Query query = databaseReference.child("New_Apartment").orderByChild("id").equalTo("newApartment1");
 
         query.addValueEventListener(new ValueEventListener() {

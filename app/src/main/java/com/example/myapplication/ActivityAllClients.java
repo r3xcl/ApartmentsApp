@@ -142,7 +142,8 @@ public class ActivityAllClients extends AppCompatActivity {
 
         FirebaseRecyclerOptions<ClientClass> options =
                 new FirebaseRecyclerOptions.Builder<ClientClass>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("New_Client").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), ClientClass.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference(auth).child("New_Client")
+                                .orderByChild("name").startAt(s).endAt(s+"\uf8ff"), ClientClass.class)
                         .build();
 
         adapter=new ClientAdapter(options);

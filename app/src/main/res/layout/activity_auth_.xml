@@ -38,31 +38,65 @@
     </LinearLayout>
 
 
+    <CheckBox
+        android:id="@+id/checkBoxSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/regi_passs"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:text="Запам'ятати"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645" />
 
-        <EditText
-            android:id="@+id/regi_pass"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="20sp"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
-            android:background="@drawable/style_activity2_add"
-            android:ems="10"
-            android:hint="Пароль"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/regi_mail"
-            android:inputType="textPersonName"
-            android:paddingLeft="15dp"
-            android:password="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.575" />
+    <EditText
+        android:id="@+id/regi_passs"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/regi_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="10sp"
+        android:background="@drawable/style_activity2_add"
+        android:ems="10"
+        android:hint="Пароль"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:password="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575" />
 
+    <ImageView
+        android:id="@+id/show_pass"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/regi_passs"
+        android:layout_alignBottom="@+id/regi_passs"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="6dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/ic_show" />
 
-        <EditText
+    <ImageView
+        android:id="@+id/hide_pass"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/regi_passs"
+        android:layout_alignBottom="@+id/regi_passs"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="6dp"
+        app:srcCompat="@drawable/ic_close" />
+
+    <EditText
             android:id="@+id/regi_mail"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -83,8 +117,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.481"
             />
-
-
 
 
     <RelativeLayout
@@ -146,34 +178,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.799" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
-
-    <CheckBox
-        android:id="@+id/checkBoxSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/regi_pass"
-        android:layout_marginRight="15dp"
-        android:layout_alignParentRight="true"
-        android:text="Запам'ятати"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645" />
 
 
 </RelativeLayout>
