@@ -17,18 +17,27 @@
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9961133688670950~4827435986"/>
+        <activity android:name=".ActivityFeedBack">
 
-
-        <activity android:name=".note.CreateNote" android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".note.EditNote" android:screenOrientation="portrait"></activity>
-
-
-        <activity android:name=".addimages.ViewActivity" android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".AuthActivity" android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".addimages.ShowImages" android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".note.CreateNote"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".note.EditNote"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".addimages.ViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AuthActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".addimages.ShowImages"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="showimage1" />
                 <action android:name="showimage2" />
@@ -38,7 +47,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".addimages.AddImage" android:screenOrientation="portrait">
+        <activity
+            android:name=".addimages.AddImage"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="addimage1" />
                 <action android:name="addimage2" />
@@ -48,7 +59,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".InfoHome" android:screenOrientation="portrait">
+        <activity
+            android:name=".InfoHome"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="info1" />
                 <action android:name="info2" />
@@ -58,10 +71,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".files.FilesView" android:screenOrientation="portrait" />
-
-        <activity android:name=".files.FilesUpload" android:screenOrientation="portrait">
+        <activity
+            android:name=".files.FilesView"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".files.FilesUpload"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="filesUP1" />
                 <action android:name="filesUP2" />
@@ -71,8 +86,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".files.Files" android:screenOrientation="portrait">
+        <activity
+            android:name=".files.Files"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="files1" />
                 <action android:name="files2" />
@@ -82,10 +98,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".message.MessageIntegration"  android:screenOrientation="portrait"/>
-
-        <activity android:name=".ActivityArchive" android:screenOrientation="portrait">
+        <activity
+            android:name=".message.MessageIntegration"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityArchive"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="archive1" />
                 <action android:name="archive2" />
@@ -95,7 +113,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ActivityNote"
             android:screenOrientation="portrait"
@@ -106,7 +123,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ActivityPay">
             <intent-filter>
                 <action android:name="pay1" />
@@ -117,8 +133,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ActivityRepairs" android:screenOrientation="portrait">
+        <activity
+            android:name=".ActivityRepairs"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="remont1" />
                 <action android:name="remont2" />
@@ -128,16 +145,18 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SplashActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ActivityFindClient" android:screenOrientation="portrait">
+        <activity
+            android:name=".ActivityFindClient"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="find_client1" />
                 <action android:name="find_client2" />
@@ -147,8 +166,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ActivityNewClient" android:screenOrientation="portrait">
+        <activity
+            android:name=".ActivityNewClient"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="new_client1" />
                 <action android:name="new_client2" />
@@ -158,19 +178,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ActivityAllClients"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="allclient" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ActivityApartmentManager" android:screenOrientation="portrait">
+        <activity
+            android:name=".ActivityApartmentManager"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="new_home1" />
                 <action android:name="new_home2" />
@@ -180,8 +200,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ActivityAddNewApartment" android:screenOrientation="portrait">
+        <activity
+            android:name=".ActivityAddNewApartment"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="1" />
                 <action android:name="2" />
@@ -191,8 +212,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

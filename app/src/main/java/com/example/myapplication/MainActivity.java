@@ -23,6 +23,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.DataSnapshot;
@@ -58,6 +65,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     Vibrator vibr;
 
+    private AdView mAdView;
+
     private DatabaseReference myDataBase;
 
     private String New_Apartment = "New_Apartment";
@@ -69,10 +78,46 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+
+
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                Toast.makeText(MainActivity.this, ""+adError, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        });
 
         myDataBase = FirebaseDatabase.getInstance().getReference(New_Apartment);
 
-        getSupportActionBar().hide();
+
 
         add1_text = (TextView) findViewById(R.id.add1_text);
         add2_text = (TextView) findViewById(R.id.add2_text);
@@ -868,6 +913,12 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     }
 
+    private void showActivityFeedBack() {
+
+        Intent intent1 = new Intent(MainActivity.this,ActivityFeedBack.class);
+        startActivityForResult(intent1,0000);
+
+    }
 
     private int getCheckedItem(){
 
@@ -1377,6 +1428,10 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
             case R.id.navigation_exit:
                 showDialogExit();
+                return  true;
+
+            case R.id.navigation_feedback:
+                showActivityFeedBack();
                 return  true;
 
         }

@@ -32,6 +32,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'com.google.android.gms:play-services-ads:20.0.0'
 
     implementation 'com.google.android.gms:play-services-location:18.0.0'
 
@@ -54,6 +55,7 @@ dependencies {
     implementation files('libs\\activation.jar')
     implementation files('libs\\additionnal.jar')
     implementation files('libs\\mail.jar')
+
 
     compile 'com.github.jintin:MixAdapter:1.1'
 
