@@ -11,15 +11,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@drawable/ic_house"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9961133688670950~4827435986"/>
         <activity android:name=".ActivityFeedBack">
 
         </activity>
@@ -215,6 +213,9 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9961133688670950~4827435986"/>
     </application>
 
 </manifest>

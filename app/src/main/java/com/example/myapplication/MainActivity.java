@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,6 +31,8 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.DataSnapshot;
@@ -59,8 +62,6 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
             new_home,new_home2,new_home3,new_home4,
             allclient,bloknot;
 
-    ImageView customization,exit;
-
     TextView add1_text,add2_text,add3_text,add4_text;
 
     Vibrator vibr;
@@ -71,6 +72,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     private String New_Apartment = "New_Apartment";
 
+    private InterstitialAd mInterstitialAd;
+
 
     private AlphaAnimation buttonClick = new AlphaAnimation(2F, 0.3F);
 
@@ -80,40 +83,6 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-
-
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-            }
-
-            @Override
-            public void onAdFailedToLoad(LoadAdError adError) {
-                Toast.makeText(MainActivity.this, ""+adError, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
-
-            @Override
-            public void onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            @Override
-            public void onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-        });
 
         myDataBase = FirebaseDatabase.getInstance().getReference(New_Apartment);
 
@@ -863,6 +832,10 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
                 dialog.dismiss();
             }
         });
+
+
+
+
 
         androidx.appcompat.app.AlertDialog dialog = builder.create();
         dialog.show();

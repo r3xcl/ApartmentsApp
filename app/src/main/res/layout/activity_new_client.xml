@@ -39,17 +39,15 @@
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="match_parent"
-        android:layout_height="548dp"
+        android:layout_height="560dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/button_ram"
         app:layout_constraintBottom_toTopOf="@+id/add_new_client"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.435"
-        app:srcCompat="@drawable/ic_group3" />
+        app:layout_constraintVertical_bias="0.581" />
 
     <EditText
         android:id="@+id/client_name"
@@ -217,7 +215,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="120dp"
         android:layout_marginEnd="120dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/button"
         android:gravity="center"
         android:onClick="onClick"
@@ -228,5 +226,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="279dp"
+        android:layout_height="37dp"
+        android:textColorHint="@color/text"
+        android:hint="Інформація про орендаря"
+        android:textSize="23sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/client_surname"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toTopOf="@+id/imageView12" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
