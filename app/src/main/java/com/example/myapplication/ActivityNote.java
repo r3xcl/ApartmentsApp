@@ -35,6 +35,8 @@ import com.example.myapplication.note.NoteModel;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,8 +62,7 @@ public class ActivityNote extends AppCompatActivity {
 
     ImageButton back;
     EditText inputSearch;
-
-
+    private AdView mAdView;
 
 
     RecyclerView mrecyclerview;
@@ -83,6 +84,10 @@ public class ActivityNote extends AppCompatActivity {
 
         notecard=findViewById(R.id.notecard);
         back=findViewById(R.id.back);
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         firebaseAuth=FirebaseAuth.getInstance();
 

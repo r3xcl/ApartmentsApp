@@ -102,13 +102,16 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
 
-        <ImageView
-            android:id="@+id/imageAddWebLink"
-            android:layout_width="@dimen/_23sdp"
-            android:layout_height="@dimen/_23sdp"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:contentDescription="@string/app_name"
-            app:tint="@color/colorIcons" />
+
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-9961133688670950/2364924178" />
 
     </LinearLayout>
 
@@ -125,7 +128,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/layoutQuickAction"
         app:tint="@color/colorPrimary" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

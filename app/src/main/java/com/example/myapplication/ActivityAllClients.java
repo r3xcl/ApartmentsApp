@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -38,9 +40,7 @@ public class ActivityAllClients extends AppCompatActivity {
     FloatingActionButton fb;
     SharedPreferences sharedPreferences;
     ImageButton back;
-
-
-
+    private AdView mAdView;
 
 
     @Override
@@ -53,10 +53,14 @@ public class ActivityAllClients extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.GRAY));
-
+        ;
 
         setContentView(R.layout.activity_all_clients);
         setTitle("Пошук");
+
+        mAdView = findViewById(R.id.adView2);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         recView=(RecyclerView)findViewById(R.id.recyclerView);
         back=findViewById(R.id.back);

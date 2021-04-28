@@ -55,6 +55,8 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
     private int checkedItem;
     private String selected;
     private final String CHECKEDITEM = "checked_item";
+    private InterstitialAd mInterstitialAd;
+
 
     com.google.android.material.bottomnavigation.BottomNavigationView bottomNavigationView;
 
@@ -72,8 +74,6 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
     private String New_Apartment = "New_Apartment";
 
-    private InterstitialAd mInterstitialAd;
-
 
     private AlphaAnimation buttonClick = new AlphaAnimation(2F, 0.3F);
 
@@ -85,6 +85,29 @@ public class  MainActivity extends AppCompatActivity  implements View.OnClickLis
 
 
         myDataBase = FirebaseDatabase.getInstance().getReference(New_Apartment);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+
+        InterstitialAd.load(this,"ca-app-pub-9961133688670950/2057586814", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                mInterstitialAd = interstitialAd;
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(MainActivity.this);
+                } else {
+                    Log.d("REKLMAIN", "The interstitial ad wasn't ready yet.");
+                }
+                Log.i("REKLMAIN", "onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Log.i("REKLMAIN", loadAdError.getMessage());
+                mInterstitialAd = null;
+            }
+        });
 
 
 
