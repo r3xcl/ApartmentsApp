@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".files.fragments.fragmentFiles3">
+    tools:context="com.example.myapart.files.fragments.fragmentFiles3">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recview_file3"

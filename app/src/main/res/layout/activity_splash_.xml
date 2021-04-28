@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/mainFonSplash"
 
-    tools:context=".SplashActivity">
+    tools:context="com.example.myapart.SplashActivity">
 
 
 

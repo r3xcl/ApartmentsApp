@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".files.FilesUpload"
+    tools:context="com.example.myapart.files.FilesUpload"
     android:background="@color/mainFon">
 
     <ImageView

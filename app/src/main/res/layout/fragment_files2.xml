@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".files.fragments.fragmentFiles2">
+    tools:context="com.example.myapart.files.fragments.fragmentFiles2">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recview_file2"

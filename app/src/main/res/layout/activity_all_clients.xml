@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainFon"
-    tools:context=".ActivityApartmentManager">
+    tools:context="com.example.myapart.ActivityApartmentManager">
 
     <ImageView
         android:id="@+id/imageView5"

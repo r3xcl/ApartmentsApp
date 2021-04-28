@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication">
+    package="com.example.myapplication" >
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -18,23 +18,23 @@
         android:roundIcon="@drawable/ic_house"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".ActivityFeedBack">
+        <activity android:name="com.example.myapart.ActivityFeedBack">
 
         </activity>
         <activity
-            android:name=".note.CreateNote"
+            android:name="com.example.myapart.note.CreateNote"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".note.EditNote"
+            android:name="com.example.myapart.note.EditNote"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".addimages.ViewActivity"
+            android:name="com.example.myapart.addimages.ViewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AuthActivity"
+            android:name="com.example.myapart.AuthActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".addimages.ShowImages"
+            android:name="com.example.myapart.addimages.ShowImages"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="showimage1" />
@@ -46,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".addimages.AddImage"
+            android:name="com.example.myapart.addimages.AddImage"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="addimage1" />
@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".InfoHome"
+            android:name="com.example.myapart.InfoHome"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="info1" />
@@ -70,10 +70,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".files.FilesView"
+            android:name="com.example.myapart.files.FilesView"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".files.FilesUpload"
+            android:name="com.example.myapart.files.FilesUpload"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="filesUP1" />
@@ -85,7 +85,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".files.Files"
+            android:name="com.example.myapart.files.Files"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="files1" />
@@ -97,10 +97,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".message.MessageIntegration"
+            android:name="com.example.myapart.message.MessageIntegration"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityArchive"
+            android:name="com.example.myapart.ActivityArchive"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="archive1" />
@@ -112,7 +112,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityNote"
+            android:name="com.example.myapart.ActivityNote"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
@@ -121,7 +121,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityPay">
+        <activity android:name="com.example.myapart.ActivityPay">
             <intent-filter>
                 <action android:name="pay1" />
                 <action android:name="pay2" />
@@ -132,7 +132,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityRepairs"
+            android:name="com.example.myapart.ActivityRepairs"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="remont1" />
@@ -144,7 +144,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name="com.example.myapart.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -153,7 +153,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityFindClient"
+            android:name="com.example.myapart.ActivityFindClient"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="find_client1" />
@@ -165,7 +165,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityNewClient"
+            android:name="com.example.myapart.ActivityNewClient"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="new_client1" />
@@ -177,7 +177,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityAllClients"
+            android:name="com.example.myapart.ActivityAllClients"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -187,7 +187,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityApartmentManager"
+            android:name="com.example.myapart.ActivityApartmentManager"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="new_home1" />
@@ -199,7 +199,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityAddNewApartment"
+            android:name="com.example.myapart.ActivityAddNewApartment"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="1" />
@@ -211,7 +211,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.myapart.MainActivity"
             android:screenOrientation="portrait" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

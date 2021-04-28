@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/mainFon"
     android:id="@+id/auth"
-    tools:context=".AuthActivity">
+    tools:context="com.example.myapart.AuthActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

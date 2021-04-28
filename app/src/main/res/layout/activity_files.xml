@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:id="@+id/files"
     android:layout_height="match_parent"
-    tools:context=".files.Files"
+    tools:context="com.example.myapart.files.Files"
     android:background="@color/mainFon">
 
     <ImageView
