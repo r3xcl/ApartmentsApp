@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -29,8 +28,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.FirebaseDatabase;
 
-import db.Client.ClientClass;
 import db.Client.ClientAdapter;
+import db.Client.ClientClass;
 
 public class ActivityAllClients extends AppCompatActivity {
 
