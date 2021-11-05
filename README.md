@@ -12,8 +12,9 @@
   <li>Light and dark app themes. | Светлая и темная темы.</li> 
 </ul>
 
-![Image alt] (https://github.com/r3xcl/ApartmentsApp/raw/master/imggoogleplay/image.png?raw=true)
 
 
+![](https://github.com/r3xcl/ApartmentsApp/blob/master/imggoogleplay/3screens.png?raw=true)
+![](https://github.com/r3xcl/ApartmentsApp/blob/master/imggoogleplay/3screens2.png?raw=true)
 
 
